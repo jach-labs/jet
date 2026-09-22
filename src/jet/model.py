@@ -144,8 +144,11 @@ class Jet:
         self.model.eval()
         self.max_state_tokens = max_state_tokens
         self.temperatures = {"choice": 1.0, "score": 1.0, "noul": 1.0}
-        if adapter_path and (calib := Path(adapter_path) / "calibration.json").exists():
-            self.temperatures.update(json.loads(calib.read_text()))
+        # Calibration lives next to the adapter, or inside a fused model dir.
+        for directory in (adapter_path, base_model):
+            if directory and (calib := Path(directory) / "calibration.json").exists():
+                self.temperatures.update(json.loads(calib.read_text()))
+                break
 
     def raw_logits(self, items: list[tuple[Any, Question]], shared_state: bool = False) -> tuple[list[np.ndarray], int]:
         """Uncalibrated label logits for (state, question) pairs, plus the number of

@@ -73,20 +73,42 @@ uv run jet-split data/public.jsonl data/distill.jsonl --holdout-source emotion
 
 # 2. train + calibrate
 uv run jet-train                               # → adapters/jet (best checkpoint by val NLL)
+#    interrupted? continue from the last saved checkpoint:
+#    uv run jet-train --resume adapters/jet --start-step 1000
 uv run jet-calibrate --adapter adapters/jet
+uv run jet-fuse                                # merge LoRA into the weights → models/jet (~18% faster, same accuracy)
 
 # 3. measure: accuracy, NLL, Brier, ECE per source and type, plus latency
 uv run jet-eval --data data/test.jsonl                            # untrained baseline
 uv run jet-eval --adapter adapters/jet --data data/test.jsonl
 
 # 4. serve
-JET_API_KEY=secret uv run jet-serve --adapter adapters/jet
+JET_API_KEY=secret uv run jet-serve --base-model models/jet
+
+# optional: head-to-head against the hosted Jev API (needs a Jev key; ~$0.20 for 1,500 rows)
+JEV_API_KEY=jv_live_... uv run jet-bench-jev --data data/test.jsonl --limit 1500
 ```
 
 `jet-distill` needs Anthropic credentials (`ANTHROPIC_API_KEY` or `ant auth login`). It uses
 `claude-opus-5` through the Message Batches API at 50% of the normal price, and it resumes from
 `data/distill/batches.json` instead of resubmitting. Batches can't use server-side refusal
 fallbacks, so any refused items are dropped.
+
+## Results so far
+
+Jet trained on the public data only (no Claude distillation yet). This is the step-1,000 checkpoint, about 0.9 epochs;
+the run was stopped at step 1,125 of 2,378 by memory pressure. Test set: 1,500 rows. Two-thirds are `emotion`,
+which is held out of training entirely, so they measure transfer to an unseen task.
+
+| model                        | accuracy | NLL  | Brier | ECE   | latency, 1 question |
+| ---------------------------- | -------- | ---- | ----- | ----- | ------------------- |
+| Qwen3-0.6B, untrained        | 46.6%    | 2.66 | 0.886 | 0.428 | 82 ms               |
+| Jet step 1,000 (LoRA)        | 65.7%    | 0.92 | 0.462 | 0.103 | 72 ms               |
+| Jet step 1,000 (fused)       | 65.8%    | 0.92 | 0.462 | 0.101 | **59 ms**           |
+
+Per source (fused): dbpedia 100%, massive 96%, civil_comments 90%, ag_news 89%, mnli 83%, boolq 79%,
+banking77 75%, yelp 61%, emotion (held out) 59%, stsb 47%. Latency is measured on an M2 Pro. It
+hasn't been compared with Jev yet (see `jet-bench-jev`).
 
 ## API
 
@@ -131,6 +153,8 @@ src/jet/
   train.py         LoRA training loop (label-token cross-entropy)
   evaluate.py      jet-eval / jet-calibrate
   server.py        FastAPI /v1/decide
+  fuse.py          merge LoRA into the base weights for serving
+  bench_jev.py     score the hosted Jev API on the same test set
   data/public.py   public dataset builders
   data/distill.py  Claude distillation (Batches API)
   data/split.py    merge, dedupe, grouped split

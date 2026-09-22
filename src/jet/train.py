@@ -114,6 +114,8 @@ def main() -> None:
     ap.add_argument("--grad-checkpoint", action=argparse.BooleanOptionalAction, default=True)
     ap.add_argument("--eval-every", type=int, default=250)
     ap.add_argument("--val-limit", type=int, default=1000)
+    ap.add_argument("--resume", type=Path, default=None, help="adapter dir to continue from")
+    ap.add_argument("--start-step", type=int, default=0, help="step the resumed adapter was saved at (keeps the LR schedule aligned)")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
@@ -124,6 +126,9 @@ def main() -> None:
     num_layers = len(model.layers) if args.lora_layers < 0 else args.lora_layers
     lora_parameters = {"rank": args.rank, "scale": args.lora_scale, "dropout": args.dropout}
     linear_to_lora_layers(model, num_layers, lora_parameters)
+    if args.resume:
+        model.load_weights(str(args.resume / "adapters.safetensors"), strict=False)
+        print(f"resumed from {args.resume} at step {args.start_step}")
     if args.grad_checkpoint:
         grad_checkpoint(model.layers[0])
     n_train = sum(v.size for _, v in tree_flatten(model.trainable_parameters()))
@@ -143,6 +148,7 @@ def main() -> None:
         [warmup],
     )
     optimizer = optim.AdamW(learning_rate=schedule, weight_decay=0.01)
+    optimizer.state["step"] = mx.array(args.start_step, mx.uint64)
     value_and_grad = nn.value_and_grad(model, loss_fn)
 
     adapter_config = {
@@ -157,7 +163,7 @@ def main() -> None:
     model.train()
 
     saved = False
-    step, seen_tokens, started = 0, 0, time.perf_counter()
+    step, seen_tokens, started = args.start_step, 0, time.perf_counter()
     losses: list[float] = []
     while step < total_steps:
         for batch in make_batches(train, args.max_batch_tokens, rng):

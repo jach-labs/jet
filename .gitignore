@@ -2,5 +2,6 @@
 __pycache__/
 /data/
 /adapters/
+/models/
 *.egg-info/
 .DS_Store

@@ -25,6 +25,8 @@ jet-train = "jet.train:main"
 jet-calibrate = "jet.evaluate:main_calibrate"
 jet-eval = "jet.evaluate:main_eval"
 jet-serve = "jet.server:main"
+jet-fuse = "jet.fuse:main"
+jet-bench-jev = "jet.bench_jev:main"
 
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]
