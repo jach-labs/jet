@@ -1,0 +1,31 @@
+[project]
+name = "jet"
+version = "0.1.0"
+description = "Train and serve a small, typed, calibrated decision model (choice / score / noul)"
+readme = "README.md"
+authors = [
+    { name = "Michal Jach", email = "michaljach@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.8.0",
+    "datasets>=5.0.1",
+    "fastapi>=0.141.1",
+    "mlx>=0.32.2",
+    "mlx-lm>=0.31.3",
+    "numpy>=2.5.3",
+    "uvicorn>=0.53.0",
+]
+
+[project.scripts]
+jet-data-public = "jet.data.public:main"
+jet-distill = "jet.data.distill:main"
+jet-split = "jet.data.split:main"
+jet-train = "jet.train:main"
+jet-calibrate = "jet.evaluate:main_calibrate"
+jet-eval = "jet.evaluate:main_eval"
+jet-serve = "jet.server:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
