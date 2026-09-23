@@ -17,8 +17,8 @@ from mlx.utils import tree_unflatten
 from mlx_lm import load
 from mlx_lm.utils import save_config, save_model
 
-from jet.evaluate import adapter_base
-from jet.model import DEFAULT_BASE_MODEL
+from evaluate import adapter_base
+from model import DEFAULT_BASE_MODEL
 
 
 def main() -> None:

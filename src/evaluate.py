@@ -16,8 +16,8 @@ from pathlib import Path
 import mlx.core as mx
 import numpy as np
 
-from jet.format import Question
-from jet.model import DEFAULT_BASE_MODEL, Jet
+from format import Question
+from model import DEFAULT_BASE_MODEL, Jet
 
 TEMPERATURE_GRID = np.exp(np.linspace(np.log(0.25), np.log(8.0), 121))
 

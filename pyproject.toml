@@ -27,18 +27,23 @@ cuda = [
 ]
 
 [project.scripts]
-jet-data-public = "jet.data.public:main"
-jet-data-score-eval = "jet.data.public:score_eval_main"
-jet-distill = "jet.data.distill:main"
-jet-split = "jet.data.split:main"
-jet-extend = "jet.data.split:extend_main"
-jet-train = "jet.train:main"
-jet-calibrate = "jet.evaluate:main_calibrate"
-jet-eval = "jet.evaluate:main_eval"
-jet-serve = "jet.server:main"
-jet-fuse = "jet.fuse:main"
-jet-bench-jev = "jet.bench_jev:main"
+jet-data-public = "data.public:main"
+jet-data-score-eval = "data.public:score_eval_main"
+jet-distill = "data.distill:main"
+jet-split = "data.split:main"
+jet-extend = "data.split:extend_main"
+jet-train = "train:main"
+jet-calibrate = "evaluate:main_calibrate"
+jet-eval = "evaluate:main_eval"
+jet-serve = "server:main"
+jet-fuse = "fuse:main"
+jet-bench-jev = "bench_jev:main"
 
 [build-system]
-requires = ["uv_build>=0.12.17,<0.13.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Modules live directly in src/ (from model import Jet), which uv_build's one-package layout can't express.
+[tool.hatch.build.targets.wheel]
+only-include = ["src"]
+sources = ["src"]

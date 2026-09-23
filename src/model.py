@@ -13,7 +13,7 @@ import numpy as np
 from mlx_lm import load
 from mlx_lm.models.cache import make_prompt_cache
 
-from jet.format import Question, build_prompt, label_token_ids, render_state
+from format import Question, build_prompt, label_token_ids, render_state
 
 DEFAULT_BASE_MODEL = "mlx-community/Qwen3-0.6B-bf16"
 DEFAULT_MAX_STATE_TOKENS = 4096

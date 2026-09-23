@@ -13,7 +13,7 @@ import json
 import random
 from pathlib import Path
 
-from jet.format import Question
+from format import Question
 
 
 def bucket(key: str) -> float:

@@ -22,8 +22,8 @@ from pathlib import Path
 
 import numpy as np
 
-from jet.evaluate import metrics, print_table
-from jet.format import Question
+from evaluate import metrics, print_table
+from format import Question
 
 DEFAULT_URL = "https://jevtypesafeai.com/api/v1/decide"
 

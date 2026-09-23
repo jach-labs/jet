@@ -20,9 +20,9 @@ from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from jet.evaluate import adapter_base
-from jet.format import Question
-from jet.model import DEFAULT_BASE_MODEL, Jet
+from evaluate import adapter_base
+from format import Question
+from model import DEFAULT_BASE_MODEL, Jet
 
 MAX_QUESTIONS = 64
 

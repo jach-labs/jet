@@ -180,7 +180,7 @@ request, `401` bad API key.
 ## Layout
 
 ```
-src/jet/
+src/
   format.py        prompt format + label tokens (shared by training and inference)
   model.py         Jet: forward pass, shared-state KV prefix, typed answers
   train.py         LoRA training loop (label-token cross-entropy)

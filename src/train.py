@@ -26,8 +26,8 @@ from mlx_lm import load
 from mlx_lm.tuner.trainer import grad_checkpoint
 from mlx_lm.tuner.utils import linear_to_lora_layers
 
-from jet.format import Question, label_token_ids
-from jet.model import DEFAULT_BASE_MODEL, encode, label_logits, pad_batch, pad_labels
+from format import Question, label_token_ids
+from model import DEFAULT_BASE_MODEL, encode, label_logits, pad_batch, pad_labels
 
 
 class Example:
