@@ -91,6 +91,7 @@ uv run jet-fuse                                # merge LoRA into the weights →
 uv run jet-eval --data data/test.jsonl                            # untrained baseline
 uv run jet-eval --adapter adapters/jet --data data/test.jsonl
 uv run jet-eval --adapter adapters/jet --data data/score_eval.jsonl   # adds mae / ±1 / Spearman for score questions
+#    on a 16 GB NVIDIA card, pass --batch-size 4 to jet-calibrate / jet-eval (the default 16 runs out of memory)
 
 # 4. serve
 JET_API_KEY=secret uv run jet-serve --base-model models/jet
@@ -106,19 +107,37 @@ fallbacks, so any refused items are dropped.
 
 ## Results
 
-Jet trained on the public data only (no Claude distillation yet): 2 epochs, 2,378 steps, best checkpoint at
-step 2,250 by validation NLL, then calibrated and fused. The test set has 1,500 rows. `emotion` makes up two-thirds of them
-and is held out of training entirely, so it measures transfer to a task the model never saw.
+Current model: Jet trained on `train_v2` (public data plus varied-scale score questions, no Claude
+distillation yet) on an RTX 4080. 2 epochs, 2,910 steps, best checkpoint at step 2,750 by validation NLL,
+then calibrated and fused. The test set has 3,683 rows. `emotion` makes up two-thirds of them and is held
+out of training entirely, so it measures transfer to a task the model never saw.
+
+| model                   | accuracy  | NLL      | Brier     | ECE       | trained tasks acc | held-out `emotion` acc |
+| ----------------------- | --------- | -------- | --------- | --------- | ----------------- | ---------------------- |
+| Qwen3-0.6B, untrained   | 46.7%     | 2.63     | 0.885     | 0.428     | 46.6%             | 46.7%                  |
+| **Jet final (fused)**   | **67.7%** | **0.87** | **0.427** | **0.061** | **83.2%**         | **60.3%**              |
+
+Per source: dbpedia 99%, civil_comments 92%, massive 92%, banking77 89%, ag_news 88%, mnli 82%, boolq 81%,
+yelp 72%, emotion (held out) 60%, stsb 56%. By type: noul 79%, choice 62%, score 61%.
+
+On the ordinal set (`score_eval.jsonl`, 2,400 score questions from held-out splits), the exact level is right
+52% of the time, within one level 91%, with Spearman 0.83 and ECE 0.035. Per source Spearman: stsb 0.90,
+yelp 0.89, amazon 0.79, sst5 0.74. Fusing leaves the metrics unchanged (test accuracy 67.6% → 67.7%) and cuts
+batched eval time from 9.1 to 6.1 ms per question on the 4080.
+
+### Earlier run (1,500-row test split)
+
+Before the held-out sets were versioned: public data only, 2 epochs, 2,378 steps, best checkpoint at step
+2,250. These rows come from a different split, so compare them with each other, not with the table above.
 
 | model                   | accuracy | NLL  | Brier | ECE   | trained tasks acc | held-out `emotion` acc | 1 question |
 | ----------------------- | -------- | ---- | ----- | ----- | ----------------- | ---------------------- | ---------- |
 | Qwen3-0.6B, untrained   | 46.6%    | 2.66 | 0.886 | 0.428 | 44.6%             | 47.6%                  | 82 ms      |
 | Jet step 1,000          | 65.8%    | 0.92 | 0.462 | 0.101 | 79.9%             | 58.8%                  | 59 ms      |
-| **Jet final (fused)**   | **66.7%**| **0.86** | **0.441** | **0.079** | **82.7%**   | 58.7%                  | **59 ms**  |
+| Jet final (fused)       | 66.7%    | 0.86 | 0.441 | 0.079 | 82.7%             | 58.7%                  | 59 ms      |
 
-Per source (final): massive 100%, dbpedia 97%, ag_news 92%, banking77 89%, civil_comments 88%, boolq 82%,
-mnli 82%, yelp 71%, emotion (held out) 59%, stsb 45%. Latency is for one question on an M2 Pro. Ten questions
-about one ~640-token state take about 500 ms together, because the state is encoded once.
+Latency is for one question on an M2 Pro. Ten questions about one ~640-token state take about 500 ms
+together, because the state is encoded once.
 
 The second epoch helped the trained tasks (79.9% → 82.7%) but not the unseen one (58.8% → 58.7%). More
 varied training tasks, such as the Claude-distilled set, are the likely lever for generalization.
