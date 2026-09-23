@@ -38,6 +38,7 @@ jet-eval = "evaluate:main_eval"
 jet-serve = "server:main"
 jet-fuse = "fuse:main"
 jet-bench-jev = "bench_jev:main"
+jet-golden = "golden:main"
 
 [build-system]
 requires = ["hatchling"]
