@@ -59,6 +59,7 @@ about a ~640-token state take ~370 ms in total, versus ~1.8 s asking them one at
 ```sh
 uv sync                  # Apple Silicon (Metal)
 uv sync --extra cuda     # Linux with an NVIDIA GPU (CUDA 12)
+./train_cuda.sh --train data/train_v2.jsonl   # on Linux, run jet-train through this (sets up CUDA headers)
 ```
 
 The base model (`mlx-community/Qwen3-0.6B-bf16`) downloads on first use.

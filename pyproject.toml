@@ -19,7 +19,12 @@ dependencies = [
 
 [project.optional-dependencies]
 # NVIDIA GPUs on Linux: uv sync --extra cuda
-cuda = ["mlx[cuda]>=0.32.2; sys_platform == 'linux'"]
+# MLX JIT-compiles CUDA kernels, so it also needs the CUDA headers (runtime + CCCL); train_cuda.sh points CUDA_HOME at them.
+cuda = [
+    "mlx[cuda]>=0.32.2; sys_platform == 'linux'",
+    "nvidia-cuda-runtime-cu12==12.9.*; sys_platform == 'linux'",
+    "nvidia-cuda-cccl-cu12==12.9.*; sys_platform == 'linux'",
+]
 
 [project.scripts]
 jet-data-public = "jet.data.public:main"
