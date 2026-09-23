@@ -93,8 +93,8 @@ uv run jet-eval --adapter adapters/jet --data data/test.jsonl
 uv run jet-eval --adapter adapters/jet --data data/score_eval.jsonl   # adds mae / ±1 / Spearman for score questions
 #    on a 16 GB NVIDIA card, pass --batch-size 4 to jet-calibrate / jet-eval (the default 16 runs out of memory)
 
-# 4. serve
-JET_API_KEY=secret uv run jet-serve --base-model models/jet
+# 4. serve (--cors-origin lets the demo site at https://jach-research.github.io call it from the browser)
+JET_API_KEY=secret uv run jet-serve --base-model models/jet --cors-origin https://jach-research.github.io
 
 # optional: head-to-head against the hosted Jev API (needs a Jev key; ~$0.20 for 1,500 rows)
 JEV_API_KEY=jv_live_... uv run jet-bench-jev --data data/test.jsonl --limit 1500
