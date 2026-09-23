@@ -13,6 +13,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
+import mlx.core as mx
 import numpy as np
 
 from jet.format import Question
@@ -34,6 +35,8 @@ def adapter_base(adapter: str | None, fallback: str) -> str:
 
 def collect_logits(jet: Jet, rows: list[dict], batch_size: int) -> tuple[list[np.ndarray], float]:
     """Raw label logits for every row, batched by prompt length. Returns (logits, ms per question)."""
+    # Batch shapes vary, so MLX's freed-buffer cache otherwise grows until CUDA runs out (as in jet-train).
+    mx.set_cache_limit(1_000_000_000)
     items = [(r["state"], Question.from_dict(r["question"])) for r in rows]
     order = sorted(range(len(items)), key=lambda i: len(str(items[i][0])))
     logits: list[np.ndarray | None] = [None] * len(items)
