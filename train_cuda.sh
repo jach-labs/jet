@@ -16,5 +16,6 @@ if [ ! -d "$CUDA_HOME/include" ]; then
     done
 fi
 export MLX_USE_CUDA_GRAPHS=0                      # batch shapes vary every step, so graphs just thrash
+export MLX_CUDA_SDPA_CACHE_SIZE=${MLX_CUDA_SDPA_CACHE_SIZE:-2048}  # same reason; the default 256 aborts mid-run
 export MLX_PTX_CACHE_DIR=$PWD/.venv/ptx_cache     # keep JIT-compiled kernels across runs
 exec uv run --extra cuda --no-sync jet-train "$@"
