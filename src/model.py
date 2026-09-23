@@ -10,6 +10,7 @@ from typing import Any
 
 import mlx.core as mx
 import numpy as np
+from huggingface_hub import snapshot_download
 from mlx_lm import load
 from mlx_lm.models.cache import make_prompt_cache
 
@@ -144,8 +145,10 @@ class Jet:
         self.model.eval()
         self.max_state_tokens = max_state_tokens
         self.temperatures = {"choice": 1.0, "score": 1.0, "noul": 1.0}
-        # Calibration lives next to the adapter, or inside a fused model dir.
-        for directory in (adapter_path, base_model):
+        # Calibration lives next to the adapter, or inside a fused model dir. A Hub repo id has no dir
+        # of its own, so look in its local snapshot (fetching calibration.json if the repo has one).
+        model_dir = Path(base_model) if Path(base_model).exists() else Path(snapshot_download(base_model, allow_patterns=["calibration.json"]))
+        for directory in (adapter_path, model_dir):
             if directory and (calib := Path(directory) / "calibration.json").exists():
                 self.temperatures.update(json.loads(calib.read_text()))
                 break
