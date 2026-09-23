@@ -94,7 +94,7 @@ uv run jet-eval --adapter adapters/jet --data data/score_eval.jsonl   # adds mae
 #    on a 16 GB NVIDIA card, pass --batch-size 4 to jet-calibrate / jet-eval (the default 16 runs out of memory)
 
 # 4. serve (--cors-origin lets the demo site at https://jach-research.github.io call it from the browser)
-JET_API_KEY=secret uv run jet-serve --base-model models/jet --cors-origin https://jach-research.github.io
+JET_API_KEY=secret uv run jet-serve --base-model models/jet-1 --cors-origin https://jach-research.github.io
 
 # optional: head-to-head against the hosted Jev API (needs a Jev key; ~$0.20 for 1,500 rows)
 JEV_API_KEY=jv_live_... uv run jet-bench-jev --data data/test.jsonl --limit 1500
@@ -107,41 +107,42 @@ fallbacks, so any refused items are dropped.
 
 ## Results
 
-Both current models are trained on `train_v2` (public data plus varied-scale score questions, no Claude
-distillation yet) on an RTX 4080 with the same settings: 2 epochs, 2,910 steps, best checkpoint by validation
-NLL, then calibrated and fused. `jet` uses Qwen3-0.6B (best at step 2,750, val NLL 0.485); `jet-1` uses
-Qwen3-1.7B (best at step 2,500, val NLL 0.420). The test set has 3,683 rows. `emotion` makes up two-thirds
-of them and is held out of training entirely, so it measures transfer to a task the model never saw.
+Released models are versioned: `jet-1` (`adapters/jet-1`, `models/jet-1`) is the current one. It is Qwen3-0.6B
+trained on `train_v2` (public data plus varied-scale score questions, no Claude distillation yet) on an
+RTX 4080: 2 epochs, 2,910 steps, best checkpoint at step 2,750 by validation NLL (0.485), then calibrated
+and fused. A Qwen3-1.7B variant was trained the same way for comparison (best at step 2,500, val NLL 0.420)
+and not kept: `jet-1` is better calibrated and about 1.8× faster, for half a point of accuracy.
+The test set has 3,683 rows. `emotion` makes up two-thirds of them and is held out of training entirely,
+so it measures transfer to a task the model never saw.
 
-| model                   | accuracy  | NLL      | Brier     | ECE       | trained tasks acc | held-out `emotion` acc | ms / question |
-| ----------------------- | --------- | -------- | --------- | --------- | ----------------- | ---------------------- | ------------- |
-| Qwen3-0.6B, untrained   | 46.7%     | 2.63     | 0.885     | 0.428     | 46.6%             | 46.7%                  | 6.1           |
-| **jet** (0.6B, fused)   | 67.7%     | 0.87     | **0.427** | **0.061** | 83.2%             | 60.3%                  | **6.1**       |
-| Qwen3-1.7B, untrained   | 60.5%     | 5.67     | 0.741     | 0.375     | 62.1%             | 59.8%                  | 11.1          |
-| **jet-1** (1.7B, fused) | **68.2%** | **0.86** | 0.430     | 0.100     | **83.8%**         | **60.9%**              | 11.1          |
+| model                     | accuracy  | NLL      | Brier     | ECE       | trained tasks acc | held-out `emotion` acc | ms / question |
+| ------------------------- | --------- | -------- | --------- | --------- | ----------------- | ---------------------- | ------------- |
+| Qwen3-0.6B, untrained     | 46.7%     | 2.63     | 0.885     | 0.428     | 46.6%             | 46.7%                  | 6.1           |
+| **jet-1** (0.6B, fused)   | 67.7%     | 0.87     | **0.427** | **0.061** | 83.2%             | 60.3%                  | **6.1**       |
+| Qwen3-1.7B, untrained     | 60.5%     | 5.67     | 0.741     | 0.375     | 62.1%             | 59.8%                  | 11.1          |
+| 1.7B variant (fused)      | **68.2%** | **0.86** | 0.430     | 0.100     | **83.8%**         | **60.9%**              | 11.1          |
 
-Latency is batched eval time (batch size 4) on the 4080. Per source, `jet-1`: dbpedia 98%, massive 96%,
-civil_comments 92%, ag_news 89%, banking77 88%, mnli 85%, boolq 83%, yelp 75%, emotion (held out) 61%, stsb
-50%. By type: noul 78%, choice 64%, score 60%. `jet`: dbpedia 99%, civil_comments 92%, massive 92%, banking77
-89%, ag_news 88%, mnli 82%, boolq 81%, yelp 72%, emotion 60%, stsb 56%.
+Latency is batched eval time (batch size 4) on the 4080. Per source, `jet-1`: dbpedia 99%, civil_comments 92%,
+massive 92%, banking77 89%, ag_news 88%, mnli 82%, boolq 81%, yelp 72%, emotion (held out) 60%, stsb 56%.
+By type: noul 79%, choice 62%, score 61%.
 
 The larger base model learns the trained tasks better: test NLL drops on 8 of 9 of them (mnli 0.48 → 0.36,
 massive 0.33 → 0.18, yelp 0.69 → 0.58), and on its in-distribution validation data it needs almost no
-temperature correction (T 1.00–1.09, against 1.03–1.30 for `jet`). It does not transfer better. Untrained
+temperature correction (T 1.00–1.09, against 1.03–1.30 for `jet-1`). It does not transfer better. Untrained
 Qwen3-1.7B already reaches 59.8% on `emotion` zero-shot and training only takes it to 60.9%, while it becomes
 more overconfident there (ECE 0.095 → 0.144). The temperatures are fit on trained tasks, so they can't correct
-that, and it is why `jet-1`'s overall ECE is worse. Varied training tasks, such as the Claude-distilled set,
-still look like the lever for generalization, not model size.
+that, and it is why the 1.7B variant's overall ECE is worse. Varied training tasks, such as the
+Claude-distilled set, still look like the lever for generalization, not model size.
 
 On the ordinal set (`score_eval.jsonl`, 2,400 score questions from held-out splits):
 
-| model   | exact level | within one level | Spearman | ECE   | Spearman per source (stsb / yelp / amazon / sst5) |
-| ------- | ----------- | ---------------- | -------- | ----- | ------------------------------------------------- |
-| `jet`   | 52.1%       | 91.4%            | 0.83     | 0.035 | 0.90 / 0.89 / 0.79 / 0.74                          |
-| `jet-1` | 53.9%       | 93.5%            | 0.86     | 0.071 | 0.93 / 0.91 / 0.83 / 0.79                          |
+| model        | exact level | within one level | Spearman | ECE   | Spearman per source (stsb / yelp / amazon / sst5) |
+| ------------ | ----------- | ---------------- | -------- | ----- | ------------------------------------------------- |
+| `jet-1`      | 52.1%       | 91.4%            | 0.83     | 0.035 | 0.90 / 0.89 / 0.79 / 0.74                          |
+| 1.7B variant | 53.9%       | 93.5%            | 0.86     | 0.071 | 0.93 / 0.91 / 0.83 / 0.79                          |
 
-Fusing leaves the metrics unchanged (`jet` test accuracy 67.6% → 67.7%, `jet-1` 68.0% → 68.2%) and cuts
-batched eval time by about a third (`jet` 9.1 → 6.1 ms, `jet-1` 16.5 → 11.1 ms per question).
+Fusing leaves the metrics unchanged (`jet-1` test accuracy 67.6% → 67.7%, 1.7B variant 68.0% → 68.2%) and
+cuts batched eval time by about a third (`jet-1` 9.1 → 6.1 ms, 1.7B variant 16.5 → 11.1 ms per question).
 
 ### Earlier run (1,500-row test split)
 
