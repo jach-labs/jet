@@ -86,7 +86,7 @@ def main() -> None:
         "--cors-origin",
         action="append",
         default=[o for o in os.environ.get("JET_CORS_ORIGINS", "").split(",") if o],
-        help="let browser pages on this origin call the API, e.g. https://jach-labs.github.io (repeatable)",
+        help="let browser pages on this origin call the API, e.g. https://jach.me (repeatable)",
     )
     args = ap.parse_args()
     app = create_app(args.adapter, args.base_model, args.model_name, args.cors_origin)
