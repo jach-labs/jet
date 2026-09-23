@@ -5,6 +5,8 @@ __pycache__/
 !/data/val.jsonl
 !/data/test.jsonl
 !/data/score_eval.jsonl
+# Current training set, so any machine can train without rebuilding it.
+!/data/train_v2.jsonl
 /adapters/
 /models/
 *.egg-info/
