@@ -1,6 +1,10 @@
 .venv/
 __pycache__/
-/data/
+/data/*
+# Held-out sets are versioned: model comparisons only mean something on identical rows.
+!/data/val.jsonl
+!/data/test.jsonl
+!/data/score_eval.jsonl
 /adapters/
 /models/
 *.egg-info/

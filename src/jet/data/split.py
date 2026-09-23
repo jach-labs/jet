@@ -61,3 +61,43 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def extend_main() -> None:
+    """Add new examples to an existing train split without touching val/test.
+
+    Changing the public builders and re-running jet-split reshuffles every split, so the
+    new model's test numbers would not be comparable with the old one's. This keeps the
+    splits fixed and drops any new example whose state already appears in a held-out file.
+    """
+    ap = argparse.ArgumentParser(description="Append examples to a train split, excluding held-out states.")
+    ap.add_argument("train", type=Path, help="existing train split")
+    ap.add_argument("inputs", nargs="+", type=Path, help="new example files")
+    ap.add_argument("--exclude", nargs="+", type=Path, required=True, help="held-out files whose states must stay unseen")
+    ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--seed", type=int, default=0)
+    args = ap.parse_args()
+
+    held = {json.dumps(json.loads(line)["state"], sort_keys=True) for path in args.exclude for line in path.open()}
+    rows = [json.loads(line) for line in args.train.open()]
+    seen = {json.dumps([ex["state"], ex["question"]], sort_keys=True) for ex in rows}
+    added = overlap = 0
+    for path in args.inputs:
+        for line in path.open():
+            ex = json.loads(line)
+            Question.from_dict(ex["question"])
+            if json.dumps(ex["state"], sort_keys=True) in held:
+                overlap += 1
+                continue
+            dedupe = json.dumps([ex["state"], ex["question"]], sort_keys=True)
+            if dedupe in seen:
+                continue
+            seen.add(dedupe)
+            rows.append(ex)
+            added += 1
+
+    random.Random(args.seed).shuffle(rows)
+    with args.out.open("w") as f:
+        for ex in rows:
+            f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+    print(f"added {added}, dropped {overlap} with held-out states; {args.out}: {len(rows)}")

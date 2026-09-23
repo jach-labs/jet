@@ -72,6 +72,11 @@ uv run jet-data-score-eval                     # → data/score_eval.jsonl, ordi
 uv run jet-distill tasks --n 300               # Claude invents 300 questions × 12 states (asks before spending)
 uv run jet-distill label                       # Claude soft-labels each state → data/distill.jsonl
 uv run jet-split data/public.jsonl data/distill.jsonl --holdout-source emotion
+#    val.jsonl, test.jsonl and score_eval.jsonl are committed; to compare models, keep them and grow
+#    train instead of re-splitting. e.g. train_v2 = train + varied-scale score questions:
+uv run jet-data-public --only stsb_scales yelp_scales civil_scores --seed 1 --out data/public_scores.jsonl
+uv run jet-extend data/train.jsonl data/public_scores.jsonl \
+    --exclude data/val.jsonl data/test.jsonl data/score_eval.jsonl --out data/train_v2.jsonl
 
 # 2. train + calibrate
 uv run jet-train                               # → adapters/jet (best checkpoint by val NLL)
