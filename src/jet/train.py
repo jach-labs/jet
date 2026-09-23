@@ -18,7 +18,7 @@ import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
 import numpy as np
-from mlx.utils import tree_flatten
+from mlx.utils import tree_flatten, tree_unflatten
 from mlx_lm import load
 from mlx_lm.tuner.trainer import grad_checkpoint
 from mlx_lm.tuner.utils import linear_to_lora_layers
@@ -89,10 +89,13 @@ def evaluate(model, batches: list[list[Example]]) -> dict[str, float]:
     return {"nll": nll / total, "acc": correct / total}
 
 
-def save_adapter(model, out: Path, config: dict) -> None:
+def save_adapter(model, out: Path, config: dict, optimizer: optim.Optimizer | None = None) -> None:
     out.mkdir(parents=True, exist_ok=True)
     mx.save_safetensors(str(out / "adapters.safetensors"), dict(tree_flatten(model.trainable_parameters())))
     (out / "adapter_config.json").write_text(json.dumps(config, indent=2))
+    if optimizer is not None:
+        # Adam moments + step, so --resume continues exactly instead of restarting cold.
+        mx.save_safetensors(str(out / "optimizer.safetensors"), dict(tree_flatten(optimizer.state)))
 
 
 def main() -> None:
@@ -114,11 +117,15 @@ def main() -> None:
     ap.add_argument("--grad-checkpoint", action=argparse.BooleanOptionalAction, default=True)
     ap.add_argument("--eval-every", type=int, default=250)
     ap.add_argument("--val-limit", type=int, default=1000)
+    ap.add_argument("--cache-limit-gb", type=float, default=1.0,
+                    help="cap on MLX's freed-buffer cache; variable batch shapes otherwise grow it toward all of RAM")
     ap.add_argument("--resume", type=Path, default=None, help="adapter dir to continue from")
-    ap.add_argument("--start-step", type=int, default=0, help="step the resumed adapter was saved at (keeps the LR schedule aligned)")
+    ap.add_argument("--start-step", type=int, default=None,
+                    help="step the resumed adapter was saved at; read from its optimizer state when present")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
+    mx.set_cache_limit(int(args.cache_limit_gb * 1e9))
     mx.random.seed(args.seed)
     rng = random.Random(args.seed)
     model, tokenizer = load(args.base_model)
@@ -128,7 +135,7 @@ def main() -> None:
     linear_to_lora_layers(model, num_layers, lora_parameters)
     if args.resume:
         model.load_weights(str(args.resume / "adapters.safetensors"), strict=False)
-        print(f"resumed from {args.resume} at step {args.start_step}")
+        print(f"resumed weights from {args.resume}")
     if args.grad_checkpoint:
         grad_checkpoint(model.layers[0])
     n_train = sum(v.size for _, v in tree_flatten(model.trainable_parameters()))
@@ -143,12 +150,30 @@ def main() -> None:
     print(f"train {len(train)} examples, {steps_per_epoch} steps/epoch, {total_steps} steps; val {len(val_batches)} batches")
 
     warmup = max(1, min(args.warmup, total_steps // 10))
-    schedule = optim.join_schedules(
+    base_schedule = optim.join_schedules(
         [optim.linear_schedule(1e-7, args.lr, warmup), optim.cosine_decay(args.lr, total_steps - warmup, args.lr * 0.05)],
         [warmup],
     )
-    optimizer = optim.AdamW(learning_rate=schedule, weight_decay=0.01)
-    optimizer.state["step"] = mx.array(args.start_step, mx.uint64)
+    optimizer_state = args.resume / "optimizer.safetensors" if args.resume else None
+    if optimizer_state is not None and optimizer_state.exists():
+        schedule = base_schedule
+        optimizer = optim.AdamW(learning_rate=schedule, weight_decay=0.01)
+        optimizer.init(model.trainable_parameters())
+        optimizer.state = tree_unflatten(list(mx.load(str(optimizer_state)).items()))
+        start_step = int(optimizer.state["step"].item())
+        print(f"restored optimizer state at step {start_step}")
+    else:
+        start_step = args.start_step or 0
+        if args.resume:
+            # Cold Adam moments (MLX AdamW has no bias correction by default) make the first
+            # updates several times too large; ramp the LR back up to protect the checkpoint.
+            def schedule(step, start=start_step):
+                return base_schedule(step) * mx.minimum(1.0, (step - start + 1).astype(mx.float32) / warmup)
+            print(f"no optimizer state in {args.resume}; re-warming the LR over {warmup} steps")
+        else:
+            schedule = base_schedule
+        optimizer = optim.AdamW(learning_rate=schedule, weight_decay=0.01)
+        optimizer.state["step"] = mx.array(start_step, mx.uint64)
     value_and_grad = nn.value_and_grad(model, loss_fn)
 
     adapter_config = {
@@ -163,7 +188,7 @@ def main() -> None:
     model.train()
 
     saved = False
-    step, seen_tokens, started = args.start_step, 0, time.perf_counter()
+    step, seen_tokens, started = start_step, 0, time.perf_counter()
     losses: list[float] = []
     while step < total_steps:
         for batch in make_batches(train, args.max_batch_tokens, rng):
@@ -180,7 +205,7 @@ def main() -> None:
                 elapsed = time.perf_counter() - started
                 print(
                     f"step {step}/{total_steps} loss {np.mean(losses):.4f} lr {optimizer.learning_rate.item():.2e} "
-                    f"{seen_tokens / elapsed:.0f} tok/s peak mem {mx.get_peak_memory() / 1e9:.1f}GB",
+                    f"{seen_tokens / elapsed:.0f} tok/s peak mem {mx.get_peak_memory() / 1e9:.1f}GB cache {mx.get_cache_memory() / 1e9:.1f}GB",
                     flush=True,
                 )
                 losses = []
@@ -192,11 +217,11 @@ def main() -> None:
                 print(f"step {step} val nll {metrics['nll']:.4f} acc {metrics['acc']:.3f}{'  *saved*' if improved else ''}", flush=True)
                 if improved:
                     best = metrics
-                    save_adapter(model, args.out, adapter_config)
+                    save_adapter(model, args.out, adapter_config, optimizer)
                     saved = True
     if not saved:
         print("val never improved on the base model; saving the final weights anyway")
-        save_adapter(model, args.out, adapter_config)
+        save_adapter(model, args.out, adapter_config, optimizer)
     print(f"best val nll {best['nll']:.4f} acc {best['acc']:.3f}; adapter in {args.out}")
 
 

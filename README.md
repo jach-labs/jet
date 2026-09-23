@@ -73,8 +73,8 @@ uv run jet-split data/public.jsonl data/distill.jsonl --holdout-source emotion
 
 # 2. train + calibrate
 uv run jet-train                               # → adapters/jet (best checkpoint by val NLL)
-#    interrupted? continue from the last saved checkpoint:
-#    uv run jet-train --resume adapters/jet --start-step 1000
+#    interrupted? continue from the last saved checkpoint (restores optimizer state too):
+#    uv run jet-train --resume adapters/jet
 uv run jet-calibrate --adapter adapters/jet
 uv run jet-fuse                                # merge LoRA into the weights → models/jet (~18% faster, same accuracy)
 
@@ -94,21 +94,25 @@ JEV_API_KEY=jv_live_... uv run jet-bench-jev --data data/test.jsonl --limit 1500
 `data/distill/batches.json` instead of resubmitting. Batches can't use server-side refusal
 fallbacks, so any refused items are dropped.
 
-## Results so far
+## Results
 
-Jet trained on the public data only (no Claude distillation yet). This is the step-1,000 checkpoint, about 0.9 epochs;
-the run was stopped at step 1,125 of 2,378 by memory pressure. Test set: 1,500 rows. Two-thirds are `emotion`,
-which is held out of training entirely, so they measure transfer to an unseen task.
+Jet trained on the public data only (no Claude distillation yet): 2 epochs, 2,378 steps, best checkpoint at
+step 2,250 by validation NLL, then calibrated and fused. The test set has 1,500 rows. `emotion` makes up two-thirds of them
+and is held out of training entirely, so it measures transfer to a task the model never saw.
 
-| model                        | accuracy | NLL  | Brier | ECE   | latency, 1 question |
-| ---------------------------- | -------- | ---- | ----- | ----- | ------------------- |
-| Qwen3-0.6B, untrained        | 46.6%    | 2.66 | 0.886 | 0.428 | 82 ms               |
-| Jet step 1,000 (LoRA)        | 65.7%    | 0.92 | 0.462 | 0.103 | 72 ms               |
-| Jet step 1,000 (fused)       | 65.8%    | 0.92 | 0.462 | 0.101 | **59 ms**           |
+| model                   | accuracy | NLL  | Brier | ECE   | trained tasks acc | held-out `emotion` acc | 1 question |
+| ----------------------- | -------- | ---- | ----- | ----- | ----------------- | ---------------------- | ---------- |
+| Qwen3-0.6B, untrained   | 46.6%    | 2.66 | 0.886 | 0.428 | 44.6%             | 47.6%                  | 82 ms      |
+| Jet step 1,000          | 65.8%    | 0.92 | 0.462 | 0.101 | 79.9%             | 58.8%                  | 59 ms      |
+| **Jet final (fused)**   | **66.7%**| **0.86** | **0.441** | **0.079** | **82.7%**   | 58.7%                  | **59 ms**  |
 
-Per source (fused): dbpedia 100%, massive 96%, civil_comments 90%, ag_news 89%, mnli 83%, boolq 79%,
-banking77 75%, yelp 61%, emotion (held out) 59%, stsb 47%. Latency is measured on an M2 Pro. It
-hasn't been compared with Jev yet (see `jet-bench-jev`).
+Per source (final): massive 100%, dbpedia 97%, ag_news 92%, banking77 89%, civil_comments 88%, boolq 82%,
+mnli 82%, yelp 71%, emotion (held out) 59%, stsb 45%. Latency is for one question on an M2 Pro. Ten questions
+about one ~640-token state take about 500 ms together, because the state is encoded once.
+
+The second epoch helped the trained tasks (79.9% → 82.7%) but not the unseen one (58.8% → 58.7%). More
+varied training tasks, such as the Claude-distilled set, are the likely lever for generalization.
+Jet has not been benchmarked against the hosted Jev API yet; `jet-bench-jev` does that.
 
 ## API
 
