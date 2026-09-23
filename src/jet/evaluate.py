@@ -76,11 +76,36 @@ def metrics(probs: list[np.ndarray], targets: list[np.ndarray], bins: int = 10) 
     }
 
 
+def rank(x: np.ndarray) -> np.ndarray:
+    """Average ranks (ties share their mean rank), for Spearman correlation."""
+    order = np.argsort(x, kind="stable")
+    ranks = np.empty(len(x))
+    ranks[order] = np.arange(len(x))
+    for v in np.unique(x):
+        tie = x == v
+        ranks[tie] = ranks[tie].mean()
+    return ranks
+
+
+def ordinal_metrics(probs: list[np.ndarray], targets: list[np.ndarray]) -> dict[str, float]:
+    """Score questions: compare expected levels, normalized to 0-1 so scales of any size mix.
+
+    mae: mean |E[pred] - E[target]| on the 0-1 scale; within1: argmax level within one of the
+    target's expected level; spearman: rank correlation of expected scores.
+    """
+    pred = np.array([np.dot(np.arange(len(p)), p) / (len(p) - 1) for p in probs])
+    true = np.array([np.dot(np.arange(len(t)), t) / (len(t) - 1) for t in targets])
+    within = [abs(int(p.argmax()) - np.dot(np.arange(len(t)), t)) <= 1 for p, t in zip(probs, targets)]
+    spearman = float(np.corrcoef(rank(pred), rank(true))[0, 1]) if len(pred) > 2 and true.std() > 0 else float("nan")
+    return {"mae": float(np.abs(pred - true).mean()), "within1": float(np.mean(within)), "spearman": spearman}
+
+
 def print_table(title: str, groups: dict[str, dict[str, float]]) -> None:
     print(f"\n{title}")
-    print(f"{'':<42}{'n':>6}{'acc':>8}{'nll':>8}{'brier':>8}{'ece':>8}")
+    print(f"{'':<42}{'n':>6}{'acc':>8}{'nll':>8}{'brier':>8}{'ece':>8}{'mae':>8}{'±1':>8}{'rho':>8}")
     for name, m in sorted(groups.items()):
-        print(f"{name[:41]:<42}{m['n']:>6}{m['acc']:>8.3f}{m['nll']:>8.3f}{m['brier']:>8.3f}{m['ece']:>8.3f}")
+        ordinal = "".join(f"{m[k]:>8.3f}" for k in ("mae", "within1", "spearman") if k in m)
+        print(f"{name[:41]:<42}{m['n']:>6}{m['acc']:>8.3f}{m['nll']:>8.3f}{m['brier']:>8.3f}{m['ece']:>8.3f}{ordinal}")
 
 
 def main_eval() -> None:
@@ -106,7 +131,11 @@ def main_eval() -> None:
         by_type[r["question"]["type"]].append(i)
 
     def group(ix: list[int]) -> dict[str, float]:
-        return metrics([probs[i] for i in ix], [targets[i] for i in ix])
+        m = metrics([probs[i] for i in ix], [targets[i] for i in ix])
+        scored = [i for i in ix if rows[i]["question"]["type"] == "score"]
+        if len(scored) == len(ix):
+            m |= ordinal_metrics([probs[i] for i in scored], [targets[i] for i in scored])
+        return m
 
     overall = metrics(probs, targets)
     print_table("by source", {k: group(v) for k, v in by_source.items()})

@@ -2,7 +2,9 @@
 
 The loss is cross-entropy between the soft target and the model's next-token
 distribution restricted to the question's label tokens, read at the last prompt
-position only - exactly what inference computes.
+position only - exactly what inference computes. Score questions add a ranked
+probability score term, so mass far from the target level costs more than mass
+next to it (cross-entropy alone treats the levels as unordered).
 """
 
 from __future__ import annotations
@@ -12,6 +14,7 @@ import json
 import math
 import random
 import time
+from functools import partial
 from pathlib import Path
 
 import mlx.core as mx
@@ -28,10 +31,10 @@ from jet.model import DEFAULT_BASE_MODEL, encode, label_logits, pad_batch, pad_l
 
 
 class Example:
-    __slots__ = ("tokens", "labels", "target")
+    __slots__ = ("tokens", "labels", "target", "ordinal")
 
-    def __init__(self, tokens: list[int], labels: list[int], target: list[float]):
-        self.tokens, self.labels, self.target = tokens, labels, target
+    def __init__(self, tokens: list[int], labels: list[int], target: list[float], ordinal: bool):
+        self.tokens, self.labels, self.target, self.ordinal = tokens, labels, target, ordinal
 
 
 def load_examples(path: Path, tokenizer, max_state_tokens: int, smoothing: float) -> list[Example]:
@@ -41,7 +44,7 @@ def load_examples(path: Path, tokenizer, max_state_tokens: int, smoothing: float
         q = Question.from_dict(ex["question"])
         k = len(q.keys)
         target = [(1 - smoothing) * t + smoothing / k for t in ex["target"]]
-        out.append(Example(encode(tokenizer, ex["state"], q, max_state_tokens), label_token_ids(tokenizer, q), target))
+        out.append(Example(encode(tokenizer, ex["state"], q, max_state_tokens), label_token_ids(tokenizer, q), target, q.type == "score"))
     return out
 
 
@@ -68,19 +71,31 @@ def to_arrays(batch: list[Example]):
     target = np.zeros(ids.shape, dtype=np.float32)
     for i, e in enumerate(batch):
         target[i, : len(e.target)] = e.target
-    return tokens, lengths, ids, mask, mx.array(target)
+    ordinal = mx.array([e.ordinal for e in batch])
+    levels = mx.array([len(e.labels) for e in batch], dtype=mx.float32)
+    return tokens, lengths, ids, mask, mx.array(target), ordinal, levels
 
 
-def loss_fn(model, tokens, lengths, ids, mask, target):
+def ranked_probability_score(logp: mx.array, target: mx.array, levels: mx.array) -> mx.array:
+    """Squared distance between predicted and target CDFs, divided by (levels - 1) so it stays
+    in 0-1 for any scale size. Padded labels have zero mass in both, so they add nothing."""
+    cdf_gap = mx.cumsum(mx.exp(logp), axis=-1) - mx.cumsum(target, axis=-1)
+    return (cdf_gap**2).sum(axis=-1) / (levels - 1)
+
+
+def loss_fn(model, tokens, lengths, ids, mask, target, ordinal, levels, ordinal_weight=0.0):
     logits = label_logits(model, tokens, lengths, ids, mask)
     logp = logits - mx.logsumexp(logits, axis=-1, keepdims=True)
-    return -(target * logp).sum(axis=-1).mean()
+    loss = -(target * logp).sum(axis=-1)
+    if ordinal_weight:
+        loss = loss + ordinal_weight * mx.where(ordinal, ranked_probability_score(logp, target, levels), 0.0)
+    return loss.mean()
 
 
 def evaluate(model, batches: list[list[Example]]) -> dict[str, float]:
     total, nll, correct = 0, 0.0, 0
     for batch in batches:
-        tokens, lengths, ids, mask, target = to_arrays(batch)
+        tokens, lengths, ids, mask, target, *_ = to_arrays(batch)
         logits = label_logits(model, tokens, lengths, ids, mask)
         logp = logits - mx.logsumexp(logits, axis=-1, keepdims=True)
         nll += float(-(target * logp).sum())
@@ -114,6 +129,8 @@ def main() -> None:
     ap.add_argument("--max-batch-tokens", type=int, default=4096)
     ap.add_argument("--max-state-tokens", type=int, default=1024)
     ap.add_argument("--smoothing", type=float, default=0.02)
+    ap.add_argument("--ordinal-weight", type=float, default=2.0,
+                    help="weight of the ranked probability score term on score questions; 0 = plain cross-entropy")
     ap.add_argument("--grad-checkpoint", action=argparse.BooleanOptionalAction, default=True)
     ap.add_argument("--eval-every", type=int, default=250)
     ap.add_argument("--val-limit", type=int, default=1000)
@@ -174,7 +191,7 @@ def main() -> None:
             schedule = base_schedule
         optimizer = optim.AdamW(learning_rate=schedule, weight_decay=0.01)
         optimizer.state["step"] = mx.array(start_step, mx.uint64)
-    value_and_grad = nn.value_and_grad(model, loss_fn)
+    value_and_grad = nn.value_and_grad(model, partial(loss_fn, ordinal_weight=args.ordinal_weight))
 
     adapter_config = {
         "fine_tune_type": "lora",

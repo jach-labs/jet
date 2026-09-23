@@ -39,8 +39,9 @@ def main() -> None:
             if dedupe in seen:
                 continue
             seen.add(dedupe)
-            # Public datasets reuse a handful of instructions, so group them per example instead.
-            group = ex["question"]["instructions"] if ex["source"].startswith("distill:") else dedupe
+            # Public datasets reuse a handful of instructions, so group them by state instead: one
+            # text asked several questions (e.g. stsb and stsb_scales) must not straddle splits.
+            group = ex["question"]["instructions"] if ex["source"].startswith("distill:") else json.dumps(ex["state"], sort_keys=True)
             b = bucket(ex["source"] + "|" + group)
             if ex["source"] in args.holdout_source:
                 split = "test"

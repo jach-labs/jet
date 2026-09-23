@@ -57,7 +57,8 @@ about a ~640-token state take ~370 ms in total, versus ~1.8 s asking them one at
 ## Setup
 
 ```sh
-uv sync
+uv sync                  # Apple Silicon (Metal)
+uv sync --extra cuda     # Linux with an NVIDIA GPU (CUDA 12)
 ```
 
 The base model (`mlx-community/Qwen3-0.6B-bf16`) downloads on first use.
@@ -66,13 +67,15 @@ The base model (`mlx-community/Qwen3-0.6B-bf16`) downloads on first use.
 
 ```sh
 # 1. data
-uv run jet-data-public                         # → data/public.jsonl (~27k examples)
+uv run jet-data-public                         # → data/public.jsonl (~32k examples)
+uv run jet-data-score-eval                     # → data/score_eval.jsonl, ordinal eval from held-out splits
 uv run jet-distill tasks --n 300               # Claude invents 300 questions × 12 states (asks before spending)
 uv run jet-distill label                       # Claude soft-labels each state → data/distill.jsonl
 uv run jet-split data/public.jsonl data/distill.jsonl --holdout-source emotion
 
 # 2. train + calibrate
 uv run jet-train                               # → adapters/jet (best checkpoint by val NLL)
+#    score questions add a ranked-probability term to the loss (--ordinal-weight, default 2; 0 = off)
 #    interrupted? continue from the last saved checkpoint (restores optimizer state too):
 #    uv run jet-train --resume adapters/jet
 uv run jet-calibrate --adapter adapters/jet
@@ -81,6 +84,7 @@ uv run jet-fuse                                # merge LoRA into the weights →
 # 3. measure: accuracy, NLL, Brier, ECE per source and type, plus latency
 uv run jet-eval --data data/test.jsonl                            # untrained baseline
 uv run jet-eval --adapter adapters/jet --data data/test.jsonl
+uv run jet-eval --adapter adapters/jet --data data/score_eval.jsonl   # adds mae / ±1 / Spearman for score questions
 
 # 4. serve
 JET_API_KEY=secret uv run jet-serve --base-model models/jet

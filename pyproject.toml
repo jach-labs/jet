@@ -17,8 +17,13 @@ dependencies = [
     "uvicorn>=0.53.0",
 ]
 
+[project.optional-dependencies]
+# NVIDIA GPUs on Linux: uv sync --extra cuda
+cuda = ["mlx[cuda]>=0.32.2; sys_platform == 'linux'"]
+
 [project.scripts]
 jet-data-public = "jet.data.public:main"
+jet-data-score-eval = "jet.data.public:score_eval_main"
 jet-distill = "jet.data.distill:main"
 jet-split = "jet.data.split:main"
 jet-train = "jet.train:main"
