@@ -1,0 +1,41 @@
+{
+  "model": "jet",
+  "base_model": "jach-labs/jet",
+  "adapter": null,
+  "suite": "jaredpalmer/kev-suites/v4/transfer-v4/development.jsonl@a88f56db5341397299137cb68775c2ea6e3f68cb",
+  "temperatures": {
+    "choice": 1.0293,
+    "score": 1.2241,
+    "noul": 1.2968
+  },
+  "transfer_acc": 0.5487804878048781,
+  "transfer_brier": 0.622127125648955,
+  "transfer_ece": 0.22190632075979944,
+  "ms_per_question": 46.31913166920962,
+  "tasks": {
+    "sciq": 0.9,
+    "qnli": 0.7625,
+    "contrastive_authorization": 0.5,
+    "composition_held_and_or": 0.34375,
+    "composition_held_or_not": 0.5625,
+    "tweet_offensive": 0.725,
+    "paws": 0.425,
+    "composition_held_conditional": 0.34375,
+    "mmlu": 0.2875,
+    "contrastive_deadline": 0.275,
+    "emotion": 0.5125
+  },
+  "n": {
+    "sciq": 80,
+    "qnli": 80,
+    "contrastive_authorization": 40,
+    "composition_held_and_or": 32,
+    "composition_held_or_not": 32,
+    "tweet_offensive": 80,
+    "paws": 80,
+    "composition_held_conditional": 32,
+    "mmlu": 80,
+    "contrastive_deadline": 40,
+    "emotion": 80
+  }
+}

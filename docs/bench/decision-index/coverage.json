@@ -1,0 +1,291 @@
+{
+  "rows_sha256": "501167f33112847606c6beafb340c4643c6408996f8117195fdbbf59e5d5805b",
+  "model_revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+  "scope": "Only the supplied rows; token capacity, not measured accuracy or validated long-context quality.",
+  "limits": [
+    4096,
+    6144,
+    8192,
+    16384,
+    32768,
+    40960
+  ],
+  "benchmarks": {
+    "ContractNLI": {
+      "requests": 123,
+      "fields": 2091,
+      "options": {
+        "3": 2091
+      },
+      "questions_per_request": {
+        "17": 123
+      },
+      "supported_requests": {
+        "4096": 110,
+        "6144": 120,
+        "8192": 123,
+        "16384": 123,
+        "32768": 123,
+        "40960": 123
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 1987.0,
+        "p95": 4874.0,
+        "max": 8056.0
+      },
+      "source_groups": 123,
+      "supported_complete_groups": {
+        "4096": 110,
+        "6144": 120,
+        "8192": 123,
+        "16384": 123,
+        "32768": 123,
+        "40960": 123
+      }
+    },
+    "GSM8K": {
+      "requests": 2638,
+      "fields": 2638,
+      "options": {
+        "4": 1319,
+        "10": 1319
+      },
+      "questions_per_request": {
+        "1": 2638
+      },
+      "supported_requests": {
+        "4096": 2638,
+        "6144": 2638,
+        "8192": 2638,
+        "16384": 2638,
+        "32768": 2638,
+        "40960": 2638
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 252.0,
+        "p95": 316.0,
+        "max": 414.0
+      },
+      "source_groups": 1319,
+      "supported_complete_groups": {
+        "4096": 1319,
+        "6144": 1319,
+        "8192": 1319,
+        "16384": 1319,
+        "32768": 1319,
+        "40960": 1319
+      }
+    },
+    "iSarcasmEval": {
+      "requests": 4600,
+      "fields": 11600,
+      "options": {
+        "2": 11600
+      },
+      "questions_per_request": {
+        "1": 3200,
+        "6": 1400
+      },
+      "supported_requests": {
+        "4096": 4600,
+        "6144": 4600,
+        "8192": 4600,
+        "16384": 4600,
+        "32768": 4600,
+        "40960": 4600
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 107.0,
+        "p95": 133.0,
+        "max": 357.0
+      },
+      "source_groups": 4600,
+      "supported_complete_groups": {
+        "4096": 4600,
+        "6144": 4600,
+        "8192": 4600,
+        "16384": 4600,
+        "32768": 4600,
+        "40960": 4600
+      }
+    },
+    "VAST": {
+      "requests": 3006,
+      "fields": 3006,
+      "options": {
+        "3": 3006
+      },
+      "questions_per_request": {
+        "1": 3006
+      },
+      "supported_requests": {
+        "4096": 3006,
+        "6144": 3006,
+        "8192": 3006,
+        "16384": 3006,
+        "32768": 3006,
+        "40960": 3006
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 213.0,
+        "p95": 323.0,
+        "max": 380.0
+      },
+      "source_groups": 3006,
+      "supported_complete_groups": {
+        "4096": 3006,
+        "6144": 3006,
+        "8192": 3006,
+        "16384": 3006,
+        "32768": 3006,
+        "40960": 3006
+      }
+    },
+    "NLI4CT": {
+      "requests": 5500,
+      "fields": 5500,
+      "options": {
+        "2": 5500
+      },
+      "questions_per_request": {
+        "1": 5500
+      },
+      "supported_requests": {
+        "4096": 5500,
+        "6144": 5500,
+        "8192": 5500,
+        "16384": 5500,
+        "32768": 5500,
+        "40960": 5500
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 578.0,
+        "p95": 1596.0500000000002,
+        "max": 3247.0
+      },
+      "source_groups": 5500,
+      "supported_complete_groups": {
+        "4096": 5500,
+        "6144": 5500,
+        "8192": 5500,
+        "16384": 5500,
+        "32768": 5500,
+        "40960": 5500
+      }
+    },
+    "CRUXEval": {
+      "requests": 570,
+      "fields": 570,
+      "options": {
+        "4": 84,
+        "7": 10,
+        "2": 256,
+        "3": 139,
+        "10": 5,
+        "5": 36,
+        "6": 31,
+        "9": 1,
+        "8": 8
+      },
+      "questions_per_request": {
+        "1": 570
+      },
+      "supported_requests": {
+        "4096": 570,
+        "6144": 570,
+        "8192": 570,
+        "16384": 570,
+        "32768": 570,
+        "40960": 570
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 204.5,
+        "p95": 316.54999999999995,
+        "max": 893.0
+      },
+      "source_groups": 570,
+      "supported_complete_groups": {
+        "4096": 570,
+        "6144": 570,
+        "8192": 570,
+        "16384": 570,
+        "32768": 570,
+        "40960": 570
+      }
+    },
+    "CLadder": {
+      "requests": 5000,
+      "fields": 5000,
+      "options": {
+        "2": 5000
+      },
+      "questions_per_request": {
+        "1": 5000
+      },
+      "supported_requests": {
+        "4096": 5000,
+        "6144": 5000,
+        "8192": 5000,
+        "16384": 5000,
+        "32768": 5000,
+        "40960": 5000
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 192.0,
+        "p95": 304.0,
+        "max": 387.0
+      },
+      "source_groups": 5000,
+      "supported_complete_groups": {
+        "4096": 5000,
+        "6144": 5000,
+        "8192": 5000,
+        "16384": 5000,
+        "32768": 5000,
+        "40960": 5000
+      }
+    },
+    "Habermas Machine": {
+      "requests": 1676,
+      "fields": 1676,
+      "options": {
+        "5": 179,
+        "4": 1211,
+        "2": 286
+      },
+      "questions_per_request": {
+        "1": 1676
+      },
+      "supported_requests": {
+        "4096": 1676,
+        "6144": 1676,
+        "8192": 1676,
+        "16384": 1676,
+        "32768": 1676,
+        "40960": 1676
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 929.0,
+        "p95": 1257.0,
+        "max": 1573.0
+      },
+      "source_groups": 1676,
+      "supported_complete_groups": {
+        "4096": 1676,
+        "6144": 1676,
+        "8192": 1676,
+        "16384": 1676,
+        "32768": 1676,
+        "40960": 1676
+      }
+    }
+  }
+}

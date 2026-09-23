@@ -1,0 +1,503 @@
+{
+  "scope": "Diagnostic subset only. Not an official Decision Index or full-suite estimate.",
+  "rows_sha256": "4dffab4f684684cb884d3f8d4216967758c8766c664f9f761df0d9dabc78e499",
+  "results_sha256": "aa8a6c75044331703fc8898aca86eef68774fe32ab45c5f4d1232d298b15dc6a",
+  "planned_requests": 500,
+  "processed_requests": 387,
+  "pending_requests": 113,
+  "complete_for_supplied_rows": false,
+  "environment": {
+    "engine": "decision_index_engine:JetEngine",
+    "engine_options": {
+      "max_tokens": 8192
+    },
+    "model_source": {
+      "model": "michaljach/jet",
+      "revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+      "backend": "mlx",
+      "max_tokens": 8192,
+      "checkpoint_context": 40960,
+      "max_cached_tokens": 32768,
+      "choice_temperature": 1.0293,
+      "adapter_sha256": "7bc27d0310ca6f019e09813026b0a02872a8095db76e9e365a4f32114bcdf817",
+      "format_sha256": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+      "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts."
+    },
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "device": "Device(gpu, 0)",
+    "loaded_seconds": 3.018336624998483,
+    "frozen_corpus_sha256": null,
+    "rows_path": "artifacts/decision-index/diagnostic/diagnostic.jsonl.gz",
+    "runner_sha256": "fac268fc460a2a3470f52ee9e785fd81b37864cace132ac9e6284ede806258b8",
+    "latency": "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+  },
+  "summary": {
+    "engine": "jet",
+    "counts": {
+      "ok": 387
+    },
+    "successful_request_latency_ms": {
+      "median": 248.4236249983951,
+      "p95": 3576.8336250002903,
+      "mean": 840.8639904598981
+    },
+    "benchmarks": [
+      {
+        "catalog_id": 11,
+        "dataset": "ContractNLI",
+        "requests": 56,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 13,
+        "scored_requests": 43,
+        "metric": "macro-F1",
+        "score": 0.28744397757609685,
+        "reference_same_cases": null,
+        "median_ms": 2266.721084000892,
+        "detail": {
+          "field_accuracy": 0.47606019151846785,
+          "case_exact_accuracy": 0,
+          "macro_f1": 0.28744397757609685,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 30,
+        "dataset": "GSM8K",
+        "requests": 112,
+        "answered": 86,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 26,
+        "scored_requests": 86,
+        "metric": "accuracy",
+        "score": 0.19767441860465115,
+        "reference_same_cases": null,
+        "median_ms": 178.81333300101687,
+        "tracks": {
+          "GSM8K-10choice": {
+            "metric": "accuracy",
+            "score": 0.11627906976744186,
+            "scored_requests": 43
+          },
+          "GSM8K-4choice": {
+            "metric": "accuracy",
+            "score": 0.27906976744186046,
+            "scored_requests": 43
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.19767441860465115,
+          "case_exact_accuracy": 0.06976744186046512,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 40,
+        "dataset": "iSarcasmEval",
+        "requests": 56,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 13,
+        "scored_requests": 43,
+        "metric": "see separate subtask tracks",
+        "score": null,
+        "reference_same_cases": null,
+        "median_ms": 164.0299579994462,
+        "tracks": {
+          "iSarcasmEval-A-Ar": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 10
+          },
+          "iSarcasmEval-A-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 13
+          },
+          "iSarcasmEval-B-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 19
+          },
+          "iSarcasmEval-C-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 1
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.5579710144927537,
+          "case_exact_accuracy": 0.3023255813953488,
+          "macro_f1": 0.18730979914790016,
+          "custom_metrics": {},
+          "positive_f1_by_field": {
+            "sarcastic": 0.0,
+            "sarcasm": 0.0,
+            "irony": 0.25,
+            "satire": 0.0,
+            "understatement": 0.0,
+            "overstatement": 0.0,
+            "rhetorical_question": 0.0
+          },
+          "category_macro_f1": 0.03571428571428571
+        }
+      },
+      {
+        "catalog_id": 41,
+        "dataset": "VAST",
+        "requests": 56,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 13,
+        "scored_requests": 43,
+        "metric": "macro-F1",
+        "score": 0.38482834994462906,
+        "reference_same_cases": null,
+        "median_ms": 145.2810410009988,
+        "detail": {
+          "field_accuracy": 0.46511627906976744,
+          "case_exact_accuracy": 0.46511627906976744,
+          "macro_f1": 0.38482834994462906,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 42,
+        "dataset": "NLI4CT",
+        "requests": 55,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 12,
+        "scored_requests": 43,
+        "metric": "macro-F1",
+        "score": 0.23089430894308943,
+        "reference_same_cases": null,
+        "median_ms": 309.6344580008008,
+        "detail": {
+          "field_accuracy": 0.23255813953488372,
+          "case_exact_accuracy": 0.23255813953488372,
+          "macro_f1": 0.23089430894308943,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 43,
+        "dataset": "CRUXEval",
+        "requests": 55,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 12,
+        "scored_requests": 43,
+        "metric": "accuracy",
+        "score": 0.3953488372093023,
+        "reference_same_cases": null,
+        "median_ms": 127.2198339975148,
+        "detail": {
+          "field_accuracy": 0.3953488372093023,
+          "case_exact_accuracy": 0.3953488372093023,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 44,
+        "dataset": "CLadder",
+        "requests": 55,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 12,
+        "scored_requests": 43,
+        "metric": "accuracy",
+        "score": 0.3488372093023256,
+        "reference_same_cases": null,
+        "median_ms": 142.47600000089733,
+        "detail": {
+          "field_accuracy": 0.3488372093023256,
+          "case_exact_accuracy": 0.3488372093023256,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 50,
+        "dataset": "Habermas Machine",
+        "requests": 55,
+        "answered": 43,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 12,
+        "scored_requests": 43,
+        "metric": "accuracy",
+        "score": 0.3023255813953488,
+        "reference_same_cases": null,
+        "median_ms": 404.7449579993554,
+        "detail": {
+          "field_accuracy": 0.3023255813953488,
+          "case_exact_accuracy": 0.3023255813953488,
+          "custom_metrics": {
+            "normalized_rank_regret": 0.3058139534883721
+          }
+        }
+      }
+    ],
+    "note": "Native benchmark metrics on complete supported case groups. Unsupported cases excluded from accuracy but retained in coverage."
+  },
+  "panel_metrics_on_sample": {
+    "11": {
+      "catalog_id": 11,
+      "raw": 0.2150141724270147,
+      "skill": 0.0,
+      "coverage": 0.7678571428571429,
+      "pending": 0.23214285714285715,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.2150141724270147,
+          "random": 0.30851893087083776,
+          "skill": 0.0,
+          "planned_cases": 56,
+          "coverage": 0.7678571428571429,
+          "pending": 0.23214285714285715,
+          "label_universe": [
+            "\"The contract contradicts the hypothesis.\"",
+            "\"The contract entails the hypothesis.\"",
+            "\"The hypothesis is neither entailed nor contradicted by the contract.\""
+          ]
+        }
+      ]
+    },
+    "30": {
+      "catalog_id": 30,
+      "raw": 0.15178571428571427,
+      "skill": 0.0,
+      "coverage": 0.7678571428571429,
+      "pending": 0.23214285714285715,
+      "tracks": [
+        {
+          "track": "GSM8K-4choice",
+          "raw": 0.21428571428571427,
+          "random": 0.25,
+          "skill": 0.0,
+          "planned_cases": 56,
+          "coverage": 0.7678571428571429,
+          "pending": 0.23214285714285715,
+          "label_universe": []
+        },
+        {
+          "track": "GSM8K-10choice",
+          "raw": 0.08928571428571429,
+          "random": 0.1,
+          "skill": 0.0,
+          "planned_cases": 56,
+          "coverage": 0.7678571428571429,
+          "pending": 0.23214285714285715,
+          "label_universe": []
+        }
+      ]
+    },
+    "40": {
+      "catalog_id": 40,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.6293859649122807,
+      "pending": 0.3706140350877193,
+      "tracks": [
+        {
+          "track": "iSarcasmEval-A-En",
+          "raw": 0.0,
+          "random": 0.2226862339379383,
+          "skill": 0.0,
+          "planned_cases": 19,
+          "coverage": 0.6842105263157895,
+          "pending": 0.3157894736842105,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-A-Ar",
+          "raw": 0.0,
+          "random": 0.22250656045660705,
+          "skill": 0.0,
+          "planned_cases": 12,
+          "coverage": 0.8333333333333334,
+          "pending": 0.16666666666666666,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-C-En",
+          "raw": 0.0,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 1,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        },
+        {
+          "track": "iSarcasmEval-C-Ar",
+          "raw": 0.0,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 1,
+          "coverage": 0,
+          "pending": 1,
+          "label_universe": []
+        }
+      ]
+    },
+    "41": {
+      "catalog_id": 41,
+      "raw": 0.2772938443670151,
+      "skill": 0.0,
+      "coverage": 0.7678571428571429,
+      "pending": 0.23214285714285715,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.2772938443670151,
+          "random": 0.3333245556439576,
+          "skill": 0.0,
+          "planned_cases": 56,
+          "coverage": 0.7678571428571429,
+          "pending": 0.23214285714285715,
+          "label_universe": [
+            "\"against\"",
+            "\"favor\"",
+            "\"neutral\""
+          ]
+        }
+      ]
+    },
+    "43": {
+      "catalog_id": 43,
+      "raw": 0.3090909090909091,
+      "skill": 0.0,
+      "coverage": 0.7818181818181819,
+      "pending": 0.21818181818181817,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.3090909090909091,
+          "random": 0.34943722943722944,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 0.7818181818181819,
+          "pending": 0.21818181818181817,
+          "label_universe": []
+        }
+      ]
+    },
+    "44": {
+      "catalog_id": 44,
+      "raw": 0.2727272727272727,
+      "skill": 0.0,
+      "coverage": 0.7818181818181819,
+      "pending": 0.21818181818181817,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.2727272727272727,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 0.7818181818181819,
+          "pending": 0.21818181818181817,
+          "label_universe": []
+        }
+      ]
+    },
+    "50": {
+      "catalog_id": 50,
+      "raw": 0.23636363636363636,
+      "skill": 0.0,
+      "coverage": 0.7818181818181819,
+      "pending": 0.21818181818181817,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.23636363636363636,
+          "random": 0.31,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 0.7818181818181819,
+          "pending": 0.21818181818181817,
+          "label_universe": []
+        }
+      ]
+    },
+    "7": {
+      "catalog_id": 7,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "16": {
+      "catalog_id": 16,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "13": {
+      "catalog_id": 13,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "15": {
+      "catalog_id": 15,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "17": {
+      "catalog_id": 17,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "19": {
+      "catalog_id": 19,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    }
+  }
+}

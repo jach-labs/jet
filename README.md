@@ -107,7 +107,7 @@ fallbacks, so any refused items are dropped.
 
 ## Results
 
-The released model is `jet` (`adapters/jet`, `models/jet`, and [jach-labs/jet](https://huggingface.co/jach-labs/jet)
+The released model is `jet` (`adapters/jet`, `models/jet`, and [michaljach/jet](https://huggingface.co/michaljach/jet)
 on Hugging Face). It is Qwen3-0.6B trained on `train_v2` (public data plus varied-scale score questions,
 no Claude distillation yet) on an RTX 4080: 2 epochs, 2,910 steps, best checkpoint at step 2,750 by
 validation NLL (0.485), then calibrated and fused. A Qwen3-1.7B variant was trained the same way for
@@ -144,6 +144,26 @@ On the ordinal set (`score_eval.jsonl`, 2,400 score questions from held-out spli
 Fusing leaves the metrics unchanged (`jet` test accuracy 67.6% → 67.7%, 1.7B variant 68.0% → 68.2%) and
 cuts batched eval time by about a third (`jet` 9.1 → 6.1 ms, 1.7B variant 16.5 → 11.1 ms per question).
 
+### Against Kev and Jev, on Kev's out-of-domain suite
+
+![jet next to the Kev family and Jev](docs/jet-vs-kev.png)
+
+[Kev](https://github.com/jaredpalmer/kev) publishes a frozen out-of-domain suite (`transfer-v4`, 656 clean rows,
+11 sources) and per-source numbers for its family and for Jev. `jet-bench-kev` converts those rows to jet's format
+and scores them. `jet` gets **54.9%** (Brier 0.622), up from 51.7% for untrained Qwen3-0.6B. That is below
+Kev-0.8B (65.2%) and the Kev-0.5B prototype (56.1%), and far below Kev-4B/9B (≈80%) and Jev (85.7%). It holds up
+on sources that look like its training mix (SciQ 90%, QNLI 76%, TweetEval 72%) and is at or below chance on
+everything else. On the policy, rule and PAWS rows it mostly picks the same answer for every row (always "yes" on
+authorization and PAWS, always "late but accepted" on deadline). MMLU is at chance (29%). jet has never trained on
+rule-following or knowledge questions. Kev's policy and rule families are exactly the varied tasks that
+distillation is meant to add.
+
+```sh
+uv run jet-bench-kev --base-model michaljach/jet --name jet      # → docs/bench/kev-transfer-v4/jet.json
+uv run jet-bench-kev --name qwen3-0.6b-untrained                 # untrained baseline
+uv sync --extra plot && uv run jet-plot-kev                       # → docs/jet-vs-kev.png
+```
+
 ### Earlier run (1,500-row test split)
 
 Before the held-out sets were versioned: public data only, 2 epochs, 2,378 steps, best checkpoint at step
@@ -163,6 +183,12 @@ varied training tasks, such as the Claude-distilled set, are the likely lever fo
 Jet has not been benchmarked against the hosted Jev API yet; `jet-bench-jev` does that.
 
 ## API
+
+For Decision Index evaluation, see [the baseline and CUDA handoff guide](docs/decision-index.md).
+`uv sync --extra benchmark` installs the pinned official harness;
+`jet-bench-index` prepares diagnostic samples, audits full prompt capacity, and
+reports results. The benchmark adapter preserves complete inputs and rejects
+over-capacity requests instead of using the serving API's state truncation.
 
 ```sh
 curl localhost:8000/v1/decide \
@@ -207,7 +233,15 @@ src/
   server.py        FastAPI /v1/decide
   fuse.py          merge LoRA into the base weights for serving
   bench_jev.py     score the hosted Jev API on the same test set
+  bench_kev.py     score jet on Kev's transfer-v4 suite and plot it next to Kev and Jev
   data/public.py   public dataset builders
   data/distill.py  Claude distillation (Batches API)
   data/split.py    merge, dedupe, grouped split
 ```
+
+## Hugging Face deployment
+
+The [Jet Space](https://huggingface.co/spaces/michaljach/jet) shows the deployment
+status and includes the tested CPU API source. Browser inference has been
+removed. Hosted inference is currently blocked by Hugging Face account-plan
+requirements. See [deployment instructions](deploy/huggingface/README.md).

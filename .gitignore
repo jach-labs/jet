@@ -12,3 +12,7 @@ __pycache__/
 *.egg-info/
 .DS_Store
 /logs/
+
+# Large local quantization builds; reports are kept under docs/bench.
+/artifacts/quantization/
+/artifacts/decision-index/

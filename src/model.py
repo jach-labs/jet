@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import math
 import time
 from pathlib import Path
 from typing import Any
@@ -14,10 +13,10 @@ from huggingface_hub import snapshot_download
 from mlx_lm import load
 from mlx_lm.models.cache import make_prompt_cache
 
-from format import Question, build_prompt, label_token_ids, render_state
+from format import Question, label_token_ids
+from inference import DEFAULT_MAX_STATE_TOKENS, encode, summarize
 
 DEFAULT_BASE_MODEL = "mlx-community/Qwen3-0.6B-bf16"
-DEFAULT_MAX_STATE_TOKENS = 4096
 NEG_INF = -1e9
 
 
@@ -97,41 +96,6 @@ def pad_labels(label_lists: list[list[int]]) -> tuple[mx.array, mx.array]:
         ids[i, : len(ls)] = ls
         mask[i, : len(ls)] = True
     return mx.array(ids), mx.array(mask)
-
-
-def encode(tokenizer, state: Any, q: Question, max_state_tokens: int = DEFAULT_MAX_STATE_TOKENS) -> list[int]:
-    """Tokenize a prompt, truncating the middle of an over-long state."""
-    text = render_state(state)
-    ids = tokenizer.encode(text, add_special_tokens=False)
-    if len(ids) > max_state_tokens:
-        half = max_state_tokens // 2
-        text = tokenizer.decode(ids[:half]) + "\n[...]\n" + tokenizer.decode(ids[-half:])
-    return tokenizer.encode(build_prompt(tokenizer, text, q), add_special_tokens=False)
-
-
-def summarize(q: Question, probs: np.ndarray) -> dict[str, Any]:
-    """Turn a label distribution into the typed answer for the question."""
-    probs = probs.astype(np.float64)
-    k = len(probs)
-    entropy = -float(np.sum(probs * np.log(np.clip(probs, 1e-12, 1.0))))
-    confidence = round(1.0 - entropy / math.log(k), 4)
-    if q.type == "choice":
-        keys = q.keys
-        return {
-            "type": "choice",
-            "choice": keys[int(np.argmax(probs))],
-            "probabilities": {key: round(float(p), 4) for key, p in zip(keys, probs)},
-            "confidence": confidence,
-        }
-    if q.type == "score":
-        return {
-            "type": "score",
-            "score": round(float(np.dot(np.arange(k), probs)), 4),
-            "level": q.criteria[int(np.argmax(probs))],
-            "probabilities": [round(float(p), 4) for p in probs],
-            "confidence": confidence,
-        }
-    return {"type": "noul", "probability": round(float(probs[1]), 4), "confidence": confidence}
 
 
 class Jet:

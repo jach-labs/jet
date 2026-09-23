@@ -1,0 +1,34 @@
+<!doctype html><meta charset="utf-8"><title>Jet q4 GPU comparison</title>
+<h1>Jet q4 GPU comparison</h1><button id="start">Test both models</button><pre id="status">Ready</pre><pre id="result"></pre>
+<script type="module">
+import {Jet} from './jet.js';
+const status=document.querySelector('#status'), result=document.querySelector('#result');
+document.querySelector('#start').onclick=async()=>{
+ document.querySelector('#start').disabled=true;
+ const report={};
+ try {
+ const golden=await (await fetch('./model/golden.json')).json();
+ for(const [name,file] of [['q8','onnx/model_q8.onnx'],['compact','../model_q8_compact.onnx'],['q4','../model_q4.onnx']]) {
+  status.textContent=`Loading ${name}`;
+  const jet=await Jet.load('./model/',{file,onProgress:p=>status.textContent=`${name}: ${p.stage||Math.round(p.loaded/1e6)+' MB'}`});
+  const tests=[];
+  for(const c of golden.cases){
+   if(c.name==='truncated_state')continue;
+   const begin=performance.now();
+   const {logits:[z]}=await jet.rawLogits(c.state,[c.question]);
+   const e=z.map(x=>Math.exp(x/jet.temperatures[c.question.type]-Math.max(...z)/jet.temperatures[c.question.type]));
+   const sum=e.reduce((a,b)=>a+b,0);const p=e.map(x=>x/sum);
+   tests.push({name:c.name,ms:performance.now()-begin,agreement:z.indexOf(Math.max(...z))===c.logits.indexOf(Math.max(...c.logits)),maxProbDifference:Math.max(...p.map((x,i)=>Math.abs(x-c.probabilities[i])))});
+   status.textContent=`${name}: ${tests.length}/35 reference cases`;
+  }
+  const timings=[];
+  const request=golden.decide[0];
+  for(let i=0;i<6;i++){const response=await jet.decide({state:request.state,questions:request.questions});timings.push(response.latency_ms);}
+  report[name]={tests,timings,medianWarmMs:[...timings.slice(1)].sort((a,b)=>a-b)[2]};
+  result.textContent=JSON.stringify(report,null,2);
+  await jet.session.release();
+ }
+ status.textContent='COMPLETE';
+ }catch(e){status.textContent='ERROR '+(e.stack||e);}
+};
+</script>

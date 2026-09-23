@@ -1,0 +1,152 @@
+{
+  "weight_equivalence": true,
+  "labels_checked": 267,
+  "cases": 36,
+  "max_logit_difference": 3.814697265625e-06,
+  "results": [
+    {
+      "name": "choice_dbpedia_0",
+      "max_logit_difference": 1.9073486328125e-06
+    },
+    {
+      "name": "choice_emotion_1",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "choice_ag_news_2",
+      "max_logit_difference": 1.9073486328125e-06
+    },
+    {
+      "name": "choice_mnli_3",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "choice_banking77_4",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "choice_massive_5",
+      "max_logit_difference": 1.9073486328125e-06
+    },
+    {
+      "name": "choice_mnli_6",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "choice_ag_news_7",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "choice_mnli_8",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "choice_emotion_9",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "score_stsb_0",
+      "max_logit_difference": 3.814697265625e-06
+    },
+    {
+      "name": "score_yelp_1",
+      "max_logit_difference": 3.814697265625e-06
+    },
+    {
+      "name": "score_stsb_2",
+      "max_logit_difference": 2.1457672119140625e-06
+    },
+    {
+      "name": "score_yelp_3",
+      "max_logit_difference": 2.6226043701171875e-06
+    },
+    {
+      "name": "score_stsb_4",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "score_stsb_5",
+      "max_logit_difference": 3.814697265625e-06
+    },
+    {
+      "name": "score_stsb_6",
+      "max_logit_difference": 1.9073486328125e-06
+    },
+    {
+      "name": "score_yelp_7",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "score_yelp_8",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "score_stsb_9",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "noul_boolq_0",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "noul_emotion_1",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "noul_ag_news_2",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "noul_mnli_3",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "noul_banking77_4",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "noul_yelp_5",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "noul_civil_comments_6",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "noul_mnli_7",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "noul_emotion_8",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "noul_ag_news_9",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "json_state",
+      "max_logit_difference": 3.337860107421875e-06
+    },
+    {
+      "name": "list_state",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "non_ascii_state",
+      "max_logit_difference": 2.86102294921875e-06
+    },
+    {
+      "name": "two_letter_labels",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "ten_levels",
+      "max_logit_difference": 2.384185791015625e-06
+    },
+    {
+      "name": "truncated_state",
+      "max_logit_difference": 2.86102294921875e-06
+    }
+  ]
+}

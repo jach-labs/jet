@@ -1,0 +1,40 @@
+{
+  "scope": "Compatibility on rebuilt public subset only, two requests per available track; not the full 86-request pass.",
+  "status": {
+    "time": "2026-09-23T19:24:59.304260+00:00",
+    "event": "complete",
+    "engine": "decision_index_engine:JetEngine",
+    "completed": 26,
+    "counts": {
+      "ok": 26
+    },
+    "elapsed_seconds": 11.0
+  },
+  "environment": {
+    "engine": "decision_index_engine:JetEngine",
+    "engine_options": {
+      "max_tokens": 8192
+    },
+    "model_source": {
+      "model": "michaljach/jet",
+      "revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+      "backend": "mlx",
+      "max_tokens": 8192,
+      "checkpoint_context": 40960,
+      "max_cached_tokens": 32768,
+      "choice_temperature": 1.0293,
+      "adapter_sha256": "7bc27d0310ca6f019e09813026b0a02872a8095db76e9e365a4f32114bcdf817",
+      "format_sha256": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+      "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts."
+    },
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "device": "Device(gpu, 0)",
+    "loaded_seconds": 2.0765474580002774,
+    "frozen_corpus_sha256": null,
+    "rows_path": "artifacts/decision-index/diagnostic/compatibility.jsonl.gz",
+    "runner_sha256": "fac268fc460a2a3470f52ee9e785fd81b37864cace132ac9e6284ede806258b8",
+    "latency": "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+  }
+}

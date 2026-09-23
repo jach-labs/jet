@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-23",
+  "hardware": "Apple M2 Pro",
+  "runtime": "ONNX Runtime Web 1.30.0 WebGPU in Codex in-app browser",
+  "benchmark": "golden.decide[0], 3 questions, 282 input tokens; one warmup then five timed runs; same device, no concurrent model evaluation",
+  "q8": {
+    "cases": 35,
+    "flips": [],
+    "max_probability_difference_from_bf16": 0.0336229572247127,
+    "median_warm_ms": 1158.2,
+    "timings_ms": [
+      1175.3,
+      1156.7,
+      1162,
+      1158.2,
+      1153.6,
+      1175.3
+    ]
+  },
+  "compact": {
+    "cases": 35,
+    "flips": [],
+    "max_probability_difference_from_bf16": 0.0336229572247127,
+    "median_warm_ms": 1197.9,
+    "timings_ms": [
+      1181.3,
+      1187.4,
+      1192,
+      1208.1,
+      1198,
+      1197.9
+    ]
+  },
+  "q4": {
+    "cases": 35,
+    "flips": [
+      "score_stsb_2",
+      "score_stsb_4",
+      "noul_boolq_0",
+      "noul_emotion_1"
+    ],
+    "max_probability_difference_from_bf16": 0.29992888865870854,
+    "median_warm_ms": 460.8,
+    "timings_ms": [
+      440.9,
+      461,
+      496.7,
+      460.8,
+      445.9,
+      453.8
+    ]
+  }
+}
