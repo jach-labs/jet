@@ -233,6 +233,23 @@ The numbers above are illustrative. `confidence` is `1 − normalized entropy` o
 distribution. States longer than 4096 tokens are truncated in the middle. Errors: `400` invalid
 request, `401` bad API key.
 
+## In the browser
+
+[jach-labs.github.io](https://jach-labs.github.io) runs jet in the visitor's browser with onnxruntime-web
+(`jet.js` there is a JavaScript port of `format.py` and `model.py`). It uses `onnx/model_q8.onnx` from
+[jach-labs/jet](https://huggingface.co/jach-labs/jet): 8-bit weights, 791 MB, the same answer as the bf16
+model on every golden case with probabilities within 0.034. To rebuild it after training a new model:
+
+```sh
+uv run jet-golden --base-model models/jet --out models/jet/golden.json   # reference vectors for the port
+./export_web.sh models/jet                                              # -> models/jet/onnx/model_q8.onnx, then checked
+```
+
+`export_web.sh` needs Linux, an NVIDIA GPU and systemd. It sets up its own environment (torch, optimum) in
+`~/.cache/jet-web-build`, exports on the GPU and caps each step's memory. `src/onnx_web.py` explains the
+choice of quantization. Upload `onnx/model_q8.onnx` and `golden.json` to the Hugging Face repo next to the
+weights. The site's `test.html` then checks the browser port against the same vectors.
+
 ## Layout
 
 ```
@@ -245,6 +262,8 @@ src/
   fuse.py          merge LoRA into the base weights for serving
   bench_jev.py     score the hosted Jev API on the same test set
   bench_kev.py     score jet on Kev's transfer-v4 suite and plot it next to Kev and Jev
+  golden.py        jet-golden: test vectors for ports to other runtimes
+  onnx_web.py      browser model: slice, quantize and check the ONNX export (export_web.sh)
   data/public.py   public dataset builders
   data/distill.py  Claude distillation (Batches API)
   data/split.py    merge, dedupe, grouped split

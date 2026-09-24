@@ -7,14 +7,17 @@ from format import Question, build_prompt, render_state
 
 DEFAULT_MAX_STATE_TOKENS = 4096
 
-def encode(tokenizer, state: Any, q: Question, max_state_tokens: int = DEFAULT_MAX_STATE_TOKENS) -> list[int]:
+def prompt_text(tokenizer, state: Any, q: Question, max_state_tokens: int = DEFAULT_MAX_STATE_TOKENS) -> str:
     """Tokenize a prompt, truncating the middle of an over-long state."""
     text = render_state(state)
     ids = tokenizer.encode(text, add_special_tokens=False)
     if len(ids) > max_state_tokens:
         half = max_state_tokens // 2
         text = tokenizer.decode(ids[:half]) + "\n[...]\n" + tokenizer.decode(ids[-half:])
-    return tokenizer.encode(build_prompt(tokenizer, text, q), add_special_tokens=False)
+    return build_prompt(tokenizer, text, q)
+
+def encode(tokenizer, state: Any, q: Question, max_state_tokens: int = DEFAULT_MAX_STATE_TOKENS) -> list[int]:
+    return tokenizer.encode(prompt_text(tokenizer, state, q, max_state_tokens), add_special_tokens=False)
 
 def summarize(q: Question, probs: np.ndarray) -> dict[str, Any]:
     """Turn a label distribution into the typed answer for the question."""

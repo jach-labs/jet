@@ -46,6 +46,7 @@ jet-bench-jev = "bench_jev:main"
 jet-bench-kev = "bench_kev:main"
 jet-plot-kev = "bench_kev:main_plot"
 jet-bench-index = "bench_decision_index:main"
+jet-golden = "golden:main"
 
 [build-system]
 requires = ["hatchling"]
