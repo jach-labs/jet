@@ -23,6 +23,6 @@ fi
 rm -rf "$BUILD/export"
 capped "$ENV/bin/optimum-cli" export onnx --model "$MODEL" --task text-generation-with-past --device cuda \
     --no-post-process "$BUILD/export"
-capped "$ENV/bin/python" src/onnx_web.py slice "$BUILD/export/model.onnx" "$BUILD/export/model_sliced.onnx"
-capped "$ENV/bin/python" src/onnx_web.py quantize "$BUILD/export/model_sliced.onnx" "$MODEL/onnx/model_q8.onnx"
-capped "$ENV/bin/python" src/onnx_web.py check "$MODEL/onnx/model_q8.onnx" "$MODEL/golden.json"
+capped "$ENV/bin/python" -P src/onnx_web.py slice "$BUILD/export/model.onnx" "$BUILD/export/model_sliced.onnx"
+capped "$ENV/bin/python" -P src/onnx_web.py quantize "$BUILD/export/model_sliced.onnx" "$MODEL/onnx/model_q8.onnx"
+capped "$ENV/bin/python" -P src/onnx_web.py check "$MODEL/onnx/model_q8.onnx" "$MODEL/golden.json"

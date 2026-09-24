@@ -116,6 +116,14 @@ uv run jet-distill --backend claude-code label
 Each result is saved to `data/distill/claude_code/<step>/` as it arrives, so if a run hits the usage
 limit it stops, and re-running the same command picks up where it left off.
 
+## Latest training candidate
+
+V4 keeps Qwen3-0.6B and improves several language and relevance diagnostics while
+regressing on code behavior and the original test set. These partial rebuilt
+benchmarks do not establish a Decision Index leaderboard score. See the
+[training report](docs/training/jet-next/summary.md) and
+[release export notes](docs/training/jet-v4-release.md).
+
 ## Results
 
 The released model is `jet` (`adapters/jet`, `models/jet`, and [michaljach/jet](https://huggingface.co/michaljach/jet)
