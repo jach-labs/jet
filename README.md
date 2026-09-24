@@ -39,6 +39,40 @@ in the middle; the Decision Index adapter instead requires complete inputs.
 
 ## How it works
 
+```mermaid
+flowchart TB
+    subgraph data["1 · Data"]
+        pub["Public training partitions<br/>relevance · entailment · stance · sarcasm · intent<br/>commonsense · tool routing · tool-response preference"]
+        gen["Deterministic generators<br/>arithmetic · Boolean rules · code behavior"]
+        dist["Optional: jet-distill<br/>Claude-invented questions + soft labels"]
+        pub -- "reframe as choice / score / noul<br/>shuffle options, anonymize keys" --> ex
+        gen --> ex
+        dist -.-> ex
+        ex["examples.jsonl<br/>{state, question, target distribution}"] --> split["audits + grouped splits<br/>train / val / test, exclusion checks"]
+    end
+
+    subgraph train["2 · Train (MLX, Metal or CUDA)"]
+        base["Qwen3-0.6B (bf16, frozen)<br/>+ rank-16 LoRA on every layer"]
+        loss["loss = cross-entropy(target,<br/>softmax over label tokens at last position)<br/>+ ranked-probability term for score questions"]
+        base --> loss --> adapter[("adapter<br/>best checkpoint by val NLL")]
+        cal["jet-calibrate<br/>temperature per question type"] --> adapter
+        adapter --> fuse["jet-fuse → bf16 weights<br/>+ q8 ONNX, checked against golden cases"]
+    end
+
+    subgraph infer["3 · Inference: POST /v1/decide"]
+        req["state + N questions"] --> prompt["prompt = system + state + question<br/>each option gets one label token: A, B … / 0–9 / yes, no"]
+        prompt --> prefix["encode system + state ONCE → KV cache"]
+        prefix --> fan["replicate cache, run only each question's<br/>short suffix, batched"]
+        fan --> logits["next-token logits at the last position,<br/>restricted to that question's label tokens"]
+        logits --> soft["÷ temperature → softmax"]
+        soft --> ans["typed answers<br/>choice · score · probability · confidence"]
+    end
+
+    split --> base
+    split -. val .-> cal
+    fuse --> prefix
+```
+
 Each answer option maps to a single token. Jet reads the next-token logits only
 for those labels and applies softmax with a temperature fitted on held-out data.
 Standard serving uses one forward pass per question, without sampling.
