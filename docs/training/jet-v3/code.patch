@@ -1,0 +1,143 @@
+diff --git a/src/decision_index_engine.py b/src/decision_index_engine.py
+index 6587cd3..71ce9ff 100644
+--- a/src/decision_index_engine.py
++++ b/src/decision_index_engine.py
+@@ -60,12 +60,13 @@ class JetEngine(Engine):
+     latency = "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+ 
+     def __init__(self, model=MODEL_ID, revision=REVISION, max_tokens=DEFAULT_MAX_TOKENS,
+-                 max_cached_tokens=32768, **options):
++                 max_cached_tokens=32768, adapter=None, **options):
+         super().__init__(**options)
+         import mlx.core as mx
+         from mlx_lm import load
+ 
+         self.mx = mx
++        mx.set_cache_limit(1_000_000_000)
+         path, self.tokenizer, config = load_assets(model, revision)
+         self.max_tokens = int(max_tokens)
+         self.max_cached_tokens = int(max_cached_tokens)
+@@ -73,12 +74,13 @@ class JetEngine(Engine):
+             raise ValueError("max_tokens must be positive and within the checkpoint context window")
+         if self.max_cached_tokens < 1:
+             raise ValueError("max_cached_tokens must be positive")
+-        self.temperature = float(json.loads((path / "calibration.json").read_text())["choice"])
++        calibration = Path(adapter) / "calibration.json" if adapter else path / "calibration.json"
++        self.temperature = float(json.loads(calibration.read_text())["choice"])
+         if not math.isfinite(self.temperature) or self.temperature <= 0:
+             raise ValueError("Invalid published choice temperature")
+         # Pin weights to the SAME resolved snapshot as the tokenizer/config.
+         snapshot_download(model, revision=path.name, allow_patterns=["*.safetensors", "*.safetensors.index.json"])
+-        self.model, _ = load(str(path))
++        self.model, _ = load(str(path), adapter_path=adapter)
+         self.model.eval()
+         self.provenance = {
+             "model": model, "revision": path.name, "backend": "mlx",
+@@ -88,6 +90,11 @@ class JetEngine(Engine):
+             "format_sha256": hashlib.sha256(Path(__file__).with_name("format.py").read_bytes()).hexdigest(),
+             "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts.",
+         }
++        if adapter:
++            self.provenance["lora_adapter"] = str(Path(adapter).resolve())
++            self.provenance["lora_weights_sha256"] = hashlib.sha256(
++                (Path(adapter) / "adapters.safetensors").read_bytes()).hexdigest()
++            self.provenance["calibration_sha256"] = hashlib.sha256(calibration.read_bytes()).hexdigest()
+ 
+     def __call__(self, state, questions):
+         from model import shared_prefix_label_logits
+diff --git a/src/evaluate.py b/src/evaluate.py
+index 87eb76d..b29953d 100644
+--- a/src/evaluate.py
++++ b/src/evaluate.py
+@@ -29,7 +29,12 @@ def load_data(path: Path, limit: int | None) -> list[dict]:
+ 
+ def adapter_base(adapter: str | None, fallback: str) -> str:
+     if adapter and (cfg := Path(adapter) / "adapter_config.json").exists():
+-        return json.loads(cfg.read_text()).get("base_model", fallback)
++        config = json.loads(cfg.read_text())
++        base = config.get("base_model", fallback)
++        if config.get("base_revision"):
++            from huggingface_hub import snapshot_download
++            return snapshot_download(base, revision=config["base_revision"])
++        return base
+     return fallback
+ 
+ 
+diff --git a/src/train.py b/src/train.py
+index 91b4e6b..7cd2cd0 100644
+--- a/src/train.py
++++ b/src/train.py
+@@ -10,6 +10,7 @@ next to it (cross-entropy alone treats the levels as unordered).
+ from __future__ import annotations
+ 
+ import argparse
++import hashlib
+ import json
+ import math
+ import random
+@@ -23,6 +24,7 @@ import mlx.optimizers as optim
+ import numpy as np
+ from mlx.utils import tree_flatten, tree_unflatten
+ from mlx_lm import load
++from huggingface_hub import snapshot_download
+ from mlx_lm.tuner.trainer import grad_checkpoint
+ from mlx_lm.tuner.utils import linear_to_lora_layers
+ 
+@@ -116,6 +118,7 @@ def save_adapter(model, out: Path, config: dict, optimizer: optim.Optimizer | No
+ def main() -> None:
+     ap = argparse.ArgumentParser(description="Fine-tune a Jet decision model with LoRA.")
+     ap.add_argument("--base-model", default=DEFAULT_BASE_MODEL)
++    ap.add_argument("--base-revision", default=None, help="pin a Hub base model to this commit")
+     ap.add_argument("--train", type=Path, default=Path("data/train.jsonl"))
+     ap.add_argument("--val", type=Path, default=Path("data/val.jsonl"))
+     ap.add_argument("--out", type=Path, default=Path("adapters/jet"))
+@@ -142,10 +145,20 @@ def main() -> None:
+     ap.add_argument("--seed", type=int, default=0)
+     args = ap.parse_args()
+ 
++    args.out.mkdir(parents=True, exist_ok=True)
++    run_config = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
++    run_config["data_sha256"] = {
++        str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in (args.train, args.val)
++    }
++    (args.out / "training_config.json").write_text(json.dumps(run_config, indent=2))
++
+     mx.set_cache_limit(int(args.cache_limit_gb * 1e9))
+     mx.random.seed(args.seed)
+     rng = random.Random(args.seed)
+-    model, tokenizer = load(args.base_model)
++    model_path = args.base_model
++    if args.base_revision:
++        model_path = snapshot_download(args.base_model, revision=args.base_revision)
++    model, tokenizer = load(model_path)
+     model.freeze()
+     num_layers = len(model.layers) if args.lora_layers < 0 else args.lora_layers
+     lora_parameters = {"rank": args.rank, "scale": args.lora_scale, "dropout": args.dropout}
+@@ -165,6 +178,8 @@ def main() -> None:
+     steps_per_epoch = len(make_batches(train, args.max_batch_tokens, None))
+     total_steps = math.ceil(steps_per_epoch * args.epochs)
+     print(f"train {len(train)} examples, {steps_per_epoch} steps/epoch, {total_steps} steps; val {len(val_batches)} batches")
++    run_config.update(train_examples=len(train), steps_per_epoch=steps_per_epoch, total_steps=total_steps)
++    (args.out / "training_config.json").write_text(json.dumps(run_config, indent=2))
+ 
+     warmup = max(1, min(args.warmup, total_steps // 10))
+     base_schedule = optim.join_schedules(
+@@ -198,6 +213,7 @@ def main() -> None:
+         "num_layers": num_layers,
+         "lora_parameters": lora_parameters,
+         "base_model": args.base_model,
++        "base_revision": args.base_revision,
+     }
+     model.eval()
+     best = evaluate(model, val_batches)
+@@ -232,6 +248,10 @@ def main() -> None:
+                 model.train()
+                 improved = metrics["nll"] < best["nll"]
+                 print(f"step {step} val nll {metrics['nll']:.4f} acc {metrics['acc']:.3f}{'  *saved*' if improved else ''}", flush=True)
++                with (args.out / "metrics.jsonl").open("a") as f:
++                    f.write(json.dumps({"step": step, **metrics, "improved": improved,
++                                        "peak_memory_gb": mx.get_peak_memory() / 1e9}) + "\n")
++                save_adapter(model, args.out / "last", adapter_config, optimizer)
+                 if improved:
+                     best = metrics
+                     save_adapter(model, args.out, adapter_config, optimizer)

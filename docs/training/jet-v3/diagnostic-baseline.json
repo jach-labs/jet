@@ -1,0 +1,509 @@
+{
+  "scope": "Diagnostic subset only. Not an official Decision Index or full-suite estimate.",
+  "rows_sha256": "a790c3d5dac6068ecef13de92c7700c4da0a9ed87b998f528701ac1fe219205d",
+  "results_sha256": "301aec4322e27832ed7b5d22651d86951534808e0548df29addd7f6d99c021ad",
+  "planned_requests": 500,
+  "processed_requests": 500,
+  "pending_requests": 0,
+  "complete_for_supplied_rows": true,
+  "environment": {
+    "engine": "decision_index_engine:JetEngine",
+    "engine_options": {
+      "max_tokens": 8192,
+      "max_cached_tokens": 8192
+    },
+    "model_source": {
+      "model": "michaljach/jet",
+      "revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+      "backend": "mlx",
+      "max_tokens": 8192,
+      "checkpoint_context": 40960,
+      "max_cached_tokens": 8192,
+      "choice_temperature": 1.0293,
+      "adapter_sha256": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+      "format_sha256": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+      "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts."
+    },
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "device": "Device(gpu, 0)",
+    "loaded_seconds": 2.1049274939996394,
+    "frozen_corpus_sha256": null,
+    "rows_path": "artifacts/decision-index/diagnostic/diagnostic.jsonl.gz",
+    "runner_sha256": "fac268fc460a2a3470f52ee9e785fd81b37864cace132ac9e6284ede806258b8",
+    "latency": "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+  },
+  "summary": {
+    "engine": "jet",
+    "counts": {
+      "ok": 500
+    },
+    "successful_request_latency_ms": {
+      "median": 48.596005499348394,
+      "p95": 373.8532560000749,
+      "mean": 84.14850932991249
+    },
+    "benchmarks": [
+      {
+        "catalog_id": 11,
+        "dataset": "ContractNLI",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "macro-F1",
+        "score": 0.285649774536176,
+        "reference_same_cases": null,
+        "median_ms": 353.8561925006434,
+        "detail": {
+          "field_accuracy": 0.47794117647058826,
+          "case_exact_accuracy": 0,
+          "macro_f1": 0.285649774536176,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 30,
+        "dataset": "GSM8K",
+        "requests": 112,
+        "answered": 112,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 112,
+        "metric": "accuracy",
+        "score": 0.20535714285714285,
+        "reference_same_cases": null,
+        "median_ms": 43.758601999797975,
+        "tracks": {
+          "GSM8K-10choice": {
+            "metric": "accuracy",
+            "score": 0.125,
+            "scored_requests": 56
+          },
+          "GSM8K-4choice": {
+            "metric": "accuracy",
+            "score": 0.2857142857142857,
+            "scored_requests": 56
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.20535714285714285,
+          "case_exact_accuracy": 0.07142857142857142,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 40,
+        "dataset": "iSarcasmEval",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "see separate subtask tracks",
+        "score": null,
+        "reference_same_cases": null,
+        "median_ms": 47.17806650023704,
+        "tracks": {
+          "iSarcasmEval-A-Ar": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 12
+          },
+          "iSarcasmEval-A-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 19
+          },
+          "iSarcasmEval-B-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 23
+          },
+          "iSarcasmEval-C-Ar": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 1
+          },
+          "iSarcasmEval-C-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 1
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.5730994152046783,
+          "case_exact_accuracy": 0.35714285714285715,
+          "macro_f1": 0.35085995085995086,
+          "custom_metrics": {},
+          "positive_f1_by_field": {
+            "sarcastic": 0.0,
+            "sarcasm": 0.0,
+            "irony": 0.2222222222222222,
+            "satire": 0.0,
+            "understatement": 0.0,
+            "overstatement": 0.0,
+            "rhetorical_question": 0.0
+          },
+          "category_macro_f1": 0.031746031746031744
+        }
+      },
+      {
+        "catalog_id": 41,
+        "dataset": "VAST",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "macro-F1",
+        "score": 0.36556995679627785,
+        "reference_same_cases": null,
+        "median_ms": 15.092844499122293,
+        "detail": {
+          "field_accuracy": 0.44642857142857145,
+          "case_exact_accuracy": 0.44642857142857145,
+          "macro_f1": 0.36556995679627785,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 42,
+        "dataset": "NLI4CT",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "macro-F1",
+        "score": 0.25058158856763046,
+        "reference_same_cases": null,
+        "median_ms": 57.2153459997935,
+        "detail": {
+          "field_accuracy": 0.2545454545454545,
+          "case_exact_accuracy": 0.2545454545454545,
+          "macro_f1": 0.25058158856763046,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 43,
+        "dataset": "CRUXEval",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.4,
+        "reference_same_cases": null,
+        "median_ms": 43.94272399986221,
+        "detail": {
+          "field_accuracy": 0.4,
+          "case_exact_accuracy": 0.4,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 44,
+        "dataset": "CLadder",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.38181818181818183,
+        "reference_same_cases": null,
+        "median_ms": 42.82419500123069,
+        "detail": {
+          "field_accuracy": 0.38181818181818183,
+          "case_exact_accuracy": 0.38181818181818183,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 50,
+        "dataset": "Habermas Machine",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.2909090909090909,
+        "reference_same_cases": null,
+        "median_ms": 62.874530000044615,
+        "detail": {
+          "field_accuracy": 0.2909090909090909,
+          "case_exact_accuracy": 0.2909090909090909,
+          "custom_metrics": {
+            "normalized_rank_regret": 0.3003030303030303
+          }
+        }
+      }
+    ],
+    "note": "Native benchmark metrics on complete supported case groups. Unsupported cases excluded from accuracy but retained in coverage."
+  },
+  "panel_metrics_on_sample": {
+    "11": {
+      "catalog_id": 11,
+      "raw": 0.285649774536176,
+      "skill": 0.0,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.285649774536176,
+          "random": 0.30851893087083776,
+          "skill": 0.0,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "\"The contract contradicts the hypothesis.\"",
+            "\"The contract entails the hypothesis.\"",
+            "\"The hypothesis is neither entailed nor contradicted by the contract.\""
+          ]
+        }
+      ]
+    },
+    "30": {
+      "catalog_id": 30,
+      "raw": 0.20535714285714285,
+      "skill": 0.03769841269841268,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "GSM8K-4choice",
+          "raw": 0.2857142857142857,
+          "random": 0.25,
+          "skill": 0.047619047619047596,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        },
+        {
+          "track": "GSM8K-10choice",
+          "raw": 0.125,
+          "random": 0.1,
+          "skill": 0.02777777777777777,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "40": {
+      "catalog_id": 40,
+      "raw": 0.25,
+      "skill": 0.25,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "iSarcasmEval-A-En",
+          "raw": 0.0,
+          "random": 0.2226862339379383,
+          "skill": 0.0,
+          "planned_cases": 19,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-A-Ar",
+          "raw": 0.0,
+          "random": 0.22250656045660705,
+          "skill": 0.0,
+          "planned_cases": 12,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-C-En",
+          "raw": 0.0,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 1,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        },
+        {
+          "track": "iSarcasmEval-C-Ar",
+          "raw": 1.0,
+          "random": 0.5,
+          "skill": 1.0,
+          "planned_cases": 1,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "41": {
+      "catalog_id": 41,
+      "raw": 0.36556995679627785,
+      "skill": 0.04836746489660628,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.36556995679627785,
+          "random": 0.3333245556439576,
+          "skill": 0.04836746489660628,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "\"against\"",
+            "\"favor\"",
+            "\"neutral\""
+          ]
+        }
+      ]
+    },
+    "43": {
+      "catalog_id": 43,
+      "raw": 0.4,
+      "skill": 0.07772158637210544,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.4,
+          "random": 0.34943722943722944,
+          "skill": 0.07772158637210544,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "44": {
+      "catalog_id": 44,
+      "raw": 0.38181818181818183,
+      "skill": 0.0,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.38181818181818183,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "50": {
+      "catalog_id": 50,
+      "raw": 0.2909090909090909,
+      "skill": 0.0,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.2909090909090909,
+          "random": 0.31,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "7": {
+      "catalog_id": 7,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "16": {
+      "catalog_id": 16,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "13": {
+      "catalog_id": 13,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "15": {
+      "catalog_id": 15,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "17": {
+      "catalog_id": 17,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "19": {
+      "catalog_id": 19,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    }
+  }
+}

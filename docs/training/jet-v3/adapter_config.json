@@ -1,0 +1,11 @@
+{
+  "fine_tune_type": "lora",
+  "num_layers": 28,
+  "lora_parameters": {
+    "rank": 16,
+    "scale": 10.0,
+    "dropout": 0.05
+  },
+  "base_model": "mlx-community/Qwen3-0.6B-bf16",
+  "base_revision": "42096995f6402fde107068cf530136fe64b604f8"
+}

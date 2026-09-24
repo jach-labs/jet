@@ -33,24 +33,20 @@ from model import DEFAULT_BASE_MODEL, encode, label_logits, pad_batch, pad_label
 
 
 class Example:
-    __slots__ = ("tokens", "labels", "target", "ordinal", "weight")
+    __slots__ = ("tokens", "labels", "target", "ordinal")
 
-    def __init__(self, tokens: list[int], labels: list[int], target: list[float], ordinal: bool, weight: float = 1.0):
+    def __init__(self, tokens: list[int], labels: list[int], target: list[float], ordinal: bool):
         self.tokens, self.labels, self.target, self.ordinal = tokens, labels, target, ordinal
-        self.weight = weight
 
 
-def load_examples(path: Path, tokenizer, max_state_tokens: int, smoothing: float, use_weights: bool = False) -> list[Example]:
+def load_examples(path: Path, tokenizer, max_state_tokens: int, smoothing: float) -> list[Example]:
     out = []
     for line in path.open():
         ex = json.loads(line)
         q = Question.from_dict(ex["question"])
         k = len(q.keys)
         target = [(1 - smoothing) * t + smoothing / k for t in ex["target"]]
-        weight = float(ex.get("weight", 1.0)) if use_weights else 1.0
-        if not math.isfinite(weight) or weight <= 0:
-            raise ValueError("training weights must be finite and positive")
-        out.append(Example(encode(tokenizer, ex["state"], q, max_state_tokens), label_token_ids(tokenizer, q), target, q.type == "score", weight))
+        out.append(Example(encode(tokenizer, ex["state"], q, max_state_tokens), label_token_ids(tokenizer, q), target, q.type == "score"))
     return out
 
 
@@ -79,7 +75,7 @@ def to_arrays(batch: list[Example]):
         target[i, : len(e.target)] = e.target
     ordinal = mx.array([e.ordinal for e in batch])
     levels = mx.array([len(e.labels) for e in batch], dtype=mx.float32)
-    return tokens, lengths, ids, mask, mx.array(target), ordinal, levels, mx.array([e.weight for e in batch])
+    return tokens, lengths, ids, mask, mx.array(target), ordinal, levels
 
 
 def ranked_probability_score(logp: mx.array, target: mx.array, levels: mx.array) -> mx.array:
@@ -89,13 +85,13 @@ def ranked_probability_score(logp: mx.array, target: mx.array, levels: mx.array)
     return (cdf_gap**2).sum(axis=-1) / (levels - 1)
 
 
-def loss_fn(model, tokens, lengths, ids, mask, target, ordinal, levels, weights, ordinal_weight=0.0):
+def loss_fn(model, tokens, lengths, ids, mask, target, ordinal, levels, ordinal_weight=0.0):
     logits = label_logits(model, tokens, lengths, ids, mask)
     logp = logits - mx.logsumexp(logits, axis=-1, keepdims=True)
     loss = -(target * logp).sum(axis=-1)
     if ordinal_weight:
         loss = loss + ordinal_weight * mx.where(ordinal, ranked_probability_score(logp, target, levels), 0.0)
-    return (loss * weights).mean()
+    return loss.mean()
 
 
 def evaluate(model, batches: list[list[Example]]) -> dict[str, float]:
@@ -136,8 +132,6 @@ def main() -> None:
     ap.add_argument("--max-batch-tokens", type=int, default=4096)
     ap.add_argument("--max-state-tokens", type=int, default=1024)
     ap.add_argument("--smoothing", type=float, default=0.02)
-    ap.add_argument("--use-example-weights", action="store_true",
-                    help="use positive per-row weights for training only; validation remains unweighted")
     ap.add_argument("--ordinal-weight", type=float, default=2.0,
                     help="weight of the ranked probability score term on score questions; 0 = plain cross-entropy")
     ap.add_argument("--grad-checkpoint", action=argparse.BooleanOptionalAction, default=True)
@@ -169,8 +163,6 @@ def main() -> None:
             ap.error("initial adapter LoRA parameters do not match requested parameters")
         if source_config.get("base_model") != args.base_model:
             ap.error("initial adapter uses a different base model")
-        if source_config.get("base_revision") not in (None, args.base_revision):
-            ap.error("initial adapter uses a different base revision")
         run_config["init_adapter_sha256"] = hashlib.sha256(
             (args.init_adapter / "adapters.safetensors").read_bytes()).hexdigest()
     (args.out / "training_config.json").write_text(json.dumps(run_config, indent=2))
@@ -205,7 +197,7 @@ def main() -> None:
     n_train = sum(v.size for _, v in tree_flatten(model.trainable_parameters()))
     print(f"trainable params: {n_train / 1e6:.2f}M")
 
-    train = load_examples(args.train, tokenizer, args.max_state_tokens, args.smoothing, args.use_example_weights)
+    train = load_examples(args.train, tokenizer, args.max_state_tokens, args.smoothing)
     val = load_examples(args.val, tokenizer, args.max_state_tokens, 0.0)
     rng.shuffle(val)
     val_batches = make_batches(val[: args.val_limit], args.max_batch_tokens, None)

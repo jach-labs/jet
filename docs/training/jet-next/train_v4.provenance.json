@@ -1,0 +1,74 @@
+{
+  "seed": 230924,
+  "sources": [
+    {
+      "repository": "https://github.com/emilyallaway/zero-shot-stance",
+      "revision": "e7c4775182b184730f350995f8260579c9e066fe",
+      "file": "data/VAST/vast_train.csv",
+      "sha256": "b2f0d69a73231b8ef22f10e4df7d759cf228505ce5252506068da6aa7fe42109",
+      "split": "train"
+    },
+    {
+      "repository": "https://github.com/stanfordnlp/contract-nli",
+      "revision": "eced6528dd3c1d14d73f9a87df8f7bdbc03126f9",
+      "file": "resources/contract-nli.zip!contract-nli/train.json",
+      "sha256": "e03fc77bbf8b53e2976a250e81d8a294bc3d5e5fb014521e477dee9340d6287b",
+      "split": "train"
+    }
+  ],
+  "counts": {
+    "calibration:code_transfer": 240,
+    "calibration:contract_entailment": 238,
+    "calibration:stance_transfer": 240,
+    "test:code_transfer": 240,
+    "test:contract_entailment": 240,
+    "test:stance_transfer": 240,
+    "train:code_transfer": 3000,
+    "train:contract_entailment": 3000,
+    "train:stance_transfer": 3000,
+    "val:code_transfer": 240,
+    "val:contract_entailment": 240,
+    "val:stance_transfer": 240
+  },
+  "excluded": {
+    "contract_native_heldout_text": 1,
+    "duplicate": 3639,
+    "over_2048_full_state": 3332
+  },
+  "files": {
+    "train_v4.jsonl": "f997660ef5a798a4aeeb0ace8c9c76756751d71f87523a31ab9e7a084df8cd5f",
+    "selection_v4.jsonl": "43c9aef75410fe06efccf9ee8fb71196f2d9de0136785d1684a4d7ed2914a158",
+    "calibration_v4.jsonl": "e08bd6f26e3150485ad67099ecdb30700474ba3173570beb901136dc8a669a77",
+    "test_v4_new.jsonl": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6"
+  },
+  "class_weights": {
+    "contract_entailment": {
+      "NotMentioned": 0.724112961622013,
+      "Entailment": 0.794912559618442,
+      "Contradiction": 2.770083102493075
+    },
+    "stance_transfer": {
+      "against": 0.8465209540742631,
+      "favor": 0.8471187796068014,
+      "none": 3.598560575769692
+    }
+  },
+  "code_sha256": "37262ee1a8978d19c58a031e11598d504ed2d4b981ee2f004d6c0a8ccff9af9b",
+  "retained_train_v3_sha256": "ec5666923b48289d5ab3b0887f43e52ec403c838cce7a8eee9479888ccc58be4",
+  "protected_sha256": {
+    "data/val.jsonl": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+    "data/test.jsonl": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+    "data/score_eval.jsonl": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+    "data/val_v3_new.jsonl": "9c7810c969295bad4bed794025bc1ca505d515a782fd8fefc68d1ef88b39051c",
+    "data/calibration_v3_new.jsonl": "9e022e0cbc76c9253ad4304bb705118b00ff09d45b4ce0d29d4c7eeb3b8bbb07",
+    "data/test_v3_new.jsonl": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+    "artifacts/decision-index/rebuild/artifacts/benchmark-suite/release-v1-rebuilt/selected-rows.jsonl": "8dd94acf6c313c50aec3fc48188c840d994d14f764b3fff9fe7a89e2e41b9211"
+  },
+  "limitations": [
+    "Full frozen suite remains unavailable.",
+    "ContractNLI restricted to complete contracts fitting 2048 state tokens.",
+    "Source article/document groups are held together. Code holdouts use disjoint complete templates, but share Python primitives.",
+    "Exact normalized content exclusion is not a semantic paraphrase detector.",
+    "V3 tool tests remain small and easy; do not interpret their accuracy as strong tool retrieval evidence."
+  ]
+}

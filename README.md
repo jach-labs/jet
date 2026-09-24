@@ -105,6 +105,17 @@ JEV_API_KEY=jv_live_... uv run jet-bench-jev --data data/test.jsonl --limit 1500
 `data/distill/batches.json` instead of resubmitting. Batches can't use server-side refusal
 fallbacks, so any refused items are dropped.
 
+With `--backend claude-code`, `jet-distill` instead runs one headless `claude -p` call per request
+on your Claude Code subscription (no API key; it counts against your plan's usage limits):
+
+```sh
+uv run jet-distill --backend claude-code tasks --n 300    # --model opus, --effort medium, --workers 4
+uv run jet-distill --backend claude-code label
+```
+
+Each result is saved to `data/distill/claude_code/<step>/` as it arrives, so if a run hits the usage
+limit it stops, and re-running the same command picks up where it left off.
+
 ## Results
 
 The released model is `jet` (`adapters/jet`, `models/jet`, and [michaljach/jet](https://huggingface.co/michaljach/jet)

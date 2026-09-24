@@ -1,0 +1,162 @@
+{
+  "seed": 230923,
+  "sources": [
+    {
+      "repo": "tasksource/esci",
+      "revision": "8113b17a5d4099e20243282c926f1bc1a08a4d13",
+      "file": "data/train-00000-of-00011-2d36455632bef8a2.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--tasksource--esci/snapshots/8113b17a5d4099e20243282c926f1bc1a08a4d13/data/train-00000-of-00011-2d36455632bef8a2.parquet",
+      "split": "train",
+      "sha256": "bd6e1217eef98968103d9731ae52e5e1e640b8af8810956ad144cb13481bf3b9"
+    },
+    {
+      "repo": "stanfordnlp/snli",
+      "revision": "cdb5c3d5eed6ead6e5a341c8e56e669bb666725b",
+      "file": "plain_text/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--stanfordnlp--snli/snapshots/cdb5c3d5eed6ead6e5a341c8e56e669bb666725b/plain_text/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "ef9a7b25d97390a62aeda7abe26aec8640600f50b818eaeb9107097d60ac6620"
+    },
+    {
+      "repo": "nyu-mll/glue",
+      "revision": "bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c",
+      "file": "qnli/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--nyu-mll--glue/snapshots/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/qnli/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "ebc7cb70a5bbde0b0336c3d51f31bb4df4673e908e8874b090b52169b1365c6c"
+    },
+    {
+      "repo": "glaiveai/glaive-function-calling-v2",
+      "revision": "e7f4b6456019f5d8bcb991ef0dd67d8ff23221ac",
+      "file": "glaive-function-calling-v2.json",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--glaiveai--glaive-function-calling-v2/snapshots/e7f4b6456019f5d8bcb991ef0dd67d8ff23221ac/glaive-function-calling-v2.json",
+      "split": "train",
+      "sha256": "e9b5d671812b5ca2fbd7b625a37d5c99a19576c37252cdc806defe256aea6dad"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "irony/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/irony/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "541de8c14f53024660fa5ae1534489b51106c5f4905da294e47ded7e09d73ad0"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "stance_abortion/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/stance_abortion/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "5d90ce50ba5ed14d7600bc9ca919c2ac2b9f58141b80d63b96fa17027607bd20"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "stance_atheism/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/stance_atheism/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "4d915d95b5a313db91f3737d095aa89db6b9e749c7838e00fe844ff5a6f98661"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "stance_climate/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/stance_climate/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "248ba3695bba19f1fcef9c65421d81c65fa3a76570f1d7d3766872022e96b224"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "stance_feminist/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/stance_feminist/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "f6ae1f6ee44c1e0ac0523bab6278febf8a62387305c24aad3ea9701868b81e1a"
+    },
+    {
+      "repo": "cardiffnlp/tweet_eval",
+      "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+      "file": "stance_hillary/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--cardiffnlp--tweet_eval/snapshots/b3a375baf0f409c77e6bc7aa35102b7b3534f8be/stance_hillary/train-00000-of-00001.parquet",
+      "split": "train",
+      "sha256": "61b7730fdffe10728554b85b3d36af454df6185fcebf214697215965a28dc364"
+    }
+  ],
+  "isarcasm": {
+    "repository": "https://github.com/iabufarha/iSarcasmEval",
+    "revision": "dfc708b53bde1bb571abfb5692f63231c2232195",
+    "file": "train/train.En.csv",
+    "split": "train"
+  },
+  "protected_sha256": {
+    "data/val.jsonl": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+    "data/test.jsonl": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+    "data/score_eval.jsonl": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+    "artifacts/decision-index/rebuild/artifacts/benchmark-suite/release-v1-rebuilt/selected-rows.jsonl": "8dd94acf6c313c50aec3fc48188c840d994d14f764b3fff9fe7a89e2e41b9211"
+  },
+  "counts": {
+    "calibration:arithmetic": 160,
+    "calibration:boolean_rules": 160,
+    "calibration:code_behavior": 160,
+    "calibration:document_relevance": 160,
+    "calibration:entailment": 160,
+    "calibration:product_relevance": 160,
+    "calibration:sarcasm_irony": 160,
+    "calibration:stance": 160,
+    "calibration:tool_relevance": 27,
+    "calibration:tool_selection": 71,
+    "test:arithmetic": 160,
+    "test:boolean_rules": 160,
+    "test:code_behavior": 160,
+    "test:document_relevance": 160,
+    "test:entailment": 160,
+    "test:product_relevance": 160,
+    "test:sarcasm_irony": 160,
+    "test:stance": 160,
+    "test:tool_relevance": 25,
+    "test:tool_selection": 59,
+    "train:arithmetic": 2000,
+    "train:boolean_rules": 2000,
+    "train:code_behavior": 2000,
+    "train:document_relevance": 2000,
+    "train:entailment": 2000,
+    "train:product_relevance": 2000,
+    "train:sarcasm_irony": 2000,
+    "train:stance": 1982,
+    "train:tool_relevance": 2000,
+    "train:tool_selection": 2000,
+    "val:arithmetic": 160,
+    "val:boolean_rules": 160,
+    "val:code_behavior": 160,
+    "val:document_relevance": 160,
+    "val:entailment": 160,
+    "val:product_relevance": 160,
+    "val:sarcasm_irony": 160,
+    "val:stance": 160,
+    "val:tool_relevance": 38,
+    "val:tool_selection": 77
+  },
+  "filters": {
+    "over_state_capacity": 537,
+    "duplicate": 16830,
+    "excluded_evaluation_content": 46,
+    "legacy_evaluation_overlap": 46
+  },
+  "files": {
+    "train_v3.jsonl": "ec5666923b48289d5ab3b0887f43e52ec403c838cce7a8eee9479888ccc58be4",
+    "val_v3_new.jsonl": "9c7810c969295bad4bed794025bc1ca505d515a782fd8fefc68d1ef88b39051c",
+    "calibration_v3_new.jsonl": "9e022e0cbc76c9253ad4304bb705118b00ff09d45b4ce0d29d4c7eeb3b8bbb07",
+    "test_v3_new.jsonl": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+    "selection_v3.jsonl": "f38f2fd8e503d749ea3a72a811348f663c30b9b5702f171c66f344fecc1dbee4",
+    "calibration_v3.jsonl": "692519ec1469cc83571b3ebb2bb5e2f2c17b46cf87b80e87f69576cd4539d8cd"
+  },
+  "legacy_rows": 27331,
+  "generator_code_sha256": "785b8407f93c9ba952f98d29f987be73c853707f4f3211ccd6a4865c4cee3061",
+  "limitations": [
+    "Official frozen suite unavailable; exclusions cover all 23,113 rebuilt requests and existing held-outs.",
+    "ESCI uses only the first pinned training shard; official ESCI evaluation uses test.",
+    "New held-outs are grouped samples of training partitions, not leaderboard evaluation.",
+    "Glaive labels are public synthetic annotations; added distractors are not exhaustively verified for semantic equivalence.",
+    "Legacy train_v2 lacks original source IDs; retained legacy provenance is its immutable file hash."
+  ]
+}

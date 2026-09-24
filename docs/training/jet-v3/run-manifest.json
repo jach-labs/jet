@@ -1,0 +1,22 @@
+{
+  "git_head": "829955484f94e1dff420880de656ce99775a7b61",
+  "branch": "codex/decision-index-training",
+  "python": "3.12.14",
+  "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+  "files": {
+    "src/train.py": "cd7467a8775ce38aa49dfb72e53db2552348fd840a3e54698ce7660ffb90fdd4",
+    "src/evaluate.py": "e38a9667107ca7b4b8cf53400fe8da22c98a044a970fa9fffe81c921c9eea16e",
+    "src/data/decision_training.py": "785b8407f93c9ba952f98d29f987be73c853707f4f3211ccd6a4865c4cee3061",
+    "src/decision_index_engine.py": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+    "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "src/model.py": "bdc03a5a63002f236e17fb81f681738cb238a3e4a73ca575b99d580c1f3dec03",
+    "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "train_cuda.sh": "464ebe6e844f2a02983f76f66edb7fd7f9354ed407c1ff2dfa043b97cfea6dcf",
+    "scripts/run_v3_cuda.sh": "11232f55dcb76f97613a409e98550c577cdb9c9798dc33dde357443eef996e71",
+    "scripts/download_v3_sources.py": "ef189800b1b4456cd075a07644385c6cc4b5d61cf77a92c73c807716a7c13e3a",
+    "uv.lock": "158790ff4bb087ca458bbfd16025251923382fd6ebbee2965410fbf66b1c322b"
+  },
+  "gpu": "name, memory.total [MiB], driver_version\nNVIDIA GeForce RTX 4080 SUPER, 16376 MiB, 615.71.09\n",
+  "base_revision": "42096995f6402fde107068cf530136fe64b604f8",
+  "baseline_revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c"
+}

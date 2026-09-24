@@ -1,0 +1,9 @@
+{
+  "requests": 1400,
+  "selection": "All available English track-A rows; no label-based selection",
+  "source_sha256": "8dd94acf6c313c50aec3fc48188c840d994d14f764b3fff9fe7a89e2e41b9211",
+  "rows_sha256": "43bf45a8b0407fe8ee64809c94c17d721892ae1e146bdc7831c33fc596e5665d",
+  "official_exclusions_checked": true,
+  "exclusions_sha256": "331df32d4b719c7db43214d0e5d85859d39c3b2eb7d0b3812214cce150155e81",
+  "excluded_english_track_a": 0
+}

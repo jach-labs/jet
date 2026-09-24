@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "counts": {
+    "train": 47313,
+    "val": 1395,
+    "calibration": 1378,
+    "test": 1364
+  },
+  "max_new_state_tokens": 1024,
+  "max_new_prompt_tokens": 1145,
+  "executed_generated_labels": 7440,
+  "positions": {
+    "product_relevance": {
+      "0": 616,
+      "1": 613,
+      "3": 624,
+      "2": 627
+    },
+    "boolean_rules": {
+      "1": 1223,
+      "0": 1257
+    },
+    "tool_selection": {
+      "3": 351,
+      "4": 386,
+      "5": 343,
+      "2": 356,
+      "0": 345,
+      "1": 336,
+      "6": 90
+    },
+    "entailment": {
+      "1": 852,
+      "2": 825,
+      "0": 803
+    },
+    "code_behavior": {
+      "2": 655,
+      "1": 677,
+      "3": 469,
+      "0": 679
+    },
+    "tool_relevance": {
+      "1": 1069,
+      "0": 1021
+    },
+    "stance": {
+      "2": 797,
+      "1": 835,
+      "0": 830
+    },
+    "arithmetic": {
+      "0": 650,
+      "1": 605,
+      "3": 601,
+      "2": 624
+    },
+    "sarcasm_irony": {
+      "0": 1248,
+      "1": 1232
+    },
+    "document_relevance": {
+      "1": 1257,
+      "0": 1223
+    }
+  },
+  "source_ids": {
+    "product_relevance": 2480,
+    "boolean_rules": 2480,
+    "tool_selection": 2207,
+    "entailment": 2480,
+    "code_behavior": 2480,
+    "tool_relevance": 2090,
+    "stance": 2462,
+    "arithmetic": 2480,
+    "sarcasm_irony": 2480,
+    "document_relevance": 2480
+  },
+  "protected_inputs_unchanged": true
+}
