@@ -1,0 +1,258 @@
+{
+  "seed": 240925,
+  "sources": [
+    {
+      "repo": "clinc/clinc_oos",
+      "revision": "155b9c710419136e17307b80d0a13e68cd46b4ec",
+      "file": "plus/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--clinc--clinc_oos/snapshots/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/train-00000-of-00001.parquet",
+      "role": "train",
+      "sha256": "30188119cf9f86fc9db27e1c22442d091cb5cb0913c9496f945fe11e7a02a28f"
+    },
+    {
+      "repo": "clinc/clinc_oos",
+      "revision": "155b9c710419136e17307b80d0a13e68cd46b4ec",
+      "file": "plus/validation-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--clinc--clinc_oos/snapshots/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/validation-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "fbd545b46c611c4a7ba4b48cae6c7f09bb5b59f33ff56206ad1cd366c85cdfaa"
+    },
+    {
+      "repo": "clinc/clinc_oos",
+      "revision": "155b9c710419136e17307b80d0a13e68cd46b4ec",
+      "file": "plus/test-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--clinc--clinc_oos/snapshots/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/test-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "3e60e45b25bf86543aa5df8ba4fcc674114164e6184f0197690648c2908d0102"
+    },
+    {
+      "repo": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "file": "data/train-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--Rowan--hellaswag/snapshots/218ec52e09a7e7462a5400043bb9a69a41d06b76/data/train-00000-of-00001.parquet",
+      "role": "train",
+      "sha256": "cacb12587faa63d7f723a72d61d12bfa94b140446f5a6a0a2e1c6906ab88bf02"
+    },
+    {
+      "repo": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "file": "data/validation-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--Rowan--hellaswag/snapshots/218ec52e09a7e7462a5400043bb9a69a41d06b76/data/validation-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "899813071e1e95efafec90f856e1987d2150fa4d020fc005df6962c259f660cd"
+    },
+    {
+      "repo": "Rowan/hellaswag",
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "file": "data/test-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--Rowan--hellaswag/snapshots/218ec52e09a7e7462a5400043bb9a69a41d06b76/data/test-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "e572fd5579bd1768b1985f47234f8bbe29247aca200a778b635bffc637714a41"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/train_r3-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/train_r3-00000-of-00001.parquet",
+      "role": "train",
+      "sha256": "c1d3f614d673888ac56b9ab62324e21583c98a11c4fef84e938d0f8fc414b29a"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/dev_r1-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/dev_r1-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "72e27463177b4363be80f1fc6ccdaab44ddaeb65db58c2280f94690e15468334"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/dev_r2-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/dev_r2-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "43e4673665decf0b0e8487e55f98285423cb356b985e206fe5998defae2e38fa"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/dev_r3-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/dev_r3-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "61775ec09351f6011ce4dc9ea313f457bba6e11d7665d34d95c111665023a83e"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/test_r1-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/test_r1-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "c4a3d304c4671941d6bad5a07632a79713c5a1be485ccf75b81b6df93f61045e"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/test_r2-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/test_r2-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "df5daccdd5623cfcaa34be0100721783485f4181a42796b1d0ac0cd7601e7acb"
+    },
+    {
+      "repo": "facebook/anli",
+      "revision": "8e4813d81f46d313dac7892e1c28076917cfcdf9",
+      "file": "plain_text/test_r3-00000-of-00001.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--facebook--anli/snapshots/8e4813d81f46d313dac7892e1c28076917cfcdf9/plain_text/test_r3-00000-of-00001.parquet",
+      "role": "exclusion_only",
+      "sha256": "3232c4217979da00b2cd6ed97d099a8a8edf04530193ea52e3c8d69190de92a2"
+    },
+    {
+      "repo": "nvidia/When2Call",
+      "revision": "0582f7749df63a96fdc3070932e83e72396ace53",
+      "file": "train/when2call_train_pref.jsonl",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--nvidia--When2Call/snapshots/0582f7749df63a96fdc3070932e83e72396ace53/train/when2call_train_pref.jsonl",
+      "role": "train",
+      "sha256": "d90637f108fabf1b097493c5818c3692e1d73140259d2f8e490536255e765bc4"
+    },
+    {
+      "repo": "nvidia/When2Call",
+      "revision": "0582f7749df63a96fdc3070932e83e72396ace53",
+      "file": "test/when2call_test_mcq.jsonl",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--nvidia--When2Call/snapshots/0582f7749df63a96fdc3070932e83e72396ace53/test/when2call_test_mcq.jsonl",
+      "role": "exclusion_only",
+      "sha256": "8c3694e583eeeb8dbc297e6cd90da70efc68efa4b6adb7227523e828c6b7b14c"
+    }
+  ],
+  "counts": {
+    "train_v5.jsonl": {
+      "wide_intent": 2000,
+      "commonsense_completion": 2000,
+      "arithmetic": 348,
+      "boolq": 347,
+      "code_transfer": 348,
+      "stsb": 348,
+      "adversarial_entailment": 2000,
+      "ag_news": 347,
+      "tool_response_preference": 2000,
+      "banking77": 348,
+      "mnli": 348,
+      "tool_intent_routing": 348,
+      "yelp": 348,
+      "contract_entailment": 348,
+      "sarcasm_irony": 348,
+      "code_behavior": 348,
+      "tool_relevance": 348,
+      "stance": 348,
+      "document_relevance": 348,
+      "massive": 348,
+      "civil_comments": 348,
+      "stance_transfer": 348,
+      "product_relevance": 348,
+      "boolean_rules": 348,
+      "tool_selection": 347,
+      "entailment": 348,
+      "dbpedia": 347
+    },
+    "selection_v5.jsonl": {
+      "code_transfer": 35,
+      "wide_intent": 150,
+      "arithmetic": 35,
+      "commonsense_completion": 150,
+      "boolq": 35,
+      "stsb": 35,
+      "banking77": 35,
+      "document_relevance": 35,
+      "ag_news": 34,
+      "adversarial_entailment": 150,
+      "boolean_rules": 35,
+      "tool_response_preference": 150,
+      "entailment": 35,
+      "mnli": 35,
+      "sarcasm_irony": 35,
+      "stance_transfer": 35,
+      "yelp": 35,
+      "tool_selection": 34,
+      "dbpedia": 35,
+      "massive": 35,
+      "contract_entailment": 35,
+      "tool_relevance": 34,
+      "product_relevance": 35,
+      "stance": 34,
+      "tool_intent_routing": 35,
+      "code_behavior": 35,
+      "civil_comments": 34
+    },
+    "calibration_v5.jsonl": {
+      "code_transfer": 35,
+      "tool_intent_routing": 36,
+      "wide_intent": 150,
+      "product_relevance": 36,
+      "commonsense_completion": 150,
+      "tool_selection": 35,
+      "sarcasm_irony": 35,
+      "contract_entailment": 35,
+      "stance": 35,
+      "tool_relevance": 27,
+      "adversarial_entailment": 150,
+      "ag_news": 35,
+      "tool_response_preference": 150,
+      "entailment": 36,
+      "stsb": 35,
+      "boolean_rules": 35,
+      "code_behavior": 35,
+      "yelp": 35,
+      "banking77": 35,
+      "arithmetic": 35,
+      "mnli": 35,
+      "document_relevance": 35,
+      "boolq": 35,
+      "civil_comments": 35,
+      "massive": 35,
+      "dbpedia": 35,
+      "stance_transfer": 35
+    },
+    "test_v5_new.jsonl": {
+      "adversarial_entailment": 150,
+      "tool_response_preference": 150,
+      "commonsense_completion": 150,
+      "wide_intent": 150
+    }
+  },
+  "exclusions": {
+    "evaluation_content": 33797,
+    "duplicate_source_id": 7278,
+    "long_full_state": 4,
+    "duplicate_state": 172
+  },
+  "files": {
+    "train_v5.jsonl": "d96100fd362255482869fdfc96d02cc6d3071326155500f817fca5fdbc53d3fd",
+    "selection_v5.jsonl": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+    "calibration_v5.jsonl": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+    "test_v5_new.jsonl": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6"
+  },
+  "protected": {
+    "/home/jach/dev/jet/data/score_eval.jsonl": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+    "/home/jach/dev/jet/data/test.jsonl": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+    "/home/jach/dev/jet/data/val.jsonl": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+    "/home/jach/dev/jet/data/val_v3_new.jsonl": "9c7810c969295bad4bed794025bc1ca505d515a782fd8fefc68d1ef88b39051c",
+    "/home/jach/dev/jet/data/calibration_v3_new.jsonl": "9e022e0cbc76c9253ad4304bb705118b00ff09d45b4ce0d29d4c7eeb3b8bbb07",
+    "/home/jach/dev/jet/data/test_v3_new.jsonl": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+    "/home/jach/dev/jet/data/selection_v3.jsonl": "f38f2fd8e503d749ea3a72a811348f663c30b9b5702f171c66f344fecc1dbee4",
+    "/home/jach/dev/jet/data/calibration_v3.jsonl": "692519ec1469cc83571b3ebb2bb5e2f2c17b46cf87b80e87f69576cd4539d8cd",
+    "/home/jach/dev/jet/data/selection_v4.jsonl": "43c9aef75410fe06efccf9ee8fb71196f2d9de0136785d1684a4d7ed2914a158",
+    "/home/jach/dev/jet/data/calibration_v4.jsonl": "e08bd6f26e3150485ad67099ecdb30700474ba3173570beb901136dc8a669a77",
+    "/home/jach/dev/jet/data/test_v4_new.jsonl": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6",
+    "/home/jach/dev/jet/data/test_v4_tools.jsonl": "20f0e11691f8e51760bfef7cc9982ceb8719faeadb5340c14905b393cf58d68d",
+    "/home/jach/dev/jet/data/calibration_v4_tools.jsonl": "cbbe6269a2824a6239aaba9c89b64e43aac74788961f4e272fe369a73af0ab97",
+    "/home/jach/dev/jet/data/selection_v4_tools.jsonl": "b430db40826a3da1cc9ca52723e1689be95bed5d0cf1cdc70b520101254a862a",
+    "/home/jach/dev/jet/artifacts/decision-index/rebuild/artifacts/benchmark-suite/release-v1-rebuilt/selected-rows.jsonl": "8dd94acf6c313c50aec3fc48188c840d994d14f764b3fff9fe7a89e2e41b9211",
+    "/home/jach/dev/jet/artifacts/decision-index/esci-rebuild/artifacts/benchmark-suite/release-v1-rebuilt/selected-rows.jsonl": "db1d2d3d4dde242dc04262149153bfd596044ad8986e0ae5de8443383973e386"
+  },
+  "builder_sha256": "5f915e061c536400fe79b42d5c0980445e160ab036ec5a5132ddf809cc26f1c9",
+  "notes": [
+    "Evaluation partitions used only for exclusions.",
+    "New holdouts use source training partitions; no native test labels used for selection.",
+    "Full current Decision Index 0.2 frozen corpus unavailable; no official overall score.",
+    "Related video/article/premise/tool-catalog/query components stay together.",
+    "Exact normalized text exclusion does not detect all paraphrases."
+  ]
+}

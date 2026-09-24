@@ -6,6 +6,7 @@ Run using a Python environment with huggingface_hub installed:
   python deploy/huggingface/deploy.py zerogpu --repo michaljach/jet
 """
 import argparse
+import json
 from pathlib import Path
 from huggingface_hub import HfApi, CommitOperationAdd, CommitOperationDelete
 
@@ -17,13 +18,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("kind", choices=["static", "api", "zerogpu"])
     parser.add_argument("--repo", required=True)
+    parser.add_argument("--existing-only", action="store_true", help="Upload to an existing Space without creating or changing hardware")
+    parser.add_argument("--receipt", type=Path)
     args = parser.parse_args()
     api = HfApi()
     sdk = {"static": "static", "api": "docker", "zerogpu": "gradio"}[args.kind]
     hardware = {"api": "cpu-basic", "zerogpu": "zero-a10g"}.get(args.kind)
-    api.create_repo(args.repo, repo_type="space", space_sdk=sdk,
-                    **({"space_hardware": hardware} if hardware else {}),
-                    private=False, exist_ok=True)
+    if not args.existing_only:
+        api.create_repo(args.repo, repo_type="space", space_sdk=sdk,
+                        **({"space_hardware": hardware} if hardware else {}),
+                        private=False, exist_ok=True)
     if api.space_info(args.repo).sdk != sdk:
         raise RuntimeError("Existing Space SDK differs; refusing to overwrite it")
     operations = []
@@ -47,8 +51,13 @@ def main():
             if file.is_file(): add(file, "zerogpu/" + file.name)
         for name in ["format.py", "inference.py", "torch_model.py"]:
             add(SOURCE / name, "zerogpu/" + name)
-    print(api.create_commit(repo_id=args.repo, repo_type="space", operations=operations,
-                            commit_message=f"Deploy Jet {args.kind} with pinned model"))
+    parent = api.space_info(args.repo).sha
+    result = api.create_commit(repo_id=args.repo, repo_type="space", operations=operations,
+                               parent_commit=parent, commit_message=f"Deploy Jet {args.kind} with pinned model")
+    if args.receipt:
+        args.receipt.parent.mkdir(parents=True, exist_ok=True)
+        args.receipt.write_text(json.dumps({"repo": args.repo, "revision": result.oid, "url": result.commit_url}, indent=2)+"\n")
+    print(result.commit_url)
     print(f"https://huggingface.co/spaces/{args.repo}")
 
 
