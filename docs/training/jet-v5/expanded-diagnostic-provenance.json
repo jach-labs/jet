@@ -1,0 +1,16 @@
+{
+  "scope": "Partial diagnostic; not Decision Index 0.2",
+  "n": 1400,
+  "counts": {
+    "CLINC150+OOS": 200,
+    "ANLI": 200,
+    "MMLU": 200,
+    "ARC-Easy": 200,
+    "ARC-Challenge": 200,
+    "WinoGrande": 200,
+    "HellaSwag": 200
+  },
+  "file": "artifacts/decision-index/v5-diagnostic-1400/diagnostic.jsonl.gz",
+  "sha256": "9908538b8b244efa20a2d8428104d5f56a131b37569d0e0b10867ced7beb104b",
+  "reason": "Raised sample size before any model scoring to 200 requests per available benchmark. Original 600-row file preserved. MMLU and ARC remain non-index diagnostics."
+}

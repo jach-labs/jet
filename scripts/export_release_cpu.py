@@ -59,7 +59,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.out, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(args.out, local_files_only=True, dtype=torch.float32, attn_implementation='sdpa').eval()
     golden = json.loads(args.reference_cases.read_text())
-    golden['model'] = 'Jet V4 transfer, CPU fp32 inference of bf16 fused weights'
+    golden['model'] = 'Jet, CPU fp32 inference of bf16 fused weights'
     golden['temperatures'] = temperatures
     golden['decide'] = []  # No stale answers from the old model.
     with torch.inference_mode():

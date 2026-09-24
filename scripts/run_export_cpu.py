@@ -1,5 +1,6 @@
 """Run the production ONNX exporter on CPU with a resident-memory watchdog."""
 import os
+import argparse
 from pathlib import Path
 import signal
 import subprocess
@@ -7,8 +8,12 @@ import sys
 import time
 
 root = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument('--model', default='models/jet-v4')
+parser.add_argument('--out', default='artifacts/release-v4/export')
+args = parser.parse_args()
 env = dict(os.environ, OMP_NUM_THREADS='4', MKL_NUM_THREADS='4', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', PYTHONDONTWRITEBYTECODE='1')
-command = [sys.executable, '-m', 'optimum.commands.optimum_cli', 'export', 'onnx', '--model', str(root/'models/jet-v4'), '--task', 'text-generation-with-past', '--device', 'cpu', '--dtype', 'fp32', '--no-post-process', '--batch_size', '1', '--sequence_length', '16', str(root/'artifacts/release-v4/export')]
+command = [sys.executable, '-m', 'optimum.commands.optimum_cli', 'export', 'onnx', '--model', str(root/args.model), '--task', 'text-generation-with-past', '--device', 'cpu', '--dtype', 'fp32', '--no-post-process', '--batch_size', '1', '--sequence_length', '16', str(root/args.out)]
 proc = subprocess.Popen(command, env=env, start_new_session=True)
 peak = 0
 while proc.poll() is None:

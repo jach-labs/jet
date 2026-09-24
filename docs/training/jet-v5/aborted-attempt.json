@@ -1,0 +1,10 @@
+{
+  "reason": "Two retained MASSIVE utterances also appear in native CLINC evaluation. Discovered by independent original-source check.",
+  "adapter": "adapters/jet-v5-panel02-20260924",
+  "eligible_for_release": false,
+  "overlap_utterances": [
+    "what's up with my order",
+    "turn down the volume"
+  ],
+  "inherited_checkpoint_caveat": "V4 inherited legitimate MASSIVE training that may include these utterances. Removing them from continuation data does not erase prior exposure."
+}

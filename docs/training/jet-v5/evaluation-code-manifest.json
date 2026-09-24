@@ -1,0 +1,14 @@
+{
+  "recorded_utc": "2026-09-24T08:31:31.253213+00:00",
+  "sha256": {
+    "scripts/run_v5_extra.sh": "9a6f9471fdc566cce479d9ce6eb257aeefa830ab06b06c19fededc86d69f13b6",
+    "scripts/evaluate_v5_order.py": "c4436a1994a27473b04c9aae131ffb5bdb3ed7303a21c7507ce39dae6f5cf70c",
+    "src/decision_index_engine.py": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+    "src/decision_index_ensemble.py": "f47a2da7845684c6a7edb67de503eea7ea3096d6d0e8bf78aa3054cbadc04dc1",
+    "src/model.py": "bdc03a5a63002f236e17fb81f681738cb238a3e4a73ca575b99d580c1f3dec03",
+    "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "scripts/summarize_v5.py": "48834200e9c6d2874e6b12982380167cebd9faf2a4b523014f816c09ec0f85ca",
+    "scripts/finalize_v5.py": "20f841219ff97f5c02068a86867677f1ad36a9df12d261c13604408ebd090600"
+  }
+}

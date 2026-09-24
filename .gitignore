@@ -16,3 +16,7 @@ __pycache__/
 # Large local quantization builds; reports are kept under docs/bench.
 /artifacts/quantization/
 /artifacts/decision-index/
+
+# Release export intermediates and local logs.
+/artifacts/release-*/
+/release-logs/
