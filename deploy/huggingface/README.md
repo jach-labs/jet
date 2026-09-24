@@ -1,5 +1,17 @@
 # Hugging Face deployments
 
+## Current status — 2026-09-24
+
+The personal Space `michaljach/jet` has been switched from Docker to Gradio
+(commit `7f7027ad488fb78af754adb65a9d5d6dc15da412`). The server-side ZeroGPU
+app, requirements and PyTorch inference source are uploaded. Hardware selection
+is still blocked: the signed-in ZeroGPU confirmation dialog says
+“Upgrading to ZeroGPU requires a PRO subscription” and provides no free confirm
+button. The hardware API returned HTTP 401 with the current OAuth credential.
+The Space remains paused, still requesting its previous CPU Basic hardware.
+No paid subscription or hardware was selected. Support needs to check the
+personal account’s ZeroGPU eligibility, rather than its Docker CPU quota.
+
 ## Current status — 2026-09-23
 
 The model repository and its weights/tokenizer/calibration were also transferred to
