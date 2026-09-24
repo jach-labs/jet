@@ -26,7 +26,7 @@ def main():
     meta = '---\nlicense: apache-2.0\nbase_model: Qwen/Qwen3-0.6B\nlibrary_name: mlx\nlanguage:\n- en\ntags:\n- decision-model\n- text-classification\n- mlx\n- qwen3\n- lora\n---\n\n'
     readme = Path('README.md').read_text()
     for prefix in ['deploy/', 'src/']:
-        readme = readme.replace(']('+prefix, '](https://github.com/jach-labs/jet/blob/main/'+prefix)
+        readme = readme.replace(']('+prefix, '](https://github.com/michaljach/jet/blob/main/'+prefix)
     (args.model/'README.md').write_text(meta+readme)
     shutil.copy2('TRAINING_HISTORY.md', args.model/'TRAINING_HISTORY.md')
     shutil.copytree('docs/training', args.model/'docs/training', dirs_exist_ok=True)

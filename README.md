@@ -18,7 +18,7 @@ be wrong.
 ## Run locally
 
 ```sh
-git clone https://github.com/jach-labs/jet
+git clone https://github.com/michaljach/jet
 cd jet
 uv sync                  # Apple Silicon / Metal
 # Linux with NVIDIA: uv sync --extra cuda
