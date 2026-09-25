@@ -1,7 +1,7 @@
 """Evaluate exactly decoded ONNX weights on Metal, cross-checked with native ONNX."""
 import argparse,json,time,sys,gc,hashlib
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'src'))
 import mlx.core as mx
 import numpy as np
 from mlx_lm.models.qwen3 import Model,ModelArgs

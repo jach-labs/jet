@@ -6,7 +6,7 @@ for Jet typed decisions, never general text generation or full-vocabulary scorin
 """
 import argparse,json,sys
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'src'))
 import numpy as np
 import onnx
 from onnx import helper,numpy_helper

@@ -1,17 +1,24 @@
 """Schema preservation and whole-request capacity checks, without model weights."""
 import unittest
 from unittest.mock import patch
-import torch
-from transformers import AutoTokenizer
-from decision_index.engines import Unsupported, validate
+
+try:
+    import torch
+    from transformers import AutoTokenizer
+    from decision_index.engines import Unsupported, validate
+except ImportError:
+    raise unittest.SkipTest("needs the torch and benchmark extras: uv sync --extra torch --extra benchmark")
 from decision_index_torch import TorchJetEngine
 
 
 class TorchEngineTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3.5-4B',
-            revision='851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a', local_files_only=True)
+        try:
+            cls.tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3.5-4B',
+                revision='851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a', local_files_only=True)
+        except OSError:
+            raise unittest.SkipTest('needs the Qwen/Qwen3.5-4B tokenizer in the local Hugging Face cache')
 
     def engine(self, limit=8192):
         engine=object.__new__(TorchJetEngine)

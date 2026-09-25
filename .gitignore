@@ -13,7 +13,7 @@ __pycache__/
 .DS_Store
 /logs/
 
-# Large local quantization builds; reports are kept under docs/bench.
+# Large local quantization builds; reports are kept under experiments/browser-compression.
 /artifacts/quantization/
 /artifacts/decision-index/
 

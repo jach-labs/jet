@@ -124,10 +124,27 @@ Details: [v6 release notes](docs/training/jet-v6-release.md) and the
 [model card](releases/jet-v6/README.md). Earlier versions are in the
 [training history](TRAINING_HISTORY.md).
 
-The v6 PyTorch/PEFT pipeline is recorded in
-[`experiments/jet-4b-full-20260924/`](experiments/jet-4b-full-20260924/).
-The continued-training candidate and checkpoint resume support are in
+v6 trains with PyTorch and PEFT on Linux + CUDA. `scripts/train_qwen35_bf16.py` trains a
+fresh bf16 LoRA on Qwen3.5-4B with Jet's soft-target and ordinal loss, keeping the best
+checkpoint by validation NLL:
+
+```sh
+uv sync --extra torch
+uv run python scripts/train_qwen35_bf16.py --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
+  --train data/train_v5_r2.jsonl --val data/selection_v5.jsonl --out adapters/<run> \
+  --epochs 1 --accumulate 4 --smoke   # drop --smoke for the full run
+```
+
+The `train_v5_r2` and `selection_v5` files are not committed. `scripts/download_v5_sources.py`,
+`build_v5.py` and `filter_v5_retention.py` rebuild them (see the [v5 protocol](docs/training/jet-v5/protocol.md)).
+
+The exact v6 run (launcher, trainer and protocol) is recorded in
+[`experiments/jet-4b-full-20260924/`](experiments/jet-4b-full-20260924/); the
+continued-training candidate with checkpoint resume is in
 [`experiments/jet-targeted-20260924/`](experiments/jet-targeted-20260924/).
+Optional extras: `torch` (v6 training, release scripts, torch backends), `onnx`
+(the CPU API backend), `benchmark` (Decision Index), `cuda` (MLX on Linux), `plot`.
+
 The MLX pipeline below reproduces the Qwen3-0.6B releases (v5 and earlier), following
 the [recorded v5 protocol](docs/training/jet-v5/protocol.md) and scripts under `scripts/`.
 

@@ -1,16 +1,22 @@
-"""Integration checks: run with the API requirements and httpx installed.
+"""Integration checks for the Docker API Space: uv sync --extra onnx.
 
-PYTHONPATH=src:deploy/huggingface/api python -m unittest discover -s tests
 Downloads the released ONNX model (about 791 MB) on first use.
 """
 import json
 import os
+import sys
 from pathlib import Path
 import unittest
 from unittest.mock import patch
 import numpy as np
-from fastapi.testclient import TestClient
 from huggingface_hub import hf_hub_download
+
+try:
+    import onnxruntime  # noqa: F401
+    from fastapi.testclient import TestClient
+except ImportError:
+    raise unittest.SkipTest("needs the onnx extra and the dev group: uv sync --extra onnx")
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "deploy" / "huggingface" / "api"))
 from app import app
 from format import Question
 from inference import encode

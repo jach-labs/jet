@@ -1,7 +1,7 @@
 [project]
 name = "jet"
-version = "0.1.0"
-description = "Train and serve a small, typed, calibrated decision model (choice / score / noul)"
+version = "6.0.0"
+description = "Train, evaluate and serve Jet, a typed, calibrated decision model (choice / score / noul)"
 readme = "README.md"
 authors = [
     { name = "Michal Jach", email = "michaljach@gmail.com" }
@@ -30,6 +30,18 @@ cuda = [
 benchmark = [
     "decision-index[rebuild]",
 ]
+# Jet v6 (Qwen3.5-4B) training, release and evaluation, and the torch backend: uv sync --extra torch
+# flash-linear-attention needs Triton, so it installs on Linux only; CUDA is required to run v6.
+torch = [
+    "torch==2.11.0",
+    "transformers==5.17.0",
+    "peft==0.21.0",
+    "flash-linear-attention==0.5.2; sys_platform == 'linux'",
+]
+# CPU ONNX backend used by the Docker API Space: uv sync --extra onnx
+onnx = [
+    "onnxruntime==1.30.0",
+]
 
 [project.scripts]
 jet-data-public = "data.public:main"
@@ -47,6 +59,10 @@ jet-bench-kev = "bench_kev:main"
 jet-plot-kev = "bench_kev:main_plot"
 jet-bench-index = "bench_decision_index:main"
 jet-golden = "golden:main"
+
+[dependency-groups]
+# fastapi.testclient needs httpx (tests/test_hf_inference.py).
+dev = ["httpx>=0.28"]
 
 [build-system]
 requires = ["hatchling"]

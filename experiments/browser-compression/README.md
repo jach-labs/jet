@@ -46,13 +46,13 @@ NumPy, safetensors, transformers, and PyTorch. Metal evaluation uses the existin
 MLX environment. Large intermediate artifacts stay in `artifacts/quantization/`
 and are excluded from Git.
 
-- `scripts/quantize_browser.py`: symmetric int4 matrix weights, block size 32,
+- `quantize_browser.py`: symmetric int4 matrix weights, block size 32,
   rebuilt from the original bf16 weights; input embedding remains int8.
-- `scripts/evaluate_browser_quantization.py`: resumable paired native CPU check.
-- `scripts/dequantize_browser_for_eval.py`: exact ONNX weight decoding for evaluation.
-- `scripts/evaluate_browser_metal.py`: full-set metrics and native cross-check.
-- `scripts/compact_browser_head.py`: exact supported-label head compaction.
-- `scripts/test_compact_browser.py`: structural and native logit equivalence.
+- `evaluate_browser_quantization.py`: resumable paired native CPU check.
+- `dequantize_browser_for_eval.py`: exact ONNX weight decoding for evaluation.
+- `evaluate_browser_metal.py`: full-set metrics and native cross-check.
+- `compact_browser_head.py`: exact supported-label head compaction.
+- `test_compact_browser.py`: structural and native logit equivalence.
 
 ## Browser results and deployment decision
 

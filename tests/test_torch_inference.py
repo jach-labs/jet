@@ -4,8 +4,12 @@ import unittest
 from pathlib import Path
 
 import numpy as np
-import torch
 from huggingface_hub import hf_hub_download
+
+try:
+    import torch
+except ImportError:
+    raise unittest.SkipTest("needs the torch extra: uv sync --extra torch")
 
 from format import Question
 from torch_model import TorchJet, MODEL_ID, REVISION
