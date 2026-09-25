@@ -1,0 +1,38 @@
+{
+  "base": "/home/jach/dev/jet/releases/jet-v6",
+  "revision": "e5b8f610ddb92ffaba596ae452bed32a9fef49ca",
+  "train": "/home/jach/dev/jet/experiments/jet-targeted-20260924/train.jsonl",
+  "val": "/home/jach/dev/jet/experiments/jet-targeted-20260924/selection.jsonl",
+  "out": "/home/jach/dev/jet/adapters/jet-targeted-20260924",
+  "epochs": 1,
+  "lr": 2e-05,
+  "rank": 16,
+  "accumulate": 4,
+  "eval_every": 250,
+  "max_prompt": 3072,
+  "seed": 24092417,
+  "smoke": false,
+  "data_sha256": {
+    "/home/jach/dev/jet/experiments/jet-targeted-20260924/train.jsonl": "7bb2e47b1f1a13f6434c6db58fe72c2065b57f4b0aef22500935ae3a69bc2364",
+    "/home/jach/dev/jet/experiments/jet-targeted-20260924/selection.jsonl": "cd6f8802231ed9cb4654e9c0fcea0147cf6791fa17b4fdc9b3e8b0be7ddc9078"
+  },
+  "dtype": "bfloat16",
+  "quantization": null,
+  "gradient_checkpointing": true,
+  "microbatch": 1,
+  "example_weighting": "uniform within the focused training mix",
+  "selection_rule": "70% mean focus-family NLL + 30% retention NLL; retention accuracy must stay within 2 percentage points of initial",
+  "train_examples": 22643,
+  "validation_examples": 1550,
+  "total_steps": 5661,
+  "trainable_parameters": 32464896,
+  "frozen_dtypes": [
+    "torch.bfloat16"
+  ],
+  "loading_info": {
+    "missing_keys": "set()",
+    "unexpected_keys": "set()",
+    "mismatched_keys": "set()",
+    "error_msgs": []
+  }
+}

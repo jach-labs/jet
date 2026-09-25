@@ -31,3 +31,13 @@ __pycache__/
 # Copied from src/ by the release scripts.
 /releases/*/format.py
 /releases/*/inference.py
+
+# Generated training/evaluation outputs; preserve summaries in experiments/.
+/experiments/**/*-probabilities.json
+/experiments/**/status.tmp
+/experiments/**/*.log
+/experiments/**/checkpoints/
+/experiments/**/*.safetensors
+/experiments/**/*.pt
+/experiments/**/*.pth
+/.cache/

@@ -7,7 +7,8 @@ be wrong.
 
 [Model weights](https://huggingface.co/michaljach/jet) ·
 [Hugging Face demo](https://huggingface.co/spaces/michaljach/jet) ·
-[Training history](TRAINING_HISTORY.md)
+[Training history](TRAINING_HISTORY.md) ·
+[Training run records](experiments/jet-targeted-20260924/run-records/README.md)
 
 | Type | Criteria | Answer |
 |---|---|---|
@@ -130,7 +131,8 @@ candidate. Temperatures are inherited from v6, not recalibrated for the update.
 [Full benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
 [Model card and merge verification](releases/jet-v6.1/README.md) ·
 [Training protocol](experiments/jet-targeted-20260924/protocol.md) ·
-[Training history](TRAINING_HISTORY.md)
+[Training history](TRAINING_HISTORY.md) ·
+[Training run records](experiments/jet-targeted-20260924/run-records/README.md)
 
 The release build, verification and publication scripts are recorded under
 [`experiments/jet-release-20260925/`](experiments/jet-release-20260925/).

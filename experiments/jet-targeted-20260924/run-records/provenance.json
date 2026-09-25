@@ -1,0 +1,28 @@
+{
+  "training_config.json": {
+    "source": "adapters/jet-targeted-20260924/training_config.json",
+    "sha256": "74782ae4fa1dc1c810b16b140c0b33d9bb7115955918b2101d1a338f03a26223"
+  },
+  "resume_config.json": {
+    "source": "adapters/jet-targeted-20260924/resume_config.json",
+    "sha256": "0dfd189ce9e414d64552b65c8006308f0619fc5933887dc651106e710b973eb5"
+  },
+  "completed.json": {
+    "source": "adapters/jet-targeted-20260924/completed.json",
+    "sha256": "8ae4ba41953df94ca65353bf858ba1b2b0179196a8a46cf844eb529e47af1851"
+  },
+  "best-step.json": {
+    "source": "adapters/jet-targeted-20260924/best-step.json",
+    "sha256": "bc8489a946204e537e64082b837d6a83e634246edf7387adf82262a665551d05"
+  },
+  "adapter-config.json": {
+    "source": "adapters/jet-targeted-20260924/best/adapter_config.json",
+    "sha256": "dc8679d5ade1ee695a8b79d2bc619cb35ab0dfb8ef17bd14a7caf79bec2c4c3d"
+  },
+  "validation-history.json": {
+    "source": "adapters/jet-targeted-20260924/metrics.jsonl",
+    "source_sha256": "8c03999e8919640387756803bdca7afa85318dc4bfb5348217d2898f05398c9e",
+    "transformation": "JSONL records converted to a JSON array without changing values",
+    "records": 24
+  }
+}
