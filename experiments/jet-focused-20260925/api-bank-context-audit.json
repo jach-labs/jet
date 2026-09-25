@@ -1,0 +1,10 @@
+{
+  "requests": 508,
+  "min_tokens": 10020,
+  "max_tokens": 11495,
+  "model_context_limit": 262144,
+  "previous_engine_limit": 8192,
+  "over_previous_limit": 508,
+  "proposed_engine_limit": 16384,
+  "input_policy": "Complete original inputs and all options; no truncation."
+}

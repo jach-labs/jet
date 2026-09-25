@@ -1,0 +1,15 @@
+{
+  "scope": "Environment recorded immediately before this training run",
+  "python": "3.12.14",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "numpy": "2.5.3",
+    "flash-linear-attention": "0.5.2",
+    "fla-core": "0.5.2",
+    "triton": "3.6.0",
+    "huggingface-hub": "1.32.0",
+    "safetensors": "0.8.0"
+  }
+}

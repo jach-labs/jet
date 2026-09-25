@@ -1,0 +1,491 @@
+{
+  "seed": 260925,
+  "sources": [
+    {
+      "repo": "mteb/banking77",
+      "revision": "18072d2685ea682290f7b8924d94c62acc19c0b2",
+      "file": "data/train-00000-of-00001.parquet",
+      "local": "banking-train.parquet",
+      "sha256": "482d07d5f8027debcaca8fb3b8fa9da9d81a01318bba746eb36e5bb4fcd785af"
+    },
+    {
+      "repo": "https://github.com/pyRis/SEntFiN",
+      "revision": "eba43610fe3cb57a3e5773cd6c037da1f8992ad5",
+      "file": "SEntFiN.csv",
+      "local": "SEntFiN.csv",
+      "sha256": "570af7ba58f724f3fcc414dd5ba80da5b1a3b342134d76c6ebdf53a32c54a92f"
+    },
+    {
+      "repo": "https://github.com/pyRis/SEntFiN",
+      "revision": "eba43610fe3cb57a3e5773cd6c037da1f8992ad5",
+      "file": "LICENSE",
+      "local": "LICENSE",
+      "sha256": "961d32986ac3fa2fe2e55ebc7bbae1ba8d632412e98493d73bdf59f0ad8fc65f"
+    },
+    {
+      "repo": "https://github.com/pyRis/SEntFiN",
+      "revision": "eba43610fe3cb57a3e5773cd6c037da1f8992ad5",
+      "file": "README.md",
+      "local": "README.md",
+      "sha256": "543e1779ccb4e13b23107b3c4443891f581041d56adf676daa8db173c730e03a"
+    },
+    {
+      "file": "artifacts/decision-index/rebuild/artifacts/benchmark-suite/raw/repos/isarcasm/train/train.En.csv",
+      "sha256": "fde737b69caffbcf81ebe79858ad16ac21881573c308343cd5219c4f7a800ae7",
+      "revision": "dfc708b53bde1bb571abfb5692f63231c2232195"
+    }
+  ],
+  "prior_inputs": [
+    {
+      "path": "data/calibration_v3.jsonl",
+      "sha256": "692519ec1469cc83571b3ebb2bb5e2f2c17b46cf87b80e87f69576cd4539d8cd",
+      "training": false
+    },
+    {
+      "path": "data/calibration_v3_new.jsonl",
+      "sha256": "9e022e0cbc76c9253ad4304bb705118b00ff09d45b4ce0d29d4c7eeb3b8bbb07",
+      "training": false
+    },
+    {
+      "path": "data/calibration_v4.jsonl",
+      "sha256": "e08bd6f26e3150485ad67099ecdb30700474ba3173570beb901136dc8a669a77",
+      "training": false
+    },
+    {
+      "path": "data/calibration_v4_tools.jsonl",
+      "sha256": "cbbe6269a2824a6239aaba9c89b64e43aac74788961f4e272fe369a73af0ab97",
+      "training": false
+    },
+    {
+      "path": "data/calibration_v5.jsonl",
+      "sha256": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+      "training": false
+    },
+    {
+      "path": "data/score_eval.jsonl",
+      "sha256": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+      "training": false
+    },
+    {
+      "path": "data/selection_v3.jsonl",
+      "sha256": "f38f2fd8e503d749ea3a72a811348f663c30b9b5702f171c66f344fecc1dbee4",
+      "training": false
+    },
+    {
+      "path": "data/selection_v4.jsonl",
+      "sha256": "43c9aef75410fe06efccf9ee8fb71196f2d9de0136785d1684a4d7ed2914a158",
+      "training": false
+    },
+    {
+      "path": "data/selection_v4_tools.jsonl",
+      "sha256": "b430db40826a3da1cc9ca52723e1689be95bed5d0cf1cdc70b520101254a862a",
+      "training": false
+    },
+    {
+      "path": "data/selection_v5.jsonl",
+      "sha256": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+      "training": false
+    },
+    {
+      "path": "data/test.jsonl",
+      "sha256": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+      "training": false
+    },
+    {
+      "path": "data/test_v3_new.jsonl",
+      "sha256": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+      "training": false
+    },
+    {
+      "path": "data/test_v4_new.jsonl",
+      "sha256": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6",
+      "training": false
+    },
+    {
+      "path": "data/test_v4_tools.jsonl",
+      "sha256": "20f0e11691f8e51760bfef7cc9982ceb8719faeadb5340c14905b393cf58d68d",
+      "training": false
+    },
+    {
+      "path": "data/test_v5_new.jsonl",
+      "sha256": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+      "training": false
+    },
+    {
+      "path": "data/train_v2.jsonl",
+      "sha256": "f206c66e910bc895ea718445b4e9e7a8bf04412d38f8dbcea185a28e5794f1fb",
+      "training": true
+    },
+    {
+      "path": "data/train_v3.jsonl",
+      "sha256": "ec5666923b48289d5ab3b0887f43e52ec403c838cce7a8eee9479888ccc58be4",
+      "training": true
+    },
+    {
+      "path": "data/train_v4.jsonl",
+      "sha256": "f997660ef5a798a4aeeb0ace8c9c76756751d71f87523a31ab9e7a084df8cd5f",
+      "training": true
+    },
+    {
+      "path": "data/train_v4_focus.jsonl",
+      "sha256": "266817085e61b7ed176e9d02254abf7e55fa4ffcf4d0d2beb35c5c47d839c863",
+      "training": true
+    },
+    {
+      "path": "data/train_v4_tools_focus.jsonl",
+      "sha256": "6f55f89bbd2d3211dd0cc0afca1398c74f997df0d76db0e15eba3a7390200601",
+      "training": true
+    },
+    {
+      "path": "data/train_v5.jsonl",
+      "sha256": "d96100fd362255482869fdfc96d02cc6d3071326155500f817fca5fdbc53d3fd",
+      "training": true
+    },
+    {
+      "path": "data/train_v5_r2.jsonl",
+      "sha256": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+      "training": true
+    },
+    {
+      "path": "data/val.jsonl",
+      "sha256": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+      "training": false
+    },
+    {
+      "path": "data/val_v3_new.jsonl",
+      "sha256": "9c7810c969295bad4bed794025bc1ca505d515a782fd8fefc68d1ef88b39051c",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-4b-comparison/train.jsonl",
+      "sha256": "df6d0662928640c97d96b6011cebde11a46ce3e87ad5ff081165b7082c75d4ca",
+      "training": true
+    },
+    {
+      "path": "experiments/jet-4b-comparison/validation.jsonl",
+      "sha256": "2912641dffbdc2b43b063dbe9844422d480c4248fba21dbccb1963a38cfa0908",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-4b-full-index/expanded.jsonl",
+      "sha256": "d81fc7ccf3f1aaa4334293702455641653c4956dd2543eea34278a1a57fff0a6",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-kev-comparison-20260925/rows.jsonl",
+      "sha256": "7cd85434a8694d79a6a9af8384a1c9b4606514c500b25e7d5ecdcee8102798ec",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-release-20260925/merge-cases.jsonl",
+      "sha256": "be05c0d89fa4054e5ad7d359093c0ca445fc49310570b44cb849deae4f84416e",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-repair-20260925/selection.jsonl",
+      "sha256": "efb3bf881573b4f125c2e17bec6da8aa266e36115bc35b61e6ea2b549c5e6dd6",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-repair-20260925/test.jsonl",
+      "sha256": "2618cbb0a62864e9948e395853dea9ae0cb47fed03bf6a33e4111160bcea09ae",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-repair-20260925/train.jsonl",
+      "sha256": "9d0e1d90f889e2c413ea2d08436a4b3cc90e99df5d3272db43454e1f58b6dcc7",
+      "training": true
+    },
+    {
+      "path": "experiments/jet-targeted-20260924/selection.jsonl",
+      "sha256": "cd6f8802231ed9cb4654e9c0fcea0147cf6791fa17b4fdc9b3e8b0be7ddc9078",
+      "training": false
+    },
+    {
+      "path": "experiments/jet-targeted-20260924/train.jsonl",
+      "sha256": "7bb2e47b1f1a13f6434c6db58fe72c2065b57f4b0aef22500935ae3a69bc2364",
+      "training": true
+    },
+    {
+      "path": "experiments/jet-targeted-eval-20260925/rows.jsonl",
+      "sha256": "085f8362505be0a8fb2b7dc1925c84dbc611195d6b5ee2317fab5902ebeb83bb",
+      "training": false
+    }
+  ],
+  "available": {
+    "banking": {
+      "groups": 9693,
+      "fresh_groups": 7006
+    },
+    "finance": {
+      "groups": 10747,
+      "fresh_groups": 10747
+    },
+    "sarcasm": {
+      "groups": 2727,
+      "fresh_groups": 966
+    }
+  },
+  "banking_selection": {
+    "age_limit": 2,
+    "top_up_failed": 2,
+    "transfer_into_account": 2,
+    "direct_debit_payment_not_recognised": 2,
+    "apple_pay_or_google_pay": 2,
+    "wrong_amount_of_cash_received": 2,
+    "card_linking": 2,
+    "extra_charge_on_statement": 2,
+    "activate_my_card": 2,
+    "get_physical_card": 2,
+    "top_up_reverted": 2,
+    "beneficiary_not_allowed": 2,
+    "exchange_via_app": 2,
+    "cancel_transfer": 2,
+    "card_about_to_expire": 2,
+    "verify_my_identity": 2,
+    "declined_transfer": 2,
+    "why_verify_identity": 2,
+    "card_not_working": 2,
+    "transfer_fee_charged": 2,
+    "pending_cash_withdrawal": 2,
+    "transfer_timing": 2,
+    "disposable_card_limits": 2,
+    "verify_top_up": 2,
+    "Refund_not_showing_up": 2,
+    "edit_personal_details": 2,
+    "visa_or_mastercard": 2,
+    "pending_transfer": 2,
+    "top_up_by_card_charge": 2,
+    "automatic_top_up": 2,
+    "card_arrival": 2,
+    "top_up_limits": 2,
+    "country_support": 2,
+    "lost_or_stolen_phone": 2,
+    "compromised_card": 2,
+    "reverted_card_payment?": 2,
+    "topping_up_by_card": 2,
+    "card_payment_wrong_exchange_rate": 2,
+    "failed_transfer": 2,
+    "order_physical_card": 2,
+    "terminate_account": 2,
+    "balance_not_updated_after_cheque_or_cash_deposit": 2,
+    "change_pin": 2,
+    "top_up_by_cash_or_cheque": 2,
+    "cash_withdrawal_not_recognised": 2,
+    "passcode_forgotten": 2,
+    "card_swallowed": 2,
+    "atm_support": 2,
+    "receiving_money": 2,
+    "cash_withdrawal_charge": 2,
+    "verify_source_of_funds": 2,
+    "pending_top_up": 2,
+    "request_refund": 2,
+    "getting_virtual_card": 2,
+    "card_payment_not_recognised": 2,
+    "pin_blocked": 2,
+    "supported_cards_and_currencies": 2,
+    "contactless_not_working": 2,
+    "unable_to_verify_identity": 2,
+    "get_disposable_virtual_card": 2,
+    "transfer_not_received_by_recipient": 2,
+    "declined_card_payment": 2,
+    "declined_cash_withdrawal": 2,
+    "pending_card_payment": 2,
+    "virtual_card_not_working": 2,
+    "transaction_charged_twice": 2,
+    "card_acceptance": 2,
+    "getting_spare_card": 2,
+    "card_payment_fee_charged": 2,
+    "balance_not_updated_after_bank_transfer": 2,
+    "exchange_charge": 2,
+    "exchange_rate": 2,
+    "wrong_exchange_rate_for_cash_withdrawal": 2,
+    "lost_or_stolen_card": 2,
+    "fiat_currency_support": 2,
+    "top_up_by_bank_transfer_charge": 2,
+    "card_delivery_estimate": 2
+  },
+  "banking_test": {
+    "extra_charge_on_statement": 2,
+    "exchange_via_app": 2,
+    "verify_top_up": 2,
+    "transfer_timing": 2,
+    "balance_not_updated_after_cheque_or_cash_deposit": 2,
+    "card_arrival": 2,
+    "activate_my_card": 2,
+    "disposable_card_limits": 2,
+    "top_up_failed": 2,
+    "card_payment_wrong_exchange_rate": 2,
+    "top_up_reverted": 2,
+    "card_about_to_expire": 2,
+    "transfer_into_account": 2,
+    "cancel_transfer": 2,
+    "card_payment_not_recognised": 2,
+    "wrong_amount_of_cash_received": 2,
+    "order_physical_card": 2,
+    "cash_withdrawal_not_recognised": 2,
+    "declined_cash_withdrawal": 2,
+    "country_support": 2,
+    "unable_to_verify_identity": 2,
+    "top_up_limits": 2,
+    "direct_debit_payment_not_recognised": 2,
+    "why_verify_identity": 2,
+    "cash_withdrawal_charge": 2,
+    "card_linking": 2,
+    "declined_transfer": 2,
+    "visa_or_mastercard": 2,
+    "failed_transfer": 2,
+    "pending_cash_withdrawal": 2,
+    "request_refund": 2,
+    "age_limit": 2,
+    "transfer_not_received_by_recipient": 2,
+    "top_up_by_card_charge": 2,
+    "reverted_card_payment?": 2,
+    "verify_source_of_funds": 2,
+    "terminate_account": 2,
+    "transfer_fee_charged": 2,
+    "card_not_working": 2,
+    "declined_card_payment": 2,
+    "change_pin": 2,
+    "beneficiary_not_allowed": 2,
+    "card_payment_fee_charged": 2,
+    "automatic_top_up": 2,
+    "receiving_money": 2,
+    "topping_up_by_card": 2,
+    "pending_transfer": 2,
+    "getting_virtual_card": 2,
+    "verify_my_identity": 2,
+    "pending_top_up": 2,
+    "lost_or_stolen_phone": 2,
+    "pending_card_payment": 2,
+    "transaction_charged_twice": 2,
+    "supported_cards_and_currencies": 2,
+    "exchange_rate": 2,
+    "getting_spare_card": 2,
+    "passcode_forgotten": 2,
+    "edit_personal_details": 2,
+    "lost_or_stolen_card": 2,
+    "balance_not_updated_after_bank_transfer": 2,
+    "fiat_currency_support": 2,
+    "get_physical_card": 2,
+    "contactless_not_working": 2,
+    "virtual_card_not_working": 2,
+    "Refund_not_showing_up": 2,
+    "exchange_charge": 2,
+    "apple_pay_or_google_pay": 2,
+    "compromised_card": 2,
+    "get_disposable_virtual_card": 2,
+    "atm_support": 2,
+    "top_up_by_bank_transfer_charge": 2,
+    "wrong_exchange_rate_for_cash_withdrawal": 2,
+    "pin_blocked": 2,
+    "top_up_by_cash_or_cheque": 2,
+    "card_acceptance": 2,
+    "card_delivery_estimate": 2,
+    "card_swallowed": 2
+  },
+  "finance_selection": {
+    "all": 181
+  },
+  "finance_test": {
+    "all": 180
+  },
+  "sarcasm_selection": {
+    "not sarcastic": 60,
+    "sarcastic": 20
+  },
+  "sarcasm_test": {
+    "not sarcastic": 60,
+    "sarcastic": 20
+  },
+  "train": {
+    "n": 4000,
+    "sources": {
+      "focused:finance": 800,
+      "retention:v4:stance_transfer": 83,
+      "focused:banking": 800,
+      "retention:massive": 84,
+      "retention:stsb": 84,
+      "focused:sarcasm": 400,
+      "retention:civil_comments": 84,
+      "retention:v3:arithmetic": 84,
+      "retention:v3:entailment": 83,
+      "retention:ag_news": 84,
+      "retention:v3:stance": 83,
+      "retention:v4:tool_intent_routing": 83,
+      "retention:mnli": 84,
+      "retention:dbpedia": 84,
+      "retention:v3:tool_selection": 83,
+      "retention:v3:document_relevance": 83,
+      "retention:v5:adversarial_entailment": 83,
+      "retention:v5:commonsense_completion": 83,
+      "retention:v3:code_behavior": 83,
+      "retention:yelp": 83,
+      "retention:v3:boolean_rules": 83,
+      "retention:v5:tool_response_preference": 83,
+      "retention:v5:wide_intent": 83,
+      "retention:v3:tool_relevance": 83,
+      "retention:v4:code_transfer": 83,
+      "retention:boolq": 84,
+      "retention:v3:product_relevance": 83
+    },
+    "sha256": "f224f14e0b1d1dc1bec0870b1743d2a1d83eabd8ef42fa67be2ed22842ac34a1",
+    "max_tokens": 1659
+  },
+  "selection": {
+    "n": 915,
+    "sources": {
+      "focused:banking": 154,
+      "focused:finance": 181,
+      "focused:sarcasm": 80,
+      "retention:civil_comments": 13,
+      "retention:yelp": 16,
+      "retention:v3:document_relevance": 13,
+      "retention:v3:code_behavior": 16,
+      "retention:v4:contract_entailment": 10,
+      "retention:v3:boolean_rules": 9,
+      "retention:dbpedia": 16,
+      "retention:v5:adversarial_entailment": 62,
+      "retention:v4:code_transfer": 10,
+      "retention:v3:tool_relevance": 13,
+      "retention:v5:tool_response_preference": 61,
+      "retention:v5:wide_intent": 52,
+      "retention:v5:commonsense_completion": 51,
+      "retention:v3:tool_selection": 9,
+      "retention:v4:tool_intent_routing": 15,
+      "retention:v3:arithmetic": 13,
+      "retention:v3:entailment": 16,
+      "retention:massive": 14,
+      "retention:boolq": 10,
+      "retention:stsb": 17,
+      "retention:ag_news": 13,
+      "retention:v3:stance": 8,
+      "retention:v4:stance_transfer": 14,
+      "retention:v3:product_relevance": 11,
+      "retention:mnli": 18
+    },
+    "sha256": "68b6ee9354b8464aad214cfcd2b64de9fb8d10e16e2038dd41ee2a2aaa847cc4",
+    "max_tokens": 1998
+  },
+  "test": {
+    "n": 914,
+    "sources": {
+      "retention:v5:wide_intent": 131,
+      "retention:v5:tool_response_preference": 103,
+      "focused:finance": 180,
+      "focused:banking": 154,
+      "retention:v5:commonsense_completion": 133,
+      "retention:v5:adversarial_entailment": 133,
+      "focused:sarcasm": 80
+    },
+    "sha256": "d714570cac1d09849f1aea8a61ccb50a09cb9b5ac10425a7b18f0e89fd7dfc08",
+    "max_tokens": 1671
+  },
+  "limitations": [
+    "Exact content/group exclusions do not establish semantic or pretraining decontamination.",
+    "Focus holdouts exclude previous local inputs; retention holdouts are reused.",
+    "SEntFiN measures entity-level sentiment transfer, not FinEntity benchmark performance.",
+    "Benchmarks informed target selection; final benchmark reruns are development evaluation.",
+    "No synthetic paraphrases or benchmark test labels are used as training supervision."
+  ]
+}

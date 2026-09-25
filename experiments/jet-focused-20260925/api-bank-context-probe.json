@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "base_revision": "f446b82727be57da348bb46eccf211414294ab3e",
+  "max_tokens": 16384,
+  "prompt_tokens": {
+    "tool": 11495
+  },
+  "peak_allocated_gb": 9.977038336,
+  "seconds_including_load": 13.063557730994944,
+  "answer_keys": [
+    "tool"
+  ],
+  "scope": "Longest available API-Bank prompt, complete inputs and all options. Feasibility only; not a benchmark score."
+}

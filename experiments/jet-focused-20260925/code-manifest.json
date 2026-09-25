@@ -1,0 +1,16 @@
+{
+  "experiments/jet-focused-20260925/build.py": "a5b4eb06e949af8673ec0729f2e0e563cf229216420f252fadc414c65889aa9c",
+  "experiments/jet-focused-20260925/train.py": "1a07f6b99b75e9c336a10afe7e8d68552005f691a454755fe0a62ab4dbe3501b",
+  "experiments/jet-focused-20260925/check_context.py": "a0dea55c2caa0a5df4d893f40b222921ef96003d5bfaabe76f073a3c17e5b95a",
+  "experiments/jet-focused-20260925/final_test.py": "b817973780cdc050329c8c2c9f06040e202626215b12ffba862ce66f92949e6c",
+  "experiments/jet-focused-20260925/launch.py": "160937efede4ca32fefa3e7b0cd859f26c42dc6353f36da4fe402a51f822336e",
+  "experiments/jet-focused-20260925/test_metrics.py": "059d17b3a67d0e25215959feaddb9ab4e1e9d20dfddb66420b15a2dc5ba3a506",
+  "experiments/jet-focused-20260925/prepare_sources.py": "b86d4ce302488fca1cf5afa7aa62c5ca57a3a9dc4a18728bcac787f2fa3b58d7",
+  "experiments/jet-focused-20260925/protocol.md": "8e232e20d4342da00804d604957ee27e6c07f3748097738ec18feda17f617a41",
+  "src/qwen35_training.py": "1e184d6a264ecb1e7b96d26b1fbc250a6651fba36fc113c77a00b5b5ffeb26b3",
+  "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+  "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+  "src/data/decision_training.py": "785b8407f93c9ba952f98d29f987be73c853707f4f3211ccd6a4865c4cee3061",
+  "src/decision_index_engine.py": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+  "src/decision_index_torch.py": "622f8b7ddcfebc5ae7a1208633e2fc2a7089d12594859fbe87b153de0cac35d2"
+}

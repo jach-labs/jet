@@ -41,3 +41,6 @@ __pycache__/
 /experiments/**/*.pt
 /experiments/**/*.pth
 /.cache/
+
+# Downloaded raw training sources and local preprocessing scratch space.
+/work/
