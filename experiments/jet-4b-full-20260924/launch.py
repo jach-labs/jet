@@ -33,6 +33,7 @@ try:
         log_path = LOGS / (stage + '.log')
         with log_path.open('w') as log:
             process = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
+                                       env=dict(os.environ, PYTHONPATH=str(ROOT / 'src')),
                                        stdin=subprocess.DEVNULL)
             status(stage, training_pid=process.pid, log=str(log_path), adapter_dir=str(out), command=command)
             result = process.wait()

@@ -62,9 +62,11 @@ HTTP 402 (a PRO plan is required for personal Docker Spaces; Team/Enterprise for
 organization Spaces). ZeroGPU creation was also rejected. No plan was purchased.
 
 The server uses `michaljach/jet` at revision
-`8a97cfea2df622bb03f5dc9b02567e21abd2551c`, its q8 ONNX weights and calibration.
-The smaller runtime does not require MLX, PyTorch, or a GPU. Quantization changes
-probabilities slightly; the model card reports up to 0.034 on its golden cases.
+`25ccbd9e09c75643b3c2214e2b2522bec39171a7` (the last Qwen3-0.6B release, V5), its
+q8 ONNX weights and calibration. The current v6 model is 4B and CUDA-only, so it
+does not fit this runtime. The smaller runtime does not require MLX, PyTorch, or a
+GPU. Quantization changes probabilities slightly; the V5 export validation reports
+up to 0.0249 on its golden cases.
 The server limits state context to 2048 tokens, truncating the middle, and allow 8
 questions with a maximum of 4096 prompt tokens per question.
 

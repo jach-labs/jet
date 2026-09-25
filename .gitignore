@@ -28,3 +28,6 @@ __pycache__/
 /experiments/**/*-status.json
 /experiments/**/*-logits.json
 .venv-*/
+# Copied from src/ by the release scripts.
+/releases/*/format.py
+/releases/*/inference.py

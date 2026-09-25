@@ -17,7 +17,7 @@ try:
   out=Path(str(OUT)+'-smoke') if stage=='smoke' else OUT
   command=common+['--out',str(out)]+(['--smoke'] if stage=='smoke' else [])
   with (LOGS/(stage+'.log')).open('w') as log:
-   process=subprocess.Popen(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,stdin=subprocess.DEVNULL)
+   process=subprocess.Popen(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,stdin=subprocess.DEVNULL,env=dict(os.environ,PYTHONPATH=str(ROOT/'src')))
    status(stage,pid=process.pid,log=str(LOGS/(stage+'.log')),command=command)
    code=process.wait()
   if code:raise RuntimeError(f'{stage} failed with exit code {code}')

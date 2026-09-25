@@ -20,8 +20,8 @@ does not download model weights. Inference uses PyTorch and `@spaces.GPU`, with
 the model placed on CUDA during startup as required by ZeroGPU.
 
 The model and calibration are pinned to `michaljach/jet` revision
-`8a97cfea2df622bb03f5dc9b02567e21abd2551c`. Prompts and typed answers share the
-same code as the original Jet server. Limits: 8 questions, 4096 state tokens
+`25ccbd9e09c75643b3c2214e2b2522bec39171a7`, the last Qwen3-0.6B release (V5).
+Prompts and typed answers share the same code as the original Jet server. Limits: 8 questions, 4096 state tokens
 (middle truncation), 6144 total tokens per prompt, 100 KB per request.
 
 ## API

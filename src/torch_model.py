@@ -13,7 +13,7 @@ from format import Question, label_token_ids
 from inference import encode, summarize
 
 MODEL_ID = "michaljach/jet"
-REVISION = "8a97cfea2df622bb03f5dc9b02567e21abd2551c"
+REVISION = "25ccbd9e09c75643b3c2214e2b2522bec39171a7"
 
 
 class TorchJet:

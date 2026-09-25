@@ -1,0 +1,20 @@
+{
+  "note": "Byte-identical copies of repository files were removed from this snapshot. Each entry names the file it matched, its git blob and the first commit containing it; restore one with `git cat-file -p <git_blob> > <path>`. Scripts that imported these helpers from their own directory now need `src/` on PYTHONPATH.",
+  "files": {
+    "code/format.py": {
+      "source": "src/jet/format.py",
+      "git_blob": "16ad75d3b250cde3629d60f849bd84cb61fa246a",
+      "first_commit": "467d1019f62e452b29563920cd9ff0f6ced84c4c"
+    },
+    "code/inference.py": {
+      "source": "src/inference.py",
+      "git_blob": "da8630b4dfb9168d59dd22c64e1010ab892bdfbe",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/qwen35_training.py": {
+      "source": "src/qwen35_training.py",
+      "git_blob": "bf169aea0d01dd2ee2546ecda19d695533c5de89",
+      "first_commit": "37cdb98cd04b1c8f39fae7160c5cd119f54a511c"
+    }
+  }
+}

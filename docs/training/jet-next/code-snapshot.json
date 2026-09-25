@@ -1,0 +1,115 @@
+{
+  "note": "Byte-identical copies of repository files were removed from this snapshot. Each entry names the file it matched, its git blob and the first commit containing it; restore one with `git cat-file -p <git_blob> > <path>`. Scripts that imported these helpers from their own directory now need `src/` on PYTHONPATH.",
+  "files": {
+    "build-v4-snapshot.py": {
+      "source": "scripts/build_v4_transfer.py",
+      "git_blob": "0acbecc3729aa311771abdc666bd0cd1694abad2",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/audit_v4_tools.py": {
+      "source": "scripts/audit_v4_tools.py",
+      "git_blob": "659db0046218beb70bcb4797b7cc4fa67550006f",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/audit_v4_transfer.py": {
+      "source": "scripts/audit_v4_transfer.py",
+      "git_blob": "c9e587532c0839b0da3065f83d0389a6e1fa7c28",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/bench_index_cuda.sh": {
+      "source": "scripts/bench_index_cuda.sh",
+      "git_blob": "95f9fbc77cf08580d60d9a1f2773234c2a59ea15",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/scripts/build_v4_tools.py": {
+      "source": "scripts/build_v4_tools.py",
+      "git_blob": "79fdf555d79a27c491dc73d941d3ca635684321b",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/build_v4_transfer.py": {
+      "source": "scripts/build_v4_transfer.py",
+      "git_blob": "0acbecc3729aa311771abdc666bd0cd1694abad2",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/evaluate_next_code.sh": {
+      "source": "scripts/evaluate_next_code.sh",
+      "git_blob": "5e7efe424597bd69e00e25e1d5203be16ccf3112",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/evaluate_next_extra.sh": {
+      "source": "scripts/evaluate_next_extra.sh",
+      "git_blob": "54997dc221585f4b26462ca11f0c3f302b460092",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/finalize_next.py": {
+      "source": "scripts/finalize_next.py",
+      "git_blob": "a24e1dcebafd595d6e6fcc11e7a14be8bdec2524",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/prepare_v4_focus.py": {
+      "source": "scripts/prepare_v4_focus.py",
+      "git_blob": "b4a8b217e658c8426572653467bb354d15998ba2",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/run_next_cuda.sh": {
+      "source": "scripts/run_next_cuda.sh",
+      "git_blob": "7de46da6e704f44800ead126fb724a22cb13b3f4",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/scripts/summarize_next.py": {
+      "source": "scripts/summarize_next.py",
+      "git_blob": "b41c6d8447567282f28c0911129bb6037dad20ec",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/bench_decision_index.py": {
+      "source": "src/bench_decision_index.py",
+      "git_blob": "99ba55deb3e787e94486dce131b33133dc8039c9",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/src/data/decision_training.py": {
+      "source": "src/data/decision_training.py",
+      "git_blob": "658ab80d47588f88d2cc0aa62496192f8e0b10b9",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/decision_index_engine.py": {
+      "source": "src/decision_index_engine.py",
+      "git_blob": "71ce9ff6f10fb7875fb90cab6eb3bffe80861da9",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/evaluate.py": {
+      "source": "src/evaluate.py",
+      "git_blob": "0fae3a5346f00745f77e1703a3e4806ee49ba073",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/format.py": {
+      "source": "src/jet/format.py",
+      "git_blob": "16ad75d3b250cde3629d60f849bd84cb61fa246a",
+      "first_commit": "467d1019f62e452b29563920cd9ff0f6ced84c4c"
+    },
+    "code/src/inference.py": {
+      "source": "src/inference.py",
+      "git_blob": "da8630b4dfb9168d59dd22c64e1010ab892bdfbe",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/src/model.py": {
+      "source": "src/model.py",
+      "git_blob": "5e28e2317876fcd76b3edafaee434bf6740ed293",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/src/train.py": {
+      "source": "src/train.py",
+      "git_blob": "816c0765fa1a66b174e71ec7b2b95cf360664903",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/train_cuda.sh": {
+      "source": "train_cuda.sh",
+      "git_blob": "70cd9d07bdab4eb045f37bfdcf2d9bed856d2ec1",
+      "first_commit": "9384c5ee984779f007e7438c3fceb7ae9a1edb00"
+    },
+    "train-v4-snapshot.py": {
+      "source": "src/train.py",
+      "git_blob": "816c0765fa1a66b174e71ec7b2b95cf360664903",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    }
+  }
+}

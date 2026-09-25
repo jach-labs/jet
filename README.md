@@ -146,11 +146,21 @@ public-source training pipeline; hosted generation can incur charges.
 ## Deployment
 
 The Hugging Face model repository holds v6: merged bf16 weights (nine shards,
-8.4 GB), tokenizer, calibration, the runtime from [`releases/jet-v6/`](releases/jet-v6/), and
-provenance and validation records (copies in [`releases/jet-v6/`](releases/jet-v6/)).
-The Gradio Space still pins the original Qwen3-0.6B revision `8a97cfea` and exposes
+8.4 GB), tokenizer, calibration, the CUDA runtime, and provenance and validation
+records. Everything except the weights and tokenizer is kept in
+[`releases/jet-v6/`](releases/jet-v6/); `scripts/publish_release.py` uploads it.
+The Space code serves the last Qwen3-0.6B release (V5, revision `25ccbd9e`) and exposes
 `/decide`; its availability depends on Hugging Face's free hosting quota. See
 [deployment instructions](deploy/huggingface/README.md).
+
+To cut a new release from a Qwen3.5-4B adapter (Linux + CUDA), merge it into the
+release folder, check it against the adapter's saved logits, then publish:
+
+```sh
+uv run python scripts/merge_release.py --adapter adapters/<run>/best --step <step>
+uv run python scripts/validate_release.py --case <rows.jsonl> <adapter-logits.json>
+uv run python scripts/publish_release.py --version v6.x.y --dry-run   # then without --dry-run
+```
 
 The ONNX/browser build exists for the Qwen3-0.6B releases only (revision `25ccbd9e`
 contains the V5 `onnx/model_q8.onnx`). It supports CPU and browser runtimes through ONNX Runtime.

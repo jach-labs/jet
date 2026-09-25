@@ -1,4 +1,4 @@
-import datetime,hashlib,json,subprocess,sys,traceback
+import datetime,hashlib,json,os,subprocess,sys,traceback
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 def status(state,**kw):
@@ -13,7 +13,7 @@ try:
    with (base/name).open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==expected,name
  log=ROOT/'logs'/HERE.name/'train.log'
  with log.open('a') as stream:
-  process=subprocess.Popen(command,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT,stdin=subprocess.DEVNULL)
+  process=subprocess.Popen(command,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT,stdin=subprocess.DEVNULL,env=dict(os.environ,PYTHONPATH=str(ROOT/'src')))
   status('train',pid=process.pid,command=command,log=str(log),resumed_from_step=2250)
   code=process.wait()
  if code:raise RuntimeError(f'Training exited {code}')

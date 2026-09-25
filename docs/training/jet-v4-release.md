@@ -13,6 +13,10 @@ sequences match. The ONNX launcher uses Python safe-path mode to avoid the local
 
 ## Export
 
+> The V4/V5 export and upload scripts named below (`scripts/export_release_cpu.py`,
+> `run_export_cpu.py`, `upload_release.py`, `package_release.py`) were removed after the
+> v6 release. They remain in git history, for example at commit `2740cca`.
+
 Candidate: `adapters/jet-v4-transfer-20260924`, selected step 3,750. The original
 adapter remains under the original checkout. New artifacts are in
 `models/jet-v4` in the release checkout. No training data or previous weights

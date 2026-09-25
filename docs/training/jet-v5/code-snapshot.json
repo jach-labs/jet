@@ -1,0 +1,195 @@
+{
+  "note": "Byte-identical copies of repository files were removed from this snapshot. Each entry names the file it matched, its git blob and the first commit containing it; restore one with `git cat-file -p <git_blob> > <path>`. Scripts that imported these helpers from their own directory now need `src/` on PYTHONPATH.",
+  "files": {
+    "code/scripts/audit_v5.py": {
+      "source": "scripts/audit_v5.py",
+      "git_blob": "d7497dc7c03a2139ac78b15ee136f1ba316fc886",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "code/scripts/build_v5.py": {
+      "source": "scripts/build_v5.py",
+      "git_blob": "89a043bbf116e2de6eb374f6662763491b6353f2",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "code/scripts/download_v5_sources.py": {
+      "source": "scripts/download_v5_sources.py",
+      "git_blob": "726a527c408f0dc0c3ed8c9e2c3450544513bcc5",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "code/src/data/decision_training.py": {
+      "source": "src/data/decision_training.py",
+      "git_blob": "658ab80d47588f88d2cc0aa62496192f8e0b10b9",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/evaluate.py": {
+      "source": "src/evaluate.py",
+      "git_blob": "0fae3a5346f00745f77e1703a3e4806ee49ba073",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "code/src/format.py": {
+      "source": "src/jet/format.py",
+      "git_blob": "16ad75d3b250cde3629d60f849bd84cb61fa246a",
+      "first_commit": "467d1019f62e452b29563920cd9ff0f6ced84c4c"
+    },
+    "code/src/model.py": {
+      "source": "src/model.py",
+      "git_blob": "5e28e2317876fcd76b3edafaee434bf6740ed293",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "code/src/train.py": {
+      "source": "src/train.py",
+      "git_blob": "816c0765fa1a66b174e71ec7b2b95cf360664903",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "evaluation-code/scripts/evaluate_v5_order.py": {
+      "source": "scripts/evaluate_v5_order.py",
+      "git_blob": "aa349714980cc0928f85ea4e52fa29c492ed6bd2",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "evaluation-code/scripts/finalize_v5.py": {
+      "source": "scripts/finalize_v5.py",
+      "git_blob": "de05230634bb146164b5b73f3a1cea6f62d148ae",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "evaluation-code/scripts/run_v5_extra.sh": {
+      "source": "scripts/run_v5_extra.sh",
+      "git_blob": "8235956881557027c7d5e0622f6da599594f3ec8",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "evaluation-code/scripts/summarize_v5.py": {
+      "source": "scripts/summarize_v5.py",
+      "git_blob": "ccb457ed8c6c81681c576e0b6d3a6bed5847ef4d",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "evaluation-code/src/decision_index_engine.py": {
+      "source": "src/decision_index_engine.py",
+      "git_blob": "71ce9ff6f10fb7875fb90cab6eb3bffe80861da9",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "evaluation-code/src/decision_index_ensemble.py": {
+      "source": "src/decision_index_ensemble.py",
+      "git_blob": "2d1c5954306b164274ad5dc77af04062fcb85692",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "evaluation-code/src/format.py": {
+      "source": "src/jet/format.py",
+      "git_blob": "16ad75d3b250cde3629d60f849bd84cb61fa246a",
+      "first_commit": "467d1019f62e452b29563920cd9ff0f6ced84c4c"
+    },
+    "evaluation-code/src/inference.py": {
+      "source": "src/inference.py",
+      "git_blob": "da8630b4dfb9168d59dd22c64e1010ab892bdfbe",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "evaluation-code/src/model.py": {
+      "source": "src/model.py",
+      "git_blob": "5e28e2317876fcd76b3edafaee434bf6740ed293",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "final-code/scripts/audit_v5.py": {
+      "source": "scripts/audit_v5.py",
+      "git_blob": "d7497dc7c03a2139ac78b15ee136f1ba316fc886",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/build_v5.py": {
+      "source": "scripts/build_v5.py",
+      "git_blob": "89a043bbf116e2de6eb374f6662763491b6353f2",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/download_v5_sources.py": {
+      "source": "scripts/download_v5_sources.py",
+      "git_blob": "726a527c408f0dc0c3ed8c9e2c3450544513bcc5",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/evaluate_v5_order.py": {
+      "source": "scripts/evaluate_v5_order.py",
+      "git_blob": "aa349714980cc0928f85ea4e52fa29c492ed6bd2",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/filter_v5_retention.py": {
+      "source": "scripts/filter_v5_retention.py",
+      "git_blob": "e20692fcaad13ae2f8cbf555b38540242e849656",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/finalize_v5.py": {
+      "source": "scripts/finalize_v5.py",
+      "git_blob": "de05230634bb146164b5b73f3a1cea6f62d148ae",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/rebuild_v5_diagnostic.py": {
+      "source": "scripts/rebuild_v5_diagnostic.py",
+      "git_blob": "38bc2f6248e6f6b6decce38e743823fb4ab06f94",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/run_v5_cuda.sh": {
+      "source": "scripts/run_v5_cuda.sh",
+      "git_blob": "f2b8daf57c8de968db61e663e0f5883418eef211",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/run_v5_extra.sh": {
+      "source": "scripts/run_v5_extra.sh",
+      "git_blob": "8235956881557027c7d5e0622f6da599594f3ec8",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/scripts/summarize_v5.py": {
+      "source": "scripts/summarize_v5.py",
+      "git_blob": "ccb457ed8c6c81681c576e0b6d3a6bed5847ef4d",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/src/decision_index_engine.py": {
+      "source": "src/decision_index_engine.py",
+      "git_blob": "71ce9ff6f10fb7875fb90cab6eb3bffe80861da9",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "final-code/src/decision_index_ensemble.py": {
+      "source": "src/decision_index_ensemble.py",
+      "git_blob": "2d1c5954306b164274ad5dc77af04062fcb85692",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "final-code/src/evaluate.py": {
+      "source": "src/evaluate.py",
+      "git_blob": "0fae3a5346f00745f77e1703a3e4806ee49ba073",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "final-code/src/format.py": {
+      "source": "src/jet/format.py",
+      "git_blob": "16ad75d3b250cde3629d60f849bd84cb61fa246a",
+      "first_commit": "467d1019f62e452b29563920cd9ff0f6ced84c4c"
+    },
+    "final-code/src/inference.py": {
+      "source": "src/inference.py",
+      "git_blob": "da8630b4dfb9168d59dd22c64e1010ab892bdfbe",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "final-code/src/model.py": {
+      "source": "src/model.py",
+      "git_blob": "5e28e2317876fcd76b3edafaee434bf6740ed293",
+      "first_commit": "829955484f94e1dff420880de656ce99775a7b61"
+    },
+    "final-code/src/train.py": {
+      "source": "src/train.py",
+      "git_blob": "816c0765fa1a66b174e71ec7b2b95cf360664903",
+      "first_commit": "bd1fa5939e1cc97cafe4bd44114d91fee461e4ed"
+    },
+    "r2-code/scripts/evaluate_v5_order.py": {
+      "source": "scripts/evaluate_v5_order.py",
+      "git_blob": "aa349714980cc0928f85ea4e52fa29c492ed6bd2",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "r2-code/scripts/filter_v5_retention.py": {
+      "source": "scripts/filter_v5_retention.py",
+      "git_blob": "e20692fcaad13ae2f8cbf555b38540242e849656",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "r2-code/scripts/run_v5_cuda.sh": {
+      "source": "scripts/run_v5_cuda.sh",
+      "git_blob": "f2b8daf57c8de968db61e663e0f5883418eef211",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    },
+    "r2-code/src/decision_index_ensemble.py": {
+      "source": "src/decision_index_ensemble.py",
+      "git_blob": "2d1c5954306b164274ad5dc77af04062fcb85692",
+      "first_commit": "157e9b5f0e19e884255505e24efd9b0bfc18497d"
+    }
+  }
+}
