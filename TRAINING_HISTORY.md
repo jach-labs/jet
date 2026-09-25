@@ -62,8 +62,24 @@ separately; no overall leaderboard result or win has been established.
 [Protocol](docs/training/jet-v5/protocol.md) ·
 [Completion audit](docs/training/jet-v5/completion-audit.json)
 
-## Release — 2026-09-24
+## V5 release — 2026-09-24
 
-The current release is the V5 R2 selected checkpoint, fused with native MLX CUDA,
-with a calibrated bf16 model and validated q8 ONNX export. Export and publication
-receipts are recorded in [release notes](docs/training/jet-v5-release.md).
+Superseded the same day by v6. The V5 R2 selected checkpoint was released fused
+with native MLX CUDA, with a calibrated bf16 model and validated q8 ONNX export.
+Its files remain at model-repository revision
+`25ccbd9e09c75643b3c2214e2b2522bec39171a7`. Export and publication receipts are
+recorded in [release notes](docs/training/jet-v5-release.md).
+
+## V6 — Qwen3.5-4B — 2026-09-24
+
+Moved the backbone to Qwen3.5-4B with a fresh rank-16 LoRA (learning rate `1e-4`)
+trained with PyTorch/PEFT on the same 15,997-row `train_v5_r2` mixture, one epoch /
+4,000 updates, selecting step 3,750. The adapter was merged into full bf16 weights.
+Selection accuracy was 87.93% (1,400 rows) and independent local test accuracy
+94.00% (600 rows). These splits differ from the V2–V5 tables above, so the numbers
+are not directly comparable. The official Decision Index was not measured.
+
+This is the current release.
+
+[Release notes](docs/training/jet-v6-release.md) ·
+[Model card](release/README.md)

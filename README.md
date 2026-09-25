@@ -1,6 +1,6 @@
 # Jet
 
-Jet is a small decision model built on **Qwen3-0.6B**. Give it a state and named,
+Jet is a typed decision model built on **Qwen3.5-4B** (v6). Give it a state and named,
 typed questions; it returns choices, scores, and probabilities without generating
 free-form text. Answers always follow the requested type, but decisions can still
 be wrong.
@@ -17,12 +17,28 @@ be wrong.
 
 ## Run locally
 
+**Jet v6 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
+ships the merged bf16 weights with the runtime from [`release/`](release/) and
+`src/format.py` / `src/inference.py`.
+
+```sh
+hf download michaljach/jet --revision e5b8f610ddb92ffaba596ae452bed32a9fef49ca --local-dir jet
+cd jet
+python -m pip install -r requirements.txt
+echo '{"state":"I was charged twice this month.","questions":{"billing":{"type":"noul","instructions":"Is this a billing issue?"}}}' | python jet.py
+```
+
+**MLX server (Apple Silicon, or Linux via MLX CUDA).** The HTTP server and the
+training pipeline in this repository run the earlier Qwen3-0.6B releases. The last
+one is kept in the model repository's history at revision `25ccbd9e`:
+
 ```sh
 git clone https://github.com/michaljach/jet
 cd jet
 uv sync                  # Apple Silicon / Metal
 # Linux with NVIDIA: uv sync --extra cuda
-JET_API_KEY=secret uv run jet-serve --base-model michaljach/jet
+hf download michaljach/jet --revision 25ccbd9e09c75643b3c2214e2b2522bec39171a7 --local-dir models/jet-0.6b
+JET_API_KEY=secret uv run jet-serve --base-model models/jet-0.6b
 ```
 
 ```sh
@@ -51,26 +67,27 @@ flowchart TB
         ex["examples.jsonl<br/>{state, question, target distribution}"] --> split["audits + grouped splits<br/>train / val / test, exclusion checks"]
     end
 
-    subgraph train["2 · Train (MLX, Metal or CUDA)"]
-        base["Qwen3-0.6B (bf16, frozen)<br/>+ rank-16 LoRA on every layer"]
+    subgraph train["2 · Train (LoRA)"]
+        base["v6: Qwen3.5-4B, PyTorch + PEFT on CUDA<br/>≤ v5: Qwen3-0.6B, MLX on Metal or CUDA<br/>frozen bf16 backbone + rank-16 LoRA"]
         loss["loss = cross-entropy(target,<br/>softmax over label tokens at last position)<br/>+ ranked-probability term for score questions"]
         base --> loss --> adapter[("adapter<br/>best checkpoint by val NLL")]
         cal["jet-calibrate<br/>temperature per question type"] --> adapter
-        adapter --> fuse["jet-fuse → bf16 weights<br/>+ q8 ONNX, checked against golden cases"]
+        adapter --> fuse["merge LoRA → bf16 weights<br/>checked against the unmerged adapter"]
     end
 
-    subgraph infer["3 · Inference: POST /v1/decide"]
+    subgraph infer["3 · Inference"]
         req["state + N questions"] --> prompt["prompt = system + state + question<br/>each option gets one label token: A, B … / 0–9 / yes, no"]
-        prompt --> prefix["encode system + state ONCE → KV cache"]
-        prefix --> fan["replicate cache, run only each question's<br/>short suffix, batched"]
-        fan --> logits["next-token logits at the last position,<br/>restricted to that question's label tokens"]
+        prompt --> prefix["MLX server: encode system + state ONCE → KV cache,<br/>then run only each question's short suffix, batched"]
+        prompt --> full["v6 CUDA runner: encode each complete prompt<br/>(no truncation, up to 8,192 tokens)"]
+        prefix --> logits
+        full --> logits["next-token logits at the last position,<br/>restricted to that question's label tokens"]
         logits --> soft["÷ temperature → softmax"]
         soft --> ans["typed answers<br/>choice · score · probability · confidence"]
     end
 
     split --> base
     split -. val .-> cal
-    fuse --> prefix
+    fuse --> prompt
 ```
 
 Each answer option maps to a single token. Jet reads the next-token logits only
@@ -85,32 +102,31 @@ standard serving API.
 
 ## Training and evaluation
 
-The current checkpoint was trained locally on an RTX 4080 Super with MLX CUDA.
-The final training stage used 15,997 examples, rank-16 LoRA, learning rate `1e-5`,
-gradient checkpointing, and one epoch. Selection chose step 3,500 of 3,570.
-Public training partitions and deterministic generators cover relevance,
-entailment, stance, sarcasm, routing, arithmetic, Boolean rules, code behavior,
-commonsense completion, and tool-response preference. Calibration uses a separate
-held-out split.
+Jet v6 (checkpoint step 3,750, released 2026-09-24) fine-tuned Qwen3.5-4B with a
+fresh rank-16 LoRA on the same 15,997-example `train_v5_r2` mixture as v5: public
+training partitions and deterministic generators covering relevance, entailment,
+stance, sarcasm, routing, arithmetic, Boolean rules, code behavior, commonsense
+completion and tool-response preference. One epoch (4,000 optimizer updates,
+learning rate `1e-4`) took about 2 h 26 min on one RTX 4080 SUPER. The step was
+selected by NLL on a 1,400-row selection split; calibration used a separate
+1,400-row split.
 
-| Held-out set | Rows | Accuracy |
-|---|---:|---:|
-| General typed decisions | 3,683 | 66.66% |
-| Intent, entailment, commonsense and tool-response preference | 600 | 73.50% |
-| Transfer tasks | 720 | 67.50% |
-| Domain-held-out tool routing | 240 | 85.00% |
+| Evaluation | Result |
+|---|---:|
+| Selection accuracy (1,400 rows) | 87.93% |
+| Independent local test accuracy (600 rows) | 94.00% |
+| Sampled benchmark requests, errors | 1,900 across 15 datasets, 0 errors |
+| Official Decision Index | Not measured |
 
-These are single-order adapter measurements. They are not a Decision Index
-leaderboard score. Partial public benchmark reconstructions do not cover the
-complete current suite. Cross-dataset text overlap inherited during training
-also prevents a certified decontamination claim. Performance varies by task;
-see the [evaluation report](docs/training/jet-v5/summary.md) for full methodology,
-limitations, and the separate two-order results.
+These are local measurements on the unmerged adapter, not a Decision Index score.
+Source overlap inherited from v5's data has not been comprehensively ruled out.
+Details: [v6 release notes](docs/training/jet-v6-release.md) and the
+[model card](release/README.md). Earlier versions are in the
+[training history](TRAINING_HISTORY.md).
 
-To reproduce training, source acquisition, audits, and evaluation, use the
-[recorded protocol](docs/training/jet-v5/protocol.md) and scripts under `scripts/`.
-Dataset sources, revisions, exclusion checks, configuration, and checkpoint hashes
-are recorded under `docs/training/`.
+v6 was trained with a PyTorch/PEFT pipeline that is not yet in this repository.
+The MLX pipeline below reproduces the Qwen3-0.6B releases (v5 and earlier), following
+the [recorded v5 protocol](docs/training/jet-v5/protocol.md) and scripts under `scripts/`.
 
 ```sh
 # CUDA launcher prepares the MLX CUDA environment.
@@ -126,12 +142,15 @@ public-source training pipeline; hosted generation can incur charges.
 
 ## Deployment
 
-The Hugging Face model package includes fused bf16 weights, tokenizer,
-calibration, golden reference vectors, and a q8 ONNX export. The Gradio Space
-uses a pinned model revision and exposes `/decide`; its availability depends on
-Hugging Face's free hosting quota. See [deployment instructions](deploy/huggingface/README.md).
+The Hugging Face model repository holds v6: merged bf16 weights (nine shards,
+8.4 GB), tokenizer, calibration, the runtime from [`release/`](release/), and
+provenance and validation records (copies in [`docs/training/jet-v6/`](docs/training/jet-v6/)).
+The Gradio Space still pins the original Qwen3-0.6B revision `8a97cfea` and exposes
+`/decide`; its availability depends on Hugging Face's free hosting quota. See
+[deployment instructions](deploy/huggingface/README.md).
 
-The ONNX model supports CPU and browser runtimes through ONNX Runtime.
+The ONNX/browser build exists for the Qwen3-0.6B releases only (revision `25ccbd9e`
+contains the V5 `onnx/model_q8.onnx`). It supports CPU and browser runtimes through ONNX Runtime.
 `jet-golden` generates reference cases, and `export_web.sh` exports and checks
 the browser model. Export validation is recorded with the model package;
 quantization can change probabilities.
@@ -143,4 +162,5 @@ quantization can change probabilities.
 - `src/train.py`, `src/evaluate.py`, `src/fuse.py`: training, calibration, evaluation and fusion
 - `src/data/`, `scripts/`: data builders and reproducible experiments
 - `src/decision_index_engine.py`, `src/decision_index_ensemble.py`: benchmark adapters
+- `release/`: v6 model card and CUDA runtime published with the Hugging Face weights
 - `deploy/huggingface/`: hosted demo and API deployment
