@@ -18,7 +18,7 @@ be wrong.
 ## Run locally
 
 **Jet v6 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
-ships the merged bf16 weights with the runtime from [`release/`](release/) and
+ships the merged bf16 weights with the runtime from [`releases/jet-v6/`](releases/jet-v6/) and
 `src/format.py` / `src/inference.py`.
 
 ```sh
@@ -121,7 +121,7 @@ selected by NLL on a 1,400-row selection split; calibration used a separate
 These are local measurements on the unmerged adapter, not a Decision Index score.
 Source overlap inherited from v5's data has not been comprehensively ruled out.
 Details: [v6 release notes](docs/training/jet-v6-release.md) and the
-[model card](release/README.md). Earlier versions are in the
+[model card](releases/jet-v6/README.md). Earlier versions are in the
 [training history](TRAINING_HISTORY.md).
 
 The v6 PyTorch/PEFT pipeline is recorded in
@@ -146,8 +146,8 @@ public-source training pipeline; hosted generation can incur charges.
 ## Deployment
 
 The Hugging Face model repository holds v6: merged bf16 weights (nine shards,
-8.4 GB), tokenizer, calibration, the runtime from [`release/`](release/), and
-provenance and validation records (copies in [`docs/training/jet-v6/`](docs/training/jet-v6/)).
+8.4 GB), tokenizer, calibration, the runtime from [`releases/jet-v6/`](releases/jet-v6/), and
+provenance and validation records (copies in [`releases/jet-v6/`](releases/jet-v6/)).
 The Gradio Space still pins the original Qwen3-0.6B revision `8a97cfea` and exposes
 `/decide`; its availability depends on Hugging Face's free hosting quota. See
 [deployment instructions](deploy/huggingface/README.md).
@@ -165,5 +165,5 @@ quantization can change probabilities.
 - `src/train.py`, `src/evaluate.py`, `src/fuse.py`: training, calibration, evaluation and fusion
 - `src/data/`, `scripts/`: data builders and reproducible experiments
 - `src/decision_index_engine.py`, `src/decision_index_ensemble.py`: benchmark adapters
-- `release/`: v6 model card and CUDA runtime published with the Hugging Face weights
+- `releases/jet-v6/`: v6 model card, CUDA runtime and release records published with the Hugging Face weights
 - `deploy/huggingface/`: hosted demo and API deployment

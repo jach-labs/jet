@@ -40,7 +40,7 @@ cuts batched eval time by about a third (`jet` 9.1 → 6.1 ms, 1.7B variant 16.5
 
 ### Against Kev and Jev, on Kev's out-of-domain suite
 
-![jet next to the Kev family and Jev](docs/jet-vs-kev.png)
+![jet next to the Kev family and Jev](jet-vs-kev.png)
 
 [Kev](https://github.com/jaredpalmer/kev) publishes a frozen out-of-domain suite (`transfer-v4`, 656 clean rows,
 11 sources) and per-source numbers for its family and for Jev. `jet-bench-kev` converts those rows to jet's format

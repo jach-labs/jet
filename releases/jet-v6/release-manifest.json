@@ -4,7 +4,7 @@
   "format": "complete merged BF16 Qwen3_5ForCausalLM",
   "files": {
     "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
-    "README.md": "43bcdd39d003a210b5ee4d669ca772ad846b3bdf46f19c26e7ebf96077c77e76",
+    "README.md": "533a34e6d32c84500f88c8601078468cad94861441e0017443c2b7f6c9d13333",
     "calibration.json": "c7b13d6446dfa455bc18c11a9f877994728e670ddb4c3323f1bd16eb4cde2bc7",
     "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
     "config.json": "63f47812d0f11118e4d252d2b3ad488707eb9287a11589f4fd382a1d31182724",

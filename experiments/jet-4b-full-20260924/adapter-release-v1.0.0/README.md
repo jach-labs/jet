@@ -14,6 +14,10 @@ tags:
 
 # Jet 4B
 
+> **Archived.** Published as `michaljach/jet-4b` v1.0.0 (LoRA adapter only). That
+> repository was deleted after the same checkpoint was merged and released as Jet v6
+> at [michaljach/jet](https://huggingface.co/michaljach/jet); see `releases/jet-v6/`.
+
 Jet 4B is a typed decision model based on Qwen3.5-4B. It selects from supplied
 options and returns calibrated label probabilities, without generating free-form answers.
 This release contains **LoRA adapter weights**, not a merged backbone.

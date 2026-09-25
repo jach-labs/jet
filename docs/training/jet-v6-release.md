@@ -14,7 +14,7 @@ and the repository keeps only `main`. The last Qwen3-0.6B files remain at `25ccb
   FP32 LoRA parameters.
 - Soft-target objective, label smoothing 0.02, ordinal loss weight 2; seed 240924.
 - Step 3,750 selected by NLL on a separate 1,400-row selection split; per-type
-  temperatures ([calibration](jet-v6/calibration.json)) fitted on another 1,400-row split.
+  temperatures ([calibration](../../releases/jet-v6/calibration.json)) fitted on another 1,400-row split.
 - One RTX 4080 SUPER 16 GB, about 2 h 26 min; peak allocated memory 10.39 GB.
 
 The training and merge code (PyTorch/PEFT) is not in this repository. The MLX
@@ -24,10 +24,10 @@ The training and merge code (PyTorch/PEFT) is not in this repository. The MLX
 
 PEFT default merge arithmetic: bf16 backbone plus FP32 `B @ A × alpha / r`, rounded
 to bf16; 248 modules, text backbone only (vision tower omitted), tied `lm_head`
-([provenance](jet-v6/merge-provenance.json)). On 36 fixed cases (12 per question
+([provenance](../../releases/jet-v6/merge-provenance.json)). On 36 fixed cases (12 per question
 type), 35 argmax answers matched the unmerged adapter and one ordinal answer changed;
 the largest calibrated-probability difference was 0.0437
-([validation](jet-v6/merge-validation.json)).
+([validation](../../releases/jet-v6/merge-validation.json)).
 
 ## Evaluation
 
@@ -44,16 +44,16 @@ Measured on the unmerged adapter:
 Selected diagnostics (sample sizes differ from the public leaderboard): GSM8K 76.79%
 accuracy (112), NLI4CT 84.01% macro-F1 (55), ContractNLI 74.04% macro-F1 (56),
 CRUXEval 38.18% accuracy (55), WinoGrande 64.50% accuracy (200), HellaSwag 91.00%
-accuracy (200). Full results: [evaluation.json](jet-v6/evaluation.json).
+accuracy (200). Full results: [evaluation.json](../../releases/jet-v6/evaluation.json).
 
 Training inherits v5's data mixture and its source-exposure limitations; overlap has
 not been comprehensively ruled out.
 
 ## Runtime
 
-[`release/`](../../release/) holds the model card, `jet.py`, `runtime.py` and
-`requirements.txt` as published; `format.py` and `inference.py` come from `src/`.
+[`releases/jet-v6/`](../../releases/jet-v6/) holds the published model card, runtime,
+configuration and release records (weights and `tokenizer.json` excluded).
 The runtime targets Linux + NVIDIA CUDA with PyTorch 2.11.0, Transformers 5.17.0 and
 flash-linear-attention 0.5.2. It processes questions sequentially without
 shared-prefix caching and rejects prompts over 8,192 tokens instead of truncating.
-File hashes are in the [release manifest](jet-v6/release-manifest.json).
+File hashes are in the [release manifest](../../releases/jet-v6/release-manifest.json).

@@ -82,4 +82,4 @@ are not directly comparable. The official Decision Index was not measured.
 This is the current release.
 
 [Release notes](docs/training/jet-v6-release.md) ·
-[Model card](release/README.md)
+[Model card](releases/jet-v6/README.md)

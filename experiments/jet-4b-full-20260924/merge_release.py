@@ -45,6 +45,6 @@ for i,old in enumerate(shards,1):
   if v==old:mapping[k]=new
 (OUT/'model.safetensors.index.json').write_text(json.dumps({'metadata':{'total_size':total},'weight_map':mapping},indent=2)+'\n')
 for n in ['tokenizer.json','tokenizer_config.json','chat_template.jinja','calibration.json']:shutil.copy2(ADAPTER/n,OUT/n)
-shutil.copy2('releases/jet-4b-v1.0.0/LICENSE',OUT/'LICENSE')
+shutil.copy2('experiments/jet-4b-full-20260924/adapter-release-v1.0.0/LICENSE',OUT/'LICENSE')
 (OUT/'merge-provenance.json').write_text(json.dumps({'base':'Qwen/Qwen3.5-4B','base_revision':BASE.name,'adapter_sha256':hashlib.sha256((ADAPTER/'adapter_model.safetensors').read_bytes()).hexdigest(),'step':3750,'merge':'BF16 backbone plus FP32 B@A times alpha/r, rounded to BF16 (PEFT default merge arithmetic)','architecture':'complete Qwen3_5ForCausalLM text backbone; tied lm_head; unused vision tower omitted','merged_modules':len(merged),'tensors':len(mapping),'bytes':total},indent=2)+'\n')
 print('Merged',len(merged),'modules;',len(mapping),'tensors;',total,'bytes',flush=True)
