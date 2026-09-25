@@ -1,0 +1,16 @@
+{
+  "datasets": {
+    "Habermas Machine": 1676,
+    "VAST": 3006,
+    "CRUXEval": 570,
+    "iSarcasmEval": 1400,
+    "Amazon ESCI": 5000
+  },
+  "rows_sha256": "085f8362505be0a8fb2b7dc1925c84dbc611195d6b5ee2317fab5902ebeb83bb",
+  "base_revision": "e5b8f610ddb92ffaba596ae452bed32a9fef49ca",
+  "candidate_step": 2000,
+  "candidate_sha256": "93e651d7aac0b2291d3a8dfbd6d6968a21bf5880a2ed6570e3cdd5ab9863c2cc",
+  "calibration": "Published choice temperature held fixed; no test fitting. All selected metrics depend on argmax.",
+  "scope": "Same-case development comparison; these benchmark aggregates informed training focus. Not an official overall Decision Index score.",
+  "engine_sha256": "622f8b7ddcfebc5ae7a1208633e2fc2a7089d12594859fbe87b153de0cac35d2"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Jet",
+  "version": "v6.1.0",
+  "format": "complete merged BF16 Qwen3_5ForCausalLM",
+  "files": {
+    "model-00001-of-00009.safetensors": "758c65ea6c124bbe96b68a2d5475f7e4ec0ff9b6a4dbba87f295144ace55f07d",
+    "model-00002-of-00009.safetensors": "8d27ec6be5f0579e7253969a7e38aa42dbab93a267ab80ae914c915f6c14eeac",
+    "model-00003-of-00009.safetensors": "87a85396bebbe21855593bcb8f7064dbe484ac989760bbf5064f3bc9245936a6",
+    "model-00004-of-00009.safetensors": "b051aa5a93532f6d07137473f71719c6912453b759896a07c897f94286cb349d",
+    "model-00005-of-00009.safetensors": "39a976772dad0124961406585b4d7cf6c40d0de5a1783bcdd7db685b5b986bb3",
+    "model-00006-of-00009.safetensors": "fb1da2d5e16dcafad87fcf151aaca735b116462370ca669cd554b68bb699f4c5",
+    "model-00007-of-00009.safetensors": "a51e6cf872ea127f4bf2c83817fdefbbd09b36600f9f65e8c5320de67231de92",
+    "model-00008-of-00009.safetensors": "a38ef45fbe9526755ccdf0e002e5c8c1c839424b7352b3375dfc28df1fdff64f",
+    "model-00009-of-00009.safetensors": "2c3758928a5b9d950d7e057e418321d5a18fab654cb7de797b5c39729119f72b",
+    "model.safetensors.index.json": "4c74f25599464445171b092b69ef62ad22df1af3e1bc73571e972ec20762fd9d",
+    "config.json": "63f47812d0f11118e4d252d2b3ad488707eb9287a11589f4fd382a1d31182724",
+    "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "tokenizer_config.json": "9cf04fffe3d8c3b85e439fb35c7acad0761ab51c422a8c4256d9f887c3a0be7d",
+    "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "calibration.json": "c7b13d6446dfa455bc18c11a9f877994728e670ddb4c3323f1bd16eb4cde2bc7",
+    "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "requirements.txt": "2888712d1e07f61a0748da102183fbff30c7de6f4152f239625d17c864bf9dde",
+    "jet.py": "a053495e98ac3c10358d041004b2a661bfb7b56ebc539196b919e46f10f0e454",
+    "runtime.py": "42ecb8f12ea72d2c050d533f9038c8a5fc48778a16fe5b5e3e9affb9cb161109",
+    "format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "merge-provenance.json": "3b31e2a047c8c88ae8483e1a7c58abada80cfcec52c7bc54d153cc2312272a6b",
+    "merge-validation.json": "6f5e18ac92eaaa91a800fd1408d8f13625a4d6916a096f7420d0839cdf78ead0",
+    "evaluation.json": "f74aeb9576f989cd2adc15e3d2412ccb11eb4aec4fb6c756d00998bd660af773",
+    "README.md": "6d54e7a23e956ffe836865dc33c9e9bc8237afaad42b55d49955a298dcb863e8"
+  },
+  "validation": {
+    "cases": 144,
+    "argmax_flips": 0,
+    "max_probability_difference": 0.07040872187468972,
+    "selection": "First 32 local cases per type plus two hash-selected supported benchmark requests per dataset, first question only. Not an independent performance evaluation.",
+    "calibration": "Inherited v6 temperatures, not refitted for this continuation.",
+    "base_download_required": false,
+    "passed": true
+  },
+  "official_decision_index": null
+}

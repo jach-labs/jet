@@ -1,0 +1,151 @@
+{
+  "sarcasm_selection": {
+    "no": 225,
+    "yes": 75
+  },
+  "sarcasm_test": {
+    "no": 150,
+    "yes": 50
+  },
+  "stance_held_topics": {
+    "selection": 184,
+    "test": 142
+  },
+  "final_cross_source_training_exclusions": 1,
+  "train": {
+    "n": 7999,
+    "sources": {
+      "repair:relevance": 750,
+      "repair:stance": 1500,
+      "repair:sarcasm": 1499,
+      "v3:tool_selection": 156,
+      "v4:tool_intent_routing": 139,
+      "v3:arithmetic": 144,
+      "mnli": 144,
+      "repair:code": 1000,
+      "repair:preference": 750,
+      "dbpedia": 156,
+      "v5:adversarial_entailment": 146,
+      "yelp": 147,
+      "stsb": 152,
+      "v5:wide_intent": 139,
+      "v5:commonsense_completion": 156,
+      "banking77": 151,
+      "civil_comments": 137,
+      "v3:entailment": 145,
+      "boolq": 146,
+      "ag_news": 147,
+      "v3:boolean_rules": 146,
+      "massive": 149
+    },
+    "sha256": "9d0e1d90f889e2c413ea2d08436a4b3cc90e99df5d3272db43454e1f58b6dcc7"
+  },
+  "selection": {
+    "n": 2172,
+    "sources": {
+      "v3:boolean_rules": 35,
+      "repair:sarcasm": 300,
+      "repair:code": 300,
+      "repair:relevance": 200,
+      "repair:stance": 200,
+      "v4:contract_entailment": 35,
+      "v5:commonsense_completion": 150,
+      "massive": 35,
+      "repair:preference": 200,
+      "dbpedia": 35,
+      "banking77": 35,
+      "mnli": 35,
+      "v4:tool_intent_routing": 35,
+      "v5:adversarial_entailment": 150,
+      "ag_news": 34,
+      "boolq": 35,
+      "v3:tool_selection": 34,
+      "v3:entailment": 35,
+      "yelp": 35,
+      "v5:wide_intent": 150,
+      "stsb": 35,
+      "civil_comments": 34,
+      "v3:arithmetic": 35
+    },
+    "sha256": "efb3bf881573b4f125c2e17bec6da8aa266e36115bc35b61e6ea2b549c5e6dd6"
+  },
+  "test": {
+    "n": 951,
+    "sources": {
+      "repair:code": 201,
+      "repair:relevance": 200,
+      "repair:sarcasm": 200,
+      "repair:preference": 200,
+      "repair:stance": 150
+    },
+    "sha256": "2618cbb0a62864e9948e395853dea9ae0cb47fed03bf6a33e4111160bcea09ae"
+  },
+  "seed": 250925,
+  "sources": [
+    {
+      "file": "/home/jach/dev/jet/artifacts/decision-index/rebuild/artifacts/benchmark-suite/raw/repos/isarcasm/train/train.En.csv",
+      "sha256": "fde737b69caffbcf81ebe79858ad16ac21881573c308343cd5219c4f7a800ae7",
+      "revision": "dfc708b53bde1bb571abfb5692f63231c2232195"
+    },
+    {
+      "file": "/home/jach/dev/jet/artifacts/decision-index/rebuild/artifacts/benchmark-suite/raw/vast/data/VAST/vast_train.csv",
+      "sha256": "b2f0d69a73231b8ef22f10e4df7d759cf228505ce5252506068da6aa7fe42109",
+      "revision": "e7c4775182b184730f350995f8260579c9e066fe"
+    },
+    {
+      "repo": "HuggingFaceH4/ultrafeedback_binarized",
+      "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+      "file": "/home/jach/.cache/huggingface/hub/datasets--HuggingFaceH4--ultrafeedback_binarized/snapshots/3949bf5f8c17c394422ccfab0c31ea9c20bdeb85/data/train_prefs-00000-of-00001.parquet",
+      "split": "train_prefs",
+      "sha256": "0f951ca4502001d31f3e4c70716ae51d20e4ce4f847d12b6a6695a40d4d353a8"
+    },
+    {
+      "repo": "tasksource/esci",
+      "revision": "8113b17a5d4099e20243282c926f1bc1a08a4d13",
+      "file": "data/train-00000-of-00011-2d36455632bef8a2.parquet",
+      "path": "/home/jach/.cache/huggingface/hub/datasets--tasksource--esci/snapshots/8113b17a5d4099e20243282c926f1bc1a08a4d13/data/train-00000-of-00011-2d36455632bef8a2.parquet",
+      "split": "train",
+      "sha256": "bd6e1217eef98968103d9731ae52e5e1e640b8af8810956ad144cb13481bf3b9"
+    }
+  ],
+  "prior_training_files": [
+    "/home/jach/dev/jet/data/train_v2.jsonl",
+    "/home/jach/dev/jet/data/train_v3.jsonl",
+    "/home/jach/dev/jet/data/train_v4.jsonl",
+    "/home/jach/dev/jet/data/train_v4_focus.jsonl",
+    "/home/jach/dev/jet/data/train_v4_tools_focus.jsonl",
+    "/home/jach/dev/jet/data/train_v5.jsonl",
+    "/home/jach/dev/jet/data/train_v5_r2.jsonl",
+    "/home/jach/dev/jet/experiments/jet-targeted-20260924/train.jsonl",
+    "/home/jach/dev/jet/experiments/jet-4b-comparison/train.jsonl"
+  ],
+  "protected_files": [
+    "/home/jach/dev/jet/data/score_eval.jsonl",
+    "/home/jach/dev/jet/data/test.jsonl",
+    "/home/jach/dev/jet/data/val.jsonl",
+    "/home/jach/dev/jet/data/val_v3_new.jsonl",
+    "/home/jach/dev/jet/data/calibration_v3_new.jsonl",
+    "/home/jach/dev/jet/data/test_v3_new.jsonl",
+    "/home/jach/dev/jet/data/selection_v3.jsonl",
+    "/home/jach/dev/jet/data/calibration_v3.jsonl",
+    "/home/jach/dev/jet/data/selection_v4.jsonl",
+    "/home/jach/dev/jet/data/calibration_v4.jsonl",
+    "/home/jach/dev/jet/data/test_v4_new.jsonl",
+    "/home/jach/dev/jet/data/test_v4_tools.jsonl",
+    "/home/jach/dev/jet/data/calibration_v4_tools.jsonl",
+    "/home/jach/dev/jet/data/selection_v4_tools.jsonl",
+    "/home/jach/dev/jet/data/selection_v5.jsonl",
+    "/home/jach/dev/jet/data/calibration_v5.jsonl",
+    "/home/jach/dev/jet/data/test_v5_new.jsonl",
+    "/home/jach/dev/jet/experiments/jet-targeted-20260924/selection.jsonl",
+    "/home/jach/dev/jet/experiments/jet-4b-comparison/validation.jsonl",
+    "/home/jach/dev/jet/experiments/jet-4b-full-index/expanded.jsonl"
+  ],
+  "limitations": [
+    "Exact content and group exclusions are not semantic decontamination or a pretraining contamination guarantee.",
+    "New focus holdouts are unused by previous local runs; retention validation is reused.",
+    "Generic preference examples remain a proxy for consensus; no claim of fresh Habermas testing.",
+    "Code templates are disjoint but share Python primitives.",
+    "Benchmark confusion counts informed this development run; benchmark cases never enter training."
+  ]
+}

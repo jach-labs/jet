@@ -1,0 +1,23 @@
+{
+  "name": "Jet",
+  "version": "v6.1.0",
+  "base": "michaljach/jet",
+  "base_revision": "e5b8f610ddb92ffaba596ae452bed32a9fef49ca",
+  "base_weights_sha256": {
+    "model-00001-of-00009.safetensors": "758c65ea6c124bbe96b68a2d5475f7e4ec0ff9b6a4dbba87f295144ace55f07d",
+    "model-00002-of-00009.safetensors": "8e84de8d9a45219bbeb1a33392370979cce7702ceab4dea27b5f4b3b4e78deb0",
+    "model-00003-of-00009.safetensors": "d96476f63563f6db809675f551857e392102189c17eae2e2999bed0c4f967b22",
+    "model-00004-of-00009.safetensors": "bf5440f1558b2b9fc1e4ddec335cc77c04ac89621ce91a72ae3b3a542ad6eb25",
+    "model-00005-of-00009.safetensors": "52a8e3c8c06d2d16554e6146ffadcb0830367180d4ed2d4725084c0b4b257967",
+    "model-00006-of-00009.safetensors": "0d560b820ad7edc2faad717f6655b3f638e8779b40fda4e333d6457bcb9ed47c",
+    "model-00007-of-00009.safetensors": "fff39c3f2152571b72d377c6095daca3c796da187d94e88d18292c8709aa75d3",
+    "model-00008-of-00009.safetensors": "da8fa5e8e7bbcab3529e6f4014fdc3a42240a27c4b7fd123f3690abb35c96789",
+    "model-00009-of-00009.safetensors": "8d76d978760f6c15b9f5cb0c3b5eeada3513ff8a53104389cd895b5a5a092a94"
+  },
+  "adapter_sha256": "93e651d7aac0b2291d3a8dfbd6d6968a21bf5880a2ed6570e3cdd5ab9863c2cc",
+  "step": 2000,
+  "merge": "Continue from the previously merged Jet v6 weights; add FP32 B@A correction and round to BF16. No original-Qwen reset.",
+  "merged_modules": 248,
+  "tensors": 426,
+  "bytes": 8411510272
+}

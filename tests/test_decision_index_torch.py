@@ -26,6 +26,22 @@ class TorchEngineTest(unittest.TestCase):
         engine.temperature=2.;engine.model=None
         return engine
 
+    def test_local_merged_base_loads_candidate_adapter(self):
+        import tempfile
+        from pathlib import Path
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            adapter = root / 'adapter'
+            adapter.mkdir()
+            (adapter / 'adapter_model.safetensors').write_bytes(b'test weights')
+            model = SimpleNamespace(config=SimpleNamespace(max_position_embeddings=8192))
+            with patch('decision_index_torch.load_model', return_value=(model, self.tokenizer, {})) as load, patch('torch.cuda.set_per_process_memory_fraction'):
+                engine = TorchJetEngine(model=str(root), revision='pinned', adapter=str(adapter))
+            load.assert_called_once_with(str(root), 'pinned', adapter=str(adapter))
+            self.assertIs(engine.model, model)
+            self.assertIn('adapter_sha256', engine.provenance)
+
     def test_all_options_and_question_keys_preserved(self):
         questions={name:{'type':'choice','instructions':'Choose one.',
             'criteria':{f'key-{i}':f'Option {i}' for i in range(n)}} for name,n in [('wide',151),('small',2)]}

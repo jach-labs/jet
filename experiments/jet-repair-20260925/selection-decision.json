@@ -1,0 +1,101 @@
+{
+  "winner": "lr5e-6",
+  "selection": {
+    "lr5e-6": {
+      "step": 0,
+      "objective": 0.6881497871796225,
+      "families": {
+        "retention": {
+          "n": 972,
+          "accuracy": 0.8960905349794238,
+          "nll": 0.3095606304931696,
+          "metric": 0.8960905349794238,
+          "metric_name": "accuracy"
+        },
+        "sarcasm": {
+          "n": 300,
+          "accuracy": 0.7433333333333333,
+          "nll": 0.5687366160154831,
+          "metric": 0.5276073619631901,
+          "metric_name": "positive-class F1"
+        },
+        "code": {
+          "n": 300,
+          "accuracy": 0.8566666666666667,
+          "nll": 0.4385557090455448,
+          "metric": 0.8566666666666667,
+          "metric_name": "accuracy"
+        },
+        "relevance": {
+          "n": 200,
+          "accuracy": 0.6,
+          "nll": 1.0249904348539707,
+          "metric": 0.4237707719959862,
+          "metric_name": "macro-F1"
+        },
+        "stance": {
+          "n": 200,
+          "accuracy": 0.63,
+          "nll": 1.124425595467359,
+          "metric": 0.4371168185584093,
+          "metric_name": "macro-F1"
+        },
+        "preference": {
+          "n": 200,
+          "accuracy": 0.75,
+          "nll": 0.7645902594684619,
+          "metric": 0.75,
+          "metric_name": "accuracy"
+        }
+      }
+    },
+    "lr1e-5": {
+      "step": 0,
+      "objective": 0.6881497871796225,
+      "families": {
+        "retention": {
+          "n": 972,
+          "accuracy": 0.8960905349794238,
+          "nll": 0.3095606304931696,
+          "metric": 0.8960905349794238,
+          "metric_name": "accuracy"
+        },
+        "sarcasm": {
+          "n": 300,
+          "accuracy": 0.7433333333333333,
+          "nll": 0.5687366160154831,
+          "metric": 0.5276073619631901,
+          "metric_name": "positive-class F1"
+        },
+        "code": {
+          "n": 300,
+          "accuracy": 0.8566666666666667,
+          "nll": 0.4385557090455448,
+          "metric": 0.8566666666666667,
+          "metric_name": "accuracy"
+        },
+        "relevance": {
+          "n": 200,
+          "accuracy": 0.6,
+          "nll": 1.0249904348539707,
+          "metric": 0.4237707719959862,
+          "metric_name": "macro-F1"
+        },
+        "stance": {
+          "n": 200,
+          "accuracy": 0.63,
+          "nll": 1.124425595467359,
+          "metric": 0.4371168185584093,
+          "metric_name": "macro-F1"
+        },
+        "preference": {
+          "n": 200,
+          "accuracy": 0.75,
+          "nll": 0.7645902594684619,
+          "metric": 0.75,
+          "metric_name": "accuracy"
+        }
+      }
+    }
+  }
+}

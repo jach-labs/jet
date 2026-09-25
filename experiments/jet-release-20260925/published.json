@@ -1,0 +1,10 @@
+{
+  "repo_id": "michaljach/jet",
+  "revision": "f446b82727be57da348bb46eccf211414294ab3e",
+  "tag": "v6.1.0",
+  "previous_revision": "9e90b3f095769e42432fb6f8c807fa4aa0c73dde",
+  "previous_tag": "v6.0.0",
+  "format": "full merged BF16 model",
+  "remote_large_file_hashes_verified": true,
+  "url": "https://huggingface.co/michaljach/jet"
+}

@@ -1,0 +1,905 @@
+{
+  "cases": 144,
+  "argmax_flips": 0,
+  "max_probability_difference": 0.07040872187468972,
+  "selection": "First 32 local cases per type plus two hash-selected supported benchmark requests per dataset, first question only. Not an independent performance evaluation.",
+  "calibration": "Inherited v6 temperatures, not refitted for this continuation.",
+  "base_download_required": false,
+  "wrapper_smoke": {
+    "model": "michaljach/jet",
+    "answers": {
+      "category": {
+        "type": "choice",
+        "choice": "damage",
+        "probabilities": {
+          "damage": 0.9897,
+          "billing": 0.0103
+        },
+        "confidence": 0.9173
+      },
+      "severity": {
+        "type": "score",
+        "score": 1.5536,
+        "level": "severe",
+        "probabilities": [
+          0.017,
+          0.4124,
+          0.5706
+        ],
+        "confidence": 0.3132
+      },
+      "damaged": {
+        "type": "noul",
+        "probability": 0.9487,
+        "confidence": 0.7082
+      }
+    }
+  },
+  "records": [
+    {
+      "case": 0,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0008410956279583971
+    },
+    {
+      "case": 1,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001116749720650012
+    },
+    {
+      "case": 2,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.005613703343130508
+    },
+    {
+      "case": 3,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 4,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 5,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0008905346421751274
+    },
+    {
+      "case": 6,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0027671791051518957
+    },
+    {
+      "case": 7,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0015957758861627758
+    },
+    {
+      "case": 8,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000899492764544152
+    },
+    {
+      "case": 9,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00025656106878578933
+    },
+    {
+      "case": 10,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0002547528833949375
+    },
+    {
+      "case": 11,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 12,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0004750670364891407
+    },
+    {
+      "case": 13,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 14,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0014768310393669971
+    },
+    {
+      "case": 15,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00020404005860086283
+    },
+    {
+      "case": 16,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00022220625156543772
+    },
+    {
+      "case": 17,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0015506740147266385
+    },
+    {
+      "case": 18,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002267211545573522
+    },
+    {
+      "case": 19,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0026006045350854823
+    },
+    {
+      "case": 20,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0014534555294457262
+    },
+    {
+      "case": 21,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007979730574971984
+    },
+    {
+      "case": 22,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002135273663812387
+    },
+    {
+      "case": 23,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001833653119233225
+    },
+    {
+      "case": 24,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 25,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0010633718871680964
+    },
+    {
+      "case": 26,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 27,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007246417457215798
+    },
+    {
+      "case": 28,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0003228500366360132
+    },
+    {
+      "case": 29,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000716530974720778
+    },
+    {
+      "case": 30,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0019424631326790953
+    },
+    {
+      "case": 31,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011758151845370698
+    },
+    {
+      "case": 32,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006490685791636364
+    },
+    {
+      "case": 33,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006269256133007578
+    },
+    {
+      "case": 34,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 35,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0034980717557521745
+    },
+    {
+      "case": 36,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 9.531779516674791e-05
+    },
+    {
+      "case": 37,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0014947411170519453
+    },
+    {
+      "case": 38,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0037330092417818816
+    },
+    {
+      "case": 39,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 40,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0018665708326972563
+    },
+    {
+      "case": 41,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 42,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.006753808139568135
+    },
+    {
+      "case": 43,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 44,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 45,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 46,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006899234622773642
+    },
+    {
+      "case": 47,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 48,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0212853878430731
+    },
+    {
+      "case": 49,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.004555121216627135
+    },
+    {
+      "case": 50,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.002007973877425108
+    },
+    {
+      "case": 51,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.025432254555049605
+    },
+    {
+      "case": 52,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0015000424440119557
+    },
+    {
+      "case": 53,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0037330092417818816
+    },
+    {
+      "case": 54,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.002859604603750454
+    },
+    {
+      "case": 55,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.01240519477076632
+    },
+    {
+      "case": 56,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 57,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.002859604603750454
+    },
+    {
+      "case": 58,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.007383025719720715
+    },
+    {
+      "case": 59,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 60,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0039437270325241025
+    },
+    {
+      "case": 61,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.003854598977123383
+    },
+    {
+      "case": 62,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 63,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0002700807106735632
+    },
+    {
+      "case": 64,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.006020551511473432
+    },
+    {
+      "case": 65,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 66,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 67,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 68,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.024606551439396218
+    },
+    {
+      "case": 69,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0029591419592648327
+    },
+    {
+      "case": 70,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 71,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 72,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.020053874683156447
+    },
+    {
+      "case": 73,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.000315001207597726
+    },
+    {
+      "case": 74,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.01325322938764395
+    },
+    {
+      "case": 75,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0050653758778449465
+    },
+    {
+      "case": 76,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.027763521072522
+    },
+    {
+      "case": 77,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.019944601465451628
+    },
+    {
+      "case": 78,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 79,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.013709800554439822
+    },
+    {
+      "case": 80,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007897475512989027
+    },
+    {
+      "case": 81,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 82,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 83,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 84,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.001086638320290434
+    },
+    {
+      "case": 85,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 86,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.00019314110035106857
+    },
+    {
+      "case": 87,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.023500909536104175
+    },
+    {
+      "case": 88,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.015215444764650005
+    },
+    {
+      "case": 89,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.002479926778362909
+    },
+    {
+      "case": 90,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.018686533317821996
+    },
+    {
+      "case": 91,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.00012942495722802943
+    },
+    {
+      "case": 92,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.012273706581060875
+    },
+    {
+      "case": 93,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.006079594553767567
+    },
+    {
+      "case": 94,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 95,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011277972347842127
+    },
+    {
+      "case": 96,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.02013574880167346
+    },
+    {
+      "case": 97,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 98,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 99,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 100,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 101,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001007909688529176
+    },
+    {
+      "case": 102,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 103,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 104,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0028208885785965254
+    },
+    {
+      "case": 105,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0461920352506171
+    },
+    {
+      "case": 106,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0513450304382731
+    },
+    {
+      "case": 107,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0021401640780516623
+    },
+    {
+      "case": 108,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 109,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 110,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0021039361361837594
+    },
+    {
+      "case": 111,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.006851935201635184
+    },
+    {
+      "case": 112,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 113,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 114,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000899492764544152
+    },
+    {
+      "case": 115,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0009492115465131734
+    },
+    {
+      "case": 116,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 117,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 118,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.022261611083264493
+    },
+    {
+      "case": 119,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0019910808588370354
+    },
+    {
+      "case": 120,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0002925434646872116
+    },
+    {
+      "case": 121,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000324622890030796
+    },
+    {
+      "case": 122,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002410927608624047
+    },
+    {
+      "case": 123,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011628789777733337
+    },
+    {
+      "case": 124,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 3.122502256758253e-17
+    },
+    {
+      "case": 125,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.02535238312810717
+    },
+    {
+      "case": 126,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 127,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 128,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0005520800902552025
+    },
+    {
+      "case": 129,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.07040872187468972
+    },
+    {
+      "case": 130,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000514987418969378
+    },
+    {
+      "case": 131,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006438965121316354
+    },
+    {
+      "case": 132,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0010567040415011553
+    },
+    {
+      "case": 133,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 134,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.015413562848234474
+    },
+    {
+      "case": 135,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.003127767929681169
+    },
+    {
+      "case": 136,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00853481281225213
+    },
+    {
+      "case": 137,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 138,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 139,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002017111582809039
+    },
+    {
+      "case": 140,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 141,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.004755426244953287
+    },
+    {
+      "case": 142,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002202306380272856
+    },
+    {
+      "case": 143,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    }
+  ],
+  "passed": true
+}

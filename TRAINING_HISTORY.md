@@ -79,7 +79,25 @@ Selection accuracy was 87.93% (1,400 rows) and independent local test accuracy
 94.00% (600 rows). These splits differ from the V2–V5 tables above, so the numbers
 are not directly comparable. The official Decision Index was not measured.
 
-This is the current release.
+Superseded by v6.1 below.
 
 [Release notes](docs/training/jet-v6-release.md) ·
 [Model card](releases/jet-v6/README.md)
+
+
+## V6.1 — targeted continuation — 2026-09-25
+
+The released model continues from the full merged v6 backbone with a correction
+LoRA on 22,643 examples. Validation selected step 2,000 of 5,661. Two later repair
+trials were rejected by their sarcasm/retention guards and were not released.
+The release is a complete merged BF16 model in the existing `michaljach/jet`
+repository, with the product name Jet. The previous release is archived as v6.0.0.
+
+The broad development evaluation covers 25 benchmarks and 67,459 requests,
+including two sampled retrieval datasets. These are pre-merge adapter results;
+144 paired merge checks preserved all selected answers, with probability changes
+up to 7.04 points. No official overall index score is claimed.
+
+[Release card](releases/jet-v6.1/README.md) ·
+[Benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
+[Repair-trial report](experiments/jet-repair-20260925/results.md)

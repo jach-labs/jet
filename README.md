@@ -1,6 +1,6 @@
 # Jet
 
-Jet is a typed decision model built on **Qwen3.5-4B** (v6). Give it a state and named,
+Jet is a typed decision model built on **Qwen3.5-4B** (v6.1). Give it a state and named,
 typed questions; it returns choices, scores, and probabilities without generating
 free-form text. Answers always follow the requested type, but decisions can still
 be wrong.
@@ -17,12 +17,12 @@ be wrong.
 
 ## Run locally
 
-**Jet v6 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
-ships the merged bf16 weights with the runtime from [`releases/jet-v6/`](releases/jet-v6/) and
+**Jet v6.1 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
+ships the merged bf16 weights with the runtime from [`releases/jet-v6.1/`](releases/jet-v6.1/) and
 `src/format.py` / `src/inference.py`.
 
 ```sh
-hf download michaljach/jet --revision e5b8f610ddb92ffaba596ae452bed32a9fef49ca --local-dir jet
+hf download michaljach/jet --revision v6.1.0 --local-dir jet
 cd jet
 python -m pip install -r requirements.txt
 echo '{"state":"I was charged twice this month.","questions":{"billing":{"type":"noul","instructions":"Is this a billing issue?"}}}' | python jet.py
@@ -102,70 +102,47 @@ standard serving API.
 
 ## Training and evaluation
 
-Jet v6 (checkpoint step 3,750, released 2026-09-24) fine-tuned Qwen3.5-4B with a
-fresh rank-16 LoRA on the same 15,997-example `train_v5_r2` mixture as v5: public
-training partitions and deterministic generators covering relevance, entailment,
-stance, sarcasm, routing, arithmetic, Boolean rules, code behavior, commonsense
-completion and tool-response preference. One epoch (4,000 optimizer updates,
-learning rate `1e-4`) took about 2 h 26 min on one RTX 4080 SUPER. The step was
-selected by NLL on a 1,400-row selection split; calibration used a separate
-1,400-row split.
+Jet v6.1.0 is the full merged step-2,000 continuation of the published v6 model.
+The 22,643-example mixture emphasizes code, stance, sarcasm, relevance and response
+preferences while retaining broad tasks. Rank-16 BF16 LoRA training ran for one
+epoch; validation selected step 2,000 of 5,661. The later two repair trials failed
+their regression guards and are not part of this release.
 
-| Evaluation | Result |
-|---|---:|
-| Selection accuracy (1,400 rows) | 87.93% |
-| Independent local test accuracy (600 rows) | 94.00% |
-| Sampled benchmark requests, errors | 1,900 across 15 datasets, 0 errors |
-| Official Decision Index | Not measured |
+The selected adapter was evaluated on 25 benchmarks: 23 full available
+reconstructions and two retrieval samples. Of 67,459 requests, 66,950 were
+answered, 509 were unsupported, and none errored. These measurements precede the
+final BF16 merge. Merge verification preserved the selected answer on all 144
+checked cases; probability differences reached 7.04 percentage points.
 
-These are local measurements on the unmerged adapter, not a Decision Index score.
-Source overlap inherited from v5's data has not been comprehensively ruled out.
-Details: [v6 release notes](docs/training/jet-v6-release.md) and the
-[model card](releases/jet-v6/README.md). Earlier versions are in the
-[training history](TRAINING_HISTORY.md).
+| Benchmark | Jet candidate | Archived Kev 8B reference |
+|---|---:|---:|
+| Habermas | 44.51% | 41.71% |
+| VAST | 47.58% | 47.04% |
+| GSM8K | 70.13% | 41.17% |
+| BANKING77 | 75.14% | 82.66% |
+| FinEntity | 80.80% | 86.75% |
 
-v6 trains with PyTorch and PEFT on Linux + CUDA. `scripts/train_qwen35_bf16.py` trains a
-fresh bf16 LoRA on Qwen3.5-4B with Jet's soft-target and ordinal loss, keeping the best
-checkpoint by validation NLL:
+Matching case counts do not prove identical case contents. This is development
+evaluation, not an official overall Decision Index score. The release has a known
+tradeoff: English sarcasm F1 fell from 46.90% for published v6 to 41.98% for this
+candidate. Temperatures are inherited from v6, not recalibrated for the update.
 
-```sh
-uv sync --extra torch
-uv run python scripts/train_qwen35_bf16.py --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
-  --train data/train_v5_r2.jsonl --val data/selection_v5.jsonl --out adapters/<run> \
-  --epochs 1 --accumulate 4 --smoke   # drop --smoke for the full run
-```
+[Full benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
+[Model card and merge verification](releases/jet-v6.1/README.md) ·
+[Training protocol](experiments/jet-targeted-20260924/protocol.md) ·
+[Training history](TRAINING_HISTORY.md)
 
-The `train_v5_r2` and `selection_v5` files are not committed. `scripts/download_v5_sources.py`,
-`build_v5.py` and `filter_v5_retention.py` rebuild them (see the [v5 protocol](docs/training/jet-v5/protocol.md)).
-
-The exact v6 run (launcher, trainer and protocol) is recorded in
-[`experiments/jet-4b-full-20260924/`](experiments/jet-4b-full-20260924/); the
-continued-training candidate with checkpoint resume is in
-[`experiments/jet-targeted-20260924/`](experiments/jet-targeted-20260924/).
-Optional extras: `torch` (v6 training, release scripts, torch backends), `onnx`
-(the CPU API backend), `benchmark` (Decision Index), `cuda` (MLX on Linux), `plot`.
-
-The MLX pipeline below reproduces the Qwen3-0.6B releases (v5 and earlier), following
-the [recorded v5 protocol](docs/training/jet-v5/protocol.md) and scripts under `scripts/`.
-
-```sh
-# CUDA launcher prepares the MLX CUDA environment.
-./train_cuda.sh --help
-uv run jet-calibrate --adapter /path/to/adapter --data /path/to/calibration.jsonl
-uv run jet-fuse --adapter /path/to/adapter --out models/jet
-uv run jet-eval --base-model models/jet --data data/test.jsonl
-```
-
-Optional `jet-distill` data generation uses Anthropic credentials or the
-`--backend claude-code` mode. It is not required for serving or reproducing the
-public-source training pipeline; hosted generation can incur charges.
+The release build, verification and publication scripts are recorded under
+[`experiments/jet-release-20260925/`](experiments/jet-release-20260925/).
+The older MLX training scripts reproduce Qwen3-0.6B generations; v6 and v6.1 use
+PyTorch/PEFT, with `src/qwen35_training.py` providing the common backend.
 
 ## Deployment
 
-The Hugging Face model repository holds v6: merged bf16 weights (nine shards,
+The Hugging Face model repository holds v6.1: merged bf16 weights (nine shards,
 8.4 GB), tokenizer, calibration, the CUDA runtime, and provenance and validation
 records. Everything except the weights and tokenizer is kept in
-[`releases/jet-v6/`](releases/jet-v6/); `scripts/publish_release.py` uploads it.
+[`releases/jet-v6.1/`](releases/jet-v6.1/); `scripts/publish_release.py` uploads it.
 The Space code serves the last Qwen3-0.6B release (V5, revision `25ccbd9e`) and exposes
 `/decide`; its availability depends on Hugging Face's free hosting quota. See
 [deployment instructions](deploy/huggingface/README.md).
@@ -192,5 +169,5 @@ quantization can change probabilities.
 - `src/train.py`, `src/evaluate.py`, `src/fuse.py`: training, calibration, evaluation and fusion
 - `src/data/`, `scripts/`: data builders and reproducible experiments
 - `src/decision_index_engine.py`, `src/decision_index_ensemble.py`: benchmark adapters
-- `releases/jet-v6/`: v6 model card, CUDA runtime and release records published with the Hugging Face weights
+- `releases/jet-v6.1/`: v6.1 model card, CUDA runtime and release records published with the Hugging Face weights
 - `deploy/huggingface/`: hosted demo and API deployment

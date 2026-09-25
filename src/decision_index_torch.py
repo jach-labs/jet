@@ -21,7 +21,7 @@ class TorchJetEngine(Engine):
             raise ValueError('Pin a model revision')
         torch.set_num_threads(4)
         torch.cuda.set_per_process_memory_fraction(.88)
-        if model == 'Qwen/Qwen3.5-4B':
+        if model == 'Qwen/Qwen3.5-4B' or Path(model).is_dir():
             self.model, self.tokenizer, _ = load_model(model, revision, adapter=adapter)
         else:
             from transformers import AutoModelForCausalLM, AutoTokenizer
