@@ -1,0 +1,6 @@
+{
+  "verified_rows": 2000,
+  "official_split": "train",
+  "labels_and_queries_match": true,
+  "official_examples_sha256": "4a735b693b4a424a6fc67f5be6e4c811495c488bbf66d02a602d308b2744263a"
+}

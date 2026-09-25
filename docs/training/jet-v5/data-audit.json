@@ -1,0 +1,23 @@
+{
+  "verified_native_labels": 9800,
+  "counts": {
+    "train:wide_intent": 2000,
+    "train:commonsense_completion": 2000,
+    "train:adversarial_entailment": 2000,
+    "train:tool_response_preference": 2000,
+    "val:wide_intent": 150,
+    "val:commonsense_completion": 150,
+    "val:adversarial_entailment": 150,
+    "val:tool_response_preference": 150,
+    "calibration:wide_intent": 150,
+    "calibration:commonsense_completion": 150,
+    "calibration:adversarial_entailment": 150,
+    "calibration:tool_response_preference": 150,
+    "test:adversarial_entailment": 150,
+    "test:tool_response_preference": 150,
+    "test:commonsense_completion": 150,
+    "test:wide_intent": 150
+  },
+  "source_id_duplicates": 0,
+  "cross_split_related_groups": 0
+}

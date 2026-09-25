@@ -1,0 +1,450 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "weight_bytes": 8044982000
+  },
+  "initial": {
+    "n": 270,
+    "acc": 0.7592592592592593,
+    "nll": 2.823704001990123,
+    "latency_median_ms": 51.202280999859795,
+    "latency_mean_ms": 72.91432599262474,
+    "latency_p95_ms": 254.9080113501073,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 5.925697660446167
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.4512206196784511
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 4.026734204310907
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.494083493947437
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.0
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 2.3968196097735928
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 2.145317924022674
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 4.484685987130797
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.915191541657623
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.20133169762847558
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.8788403651282799
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 7.54576412234087e-06
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.6031679030274972
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 7.3491320959698445
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 3.6939188959240625
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 9.085645842475605
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.0
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 2.3841855067985306e-08
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.464551415553433
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 2.8190419792967987
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 9.325192856788632
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.002975136972943204
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 3.2502264738082873
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.6014100569552283
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.3311969999223883
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 2.4809248877812022
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 9.31269283592701
+      }
+    }
+  },
+  "final": {
+    "n": 270,
+    "acc": 0.762962962962963,
+    "nll": 0.6759302704767497,
+    "latency_median_ms": 50.58487850055826,
+    "latency_mean_ms": 72.39344167038426,
+    "latency_p95_ms": 252.5466291001972,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 0.9331754176877439
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.1387718940153718
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.6804041841998696
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.23502086605876685
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.04599128495901823
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.034437414072454
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.4294692803174257
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.5286824464797975
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.751452462375164
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.23964170962572098
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5869037039577961
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.14886945504695176
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.43963442500680683
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.2,
+        "nll": 1.7858661323785783
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 0.879549553617835
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 1.685072149708867
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.010060666967183352
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.027147474139928816
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 0.98477373868227
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.6618811421096324
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.5232663985341788
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.22054805858060716
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5141421768814325
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.36010418776422737
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.38791203061118723
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 1.2618485571816564
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 0.7554904919117689
+      }
+    }
+  },
+  "selected": {
+    "n": 270,
+    "acc": 0.762962962962963,
+    "nll": 0.6759302704767497,
+    "latency_median_ms": 50.58487850055826,
+    "latency_mean_ms": 72.39344167038426,
+    "latency_p95_ms": 252.5466291001972,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 0.9331754176877439
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.1387718940153718
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.6804041841998696
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.23502086605876685
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.04599128495901823
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.034437414072454
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.4294692803174257
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.5286824464797975
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.751452462375164
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.23964170962572098
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5869037039577961
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.14886945504695176
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.43963442500680683
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.2,
+        "nll": 1.7858661323785783
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 0.879549553617835
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 1.685072149708867
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.010060666967183352
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.027147474139928816
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 0.98477373868227
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.6618811421096324
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.5232663985341788
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.22054805858060716
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5141421768814325
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.36010418776422737
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.38791203061118723
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 1.2618485571816564
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 0.7554904919117689
+      }
+    }
+  },
+  "selected_step": 135,
+  "training_seconds": 181.98366983099913,
+  "training_tokens_per_second": 948.2114530399818,
+  "peak_allocated_gb": 9.641680384,
+  "peak_reserved_gb": 9.850322944,
+  "adapter_reload_verified": true,
+  "adapter_dir": "/home/jach/dev/jet/adapters/jet-4b-comparison/qwen3-4b",
+  "steps": 135
+}

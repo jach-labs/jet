@@ -1,19 +1,28 @@
-"""Synthetic Jet examples distilled from Claude via the Message Batches API.
+"""Synthetic Jet examples distilled from Claude.
 
     jet-distill tasks --n 300     # Claude invents question + states per use case
     jet-distill label             # Claude gives calibrated soft labels, one request per task
 
-Both steps are resumable: submitted batch ids are kept in <dir>/batches.json and
-re-running a step picks up the existing batch instead of paying twice.
+Two backends:
+- batches (default): the Message Batches API, billed to ANTHROPIC_API_KEY at 50% of list price.
+- claude-code: one headless `claude -p` call per request, on your Claude Code subscription.
+
+Both steps are resumable. Batches keep submitted batch ids in <dir>/batches.json and re-running
+a step picks up the existing batch instead of paying twice; claude-code keeps one result file
+per request in <dir>/claude_code/<step>/ and only runs the missing ones.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
+import subprocess
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +33,7 @@ from anthropic.types.messages.batch_create_params import Request
 from format import Question
 
 MODEL = "claude-opus-5"
+CLAUDE_CODE_MODEL = "opus"  # alias for the latest Opus in Claude Code
 # Batch prices for claude-opus-5 (50% of $5 / $25 per MTok), used for the estimate only.
 BATCH_PRICE_IN, BATCH_PRICE_OUT = 2.5 / 1e6, 12.5 / 1e6
 
@@ -148,7 +158,12 @@ def label_schema(q: Question, n_states: int) -> dict[str, Any]:
     }
 
 
-def request(custom_id: str, prompt: str, schema: dict[str, Any], max_tokens: int) -> Request:
+# (custom_id, prompt, output JSON schema)
+Job = tuple[str, str, dict[str, Any]]
+
+
+def request(job: Job, max_tokens: int = 16000) -> Request:
+    custom_id, prompt, schema = job
     return Request(
         custom_id=custom_id,
         params=MessageCreateParamsNonStreaming(
@@ -167,9 +182,21 @@ class BatchStore:
     def __init__(self, directory: Path):
         self.path = directory / "batches.json"
         self.ids: dict[str, str] = json.loads(self.path.read_text()) if self.path.exists() else {}
+        self._client: anthropic.Anthropic | None = None
 
-    def run(self, client: anthropic.Anthropic, step: str, requests: list[Request]) -> dict[str, Any]:
+    def done(self, step: str) -> bool:
+        return step in self.ids
+
+    def confirm(self, n_requests: int, est_in: int, est_out: int, yes: bool) -> None:
+        cost = n_requests * (est_in * BATCH_PRICE_IN + est_out * BATCH_PRICE_OUT)
+        print(f"{n_requests} requests to {MODEL} via Batches API, estimated ~${cost:.2f}")
+        if not yes and input("continue? [y/N] ").strip().lower() != "y":
+            sys.exit("aborted")
+
+    def run(self, step: str, jobs: list[Job]) -> dict[str, Any]:
+        client = self._client = self._client or anthropic.Anthropic()
         if step not in self.ids:
+            requests = [request(j) for j in jobs]
             batch = client.messages.batches.create(requests=requests)
             self.ids[step] = batch.id
             self.path.write_text(json.dumps(self.ids, indent=2))
@@ -199,14 +226,97 @@ class BatchStore:
         return parsed
 
 
-def confirm(n_requests: int, est_in: int, est_out: int, yes: bool) -> None:
-    cost = n_requests * (est_in * BATCH_PRICE_IN + est_out * BATCH_PRICE_OUT)
-    print(f"{n_requests} requests to {MODEL} via Batches API, estimated ~${cost:.2f}")
-    if not yes and input("continue? [y/N] ").strip().lower() != "y":
-        sys.exit("aborted")
+class ClaudeCodeStore:
+    """Runs each request as a headless `claude -p` call on the Claude Code subscription.
+
+    Every result is saved to <dir>/claude_code/<step>/<custom_id>.json as soon as it arrives,
+    so hitting the subscription's usage limit just stops the run; re-running continues it.
+    """
+
+    SYSTEM = "You generate and label training data. Reply only with the JSON the schema asks for."
+
+    def __init__(self, directory: Path, model: str, effort: str, workers: int, timeout: int):
+        self.root = directory / "claude_code"
+        self.model, self.effort, self.workers, self.timeout = model, effort, workers, timeout
+        # Without the API key in the environment, `claude` falls back to the subscription login.
+        self.env = {k: v for k, v in os.environ.items() if k not in ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")}
+
+    def done(self, step: str) -> bool:
+        return False  # always look for missing results
+
+    def confirm(self, n_requests: int, est_in: int, est_out: int, yes: bool) -> None:
+        cost = n_requests * (est_in * 5 / 1e6 + est_out * 25 / 1e6)
+        print(f"{n_requests} requests to {self.model} via `claude -p` on the Claude Code subscription "
+              f"(~${cost:.2f} at API list price; counts against your plan's usage limits)")
+        if not yes and input("continue? [y/N] ").strip().lower() != "y":
+            sys.exit("aborted")
+
+    def call(self, prompt: str, schema: dict[str, Any]) -> dict[str, Any]:
+        cmd = [
+            "claude", "-p", "--model", self.model, "--effort", self.effort,
+            "--tools", "", "--setting-sources", "", "--strict-mcp-config", "--no-session-persistence",
+            "--system-prompt", self.SYSTEM, "--output-format", "json", "--json-schema", json.dumps(schema),
+        ]
+        proc = subprocess.run(cmd, input=prompt, capture_output=True, text=True, timeout=self.timeout,
+                              env=self.env, cwd=self.root)
+        try:
+            out = json.loads(proc.stdout)
+        except json.JSONDecodeError:
+            raise RuntimeError(f"exit {proc.returncode}: {(proc.stderr or proc.stdout).strip()[:300]}") from None
+        if out.get("is_error") or out.get("structured_output") is None:
+            raise RuntimeError(f"{out.get('subtype')}: {str(out.get('result'))[:300]}")
+        return out["structured_output"]
+
+    def run(self, step: str, jobs: list[Job]) -> dict[str, Any]:
+        out_dir = self.root / step
+        out_dir.mkdir(parents=True, exist_ok=True)
+        todo = [j for j in jobs if not (out_dir / f"{j[0]}.json").exists()]
+        print(f"{step}: {len(jobs) - len(todo)} already done, running {len(todo)} with {self.workers} workers")
+
+        stop = threading.Event()
+        failures: list[str] = []
+        streak = 0
+        lock = threading.Lock()
+
+        def work(job: Job) -> None:
+            nonlocal streak
+            if stop.is_set():
+                return
+            custom_id, prompt, schema = job
+            try:
+                result = self.call(prompt, schema)
+            except (RuntimeError, subprocess.TimeoutExpired) as e:
+                with lock:
+                    failures.append(custom_id)
+                    streak += 1
+                    print(f"  {custom_id} failed: {e}", flush=True)
+                    # A run of failures means the usage limit (or auth) is gone, not a bad request.
+                    if streak >= max(3, self.workers) and not stop.is_set():
+                        stop.set()
+                        print("  too many failures in a row; stopping. Re-run the same command to resume.", flush=True)
+                return
+            (out_dir / f"{custom_id}.json").write_text(json.dumps(result, ensure_ascii=False))
+            with lock:
+                streak = 0
+
+        started, finished = time.perf_counter(), 0
+        with ThreadPoolExecutor(self.workers) as pool:
+            for _ in as_completed([pool.submit(work, j) for j in todo]):
+                finished += 1
+                if finished % 10 == 0 or finished == len(todo):
+                    print(f"  {finished}/{len(todo)} in {time.perf_counter() - started:.0f}s", flush=True)
+
+        parsed = {j[0]: json.loads(p.read_text()) for j in jobs if (p := out_dir / f"{j[0]}.json").exists()}
+        print(f"{step}: {len(parsed)}/{len(jobs)} ok, {len(failures)} failed this run")
+        if stop.is_set():
+            sys.exit("stopped early; re-run to continue")
+        return parsed
 
 
-def cmd_tasks(args: argparse.Namespace, client: anthropic.Anthropic, store: BatchStore) -> None:
+Store = BatchStore | ClaudeCodeStore
+
+
+def cmd_tasks(args: argparse.Namespace, store: Store) -> None:
     rng = random.Random(args.seed)
     specs = []
     for i in range(args.n):
@@ -217,18 +327,17 @@ def cmd_tasks(args: argparse.Namespace, client: anthropic.Anthropic, store: Batc
             "state_format": rng.choice(STATE_FORMATS),
         }
         specs.append(spec)
-    requests = [
-        request(
+    jobs = [
+        (
             s["id"],
             TASK_PROMPT.format(use_case=s["use_case"], type_spec=TYPE_SPECS[s["type"]], state_format=s["state_format"], n_states=args.states),
             TASK_SCHEMA,
-            max_tokens=16000,
         )
         for s in specs
     ]
-    if "tasks" not in store.ids:
-        confirm(len(requests), est_in=400, est_out=args.states * 250 + 1500, yes=args.yes)
-    results = store.run(client, "tasks", requests)
+    if not store.done("tasks"):
+        store.confirm(len(jobs), est_in=400, est_out=args.states * 250 + 1500, yes=args.yes)
+    results = store.run("tasks", jobs)
 
     kept = 0
     with (args.dir / "tasks.jsonl").open("w") as f:
@@ -253,22 +362,22 @@ def cmd_tasks(args: argparse.Namespace, client: anthropic.Anthropic, store: Batc
     print(f"wrote {kept} tasks to {args.dir / 'tasks.jsonl'}")
 
 
-def cmd_label(args: argparse.Namespace, client: anthropic.Anthropic, store: BatchStore) -> None:
+def cmd_label(args: argparse.Namespace, store: Store) -> None:
     # One request labels all of a task's states: the question and answer space are sent once
     # instead of once per state, which roughly halves the cost of this step.
     tasks = [t for t in (json.loads(line) for line in (args.dir / "tasks.jsonl").open()) if t["states"]]
-    requests = []
+    jobs = []
     for t in tasks:
         q = Question.from_dict(t["question"])
         states = "\n\n".join(f'<state id="{state_id(j)}">\n{st}\n</state>' for j, st in enumerate(t["states"]))
         prompt = LABEL_PROMPT.format(states=states, instructions=q.instructions, answer_space=answer_space(q))
-        requests.append(request(t["id"], prompt, label_schema(q, len(t["states"])), max_tokens=16000))
+        jobs.append((t["id"], prompt, label_schema(q, len(t["states"]))))
     # Separate step name from the old one-request-per-state batches, whose results don't parse here.
     step = "label_tasks"
-    if step not in store.ids:
+    if not store.done(step):
         avg_states = sum(len(t["states"]) for t in tasks) / max(len(tasks), 1)
-        confirm(len(requests), est_in=int(500 + 300 * avg_states), est_out=int(1500 + 150 * avg_states), yes=args.yes)
-    results = store.run(client, step, requests)
+        store.confirm(len(jobs), est_in=int(500 + 300 * avg_states), est_out=int(1500 + 150 * avg_states), yes=args.yes)
+    results = store.run(step, jobs)
 
     kept = 0
     with Path(args.out).open("w") as f:
@@ -296,6 +405,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Distill Jet training data from Claude.")
     ap.add_argument("--dir", type=Path, default=Path("data/distill"))
     ap.add_argument("--yes", action="store_true", help="skip the cost confirmation")
+    ap.add_argument("--backend", choices=["batches", "claude-code"], default="batches",
+                    help="batches: Message Batches API (ANTHROPIC_API_KEY); claude-code: `claude -p` on your subscription")
+    ap.add_argument("--model", default=CLAUDE_CODE_MODEL, help="claude-code backend: model alias or id")
+    ap.add_argument("--effort", default="medium", help="claude-code backend: effort level")
+    ap.add_argument("--workers", type=int, default=4, help="claude-code backend: concurrent `claude -p` calls")
+    ap.add_argument("--timeout", type=int, default=900, help="claude-code backend: seconds per call")
     sub = ap.add_subparsers(dest="cmd", required=True)
     t = sub.add_parser("tasks", help="generate questions + states")
     t.add_argument("--n", type=int, default=300, help="number of tasks")
@@ -306,9 +421,11 @@ def main() -> None:
     args = ap.parse_args()
 
     args.dir.mkdir(parents=True, exist_ok=True)
-    client = anthropic.Anthropic()
-    store = BatchStore(args.dir)
-    {"tasks": cmd_tasks, "label": cmd_label}[args.cmd](args, client, store)
+    if args.backend == "claude-code":
+        store: Store = ClaudeCodeStore(args.dir, args.model, args.effort, args.workers, args.timeout)
+    else:
+        store = BatchStore(args.dir)
+    {"tasks": cmd_tasks, "label": cmd_label}[args.cmd](args, store)
 
 
 if __name__ == "__main__":

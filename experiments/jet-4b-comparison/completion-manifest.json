@@ -1,0 +1,19 @@
+{
+  "experiments/jet-4b-comparison/code-manifest.json": "62629a3b4ee623b7ac2b7ce8f3386f88dc88a1bf4e02ded202c286de773fb059",
+  "experiments/jet-4b-comparison/data_manifest.json": "251dfb99d1bffed6ea3fa205d55d1c3514d3795bb5361a503e7350016c10bc58",
+  "experiments/jet-4b-comparison/environment.txt": "a958bad3653526833a1fc03d8bc7c3f26435d5237e2048ce92de356a8b1fecbf",
+  "experiments/jet-4b-comparison/kernel-check.json": "f2690d467c645949ac8d809b9b3e3638acf2ffacd6a47a47a73f688383881094",
+  "experiments/jet-4b-comparison/models.json": "f45b0f5fbc222e7928499cb7696bcd9a3b1430e246693748ea2401d2167c6424",
+  "experiments/jet-4b-comparison/paired-comparison.json": "f21551034c7e30aa73cfc5fe2871a99a25c34dfc15fcd64f35e763ca1c54feed",
+  "experiments/jet-4b-comparison/pipeline.py": "89a8d3eff96f4f0498e5e7fb8644e61eaefbee5614b52f42f015ad5dbc08d569",
+  "experiments/jet-4b-comparison/protocol.md": "d38a373af6d1ebe782df3b58ac2dfbe71704222c95fe9a4d25cf5581584936b9",
+  "experiments/jet-4b-comparison/qwen3-4b-results.json": "5b80d7e8aab33b173c09c597e4ad5156ca9b8446a7d2adf4c18201fc655b95db",
+  "experiments/jet-4b-comparison/qwen3-4b-smoke-results.json": "24387a54fd789f822949814a7c9af1b90b04047d087916950fd879301c6f5c14",
+  "experiments/jet-4b-comparison/qwen35-4b-results.json": "f3252bdb60f8dacbcbbb5ce940056edd48e1665a2d1953aca575f656a42fe079",
+  "experiments/jet-4b-comparison/qwen35-4b-smoke-results.json": "fb9c64c049e83403bb3521d122d75a4df5518eb7811a2fe7e6147cc7eff4e6dc",
+  "experiments/jet-4b-comparison/report.py": "733de7fd3481c6d7272ea1d7cfa569a59d68b375e55dde77ca08d836908d26e8",
+  "experiments/jet-4b-comparison/results.md": "c6d3106485d23ed695ffa49f63985fbec8be9fa47bd9c9abf412c612b9275ffa",
+  "experiments/jet-4b-comparison/run.py": "5dfc8203f30b4452cfeba37c30ec9d3a3b325814243a4c25dfe44fcddc9e8710",
+  "experiments/jet-4b-comparison/train.jsonl": "df6d0662928640c97d96b6011cebde11a46ce3e87ad5ff081165b7082c75d4ca",
+  "experiments/jet-4b-comparison/validation.jsonl": "2912641dffbdc2b43b063dbe9844422d480c4248fba21dbccb1963a38cfa0908"
+}

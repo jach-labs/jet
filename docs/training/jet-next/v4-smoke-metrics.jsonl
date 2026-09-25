@@ -1,0 +1,5 @@
+{"step": 0, "nll": 1.313755914568901, "acc": 0.390625, "improved": false, "initial": true}
+{"step": 10, "nll": 1.0998961925506592, "acc": 0.453125, "improved": true, "peak_memory_gb": 3.256545968}
+{"step": 20, "nll": 1.0723880529403687, "acc": 0.453125, "improved": true, "peak_memory_gb": 3.256545968}
+{"step": 30, "nll": 1.0399636775255203, "acc": 0.453125, "improved": true, "peak_memory_gb": 3.256545968}
+{"step": 35, "nll": 1.033509224653244, "acc": 0.453125, "improved": true, "peak_memory_gb": 3.256578736}

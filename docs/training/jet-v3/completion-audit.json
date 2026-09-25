@@ -1,0 +1,15 @@
+{
+  "original_user_diff_unchanged": true,
+  "published_weight_hashes_unchanged": true,
+  "original_data_hashes_unchanged": true,
+  "training_code_hashes_match": true,
+  "diagnostic_requests_per_model": 500,
+  "diagnostic_errors": 0,
+  "gpu_peak_observed_mib": 13938,
+  "tests": {
+    "data_tests": 3,
+    "gpu_adapter_tests": 8,
+    "generated_label_checks": 7440
+  },
+  "adapter_sha256": "d17a7f6c998e46348263d76760d9766a2f65e731caa5351e14861c4be43535c5"
+}

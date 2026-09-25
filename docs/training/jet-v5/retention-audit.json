@@ -1,0 +1,102 @@
+{
+  "rule": "Audit native-evaluation overlap in retained examples and create immutable R2 data.\n\nCatalog names and isolated short schema fields are not treated as utterances.\nV5 source content identities, complete text states and text fragments >=32\nnormalized characters are compared; inherited exposure is reported explicitly.\n",
+  "files": {
+    "train_v5": {
+      "sha256": "d96100fd362255482869fdfc96d02cc6d3071326155500f817fca5fdbc53d3fd",
+      "kept": 15997,
+      "removed": 3,
+      "removed_sources": {
+        "v3:sarcasm_irony": 1,
+        "massive": 2
+      },
+      "state_hashes": [
+        "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+        "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+        "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9"
+      ]
+    },
+    "selection_v5": {
+      "sha256": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+      "kept": 1400,
+      "removed": 0,
+      "removed_sources": {},
+      "state_hashes": []
+    },
+    "calibration_v5": {
+      "sha256": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+      "kept": 1400,
+      "removed": 0,
+      "removed_sources": {},
+      "state_hashes": []
+    },
+    "test_v5_new": {
+      "sha256": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+      "kept": 600,
+      "removed": 0,
+      "removed_sources": {},
+      "state_hashes": []
+    }
+  },
+  "inherited_exposure": {
+    "train_v2": {
+      "count": 8,
+      "by_source": {
+        "massive": 8
+      },
+      "state_hashes": [
+        "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+        "92dde7a604a103c21c35ecfb6ca201684031767adf42c84db55b881a5de129f8",
+        "b49177e05868b7af8e82a644c1ce20e521af46497adeaffe861d294d9b4bb75e",
+        "1efe129d040aa8d64ca7dc438f4cb43876757818864f09ae7cb53a23d1c9f08f",
+        "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+        "0b41b183ab200019e05ae6b8bfdf638ce2d90d39269a33ffcc94b9b035fddfb5",
+        "870d2ccc7ede8f14ddba0b441af3cafbc60a548e339e41d5a061445f1988b88d",
+        "262c9bf9846c7d15b6c044f42ca9e7d6f0e5e524b31671d54607762c57072ffb"
+      ]
+    },
+    "train_v3": {
+      "count": 13,
+      "by_source": {
+        "v3:sarcasm_irony": 1,
+        "massive": 8,
+        "v3:tool_selection": 4
+      },
+      "state_hashes": [
+        "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+        "92dde7a604a103c21c35ecfb6ca201684031767adf42c84db55b881a5de129f8",
+        "b49177e05868b7af8e82a644c1ce20e521af46497adeaffe861d294d9b4bb75e",
+        "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+        "262c9bf9846c7d15b6c044f42ca9e7d6f0e5e524b31671d54607762c57072ffb",
+        "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+        "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+        "0b41b183ab200019e05ae6b8bfdf638ce2d90d39269a33ffcc94b9b035fddfb5",
+        "1efe129d040aa8d64ca7dc438f4cb43876757818864f09ae7cb53a23d1c9f08f",
+        "870d2ccc7ede8f14ddba0b441af3cafbc60a548e339e41d5a061445f1988b88d",
+        "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+        "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+        "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090"
+      ]
+    },
+    "train_v4_tools_focus": {
+      "count": 5,
+      "by_source": {
+        "v3:sarcasm_irony": 1,
+        "v4:tool_intent_routing": 2,
+        "massive": 2
+      },
+      "state_hashes": [
+        "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+        "55769c01f1927d87fbf132c23775213854fdee7156937b41dc42ec02af6ad6d1",
+        "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+        "7af3840b205f11ba55c61fe5d1fc2e4bf93ff5c5f99b4543d00ea59c9408fbbe",
+        "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1"
+      ]
+    }
+  },
+  "output": {
+    "path": "/home/jach/dev/jet/data/train_v5_r2.jsonl",
+    "sha256": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+    "rows": 15997
+  },
+  "caveat": "R2 removes new-stage overlap but cannot erase inherited V4 training exposure; do not claim a fully decontaminated checkpoint or an official score."
+}

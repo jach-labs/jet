@@ -1,0 +1,13 @@
+{
+  "data/train_v5_r2.jsonl": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+  "data/selection_v5.jsonl": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+  "data/calibration_v5.jsonl": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+  "data/test_v5_new.jsonl": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+  "data/test_v4_new.jsonl": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6",
+  "data/test_v4_tools.jsonl": "20f0e11691f8e51760bfef7cc9982ceb8719faeadb5340c14905b393cf58d68d",
+  "data/test_v3_new.jsonl": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+  "data/test.jsonl": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+  "data/val.jsonl": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+  "data/score_eval.jsonl": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+  "adapters/jet-v5-panel02-r2-20260924/adapters.safetensors": "6416adc20cc1517dc5d9cf3c0a2655da8a899296c5640dfc6d5551170824d0cb"
+}

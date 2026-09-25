@@ -1,0 +1,249 @@
+{
+  "rows_sha256": "9908538b8b244efa20a2d8428104d5f56a131b37569d0e0b10867ced7beb104b",
+  "rows_uncompressed_sha256": "45f871b09ada003492321e32cb6865dab47cf2d2855f4667264b3b5cb02888f4",
+  "model_revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+  "scope": "Only the supplied rows; token capacity, not measured accuracy or validated long-context quality.",
+  "limits": [
+    4096,
+    6144,
+    8192,
+    16384,
+    32768,
+    40960
+  ],
+  "benchmarks": {
+    "CLINC150+OOS": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "151": 200
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 1653.0,
+        "p95": 1660.05,
+        "max": 1669.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "ANLI": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "3": 200
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 196.5,
+        "p95": 233.0,
+        "max": 267.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "MMLU": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "4": 200
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 152.0,
+        "p95": 314.19999999999993,
+        "max": 453.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "ARC-Easy": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "4": 199,
+        "3": 1
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 126.0,
+        "p95": 168.04999999999998,
+        "max": 206.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "ARC-Challenge": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "4": 199,
+        "3": 1
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 135.0,
+        "p95": 177.0,
+        "max": 217.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "WinoGrande": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "2": 200
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 106.0,
+        "p95": 114.0,
+        "max": 120.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    },
+    "HellaSwag": {
+      "requests": 200,
+      "fields": 200,
+      "options": {
+        "4": 200
+      },
+      "questions_per_request": {
+        "1": 200
+      },
+      "supported_requests": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 293.0,
+        "p95": 347.0,
+        "max": 389.0
+      },
+      "source_groups": 200,
+      "supported_complete_groups": {
+        "4096": 200,
+        "6144": 200,
+        "8192": 200,
+        "16384": 200,
+        "32768": 200,
+        "40960": 200
+      }
+    }
+  }
+}

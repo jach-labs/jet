@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "compatibility": {
+    "ok": 26,
+    "total": 26
+  },
+  "tests": {
+    "adapter_including_gpu_golden_and_prefix_parity": 8,
+    "executable_v3_data": 3
+  },
+  "selected_optimizer_steps": {
+    "warm": 2444,
+    "v4": 3750
+  },
+  "original_datasets": "unchanged",
+  "all_v3_datasets": "unchanged",
+  "published_weights_and_calibration": "unchanged",
+  "preexisting_user_changes": "unchanged",
+  "active_training_or_evaluation_jobs": 0
+}

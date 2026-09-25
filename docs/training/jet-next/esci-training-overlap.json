@@ -1,0 +1,7 @@
+{
+  "training_esci_ids": 948,
+  "evaluation_esci_ids": 5000,
+  "overlap": 0,
+  "source": "Original example_id identities, train versus test",
+  "suite_sha256": "db1d2d3d4dde242dc04262149153bfd596044ad8986e0ae5de8443383973e386"
+}

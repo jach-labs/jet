@@ -1,0 +1,40 @@
+{
+  "version": "v6.0.0",
+  "name": "Jet",
+  "format": "complete merged BF16 Qwen3_5ForCausalLM",
+  "files": {
+    "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "README.md": "43bcdd39d003a210b5ee4d669ca772ad846b3bdf46f19c26e7ebf96077c77e76",
+    "calibration.json": "c7b13d6446dfa455bc18c11a9f877994728e670ddb4c3323f1bd16eb4cde2bc7",
+    "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "config.json": "63f47812d0f11118e4d252d2b3ad488707eb9287a11589f4fd382a1d31182724",
+    "evaluation.json": "c6a6dcc897dfd3d406db5ef88e6ec848f1138dc30a473c6ad94239c3a09acf0e",
+    "format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "jet.py": "a053495e98ac3c10358d041004b2a661bfb7b56ebc539196b919e46f10f0e454",
+    "merge-provenance.json": "9c168012766e8dd4e97f441fd44ec198ca22a09cea0009e2a677c66b5f29b753",
+    "merge-validation.json": "344a62368b294cafbc9b4e5b2da60e64f9aec8c21af7d0301c829d0b69c4dde5",
+    "model-00001-of-00009.safetensors": "758c65ea6c124bbe96b68a2d5475f7e4ec0ff9b6a4dbba87f295144ace55f07d",
+    "model-00002-of-00009.safetensors": "8e84de8d9a45219bbeb1a33392370979cce7702ceab4dea27b5f4b3b4e78deb0",
+    "model-00003-of-00009.safetensors": "d96476f63563f6db809675f551857e392102189c17eae2e2999bed0c4f967b22",
+    "model-00004-of-00009.safetensors": "bf5440f1558b2b9fc1e4ddec335cc77c04ac89621ce91a72ae3b3a542ad6eb25",
+    "model-00005-of-00009.safetensors": "52a8e3c8c06d2d16554e6146ffadcb0830367180d4ed2d4725084c0b4b257967",
+    "model-00006-of-00009.safetensors": "0d560b820ad7edc2faad717f6655b3f638e8779b40fda4e333d6457bcb9ed47c",
+    "model-00007-of-00009.safetensors": "fff39c3f2152571b72d377c6095daca3c796da187d94e88d18292c8709aa75d3",
+    "model-00008-of-00009.safetensors": "da8fa5e8e7bbcab3529e6f4014fdc3a42240a27c4b7fd123f3690abb35c96789",
+    "model-00009-of-00009.safetensors": "8d76d978760f6c15b9f5cb0c3b5eeada3513ff8a53104389cd895b5a5a092a94",
+    "model.safetensors.index.json": "583cb9f6b27293828c3e8c5055cc5a534846585063b057c5643592ecb8220ead",
+    "requirements.txt": "2888712d1e07f61a0748da102183fbff30c7de6f4152f239625d17c864bf9dde",
+    "runtime.py": "42ecb8f12ea72d2c050d533f9038c8a5fc48778a16fe5b5e3e9affb9cb161109",
+    "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "tokenizer_config.json": "9cf04fffe3d8c3b85e439fb35c7acad0761ab51c422a8c4256d9f887c3a0be7d"
+  },
+  "validation": {
+    "cases": 36,
+    "selection": "First 12 cases per type, scanning local test then calibration; no outcome selection",
+    "argmax_flips": 1,
+    "max_probability_difference": 0.04372840585277227,
+    "base_download_required": false
+  },
+  "official_decision_index": null
+}

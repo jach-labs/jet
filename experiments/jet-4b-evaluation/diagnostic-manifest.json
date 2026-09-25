@@ -1,0 +1,26 @@
+{
+  "inputs_sha256": {
+    "artifacts/decision-index/diagnostic/diagnostic.jsonl.gz": "a790c3d5dac6068ecef13de92c7700c4da0a9ed87b998f528701ac1fe219205d",
+    "artifacts/decision-index/v5-diagnostic-1400/diagnostic.jsonl.gz": "9908538b8b244efa20a2d8428104d5f56a131b37569d0e0b10867ced7beb104b"
+  },
+  "rows_sha256": "a8d9ad10af039659cbf9ae7fdf6b8c84275ff5865a8c510b7ea497b2c9ff3dcb",
+  "requests": 1900,
+  "benchmarks": {
+    "ContractNLI": 56,
+    "GSM8K": 112,
+    "iSarcasmEval": 56,
+    "VAST": 56,
+    "NLI4CT": 55,
+    "CRUXEval": 55,
+    "CLadder": 55,
+    "Habermas Machine": 55,
+    "CLINC150+OOS": 200,
+    "ANLI": 200,
+    "MMLU": 200,
+    "ARC-Easy": 200,
+    "ARC-Challenge": 200,
+    "WinoGrande": 200,
+    "HellaSwag": 200
+  },
+  "exact_training_state_matches": {}
+}

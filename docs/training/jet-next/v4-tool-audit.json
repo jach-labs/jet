@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "native_annotations_checked": 3720,
+  "counts": {
+    "train": 3000,
+    "val": 240,
+    "calibration": 240,
+    "test": 240
+  },
+  "option_counts": {
+    "3": 2377,
+    "5": 504,
+    "4": 839
+  },
+  "parent_training_overlap": 0,
+  "checks": [
+    "Whole domains and dialogues held together",
+    "Native intent targets and complete conversation prefixes match source",
+    "Held-out conversation utterances absent from parent training content",
+    "Options are the native same-service catalog plus NONE"
+  ]
+}

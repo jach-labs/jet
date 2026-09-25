@@ -1,0 +1,248 @@
+{
+  "requests": 110688,
+  "rows_sha256": "d81fc7ccf3f1aaa4334293702455641653c4956dd2543eea34278a1a57fff0a6",
+  "benchmarks": [
+    {
+      "id": 25,
+      "name": "GPQA Diamond",
+      "requests": 196,
+      "state": "staged"
+    },
+    {
+      "id": 30,
+      "name": "GSM8K",
+      "requests": 2638,
+      "state": "staged"
+    },
+    {
+      "id": 31,
+      "name": "ChessBench",
+      "requests": 5000,
+      "state": "staged"
+    },
+    {
+      "id": 32,
+      "name": "MuSR",
+      "requests": 752,
+      "state": "staged"
+    },
+    {
+      "id": 33,
+      "name": "SATA-Bench",
+      "requests": 1650,
+      "state": "staged"
+    },
+    {
+      "id": 43,
+      "name": "CRUXEval",
+      "requests": 570,
+      "state": "staged"
+    },
+    {
+      "id": 44,
+      "name": "CLadder",
+      "requests": 5000,
+      "state": "staged"
+    },
+    {
+      "id": 45,
+      "name": "HLE",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 57,
+      "name": "MMLU-Pro",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 58,
+      "name": "BBH",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 11,
+      "name": "ContractNLI",
+      "requests": 123,
+      "state": "staged"
+    },
+    {
+      "id": 12,
+      "name": "ANLI",
+      "requests": 3200,
+      "state": "staged"
+    },
+    {
+      "id": 28,
+      "name": "WinoGrande",
+      "requests": 1267,
+      "state": "staged"
+    },
+    {
+      "id": 29,
+      "name": "HellaSwag",
+      "requests": 10042,
+      "state": "staged"
+    },
+    {
+      "id": 38,
+      "name": "ACOS",
+      "requests": 5479,
+      "state": "staged"
+    },
+    {
+      "id": 39,
+      "name": "FinEntity",
+      "requests": 979,
+      "state": "staged"
+    },
+    {
+      "id": 40,
+      "name": "iSarcasmEval",
+      "requests": 1400,
+      "state": "staged"
+    },
+    {
+      "id": 41,
+      "name": "VAST",
+      "requests": 3006,
+      "state": "staged"
+    },
+    {
+      "id": 42,
+      "name": "NLI4CT",
+      "requests": 5500,
+      "state": "staged"
+    },
+    {
+      "id": 59,
+      "name": "RAGTruth",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 4,
+      "name": "BANKING77",
+      "requests": 3080,
+      "state": "staged"
+    },
+    {
+      "id": 5,
+      "name": "CLINC150+OOS",
+      "requests": 5500,
+      "state": "staged"
+    },
+    {
+      "id": 10,
+      "name": "SGD/SGD-X",
+      "requests": 2500,
+      "state": "staged"
+    },
+    {
+      "id": 36,
+      "name": "BRIGHT",
+      "requests": 1297,
+      "state": "staged"
+    },
+    {
+      "id": 37,
+      "name": "Amazon ESCI",
+      "requests": 5000,
+      "state": "staged"
+    },
+    {
+      "id": 56,
+      "name": "PhishNChips phishing decisions",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 61,
+      "name": "HoVer",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 1,
+      "name": "BFCL",
+      "requests": 1694,
+      "state": "staged"
+    },
+    {
+      "id": 2,
+      "name": "ToolRet",
+      "requests": 7704,
+      "state": "staged"
+    },
+    {
+      "id": 3,
+      "name": "API-Bank",
+      "requests": 508,
+      "state": "staged"
+    },
+    {
+      "id": 6,
+      "name": "RouterBench",
+      "requests": 10000,
+      "state": "staged"
+    },
+    {
+      "id": 9,
+      "name": "Home appliance simulator",
+      "requests": 160,
+      "state": "staged"
+    },
+    {
+      "id": 62,
+      "name": "When2Call",
+      "requests": 0,
+      "state": "missing"
+    },
+    {
+      "id": 20,
+      "name": "BPoMP",
+      "requests": 5000,
+      "state": "staged"
+    },
+    {
+      "id": 21,
+      "name": "Humicroedit",
+      "requests": 2628,
+      "state": "staged"
+    },
+    {
+      "id": 22,
+      "name": "POP909-CL",
+      "requests": 2000,
+      "state": "staged"
+    },
+    {
+      "id": 23,
+      "name": "cfcolor",
+      "requests": 5000,
+      "state": "staged"
+    },
+    {
+      "id": 48,
+      "name": "ForecastBench",
+      "requests": 10139,
+      "state": "staged"
+    },
+    {
+      "id": 50,
+      "name": "Habermas Machine",
+      "requests": 1676,
+      "state": "staged"
+    },
+    {
+      "id": 64,
+      "name": "New Yorker",
+      "requests": 0,
+      "state": "missing"
+    }
+  ],
+  "official_overall": null,
+  "note": "Full available v1 benchmarks; release-v2 ToolRet/BRIGHT selection and seven extension recipes remain unverified. No missing benchmark is assigned a fabricated score."
+}

@@ -20,6 +20,11 @@ DEFAULT_BASE_MODEL = "mlx-community/Qwen3-0.6B-bf16"
 NEG_INF = -1e9
 
 
+def text_model(model):
+    """Return the text decoder inside either a text-only or multimodal MLX model."""
+    return getattr(model, "language_model", model)
+
+
 def label_logits(model, tokens: mx.array, lengths: mx.array, label_ids: mx.array, label_mask: mx.array) -> mx.array:
     """Next-token logits after each prompt, restricted to its label tokens.
 
@@ -27,7 +32,7 @@ def label_logits(model, tokens: mx.array, lengths: mx.array, label_ids: mx.array
     label_ids / label_mask: (B, K) label token ids padded to the widest question.
     Returns (B, K) logits with padded labels set to -inf.
     """
-    hidden = model.model(tokens)
+    hidden = text_model(model).model(tokens)
     last = hidden[mx.arange(tokens.shape[0]), lengths - 1][:, None, :]
     logits = head_logits(model, last)[:, 0, :]
     picked = mx.take_along_axis(logits, label_ids, axis=-1).astype(mx.float32)
@@ -35,6 +40,7 @@ def label_logits(model, tokens: mx.array, lengths: mx.array, label_ids: mx.array
 
 
 def head_logits(model, hidden: mx.array) -> mx.array:
+    model = text_model(model)
     if getattr(model.args, "tie_word_embeddings", False):
         return model.model.embed_tokens.as_linear(hidden)
     return model.lm_head(hidden)
@@ -49,6 +55,12 @@ def shared_prefix_label_logits(
     question only pays for its own few dozen tokens. Chunks are sized so that
     replicated prefix tokens stay under max_cached_tokens.
     """
+    # Hybrid recurrent caches carry convolution and SSM state, not just KV pairs.
+    # Use the ordinary batched readout until a cache-aware fan-out is implemented.
+    if hasattr(model, "language_model"):
+        tokens, lengths = pad_batch(seqs)
+        ids, mask = pad_labels(label_lists)
+        return np.array(label_logits(model, tokens, lengths, ids, mask))
     common = min(len(s) for s in seqs) - 1  # every suffix keeps at least one token
     for i in range(common):
         if any(s[i] != seqs[0][i] for s in seqs):

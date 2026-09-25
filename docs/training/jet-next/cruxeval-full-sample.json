@@ -1,0 +1,6 @@
+{
+  "requests": 570,
+  "selection": "All available CRUXEval rows after official exclusions; no label-based selection",
+  "source_sha256": "8dd94acf6c313c50aec3fc48188c840d994d14f764b3fff9fe7a89e2e41b9211",
+  "rows_sha256": "c8b53c17bff3c866e544788378fea6c064221d82cc113dae8d422343394b9c16"
+}

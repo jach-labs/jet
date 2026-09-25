@@ -1,0 +1,159 @@
+{
+  "status": "completed",
+  "base": "mlx-community/Qwen3-0.6B-bf16",
+  "base_revision": "42096995f6402fde107068cf530136fe64b604f8",
+  "git_head": "829955484f94e1dff420880de656ce99775a7b61",
+  "branch": "codex/decision-index-training",
+  "runs": {
+    "warm": {
+      "directory": "adapters/jet-v3-warm-20260924",
+      "config": {
+        "base_model": "mlx-community/Qwen3-0.6B-bf16",
+        "base_revision": "42096995f6402fde107068cf530136fe64b604f8",
+        "train": "data/train_v3.jsonl",
+        "val": "data/selection_v3.jsonl",
+        "out": "adapters/jet-v3-warm-20260924",
+        "epochs": 1.0,
+        "lr": 2e-05,
+        "warmup": 100,
+        "rank": 16,
+        "lora_scale": 10.0,
+        "dropout": 0.05,
+        "lora_layers": -1,
+        "max_batch_tokens": 4096,
+        "max_state_tokens": 1024,
+        "smoothing": 0.02,
+        "ordinal_weight": 2.0,
+        "grad_checkpoint": true,
+        "eval_every": 250,
+        "val_limit": 10000,
+        "cache_limit_gb": 1.0,
+        "resume": null,
+        "init_adapter": "adapters/jet",
+        "start_step": null,
+        "seed": 230923,
+        "data_sha256": {
+          "data/train_v3.jsonl": "ec5666923b48289d5ab3b0887f43e52ec403c838cce7a8eee9479888ccc58be4",
+          "data/selection_v3.jsonl": "f38f2fd8e503d749ea3a72a811348f663c30b9b5702f171c66f344fecc1dbee4"
+        },
+        "init_adapter_sha256": "e70670a173d6d95c329acb72f692577eb47171c106443aa0171fb9584399fbce",
+        "train_examples": 47313,
+        "steps_per_epoch": 2444,
+        "total_steps": 2444
+      },
+      "best": {
+        "step": 2444,
+        "nll": 0.5131154033423817,
+        "acc": 0.7806882383153569,
+        "improved": true,
+        "peak_memory_gb": 4.074936008
+      },
+      "weights_sha256": "93fd8eeade6eff0d0a8aa06119f71223dc1bee36c49f1a9298d2c37816b609d4",
+      "last_weights_sha256": "93fd8eeade6eff0d0a8aa06119f71223dc1bee36c49f1a9298d2c37816b609d4",
+      "calibration": {
+        "choice": 0.9439,
+        "score": 1.0293,
+        "noul": 1.2599
+      }
+    },
+    "v4": {
+      "directory": "adapters/jet-v4-transfer-20260924",
+      "config": {
+        "base_model": "mlx-community/Qwen3-0.6B-bf16",
+        "base_revision": "42096995f6402fde107068cf530136fe64b604f8",
+        "train": "data/train_v4_tools_focus.jsonl",
+        "val": "data/selection_v4_tools.jsonl",
+        "out": "adapters/jet-v4-transfer-20260924",
+        "epochs": 1.0,
+        "lr": 1e-05,
+        "warmup": 100,
+        "rank": 16,
+        "lora_scale": 10.0,
+        "dropout": 0.05,
+        "lora_layers": -1,
+        "max_batch_tokens": 3072,
+        "max_state_tokens": 2048,
+        "smoothing": 0.02,
+        "use_example_weights": true,
+        "ordinal_weight": 2.0,
+        "grad_checkpoint": true,
+        "eval_every": 250,
+        "val_limit": 10000,
+        "cache_limit_gb": 1.0,
+        "resume": null,
+        "init_adapter": "adapters/jet-v3-warm-20260924",
+        "start_step": null,
+        "seed": 230924,
+        "data_sha256": {
+          "data/train_v4_tools_focus.jsonl": "6f55f89bbd2d3211dd0cc0afca1398c74f997df0d76db0e15eba3a7390200601",
+          "data/selection_v4_tools.jsonl": "b430db40826a3da1cc9ca52723e1689be95bed5d0cf1cdc70b520101254a862a"
+        },
+        "init_adapter_sha256": "93fd8eeade6eff0d0a8aa06119f71223dc1bee36c49f1a9298d2c37816b609d4",
+        "train_examples": 30000,
+        "steps_per_epoch": 4033,
+        "total_steps": 4033
+      },
+      "best": {
+        "step": 3750,
+        "nll": 0.554768383523464,
+        "acc": 0.7602339181286549,
+        "improved": true,
+        "peak_memory_gb": 3.4478726
+      },
+      "weights_sha256": "4937c96fb56d7bd510f17b6aa51d5357b8bf8cc6de0e80eb976ebf47a1ea72ad",
+      "last_weights_sha256": "2c650a6fb492f673aba7c2f362d83306d5b0dd0ad5c7fdb715d8fbde4a9c02fc",
+      "calibration": {
+        "choice": 1.1554,
+        "score": 1.1554,
+        "noul": 1.3348
+      }
+    }
+  },
+  "hardware": "NVIDIA GeForce RTX 4080 SUPER, 16376 MiB, 615.71.09",
+  "monitored_device_peak_mib": 10861,
+  "monitor_scope": "V4 training and subsequent evaluations, including desktop GPU use",
+  "code_sha256": {
+    "src/train.py": "040ef12d706db397d6031a745faf9fc922497e6eb59f0d45b0ac18cd13b8cbfd",
+    "src/evaluate.py": "25dcaf7bcf9ddcfdd8349eeea047ef7cc33388cf74f32a65c8a1931b4f40f72c",
+    "src/model.py": "bdc03a5a63002f236e17fb81f681738cb238a3e4a73ca575b99d580c1f3dec03",
+    "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "src/decision_index_engine.py": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+    "src/bench_decision_index.py": "809bbfb59ecf007cb3b38a501ebeb36ec6fa9c68649cd21c360e5c15bde5536d",
+    "src/data/decision_training.py": "785b8407f93c9ba952f98d29f987be73c853707f4f3211ccd6a4865c4cee3061",
+    "train_cuda.sh": "464ebe6e844f2a02983f76f66edb7fd7f9354ed407c1ff2dfa043b97cfea6dcf",
+    "scripts/bench_index_cuda.sh": "415a46bf5bb39a4fdb9760339abff2304fb9762969da929965b6d26636ca99fc",
+    "scripts/evaluate_next_code.sh": "7755cc0e69d834db4686af24d4c1b991e8a4ae2f4593dac9ff159c9aec01236f",
+    "scripts/build_v4_transfer.py": "37262ee1a8978d19c58a031e11598d504ed2d4b981ee2f004d6c0a8ccff9af9b",
+    "scripts/audit_v4_transfer.py": "a878e78f59fbd1a1dd2032279222073b4c0dba01e509b231a77a74d21c24d011",
+    "scripts/prepare_v4_focus.py": "bd47eec38af66c0f27cd8973c8f4053bfaa558874b26a82b919a262d1916848c",
+    "scripts/build_v4_tools.py": "35b3694f83c326b3e236cf2528ebba341af0a0be34bb85b365409e6003019626",
+    "scripts/audit_v4_tools.py": "5e5c38a42274220bffe681133fa3f0ac6ac000bd72e1631e2a12b33b0f52d789",
+    "scripts/run_next_cuda.sh": "8cb6f179a0467565eb0cdf9348b55e305f628694dd82be8e15ae4c0fb4faa161",
+    "scripts/evaluate_next_extra.sh": "21b11259db33cbbf5c6e39b8cc4526770a0c2d71c5b7a5b0040c94447745a889",
+    "scripts/summarize_next.py": "584fe4addd24ce9b03de0b67635009bdaba9af39932f2d35a3505652b764f1df",
+    "scripts/finalize_next.py": "33b9456de4fdcca0f42ce81ef8ce2d8e35b36536e759ea47191179993bfb5b73",
+    "uv.lock": "158790ff4bb087ca458bbfd16025251923382fd6ebbee2965410fbf66b1c322b",
+    "pyproject.toml": "82c7478890e1e40bf184ed0d7428d7b2cbdf6ed968a1f45d4a554ec70f5192bc"
+  },
+  "data_sha256": {
+    "train_v4.jsonl": "f997660ef5a798a4aeeb0ace8c9c76756751d71f87523a31ab9e7a084df8cd5f",
+    "selection_v4.jsonl": "43c9aef75410fe06efccf9ee8fb71196f2d9de0136785d1684a4d7ed2914a158",
+    "calibration_v4.jsonl": "e08bd6f26e3150485ad67099ecdb30700474ba3173570beb901136dc8a669a77",
+    "test_v4_new.jsonl": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6",
+    "train_v4_focus.jsonl": "266817085e61b7ed176e9d02254abf7e55fa4ffcf4d0d2beb35c5c47d839c863",
+    "train_v4_tools_focus.jsonl": "6f55f89bbd2d3211dd0cc0afca1398c74f997df0d76db0e15eba3a7390200601",
+    "test_v4_tools.jsonl": "20f0e11691f8e51760bfef7cc9982ceb8719faeadb5340c14905b393cf58d68d",
+    "calibration_v4_tools.jsonl": "cbbe6269a2824a6239aaba9c89b64e43aac74788961f4e272fe369a73af0ab97",
+    "selection_v4_tools.jsonl": "b430db40826a3da1cc9ca52723e1689be95bed5d0cf1cdc70b520101254a862a"
+  },
+  "protected_original_files": "unchanged",
+  "published_model": "unchanged",
+  "preexisting_user_changes": "unchanged",
+  "warm_source_snapshot_sha256": "d1552430ccc972c13e6371ba3030c86ff8439d7a96f46729b1add5e2fa344624",
+  "limitations": [
+    "No official full-suite or leaderboard score",
+    "Native metrics only; installed panel proposal differs from deployed panel",
+    "Partial diagnostic differences are descriptive, not significance tests"
+  ]
+}

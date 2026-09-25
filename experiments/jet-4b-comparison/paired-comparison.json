@@ -1,0 +1,16 @@
+{
+  "correct": {
+    "qwen35_minus_qwen3": 0.018518518518518517,
+    "stratified_bootstrap_95_percent_interval": [
+      -0.018518518518518517,
+      0.05555555555555555
+    ]
+  },
+  "nll": {
+    "qwen35_minus_qwen3": -0.04787912610788933,
+    "stratified_bootstrap_95_percent_interval": [
+      -0.12143841693792233,
+      0.024845866699416283
+    ]
+  }
+}

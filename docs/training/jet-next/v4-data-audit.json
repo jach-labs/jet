@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "counts": {
+    "train:code_transfer": 3000,
+    "train:contract_entailment": 3000,
+    "train:stance_transfer": 3000,
+    "val:stance_transfer": 240,
+    "val:code_transfer": 240,
+    "val:contract_entailment": 240,
+    "calibration:stance_transfer": 240,
+    "calibration:contract_entailment": 238,
+    "calibration:code_transfer": 240,
+    "test:stance_transfer": 240,
+    "test:code_transfer": 240,
+    "test:contract_entailment": 240
+  },
+  "gold_positions": {
+    "('code_transfer', 1)": 948,
+    "('contract_entailment', 0)": 1247,
+    "('code_transfer', 3)": 912,
+    "('contract_entailment', 2)": 1232,
+    "('contract_entailment', 1)": 1239,
+    "('stance_transfer', 0)": 1238,
+    "('stance_transfer', 2)": 1281,
+    "('code_transfer', 0)": 935,
+    "('code_transfer', 2)": 925,
+    "('stance_transfer', 1)": 1201
+  },
+  "checks": [
+    "No state or component crosses a split",
+    "All VAST and ContractNLI targets checked against native train annotations",
+    "Every generated program executed and selected answer verified"
+  ]
+}

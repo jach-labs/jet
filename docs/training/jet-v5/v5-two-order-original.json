@@ -1,0 +1,517 @@
+{
+  "scope": "Diagnostic subset only. Not an official Decision Index or full-suite estimate.",
+  "rows_sha256": "a790c3d5dac6068ecef13de92c7700c4da0a9ed87b998f528701ac1fe219205d",
+  "results_sha256": "c5f6dae1edfef53dde22a36992b26e26838686df2f6ce52fe4e9813ff451b253",
+  "planned_requests": 500,
+  "processed_requests": 500,
+  "pending_requests": 0,
+  "complete_for_supplied_rows": true,
+  "environment": {
+    "engine": "decision_index_ensemble:TwoOrderJetEngine",
+    "engine_options": {
+      "model": "mlx-community/Qwen3-0.6B-bf16",
+      "revision": "42096995f6402fde107068cf530136fe64b604f8",
+      "adapter": "adapters/jet-v5-panel02-r2-20260924",
+      "max_tokens": 8192,
+      "max_cached_tokens": 8192
+    },
+    "model_source": {
+      "model": "mlx-community/Qwen3-0.6B-bf16",
+      "revision": "42096995f6402fde107068cf530136fe64b604f8",
+      "backend": "mlx",
+      "max_tokens": 8192,
+      "checkpoint_context": 40960,
+      "max_cached_tokens": 8192,
+      "choice_temperature": 1.0,
+      "adapter_sha256": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+      "format_sha256": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+      "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts.",
+      "lora_adapter": "/home/jach/dev/jet/adapters/jet-v5-panel02-r2-20260924",
+      "lora_weights_sha256": "6416adc20cc1517dc5d9cf3c0a2655da8a899296c5640dfc6d5551170824d0cb",
+      "calibration_sha256": "6d9ba9d874699bf1f48f0703a814075a175ccb460d65c2c4870a3e6fb37fdb2f",
+      "choice_readout": "Mean of original and reversed option-order probabilities, aligned by exact original keys.",
+      "ensemble_code_sha256": "f47a2da7845684c6a7edb67de503eea7ea3096d6d0e8bf78aa3054cbadc04dc1"
+    },
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "device": "Device(gpu, 0)",
+    "loaded_seconds": 1.9530501290000757,
+    "frozen_corpus_sha256": null,
+    "rows_path": "artifacts/decision-index/diagnostic/diagnostic.jsonl.gz",
+    "runner_sha256": "fac268fc460a2a3470f52ee9e785fd81b37864cace132ac9e6284ede806258b8",
+    "latency": "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+  },
+  "summary": {
+    "engine": "jet",
+    "counts": {
+      "ok": 500
+    },
+    "successful_request_latency_ms": {
+      "median": 97.2111895002854,
+      "p95": 708.4078269999736,
+      "mean": 174.5285182359912
+    },
+    "benchmarks": [
+      {
+        "catalog_id": 11,
+        "dataset": "ContractNLI",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "macro-F1",
+        "score": 0.7073362638505957,
+        "reference_same_cases": null,
+        "median_ms": 667.4918250000701,
+        "detail": {
+          "field_accuracy": 0.7331932773109243,
+          "case_exact_accuracy": 0,
+          "macro_f1": 0.7073362638505957,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 30,
+        "dataset": "GSM8K",
+        "requests": 112,
+        "answered": 112,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 112,
+        "metric": "accuracy",
+        "score": 0.5,
+        "reference_same_cases": null,
+        "median_ms": 84.65050700033316,
+        "tracks": {
+          "GSM8K-10choice": {
+            "metric": "accuracy",
+            "score": 0.5178571428571429,
+            "scored_requests": 56
+          },
+          "GSM8K-4choice": {
+            "metric": "accuracy",
+            "score": 0.48214285714285715,
+            "scored_requests": 56
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.5,
+          "case_exact_accuracy": 0.2857142857142857,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 40,
+        "dataset": "iSarcasmEval",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "see separate subtask tracks",
+        "score": null,
+        "reference_same_cases": null,
+        "median_ms": 95.17290849998972,
+        "tracks": {
+          "iSarcasmEval-A-Ar": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 12
+          },
+          "iSarcasmEval-A-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 19
+          },
+          "iSarcasmEval-B-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 23
+          },
+          "iSarcasmEval-C-Ar": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 1
+          },
+          "iSarcasmEval-C-En": {
+            "metric": "see separate subtask tracks",
+            "score": null,
+            "scored_requests": 1
+          }
+        },
+        "detail": {
+          "field_accuracy": 0.5906432748538012,
+          "case_exact_accuracy": 0.48214285714285715,
+          "macro_f1": 0.3588834324114758,
+          "custom_metrics": {},
+          "positive_f1_by_field": {
+            "sarcastic": 0.15384615384615385,
+            "sarcasm": 0.0,
+            "irony": 0.1111111111111111,
+            "satire": 0.0,
+            "understatement": 0.0,
+            "overstatement": 0.0,
+            "rhetorical_question": 0.0
+          },
+          "category_macro_f1": 0.03785103785103785
+        }
+      },
+      {
+        "catalog_id": 41,
+        "dataset": "VAST",
+        "requests": 56,
+        "answered": 56,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 56,
+        "metric": "macro-F1",
+        "score": 0.3866281866281866,
+        "reference_same_cases": null,
+        "median_ms": 60.61503049977546,
+        "detail": {
+          "field_accuracy": 0.44642857142857145,
+          "case_exact_accuracy": 0.44642857142857145,
+          "macro_f1": 0.3866281866281866,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 42,
+        "dataset": "NLI4CT",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "macro-F1",
+        "score": 0.45,
+        "reference_same_cases": null,
+        "median_ms": 113.20878300011827,
+        "detail": {
+          "field_accuracy": 0.6727272727272727,
+          "case_exact_accuracy": 0.6727272727272727,
+          "macro_f1": 0.45,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 43,
+        "dataset": "CRUXEval",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.36363636363636365,
+        "reference_same_cases": null,
+        "median_ms": 90.6655580001825,
+        "detail": {
+          "field_accuracy": 0.36363636363636365,
+          "case_exact_accuracy": 0.36363636363636365,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 44,
+        "dataset": "CLadder",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.509090909090909,
+        "reference_same_cases": null,
+        "median_ms": 81.81080399936036,
+        "detail": {
+          "field_accuracy": 0.509090909090909,
+          "case_exact_accuracy": 0.509090909090909,
+          "custom_metrics": {}
+        }
+      },
+      {
+        "catalog_id": 50,
+        "dataset": "Habermas Machine",
+        "requests": 55,
+        "answered": 55,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 55,
+        "metric": "accuracy",
+        "score": 0.2727272727272727,
+        "reference_same_cases": null,
+        "median_ms": 133.38184700023703,
+        "detail": {
+          "field_accuracy": 0.2727272727272727,
+          "case_exact_accuracy": 0.2727272727272727,
+          "custom_metrics": {
+            "normalized_rank_regret": 0.30787878787878786
+          }
+        }
+      }
+    ],
+    "note": "Native benchmark metrics on complete supported case groups. Unsupported cases excluded from accuracy but retained in coverage."
+  },
+  "panel_metrics_on_sample": {
+    "11": {
+      "catalog_id": 11,
+      "raw": 0.7073362638505957,
+      "skill": 0.5767581366790283,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.7073362638505957,
+          "random": 0.30851893087083776,
+          "skill": 0.5767581366790283,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "\"The contract contradicts the hypothesis.\"",
+            "\"The contract entails the hypothesis.\"",
+            "\"The hypothesis is neither entailed nor contradicted by the contract.\""
+          ]
+        }
+      ]
+    },
+    "30": {
+      "catalog_id": 30,
+      "raw": 0.5,
+      "skill": 0.386904761904762,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "GSM8K-4choice",
+          "raw": 0.48214285714285715,
+          "random": 0.25,
+          "skill": 0.30952380952380953,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        },
+        {
+          "track": "GSM8K-10choice",
+          "raw": 0.5178571428571429,
+          "random": 0.1,
+          "skill": 0.46428571428571436,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "40": {
+      "catalog_id": 40,
+      "raw": 0.3125,
+      "skill": 0.2587846656185042,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "iSarcasmEval-A-En",
+          "raw": 0.25,
+          "random": 0.2226862339379383,
+          "skill": 0.03513866247401688,
+          "planned_cases": 19,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-A-Ar",
+          "raw": 0.0,
+          "random": 0.22250656045660705,
+          "skill": 0.0,
+          "planned_cases": 12,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "track": "iSarcasmEval-C-En",
+          "raw": 0.0,
+          "random": 0.5,
+          "skill": 0.0,
+          "planned_cases": 1,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        },
+        {
+          "track": "iSarcasmEval-C-Ar",
+          "raw": 1.0,
+          "random": 0.5,
+          "skill": 1.0,
+          "planned_cases": 1,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "41": {
+      "catalog_id": 41,
+      "raw": 0.3866281866281866,
+      "skill": 0.07995439375409463,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.3866281866281866,
+          "random": 0.3333245556439576,
+          "skill": 0.07995439375409463,
+          "planned_cases": 56,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": [
+            "\"against\"",
+            "\"favor\"",
+            "\"neutral\""
+          ]
+        }
+      ]
+    },
+    "43": {
+      "catalog_id": 43,
+      "raw": 0.36363636363636365,
+      "skill": 0.02182592494011181,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.36363636363636365,
+          "random": 0.34943722943722944,
+          "skill": 0.02182592494011181,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "44": {
+      "catalog_id": 44,
+      "raw": 0.509090909090909,
+      "skill": 0.018181818181818077,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.509090909090909,
+          "random": 0.5,
+          "skill": 0.018181818181818077,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "50": {
+      "catalog_id": 50,
+      "raw": 0.2727272727272727,
+      "skill": 0.0,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.2727272727272727,
+          "random": 0.31,
+          "skill": 0.0,
+          "planned_cases": 55,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "7": {
+      "catalog_id": 7,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "16": {
+      "catalog_id": 16,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "13": {
+      "catalog_id": 13,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "15": {
+      "catalog_id": 15,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "17": {
+      "catalog_id": 17,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "19": {
+      "catalog_id": 19,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    }
+  }
+}

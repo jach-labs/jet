@@ -1,0 +1,187 @@
+{
+  "environment": {
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "packages": {
+      "mlx": "0.32.2",
+      "mlx-lm": "0.31.3",
+      "numpy": "2.5.3",
+      "transformers": "5.17.0",
+      "huggingface-hub": "1.32.0",
+      "decision-index": "0.1.0"
+    },
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 615.71.09, 16376 MiB"
+  },
+  "selected_step": 3500,
+  "total_steps": 3570,
+  "adapter_sha256": "6416adc20cc1517dc5d9cf3c0a2655da8a899296c5640dfc6d5551170824d0cb",
+  "calibration": {
+    "choice": 1.0,
+    "score": 1.2968,
+    "noul": 1.4983
+  },
+  "compatibility_ok": {
+    "diagnostic": 26,
+    "v5-diagnostic-1400": 14
+  },
+  "whole_session_gpu_peak_mib": 9909,
+  "training_config": {
+    "base_model": "mlx-community/Qwen3-0.6B-bf16",
+    "base_revision": "42096995f6402fde107068cf530136fe64b604f8",
+    "train": "data/train_v5_r2.jsonl",
+    "val": "data/selection_v5.jsonl",
+    "out": "adapters/jet-v5-panel02-r2-20260924",
+    "epochs": 1.0,
+    "lr": 1e-05,
+    "warmup": 100,
+    "rank": 16,
+    "lora_scale": 10.0,
+    "dropout": 0.05,
+    "lora_layers": -1,
+    "max_batch_tokens": 3072,
+    "max_state_tokens": 2048,
+    "smoothing": 0.02,
+    "use_example_weights": true,
+    "ordinal_weight": 2.0,
+    "grad_checkpoint": true,
+    "eval_every": 250,
+    "val_limit": 10000,
+    "cache_limit_gb": 1.0,
+    "resume": null,
+    "init_adapter": "adapters/jet-v4-transfer-20260924",
+    "start_step": null,
+    "seed": 240925,
+    "data_sha256": {
+      "data/train_v5_r2.jsonl": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+      "data/selection_v5.jsonl": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3"
+    },
+    "init_adapter_sha256": "4937c96fb56d7bd510f17b6aa51d5357b8bf8cc6de0e80eb976ebf47a1ea72ad",
+    "train_examples": 15997,
+    "steps_per_epoch": 3570,
+    "total_steps": 3570
+  },
+  "code_sha256": {
+    "src/train.py": "040ef12d706db397d6031a745faf9fc922497e6eb59f0d45b0ac18cd13b8cbfd",
+    "src/model.py": "bdc03a5a63002f236e17fb81f681738cb238a3e4a73ca575b99d580c1f3dec03",
+    "src/evaluate.py": "25dcaf7bcf9ddcfdd8349eeea047ef7cc33388cf74f32a65c8a1931b4f40f72c",
+    "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "src/decision_index_engine.py": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+    "src/decision_index_ensemble.py": "f47a2da7845684c6a7edb67de503eea7ea3096d6d0e8bf78aa3054cbadc04dc1",
+    "scripts/download_v5_sources.py": "58722a9a442f72693f83f23808247324c76f20fd0e3ba1a2a9ffc4d845142b94",
+    "scripts/build_v5.py": "5f915e061c536400fe79b42d5c0980445e160ab036ec5a5132ddf809cc26f1c9",
+    "scripts/audit_v5.py": "4596800e8b0629222ee5c780f2630e27c8218f78b0ca31caaa49cf905694fd6e",
+    "scripts/evaluate_v5_order.py": "c4436a1994a27473b04c9aae131ffb5bdb3ed7303a21c7507ce39dae6f5cf70c",
+    "scripts/rebuild_v5_diagnostic.py": "5c08c56a09a811195d1caaf916987d5a0e20c6deb4cbcb69805f4aaaeb4746cc",
+    "scripts/summarize_v5.py": "48834200e9c6d2874e6b12982380167cebd9faf2a4b523014f816c09ec0f85ca",
+    "scripts/filter_v5_retention.py": "d4ae571e0ecfd8090353139ed925071a27a4ed3d7f27f6d1c7635687e8a19b6a",
+    "scripts/finalize_v5.py": "20f841219ff97f5c02068a86867677f1ad36a9df12d261c13604408ebd090600",
+    "scripts/run_v5_cuda.sh": "c79834e70e104dd978daa8005d60d0ed5641ca44893708cd5760566e870eacc8",
+    "scripts/run_v5_extra.sh": "9a6f9471fdc566cce479d9ce6eb257aeefa830ab06b06c19fededc86d69f13b6",
+    "tests/test_decision_ensemble.py": "6bdf9dce1d41d2d6998fbac3cc2df362d57eb3e0748c00cf5023a0c9b3c16b91"
+  },
+  "dataset": {
+    "rule": "Audit native-evaluation overlap in retained examples and create immutable R2 data.\n\nCatalog names and isolated short schema fields are not treated as utterances.\nV5 source content identities, complete text states and text fragments >=32\nnormalized characters are compared; inherited exposure is reported explicitly.\n",
+    "files": {
+      "train_v5": {
+        "sha256": "d96100fd362255482869fdfc96d02cc6d3071326155500f817fca5fdbc53d3fd",
+        "kept": 15997,
+        "removed": 3,
+        "removed_sources": {
+          "v3:sarcasm_irony": 1,
+          "massive": 2
+        },
+        "state_hashes": [
+          "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+          "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+          "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9"
+        ]
+      },
+      "selection_v5": {
+        "sha256": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+        "kept": 1400,
+        "removed": 0,
+        "removed_sources": {},
+        "state_hashes": []
+      },
+      "calibration_v5": {
+        "sha256": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+        "kept": 1400,
+        "removed": 0,
+        "removed_sources": {},
+        "state_hashes": []
+      },
+      "test_v5_new": {
+        "sha256": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+        "kept": 600,
+        "removed": 0,
+        "removed_sources": {},
+        "state_hashes": []
+      }
+    },
+    "inherited_exposure": {
+      "train_v2": {
+        "count": 8,
+        "by_source": {
+          "massive": 8
+        },
+        "state_hashes": [
+          "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+          "92dde7a604a103c21c35ecfb6ca201684031767adf42c84db55b881a5de129f8",
+          "b49177e05868b7af8e82a644c1ce20e521af46497adeaffe861d294d9b4bb75e",
+          "1efe129d040aa8d64ca7dc438f4cb43876757818864f09ae7cb53a23d1c9f08f",
+          "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+          "0b41b183ab200019e05ae6b8bfdf638ce2d90d39269a33ffcc94b9b035fddfb5",
+          "870d2ccc7ede8f14ddba0b441af3cafbc60a548e339e41d5a061445f1988b88d",
+          "262c9bf9846c7d15b6c044f42ca9e7d6f0e5e524b31671d54607762c57072ffb"
+        ]
+      },
+      "train_v3": {
+        "count": 13,
+        "by_source": {
+          "v3:sarcasm_irony": 1,
+          "massive": 8,
+          "v3:tool_selection": 4
+        },
+        "state_hashes": [
+          "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+          "92dde7a604a103c21c35ecfb6ca201684031767adf42c84db55b881a5de129f8",
+          "b49177e05868b7af8e82a644c1ce20e521af46497adeaffe861d294d9b4bb75e",
+          "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1",
+          "262c9bf9846c7d15b6c044f42ca9e7d6f0e5e524b31671d54607762c57072ffb",
+          "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+          "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+          "0b41b183ab200019e05ae6b8bfdf638ce2d90d39269a33ffcc94b9b035fddfb5",
+          "1efe129d040aa8d64ca7dc438f4cb43876757818864f09ae7cb53a23d1c9f08f",
+          "870d2ccc7ede8f14ddba0b441af3cafbc60a548e339e41d5a061445f1988b88d",
+          "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+          "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090",
+          "9fdc4a5c9a902b9670ea4805a49a6d46efb86c7c6fa8896fe27ce45135a83090"
+        ]
+      },
+      "train_v4_tools_focus": {
+        "count": 5,
+        "by_source": {
+          "v3:sarcasm_irony": 1,
+          "v4:tool_intent_routing": 2,
+          "massive": 2
+        },
+        "state_hashes": [
+          "5aa762ae383fbb727af3c7a36d4940a5b8c40a989452d2304fc958ff3f354e7a",
+          "55769c01f1927d87fbf132c23775213854fdee7156937b41dc42ec02af6ad6d1",
+          "0ab0aa27ad28f0a6571b6e821fc1b7a4389aec339eac6516e32f33317a4b15e9",
+          "7af3840b205f11ba55c61fe5d1fc2e4bf93ff5c5f99b4543d00ea59c9408fbbe",
+          "af6be8d6a51f8115492a637a5e9a80e5022a43dff78de8248641d295a244d2a1"
+        ]
+      }
+    },
+    "output": {
+      "path": "/home/jach/dev/jet/data/train_v5_r2.jsonl",
+      "sha256": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+      "rows": 15997
+    },
+    "caveat": "R2 removes new-stage overlap but cannot erase inherited V4 training exposure; do not claim a fully decontaminated checkpoint or an official score."
+  },
+  "published_model_unchanged": true,
+  "old_validation_test_unchanged": true,
+  "scope": "Partial diagnostics; inherited overlap caveat applies. No official Decision Index 0.2 score."
+}

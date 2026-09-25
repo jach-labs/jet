@@ -1,0 +1,26 @@
+[
+  {
+    "id": "Kshetrajna/decision-index-results",
+    "sha": "a49f81afe4fa6e479b51d5d0bc6b06a4e2f08b7e"
+  },
+  {
+    "id": "surogate/decision-index-results",
+    "sha": "50af99baf66c8d11f7984c0d4271dd66f27f77e3"
+  },
+  {
+    "id": "Mapika/decision-index-results",
+    "sha": "9fc5894d3808bdb78ca4b0b578ae351118d0f7e7"
+  },
+  {
+    "id": "tasksource/tasksource-jev-typed-decisions",
+    "sha": "01cf47f3854cc90dc6e60b744586b1c843a3c639"
+  },
+  {
+    "id": "samatv256/jev-decisions-v1",
+    "sha": "d063f00b9178a3a08558c20d5cbce0d0f2f5d3f2"
+  },
+  {
+    "id": "JonesLin/next-jev-tetris-decisions-10k",
+    "sha": "ff95cff11d6fd543e2b31df39e4f63b869593713"
+  }
+]

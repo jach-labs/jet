@@ -1,0 +1,7 @@
+{
+  "max_absolute_output_error": 0.0,
+  "mean_absolute_output_error": 0.0,
+  "fla_gradients_finite": true,
+  "dtype": "bfloat16",
+  "seed": 240924
+}

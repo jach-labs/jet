@@ -1,0 +1,9 @@
+{
+  "seed": 230924,
+  "retained_v3": 18000,
+  "new_v4": 9000,
+  "total": 27000,
+  "source_sha256": "f997660ef5a798a4aeeb0ace8c9c76756751d71f87523a31ab9e7a084df8cd5f",
+  "output_sha256": "266817085e61b7ed176e9d02254abf7e55fa4ffcf4d0d2beb35c5c47d839c863",
+  "note": "Without-replacement source-balanced subsample of training only; all 9000 V4 additions retained. Existing heldouts unchanged."
+}

@@ -1,0 +1,6 @@
+{
+  "keys_match": true,
+  "exact_tensors": 120,
+  "different_tensors": 190,
+  "max_abs_difference": 0.00048828125
+}

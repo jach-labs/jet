@@ -1,0 +1,450 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "weight_bytes": 9319828096
+  },
+  "initial": {
+    "n": 270,
+    "acc": 0.774074074074074,
+    "nll": 0.7050785440597489,
+    "latency_median_ms": 66.67521199960902,
+    "latency_mean_ms": 88.43928156299323,
+    "latency_p95_ms": 272.53483980066414,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.46606830606469885
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 1.135432969359681
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.31252055121585726
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 0.45518263094127176
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.00962591357238125
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.8648064263281412
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.2604404338635504
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.1120445743203162
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.7219117373228073
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.30805100277066233
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.8646090036258102
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.10505744917318224
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.32098354725167155
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 1.6819516323506831
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 0.7842968061566353
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 1.0466576658189297
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.016341190366074444
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.003819852579908911
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 1.2138124153017997
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.479772687330842
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 1.3203807640820742
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.2755755605176091
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5585507306270301
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.22781919117551297
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.4534945056773722
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.5904087875504047
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.4475043542683124
+      }
+    }
+  },
+  "final": {
+    "n": 270,
+    "acc": 0.7814814814814814,
+    "nll": 0.6280511443688603,
+    "latency_median_ms": 66.44956999934948,
+    "latency_mean_ms": 88.12541999262369,
+    "latency_p95_ms": 271.66179639998484,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.4793719788780436
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.4346591210924089
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.37163928151130676
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.22982189087197186
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.013489819271489978
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.831477125082165
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5466885003494099
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.3,
+        "nll": 1.3636981129646302
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.6885508116334677
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.15643312418833374
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.47907694410532714
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.03774499136488885
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.38607455920428035
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.172315915673971
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 0.7865408752113581
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 1.4869258952327074
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.01041423985734582
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.009995949000585824
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 1.460696041584015
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.806397271156311
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.416193881072104
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.23254401576705278
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.387486984860152
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.421802009595558
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.2159426162019372
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 1.8464867849834263
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.6849121572449803
+      }
+    }
+  },
+  "selected": {
+    "n": 270,
+    "acc": 0.7814814814814814,
+    "nll": 0.6280511443688603,
+    "latency_median_ms": 66.44956999934948,
+    "latency_mean_ms": 88.12541999262369,
+    "latency_p95_ms": 271.66179639998484,
+    "by_source": {
+      "ag_news": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.4793719788780436
+      },
+      "banking77": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.4346591210924089
+      },
+      "boolq": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.37163928151130676
+      },
+      "civil_comments": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.22982189087197186
+      },
+      "dbpedia": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.013489819271489978
+      },
+      "massive": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.831477125082165
+      },
+      "mnli": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.5466885003494099
+      },
+      "stsb": {
+        "n": 10,
+        "acc": 0.3,
+        "nll": 1.3636981129646302
+      },
+      "v3:arithmetic": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.6885508116334677
+      },
+      "v3:boolean_rules": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.15643312418833374
+      },
+      "v3:code_behavior": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.47907694410532714
+      },
+      "v3:document_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.03774499136488885
+      },
+      "v3:entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.38607455920428035
+      },
+      "v3:product_relevance": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.172315915673971
+      },
+      "v3:sarcasm_irony": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 0.7865408752113581
+      },
+      "v3:stance": {
+        "n": 10,
+        "acc": 0.5,
+        "nll": 1.4869258952327074
+      },
+      "v3:tool_relevance": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.01041423985734582
+      },
+      "v3:tool_selection": {
+        "n": 10,
+        "acc": 1.0,
+        "nll": 0.009995949000585824
+      },
+      "v4:code_transfer": {
+        "n": 10,
+        "acc": 0.4,
+        "nll": 1.460696041584015
+      },
+      "v4:contract_entailment": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.806397271156311
+      },
+      "v4:stance_transfer": {
+        "n": 10,
+        "acc": 0.6,
+        "nll": 1.416193881072104
+      },
+      "v4:tool_intent_routing": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.23254401576705278
+      },
+      "v5:adversarial_entailment": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.387486984860152
+      },
+      "v5:commonsense_completion": {
+        "n": 10,
+        "acc": 0.8,
+        "nll": 0.421802009595558
+      },
+      "v5:tool_response_preference": {
+        "n": 10,
+        "acc": 0.9,
+        "nll": 0.2159426162019372
+      },
+      "v5:wide_intent": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 1.8464867849834263
+      },
+      "yelp": {
+        "n": 10,
+        "acc": 0.7,
+        "nll": 0.6849121572449803
+      }
+    }
+  },
+  "selected_step": 135,
+  "training_seconds": 206.85058149799988,
+  "training_tokens_per_second": 874.2252436053633,
+  "peak_allocated_gb": 10.115909632,
+  "peak_reserved_gb": 10.403971072,
+  "adapter_reload_verified": true,
+  "adapter_dir": "/home/jach/dev/jet/adapters/jet-4b-comparison/qwen35-4b",
+  "steps": 135
+}

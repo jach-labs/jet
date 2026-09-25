@@ -1,0 +1,49 @@
+{
+  "rows_sha256": "2b1b766400236412840ab4bbec472464f958ba83cf8388a78fe1863a8eb245ea",
+  "rows_uncompressed_sha256": "f2bf36ce7a136f68dbd5d81ca01a1685297da258263511939dfaf8b818fefa9a",
+  "model_revision": "8a97cfea2df622bb03f5dc9b02567e21abd2551c",
+  "scope": "Only the supplied rows; token capacity, not measured accuracy or validated long-context quality.",
+  "limits": [
+    4096,
+    6144,
+    8192,
+    16384,
+    32768,
+    40960
+  ],
+  "benchmarks": {
+    "Amazon ESCI": {
+      "requests": 500,
+      "fields": 500,
+      "options": {
+        "4": 500
+      },
+      "questions_per_request": {
+        "1": 500
+      },
+      "supported_requests": {
+        "4096": 500,
+        "6144": 500,
+        "8192": 500,
+        "16384": 500,
+        "32768": 500,
+        "40960": 500
+      },
+      "capacity_failures": {},
+      "prompt_tokens": {
+        "p50": 400.0,
+        "p95": 1007.2499999999998,
+        "max": 2402.0
+      },
+      "source_groups": 500,
+      "supported_complete_groups": {
+        "4096": 500,
+        "6144": 500,
+        "8192": 500,
+        "16384": 500,
+        "32768": 500,
+        "40960": 500
+      }
+    }
+  }
+}

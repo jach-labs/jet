@@ -1,0 +1,14 @@
+{
+  "source_revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+  "files": {
+    "test.csv": {
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/test.csv",
+      "sha256": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d"
+    },
+    "categories.json": {
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/categories.json",
+      "sha256": "53261da888122daf2d120d925458631d9619e15d82e56052e7a42e535ce32b63"
+    }
+  },
+  "reason": "Pinned HF loader references these original source CSVs; reproduction kit incorrectly expects CSV files in HF repository."
+}

@@ -1,0 +1,152 @@
+{
+  "scope": "Diagnostic subset only. Not an official Decision Index or full-suite estimate.",
+  "rows_sha256": "c8b53c17bff3c866e544788378fea6c064221d82cc113dae8d422343394b9c16",
+  "results_sha256": "9b65aed86040c13dd85316232fbdae3a77500a0dcfad7c9243c0bda1be44f933",
+  "planned_requests": 570,
+  "processed_requests": 570,
+  "pending_requests": 0,
+  "complete_for_supplied_rows": true,
+  "environment": {
+    "engine": "decision_index_engine:JetEngine",
+    "engine_options": {
+      "max_tokens": 8192,
+      "max_cached_tokens": 8192,
+      "model": "mlx-community/Qwen3-0.6B-bf16",
+      "revision": "42096995f6402fde107068cf530136fe64b604f8",
+      "adapter": "adapters/jet-v3-warm-20260924"
+    },
+    "model_source": {
+      "model": "mlx-community/Qwen3-0.6B-bf16",
+      "revision": "42096995f6402fde107068cf530136fe64b604f8",
+      "backend": "mlx",
+      "max_tokens": 8192,
+      "checkpoint_context": 40960,
+      "max_cached_tokens": 8192,
+      "choice_temperature": 0.9439,
+      "adapter_sha256": "f4b03bb95fc34afd0debf8ec5210a68965fb69bd510284ba8f26f8f2f75179ba",
+      "format_sha256": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+      "policy": "Native Jet prompt and label-token readout; complete input or unsupported; no truncation, option pruning, or benchmark-specific prompts.",
+      "lora_adapter": "/home/jach/dev/jet/adapters/jet-v3-warm-20260924",
+      "lora_weights_sha256": "93fd8eeade6eff0d0a8aa06119f71223dc1bee36c49f1a9298d2c37816b609d4",
+      "calibration_sha256": "6a6dda82f9dacd1839189090ae03bcca5f3b9ca4c2c15e050609f89f2f52c226"
+    },
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "device": "Device(gpu, 0)",
+    "loaded_seconds": 1.9001195040000312,
+    "frozen_corpus_sha256": null,
+    "rows_path": "artifacts/decision-index/cruxeval-full-diagnostic.jsonl.gz",
+    "runner_sha256": "fac268fc460a2a3470f52ee9e785fd81b37864cace132ac9e6284ede806258b8",
+    "latency": "Synchronized local MLX request wall time, including full prompt construction and shared-prefix inference; excludes model loading."
+  },
+  "summary": {
+    "engine": "jet",
+    "counts": {
+      "ok": 570
+    },
+    "successful_request_latency_ms": {
+      "median": 26.362825999967754,
+      "p95": 62.52290100019309,
+      "mean": 36.53820609660327
+    },
+    "benchmarks": [
+      {
+        "catalog_id": 43,
+        "dataset": "CRUXEval",
+        "requests": 570,
+        "answered": 570,
+        "unsupported": 0,
+        "errors": 0,
+        "abstained": 0,
+        "pending": 0,
+        "scored_requests": 570,
+        "metric": "accuracy",
+        "score": 0.3508771929824561,
+        "reference_same_cases": null,
+        "median_ms": 26.362825999967754,
+        "detail": {
+          "field_accuracy": 0.3508771929824561,
+          "case_exact_accuracy": 0.3508771929824561,
+          "custom_metrics": {}
+        }
+      }
+    ],
+    "note": "Native benchmark metrics on complete supported case groups. Unsupported cases excluded from accuracy but retained in coverage."
+  },
+  "panel_metrics_on_sample": {
+    "43": {
+      "catalog_id": 43,
+      "raw": 0.3508771929824561,
+      "skill": 0.0,
+      "coverage": 1,
+      "pending": 0,
+      "tracks": [
+        {
+          "track": "all",
+          "raw": 0.3508771929824561,
+          "random": 0.36971874129768867,
+          "skill": 0.0,
+          "planned_cases": 570,
+          "coverage": 1,
+          "pending": 0,
+          "label_universe": []
+        }
+      ]
+    },
+    "7": {
+      "catalog_id": 7,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "16": {
+      "catalog_id": 16,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "13": {
+      "catalog_id": 13,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "15": {
+      "catalog_id": 15,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "17": {
+      "catalog_id": 17,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    },
+    "19": {
+      "catalog_id": 19,
+      "raw": 0.0,
+      "skill": 0.0,
+      "coverage": 0.0,
+      "pending": 1.0,
+      "status": "unrun; provisional lower bound",
+      "tracks": []
+    }
+  }
+}
