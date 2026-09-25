@@ -1,0 +1,10 @@
+{
+  "revision": "8e12d6d7fead9af98155c3d23323a51144baca9d",
+  "release_v2_named_paths": [],
+  "has_lab_compute_indices": false,
+  "space_revision": "953204c58869a05e911d5ec62b7588b1b97b03ba",
+  "sources": [
+    "https://github.com/apolinario/decision-index",
+    "https://huggingface.co/spaces/multimodalart/jev-decision-index/tree/main"
+  ]
+}

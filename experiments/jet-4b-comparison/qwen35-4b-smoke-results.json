@@ -1,0 +1,75 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "weight_bytes": 9319828096
+  },
+  "initial": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 0.6937533989548683,
+    "latency_median_ms": 212.25031450012466,
+    "latency_mean_ms": 212.25031450012466,
+    "latency_p95_ms": 343.1413820499074,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 1.3132617473602295
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.07424505054950714
+      }
+    }
+  },
+  "final": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 0.6488448157906532,
+    "latency_median_ms": 211.65929099970526,
+    "latency_mean_ms": 211.65929099970526,
+    "latency_p95_ms": 342.62066070068613,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 1.2234445810317993
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.07424505054950714
+      }
+    }
+  },
+  "selected": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 0.6488448157906532,
+    "latency_median_ms": 211.65929099970526,
+    "latency_mean_ms": 211.65929099970526,
+    "latency_p95_ms": 342.62066070068613,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 1.2234445810317993
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.07424505054950714
+      }
+    }
+  },
+  "selected_step": 2,
+  "training_seconds": 29.77560644299956,
+  "training_tokens_per_second": 72.74411032220104,
+  "peak_allocated_gb": 9.991727104,
+  "peak_reserved_gb": 10.420748288,
+  "adapter_reload_verified": true,
+  "adapter_dir": "/home/jach/dev/jet/adapters/jet-4b-comparison/qwen35-4b-smoke",
+  "steps": 2
+}

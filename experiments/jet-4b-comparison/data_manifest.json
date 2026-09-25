@@ -1,0 +1,97 @@
+{
+  "seed": 240924,
+  "max_prompt": 2048,
+  "splits": {
+    "train": {
+      "input": "/home/jach/dev/jet/data/train_v5_r2.jsonl",
+      "input_sha256": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+      "output_sha256": "df6d0662928640c97d96b6011cebde11a46ce3e87ad5ff081165b7082c75d4ca",
+      "rows": 540,
+      "sources": {
+        "v3:boolean_rules": 20,
+        "v4:tool_intent_routing": 20,
+        "v5:wide_intent": 20,
+        "v3:stance": 20,
+        "ag_news": 20,
+        "v4:contract_entailment": 20,
+        "mnli": 20,
+        "v5:adversarial_entailment": 20,
+        "v4:stance_transfer": 20,
+        "v5:commonsense_completion": 20,
+        "boolq": 20,
+        "v5:tool_response_preference": 20,
+        "stsb": 20,
+        "banking77": 20,
+        "v3:document_relevance": 20,
+        "v3:product_relevance": 20,
+        "v3:tool_relevance": 20,
+        "civil_comments": 20,
+        "dbpedia": 20,
+        "v3:code_behavior": 20,
+        "v3:sarcasm_irony": 20,
+        "massive": 20,
+        "v3:tool_selection": 20,
+        "v3:arithmetic": 20,
+        "v3:entailment": 20,
+        "yelp": 20,
+        "v4:code_transfer": 20
+      },
+      "overlength_rows_skipped_before_quota": {
+        "v4:contract_entailment": 8
+      },
+      "max_tokens_per_model": [
+        1961,
+        1973
+      ],
+      "median_tokens_per_model": [
+        181.0,
+        193.0
+      ]
+    },
+    "validation": {
+      "input": "/home/jach/dev/jet/data/selection_v5.jsonl",
+      "input_sha256": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+      "output_sha256": "2912641dffbdc2b43b063dbe9844422d480c4248fba21dbccb1963a38cfa0908",
+      "rows": 270,
+      "sources": {
+        "ag_news": 10,
+        "v4:code_transfer": 10,
+        "v4:tool_intent_routing": 10,
+        "v3:entailment": 10,
+        "v3:tool_relevance": 10,
+        "v5:adversarial_entailment": 10,
+        "stsb": 10,
+        "v5:tool_response_preference": 10,
+        "v5:wide_intent": 10,
+        "v3:sarcasm_irony": 10,
+        "civil_comments": 10,
+        "massive": 10,
+        "v4:stance_transfer": 10,
+        "v3:code_behavior": 10,
+        "v3:tool_selection": 10,
+        "v3:arithmetic": 10,
+        "v3:product_relevance": 10,
+        "dbpedia": 10,
+        "v3:stance": 10,
+        "mnli": 10,
+        "boolq": 10,
+        "yelp": 10,
+        "v3:boolean_rules": 10,
+        "v5:commonsense_completion": 10,
+        "v4:contract_entailment": 10,
+        "banking77": 10,
+        "v3:document_relevance": 10
+      },
+      "overlength_rows_skipped_before_quota": {},
+      "max_tokens_per_model": [
+        2026,
+        2011
+      ],
+      "median_tokens_per_model": [
+        190.0,
+        207.0
+      ]
+    }
+  },
+  "exact_train_validation_state_overlap": 0
+}

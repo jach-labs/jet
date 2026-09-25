@@ -1,0 +1,55 @@
+{
+  "name": "jet-27b",
+  "status": "planned_not_trained",
+  "base_model": "Qwen/Qwen3.8-27B",
+  "base_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "quantized_model": "unsloth/Qwen3.8-27B-unsloth-bnb-4bit",
+  "quantized_revision": "8aa5f05d26b7205477066e1449e0af13f762a299",
+  "backend": "Unsloth / PyTorch QLoRA (integration not implemented)",
+  "objective": "Jet label-token target-distribution cross-entropy; preserve choice, score and noul semantics",
+  "initialization": "fresh 27B pretrained backbone; do not load 0.6B adapters",
+  "proposed_training": {
+    "epochs": 1,
+    "learning_rate": 5e-05,
+    "lora_rank": 16,
+    "microbatch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "max_sequence_length": 2048,
+    "gradient_checkpointing": true,
+    "vision_training": false,
+    "seed": 240927
+  },
+  "datasets": {
+    "train": {
+      "path": "/home/jach/dev/jet/data/train_v5_r2.jsonl",
+      "sha256": "62f33bfcad77c53d86d7097975bb52255b663d4c6f13b0e88025cb3df1d18774",
+      "rows": 15997
+    },
+    "selection": {
+      "path": "/home/jach/dev/jet/data/selection_v5.jsonl",
+      "sha256": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+      "rows": 1400
+    },
+    "calibration": {
+      "path": "/home/jach/dev/jet/data/calibration_v5.jsonl",
+      "sha256": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+      "rows": 1400
+    },
+    "test_new": {
+      "path": "/home/jach/dev/jet/data/test_v5_new.jsonl",
+      "sha256": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+      "rows": 600
+    }
+  },
+  "output_adapter": "adapters/jet-27b-qwen38-experiment",
+  "publication": false,
+  "paid_compute": false,
+  "smoke_test_required": true,
+  "selection": "held-out validation NLL only; benchmark results never select checkpoints",
+  "limitations": [
+    "Proposal only, not an executable training configuration",
+    "Existing MLX CUDA launcher is not a drop-in replacement for the proposed Unsloth backend",
+    "Prompt/tokenizer and hybrid attention compatibility must be tested",
+    "No full current Decision Index score is available"
+  ]
+}

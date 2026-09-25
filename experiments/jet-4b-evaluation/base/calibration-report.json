@@ -1,0 +1,34 @@
+{
+  "variant": "base",
+  "calibration": {
+    "choice": {
+      "n": 1231,
+      "temperature": 1.3739536474580891,
+      "raw_nll": 0.7934818743268385,
+      "calibrated_nll": 0.7544862414464378
+    },
+    "score": {
+      "n": 60,
+      "temperature": 1.9999999999999998,
+      "raw_nll": 1.4816637159387573,
+      "calibrated_nll": 1.3362339935871619
+    },
+    "noul": {
+      "n": 109,
+      "temperature": 1.224053543304655,
+      "raw_nll": 0.3577478354080857,
+      "calibrated_nll": 0.35205127348302534
+    }
+  },
+  "test": {
+    "n": 600,
+    "accuracy": 0.8333333333333334,
+    "raw_nll": 0.654876010851422,
+    "calibrated_nll": 0.6782520511735527
+  },
+  "data_sha256": {
+    "calibration_v5": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+    "test_v5_new": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6"
+  },
+  "seconds": 160.6194415909995
+}

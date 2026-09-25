@@ -124,7 +124,10 @@ Details: [v6 release notes](docs/training/jet-v6-release.md) and the
 [model card](release/README.md). Earlier versions are in the
 [training history](TRAINING_HISTORY.md).
 
-v6 was trained with a PyTorch/PEFT pipeline that is not yet in this repository.
+The v6 PyTorch/PEFT pipeline is recorded in
+[`experiments/jet-4b-full-20260924/`](experiments/jet-4b-full-20260924/).
+The continued-training candidate and checkpoint resume support are in
+[`experiments/jet-targeted-20260924/`](experiments/jet-targeted-20260924/).
 The MLX pipeline below reproduces the Qwen3-0.6B releases (v5 and earlier), following
 the [recorded v5 protocol](docs/training/jet-v5/protocol.md) and scripts under `scripts/`.
 

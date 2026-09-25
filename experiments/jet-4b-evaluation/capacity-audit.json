@@ -1,0 +1,5 @@
+{
+  "requests": 1900,
+  "max_prompt_tokens": 8034,
+  "unsupported_at_8192": []
+}

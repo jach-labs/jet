@@ -1,0 +1,75 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "weight_bytes": 8044982000
+  },
+  "initial": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 7.75,
+    "latency_median_ms": 190.56205349988886,
+    "latency_mean_ms": 190.56205349988886,
+    "latency_p95_ms": 315.6112219499846,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 15.5
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.0
+      }
+    }
+  },
+  "final": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 7.375,
+    "latency_median_ms": 189.17637699996703,
+    "latency_mean_ms": 189.17637699996703,
+    "latency_p95_ms": 313.3312591002323,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 14.75
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.0
+      }
+    }
+  },
+  "selected": {
+    "n": 2,
+    "acc": 0.5,
+    "nll": 7.375,
+    "latency_median_ms": 189.17637699996703,
+    "latency_mean_ms": 189.17637699996703,
+    "latency_p95_ms": 313.3312591002323,
+    "by_source": {
+      "v3:document_relevance": {
+        "n": 1,
+        "acc": 0.0,
+        "nll": 14.75
+      },
+      "v4:contract_entailment": {
+        "n": 1,
+        "acc": 1.0,
+        "nll": 0.0
+      }
+    }
+  },
+  "selected_step": 2,
+  "training_seconds": 1.6714830920009263,
+  "training_tokens_per_second": 1281.4966602119916,
+  "peak_allocated_gb": 9.50744576,
+  "peak_reserved_gb": 9.927917568,
+  "adapter_reload_verified": true,
+  "adapter_dir": "/home/jach/dev/jet/adapters/jet-4b-comparison/qwen3-4b-smoke",
+  "steps": 2
+}

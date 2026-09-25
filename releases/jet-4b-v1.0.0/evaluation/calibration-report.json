@@ -1,0 +1,34 @@
+{
+  "variant": "trained",
+  "calibration": {
+    "choice": {
+      "n": 1231,
+      "temperature": 1.1224620483093728,
+      "raw_nll": 0.3336591756954066,
+      "calibrated_nll": 0.32659106940542976
+    },
+    "score": {
+      "n": 60,
+      "temperature": 1.155352696872273,
+      "raw_nll": 0.9072157250177675,
+      "calibrated_nll": 0.9011427819552271
+    },
+    "noul": {
+      "n": 109,
+      "temperature": 1.5422108254079405,
+      "raw_nll": 0.3502182863623344,
+      "calibrated_nll": 0.3132942422802176
+    }
+  },
+  "test": {
+    "n": 600,
+    "accuracy": 0.94,
+    "raw_nll": 0.21764396649564863,
+    "calibrated_nll": 0.21985750120015135
+  },
+  "data_sha256": {
+    "calibration_v5": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+    "test_v5_new": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6"
+  },
+  "seconds": 241.3026463749993
+}

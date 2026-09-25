@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-25T06:13:09.666864+00:00",
+  "checkpoint_step": 2250,
+  "original_manifest": "code-manifest.json",
+  "files": {
+    "code/train.py": "dc0fc6bea462ea382ccb6e0da3d9ab454efef0c4f51e0ff631d9aa2bd6ff48d2",
+    "resume.py": "b6fba2ee9774cce7d2cb883a3647c071754d2b526fabe098fe9afab1d0c9e1bc"
+  },
+  "note": "Restore saved adapter, optimizer, schedule and seeded data order. Original checkpoint did not store RNG states, so dropout trajectory is not bit-identical. Subsequent checkpoints save Torch CPU/CUDA RNG states."
+}

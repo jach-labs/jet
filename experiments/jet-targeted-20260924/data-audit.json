@@ -1,0 +1,81 @@
+{
+  "seed": 24092417,
+  "train_rows": 22643,
+  "selection_rows": 1550,
+  "train_categories": {
+    "retention": 6000,
+    "preference": 3000,
+    "sarcasm": 2000,
+    "code": 5000,
+    "stance": 4704,
+    "relevance": 1939
+  },
+  "train_sources": {
+    "v5:adversarial_entailment": 300,
+    "targeted:preference_transfer": 3000,
+    "v3:sarcasm_irony": 2000,
+    "boolq": 301,
+    "v3:code_behavior": 2000,
+    "v3:document_relevance": 300,
+    "v4:code_transfer": 3000,
+    "v3:stance": 1715,
+    "v3:product_relevance": 1939,
+    "v4:stance_transfer": 2989,
+    "v3:arithmetic": 300,
+    "yelp": 300,
+    "v3:tool_relevance": 300,
+    "v5:commonsense_completion": 300,
+    "ag_news": 301,
+    "massive": 301,
+    "v5:tool_response_preference": 300,
+    "v3:boolean_rules": 300,
+    "v3:entailment": 300,
+    "mnli": 301,
+    "civil_comments": 301,
+    "banking77": 301,
+    "v5:wide_intent": 300,
+    "v4:tool_intent_routing": 293,
+    "stsb": 300,
+    "dbpedia": 301,
+    "v3:tool_selection": 300
+  },
+  "filters": {
+    "protected_overlap": 5007,
+    "preference_too_long": 1
+  },
+  "new_preference_train": 3000,
+  "new_preference_selection": 150,
+  "benchmark_rows_used_as_training": 0,
+  "protected_inputs": [
+    "data/score_eval.jsonl",
+    "data/test.jsonl",
+    "data/val.jsonl",
+    "data/val_v3_new.jsonl",
+    "data/calibration_v3_new.jsonl",
+    "data/test_v3_new.jsonl",
+    "data/selection_v3.jsonl",
+    "data/calibration_v3.jsonl",
+    "data/selection_v4.jsonl",
+    "data/calibration_v4.jsonl",
+    "data/test_v4_new.jsonl",
+    "data/test_v4_tools.jsonl",
+    "data/calibration_v4_tools.jsonl",
+    "data/selection_v4_tools.jsonl",
+    "data/selection_v5.jsonl",
+    "data/calibration_v5.jsonl",
+    "data/test_v5_new.jsonl",
+    "experiments/jet-4b-full-index/expanded.jsonl"
+  ],
+  "source": {
+    "repo": "HuggingFaceH4/ultrafeedback_binarized",
+    "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+    "file": "/home/jach/.cache/huggingface/hub/datasets--HuggingFaceH4--ultrafeedback_binarized/snapshots/3949bf5f8c17c394422ccfab0c31ea9c20bdeb85/data/train_prefs-00000-of-00001.parquet",
+    "split": "train_prefs"
+  },
+  "source_sha256": "0f951ca4502001d31f3e4c70716ae51d20e4ce4f847d12b6a6695a40d4d353a8",
+  "files": {
+    "train.jsonl": "7bb2e47b1f1a13f6434c6db58fe72c2065b57f4b0aef22500935ae3a69bc2364",
+    "selection.jsonl": "cd6f8802231ed9cb4654e9c0fcea0147cf6791fa17b4fdc9b3e8b0be7ddc9078"
+  },
+  "limitations": "Exact state/content/group exclusions, not semantic decontamination. Existing model training exposure cannot be undone. Preference-transfer labels are synthetic, not new human consensus labels. Benchmark results have informed task-family selection."
+}

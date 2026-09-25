@@ -20,3 +20,11 @@ __pycache__/
 # Release export intermediates and local logs.
 /artifacts/release-*/
 /release-logs/
+# Local model exports and reconstructed training/benchmark rows.
+/releases/**/*.safetensors
+/releases/**/tokenizer.json
+/experiments/**/*.jsonl
+/experiments/**/status.json
+/experiments/**/*-status.json
+/experiments/**/*-logits.json
+.venv-*/

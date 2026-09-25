@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jev Reproductions Tracker</title>
+<meta name="description" content="Tracking open reproductions of TypeSafe's Jev / System One / RLCD: parallel constrained decoders, trained decision heads, prior-art claims, architecture speculation and explainers — ranked by virality on X.">
+<link rel="icon" href="huggies/xray.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jev Reproductions Tracker">
+<meta property="og:description" content="Who is rebuilding TypeSafe's Jev in the open? Parallel constrained decoders, trained decision heads, prior-art claims, architecture teardowns and explainers, in one tracker.">
+<meta property="og:url" content="https://huggingface.co/spaces/multimodalart/jev-decision-index">
+<meta property="og:image" content="https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jev Reproductions Tracker">
+<meta name="twitter:description" content="Open reproductions of TypeSafe's Jev: decoders, trained heads, prior art, teardowns and explainers.">
+<meta name="twitter:image" content="https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Chewy&display=swap" rel="stylesheet">
+<style>
+  /* ---- HF Huggiverse (HFBA) palette + outlined-Huggy accent colors ---- */
+  :root {
+    --bg: #E9E6DD;           /* warm cream page */
+    --header-bg: rgba(233,230,221,.92);
+    --surface: #FBF8F1;      /* card surface */
+    --ink: #232323;          /* charcoal ink / outlines */
+    --muted: #8C8C8C;
+    --muted-2: #555555;
+    --border: #D8D3C8;
+    /* outlined Huggies */
+    --yellow: #FFD21E;
+    --orange: #FF9D00;
+    --blue: #3B7CF6;
+    --blue-soft: #B9C7FF;
+    --red: #EF3E36;
+    --purple: #A855F7;
+    --green: #3E8E5E;
+    --paper: #FFF1C6;
+    --pink: #F87171;
+    --font-display: 'Chewy', 'Source Sans 3', cursive;
+    --font-body: 'Source Sans 3', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.5; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; }
+  .container { max-width: 1180px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+  .mono { font-family: var(--font-mono); }
+
+  /* ---- News // Index switch ---- */
+  .switch-bar { display: flex; justify-content: center; padding: 18px 20px 0; }
+  .switch { display: inline-flex; background: var(--surface); border: 2px solid var(--ink); border-radius: 999px; padding: 4px; box-shadow: 3px 3px 0 var(--ink); font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+  .switch a { text-decoration: none; padding: 6px 18px; border-radius: 999px; color: var(--muted-2); }
+  .switch a.on { background: var(--yellow); color: var(--ink); font-weight: 500; }
+  .switch a:not(.on):hover { color: var(--ink); }
+  #hero { padding-top: 34px; }
+
+  /* ---- Hero ---- */
+  #hero { padding: 52px 0 26px; text-align: center; position: relative; }
+  .hero-row { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+  .hero-huggy { width: clamp(84px, 12vw, 150px); height: auto; transform: scaleX(-1); }
+  .title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.4rem, 8vw, 6rem); line-height: 1; letter-spacing: -.01em; margin: 0; color: var(--ink); }
+  .title .hi { color: var(--ink); position: relative; display: inline-block; }
+  .title .hi::after { content: ''; position: absolute; left: -2%; right: -2%; bottom: .06em; height: .28em; background: var(--yellow); z-index: -1; border-radius: 6px; transform: rotate(-1deg); }
+  .hero-sub { font-size: clamp(16px, 1.9vw, 19px); color: var(--muted-2); margin: 26px auto 0; max-width: 46rem; }
+  .hero-sub b { color: var(--ink); }
+  .hero-note { margin: 14px auto 0; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); max-width: 52rem; }
+  .hero-note a { color: var(--muted-2); }
+  .hero-note a:hover { color: var(--ink); }
+
+  /* stat tiles: outlined stickers */
+  .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 30px auto 0; }
+  .stat { background: var(--surface); border: 2.5px solid var(--ink); border-radius: 18px; padding: 10px 18px; box-shadow: 4px 4px 0 var(--ink); min-width: 128px; text-align: left; }
+  .stat .n { font-family: var(--font-display); font-size: 30px; line-height: 1; }
+  .stat .l { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-2); margin-top: 4px; letter-spacing: .02em; }
+  .stat.y { background: var(--yellow); } .stat.b { background: var(--blue); color: #fff; } .stat.b .l { color: #E8EEFF; }
+  .stat.p { background: var(--paper); }
+  @media (max-width: 640px) {
+    #hero { padding: 32px 0 14px; }
+    .hero-sub { margin-top: 18px; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; width: 100%; margin-top: 18px; }
+    .stat, .stat.y, .stat.p, .stat.b { min-width: 0; padding: 7px 6px 6px; border: 1px solid var(--border); border-radius: 10px; box-shadow: none; background: color-mix(in srgb, var(--surface) 55%, transparent); color: var(--ink); }
+    .stat .n { font-size: 22px; }
+    .stat .l, .stat.b .l { margin-top: 3px; color: var(--muted-2); font-size: 9px; line-height: 1.2; }
+  }
+
+  /* ---- Sticky filter header (mirrors HFBA search header) ---- */
+  #search-header { position: sticky; top: 0; z-index: 30; background: var(--header-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  #search-header.stuck { border-bottom-color: var(--border); }
+  .search-inner { padding: 14px 20px; }
+  .search-wrap { display: none; /* hidden for now */ align-items: center; gap: 12px; max-width: 820px; margin: 0 auto; background: var(--surface); border: 2px solid var(--ink); border-radius: 999px; padding: 11px 20px; box-shadow: 4px 4px 0 var(--ink); }
+  .search-wrap:focus-within { box-shadow: 4px 4px 0 var(--blue); border-color: var(--blue); }
+  .search-wrap svg { flex: 0 0 auto; color: var(--muted); }
+  #q { flex: 1 1 auto; border: none; outline: none; background: transparent; font-family: var(--font-body); font-size: 17px; color: var(--ink); min-width: 0; }
+  #q::placeholder { color: var(--muted); }
+  #q-clear { flex: 0 0 auto; border: none; background: #EFEFEF; color: var(--muted-2); width: 24px; height: 24px; border-radius: 999px; cursor: pointer; font-size: 15px; line-height: 1; display: none; align-items: center; justify-content: center; }
+  #q-clear.show { display: inline-flex; }
+  .kbd { flex: 0 0 auto; font-family: var(--font-mono); font-size: 11px; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; }
+  .chips-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 12px; }
+  .chip { font-family: var(--font-mono); font-size: 12px; color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, var(--bg)); border: 1.5px solid transparent; border-radius: 999px; padding: 5px 12px; cursor: pointer; transition: background .12s, color .12s, border-color .12s, transform .08s; white-space: nowrap; }
+  .chip:hover { border-color: var(--ink); }
+  .chip:active { transform: scale(.96); }
+  .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .chip .dot { display: inline-block; flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); margin-right: 7px; vertical-align: -1px; background: var(--c, var(--yellow)); }
+  .chip.active .dot { border-color: #fff; }
+  .chip.cat { padding: 5px 12px; display: inline-flex; align-items: center; gap: 0; white-space: normal; text-align: left; max-width: 100%; border-color: color-mix(in srgb, var(--c) 60%, transparent); }
+  .chip.cat img { width: 26px; height: 26px; object-fit: contain; }
+  .chip.cat .n { color: var(--muted); margin-left: 6px; }
+  .chip.cat.active .n { color: #ccc; }
+  .chip.cat.active { background: var(--c); color: var(--tc, var(--ink)); border-color: var(--ink); }
+  .chip.cat.active .dot { border-color: currentColor; }
+  .chip.cat.active .n { color: inherit; opacity: .75; }
+  .chip-label { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin-right: 2px; letter-spacing: .03em; text-transform: uppercase; }
+  .sort-wrap { display: inline-flex; align-items: center; gap: 6px; }
+  .sort-wrap select { font-family: var(--font-mono); font-size: 12px; color: var(--ink); background: var(--surface); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 30px 4px 12px; appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23232323' stroke-width='1.6' stroke-linecap='round'/></svg>"); background-repeat: no-repeat; background-position: right 12px center; }
+  .type-filter-scroll { display: contents; }
+  @media (max-width: 640px) {
+    .search-inner { padding: 8px 0; overflow: hidden; }
+    .chips-row { justify-content: flex-start; flex-wrap: nowrap; gap: 6px; margin-top: 0; }
+    #cat-chips { overflow-x: auto; padding: 0 12px 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    #cat-chips::-webkit-scrollbar, .type-filter-scroll::-webkit-scrollbar { display: none; }
+    #cat-chips .chip { flex: 0 0 auto; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .chip.cat { white-space: nowrap; }
+    .chip-label { flex: 0 0 auto; font-size: 10px; }
+    #type-chips { display: grid; grid-template-columns: minmax(0, 1fr) auto; padding: 0 12px; margin-top: 5px; }
+    .type-filter-scroll { display: flex; align-items: center; gap: 6px; min-width: 0; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .type-filter-scroll .chip { flex: 0 0 auto; }
+    .sort-wrap { flex: 0 0 auto; padding-left: 4px; background: var(--header-bg); }
+    .sort-wrap .chip-label { display: none; }
+    .sort-wrap select { width: 145px; font-size: 11px; padding: 4px 25px 4px 10px; background-position: right 9px center; }
+  }
+  #results-bar { display: none; align-items: center; justify-content: space-between; gap: 12px; margin: 22px 0 4px; }
+  #results-bar.show { display: flex; }
+  #results-count { font-family: var(--font-mono); font-size: 14px; color: var(--muted); }
+  #results-count b { color: var(--muted-2); }
+  #results-clear { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted-2); background: var(--surface); border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+
+  /* ---- Ranking legend ---- */
+  .legend { margin: 34px auto 0; max-width: 860px; font-size: 15px; color: var(--muted-2); text-align: center; }
+  .legend .pill { display: inline-block; font-family: var(--font-mono); font-size: 11.5px; padding: 2px 9px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--surface); color: var(--ink); margin: 0 2px; }
+
+  /* ---- Category sections ---- */
+  main { padding: 10px 0 60px; }
+  section.cat { margin-top: 34px; }
+  section.cat + section.cat { margin-top: 28px; }
+  .cat-head { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: end; border-bottom: 2.5px solid var(--ink); padding-bottom: 10px; }
+  .cat-rank { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cat-rank .rk { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--c); color: var(--ink); font-family: var(--font-display); font-size: 17px; }
+  .cat-rank .rk.dark { color: #fff; }
+  .cat-title-pill { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: clamp(18px, 2.6vw, 27px); line-height: 1.15; padding: 10px 22px; border-radius: 999px; background: var(--c); color: var(--tc, var(--ink)); border: 2.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .cat-desc { margin: 16px 0 0; max-width: 60rem; font-size: 16px; color: var(--muted-2); }
+  .cat-desc b { color: var(--ink); }
+  .cat-metrics { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .cat-metrics .m { font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); border: 1.5px solid var(--border); background: var(--surface); border-radius: 999px; padding: 3px 10px; }
+  .cat-metrics .m b { color: var(--ink); font-weight: 500; }
+  .cat-huggy { width: clamp(110px, 16vw, 190px); height: auto; margin-bottom: -6px; }
+  @media (max-width: 640px) { .cat-head { grid-template-columns: 1fr; } .cat-huggy { width: 120px; justify-self: end; margin-top: -60px; } }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; margin-top: 34px; }
+
+  /* ---- Cards: outlined-sticker look ---- */
+  .card { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 2.5px solid var(--ink); border-radius: 22px; padding: 16px 16px 14px; box-shadow: 5px 5px 0 var(--ink); transition: transform .12s ease, box-shadow .12s ease; }
+  .card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+  .card.dim { opacity: .35; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .rank-wrap { display: inline-flex; align-items: center; gap: 6px; }
+  .catpill { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--c); color: var(--tc, var(--ink)); }
+  .rank { flex: 0 0 auto; font-family: var(--font-display); font-size: 15px; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--c); color: var(--tc, var(--ink)); display: inline-flex; align-items: center; justify-content: center; }
+  .badges { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+  .badge { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .02em; padding: 2px 8px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--surface); white-space: nowrap; }
+  .badge.gh { background: var(--ink); color: #fff; }
+  .badge.hf { background: var(--yellow); }
+  .badge.space { background: var(--orange); }
+  .badge.blog { background: var(--paper); }
+  .badge.demo { background: var(--blue-soft); }
+  .badge.post { background: #EFEFEF; color: var(--muted-2); border-color: var(--border); }
+  .badge.pr { background: var(--purple); color: #fff; }
+  .badge.paper { background: var(--pink); }
+  .badge.soon { background: var(--orange); border-style: dashed; font-weight: 500; }
+  .badge.new { background: var(--green); color: #fff; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+  .card h3 { margin: 10px 0 2px; font-size: 18px; line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
+  .card h3 a { text-decoration: none; }
+  .card h3 a:hover { text-decoration: underline; text-decoration-thickness: 2.5px; text-decoration-color: var(--c); }
+  .by { font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); }
+  .by a { color: inherit; text-decoration: none; }
+  .by a:hover { color: var(--ink); text-decoration: underline; }
+  .desc { margin: 10px 0 0; font-size: 13.5px; line-height: 1.45; color: var(--muted-2); }
+  .quote { margin: 12px 0 0; padding: 10px 14px; border-left: 3px solid var(--c); background: color-mix(in srgb, var(--c) 14%, var(--surface)); border-radius: 0 14px 14px 0; font-size: 15.5px; line-height: 1.4; color: var(--ink); font-weight: 500; }
+  .quote a { color: var(--muted-2); text-decoration: none; font-weight: 400; font-family: var(--font-mono); font-size: 11.5px; display: block; margin-top: 6px; }
+  .quote a:hover { color: var(--ink); }
+  .metrics { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 12px; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted-2); }
+  .metrics span { display: inline-flex; align-items: center; gap: 4px; }
+  .metrics svg { width: 13px; height: 13px; }
+  .metrics .none { color: var(--muted); font-style: italic; }
+  .metrics .tr { color: var(--ink); font-weight: 500; background: color-mix(in srgb, var(--c) 18%, var(--surface)); border-radius: 999px; padding: 1px 8px; }
+  .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1.5px dashed var(--border); }
+  .links a { font-family: var(--font-mono); font-size: 12px; text-decoration: none; padding: 5px 11px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--surface); transition: background .12s, color .12s; display: inline-flex; align-items: center; gap: 5px; }
+  .links a:hover { background: var(--ink); color: #fff; }
+  .links a.x:hover { background: var(--ink); }
+  .links a.hf:hover { background: var(--yellow); color: var(--ink); }
+  .spacer { flex: 1; }
+
+  /* ---- Load more ---- */
+  .more-wrap { display: flex; justify-content: center; margin-top: 26px; }
+  .more-btn { font-family: var(--font-mono); font-size: 13px; color: var(--ink); background: var(--surface); border: 2px solid var(--ink); border-radius: 999px; padding: 9px 20px; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); transition: transform .1s, box-shadow .1s, background .12s; display: inline-flex; align-items: center; gap: 8px; }
+  .more-btn:hover { background: var(--c, var(--yellow)); color: var(--tc, var(--ink)); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+  .more-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .more-btn .cnt { background: var(--ink); color: #fff; border-radius: 999px; padding: 1px 8px; font-size: 11.5px; }
+  .more-btn:hover .cnt { background: var(--ink); }
+
+  /* ---- Missing / still not open ---- */
+  .missing { margin-top: 70px; background: var(--paper); border: 2.5px solid var(--ink); border-radius: 26px; padding: 26px 28px; box-shadow: 6px 6px 0 var(--ink); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+  .missing h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 3.4vw, 38px); margin: 0 0 8px; line-height: 1.05; }
+  .missing ul { margin: 10px 0 0; padding-left: 0; list-style: none; }
+  .missing li { padding: 6px 0 6px 24px; font-size: 16px; position: relative; }
+  .missing li::before { content: '✕'; position: absolute; left: 0; top: 7px; font-family: var(--font-mono); color: var(--red); font-weight: 700; }
+  .missing li b { color: var(--ink); }
+  .missing img { width: clamp(120px, 16vw, 200px); height: auto; }
+  @media (max-width: 640px) { .missing { grid-template-columns: 1fr; } .missing img { justify-self: end; } }
+
+  /* ---- Footer ---- */
+  footer { border-top: 2.5px solid var(--ink); margin-top: 60px; padding: 30px 0 50px; }
+  .foot { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+  .foot p { margin: 0 0 8px; font-size: 14.5px; color: var(--muted-2); max-width: 62rem; }
+  .foot a { color: var(--ink); }
+  .foot img { width: 120px; height: auto; }
+  @media (max-width: 640px) { .foot { grid-template-columns: 1fr; } .foot img { justify-self: end; } }
+
+  #no-results { display: none; text-align: center; padding: 70px 20px; color: var(--muted-2); }
+  #no-results.show { display: block; }
+  #no-results .big { font-family: var(--font-mono); font-size: 20px; color: var(--ink); margin-bottom: 8px; }
+  mark { background: var(--yellow); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+  /* subtle scroll-in tilt (from HFBA), gated */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .grid > .card { animation: hf-edge linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; transform-origin: center; }
+      @keyframes hf-edge {
+        0% { opacity: .8; transform: perspective(1400px) rotateX(-6deg) translateZ(-30px) scale(.97); }
+        15%, 85% { opacity: 1; transform: none; }
+        100% { opacity: .8; transform: perspective(1400px) rotateX(6deg) translateZ(-30px) scale(.97); }
+      }
+      .grid > .card:hover { animation: none; }
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="switch-bar"><nav class="switch" aria-label="Section"><a href="news.html" class="on" aria-current="page">News</a><a href="index.html">Index</a></nav></div>
+
+<div id="site-header">
+  <div class="container">
+    <div id="hero">
+      <div class="hero-row">
+        <h1 class="title">Jev <span class="hi">Reproductions</span> Tracker</h1>
+      </div>
+      <p class="hero-sub">Who is rebuilding <b>TypeSafe's Jev</b> in the open? Parallel structured-decision models, trained scoring heads, prior-art claims, architecture teardowns and explainers, grouped by <b>kind of artifact</b>.</p>
+      <div class="stats" id="stats"></div>
+    </div>
+  </div>
+</div>
+
+<header id="search-header">
+  <div class="container search-inner">
+    <div class="search-wrap" role="search">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input id="q" type="text" autocomplete="off" spellcheck="false" aria-label="Search artifacts" placeholder="Search repros, authors, models (e.g. Qwen, MLX, Doom, vLLM)">
+      <button id="q-clear" aria-label="Clear search">&times;</button>
+      <span class="kbd">/</span>
+    </div>
+    <div class="chips-row" id="cat-chips"><span class="chip-label">Category</span></div>
+    <div class="chips-row" id="type-chips">
+      <div class="type-filter-scroll">
+        <span class="chip-label">Has</span>
+        <button class="chip" data-type="gh">GitHub repo</button>
+        <button class="chip" data-type="hf">HF model</button>
+        <button class="chip" data-type="space">HF Space</button>
+        <button class="chip" data-type="blog">Blog / write-up</button>
+        <button class="chip" data-type="tweet">Announcement post</button>
+      </div>
+      <span class="sort-wrap"><span class="chip-label">Sort</span>
+        <select id="sort" aria-label="Sort artifacts">
+          <option value="trending">▲ trending (X + GitHub + 🤗)</option>
+          <option value="likes">♥ likes on X</option>
+          <option value="views">views on X</option>
+          <option value="stars">★ GitHub stars</option>
+          <option value="hf">🤗 Hub likes</option>
+          <option value="date">newest first</option>
+        </select>
+      </span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div id="results-bar"><span id="results-count"></span><button id="results-clear">Clear filters</button></div>
+  <div id="sections"></div>
+  <div id="no-results"><div class="big">No artifacts match that</div><div>Try a model name, an author handle, or clear the chips above.</div></div>
+
+  <div class="missing">
+    <div>
+      <h2>Still not in the open</h2>
+      <p style="margin:0;color:var(--muted-2)">Everything above approximates the <i>interface</i> (state + typed options → one-pass probabilities). None of it has these:</p>
+      <ul>
+        <li><b>TypeSafe's Jev weights.</b> Every "openjev" / "-RLCD" Hub repo is either a stock model plus decoding code, or an independently trained head.</li>
+        <li><b>The RLCD algorithm, loss or data.</b> Reinforcement Learning for Calibrated Decisions is described only at blog-post level; no public implementation.</li>
+        <li><b>A trained open model matching Jev's calibration claims.</b> The best open scorers now reach ~90% agreement with Jev (Bespoke Nimble; snapjudge measures 81.2% for Qwen3.8-27B against Jev's own 87.7%), but they still softmax over candidate logits and the studies find confidence does not reliably flag errors.</li>
+        <li><b>Archer Hume's promised open-weight version.</b> Announced with the architecture post; training "takes time". A release from his company, <b>Solomon</b>, appeared 2026-09-21; its launch post calls it the best open-weight alternative to Jev, though the model card documents a document-QA model and never uses the word. Listed as a delivery of the promise, not as Jev reconstructed.</li>
+      </ul>
+    </div>
+    <img src="huggies/fishing.png" alt="">
+  </div>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <p><b>Missing something?</b> Open a PR against this Space's <code class="mono">news.html</code> (the data is one JS array at the bottom of the file) or ping <a href="https://huggingface.co/multimodalart" target="_blank" rel="noopener">@multimodalart</a>. Hugging Face models and Spaces count as first-class artifacts here, not just GitHub repos.</p>
+      <p><b>Trending</b> = ♥ likes on X + 5 × GitHub stars + 8 × Hub likes + views ÷ 500. All categories share one grid, color-coded; use the category chips to filter. Promised-but-unreleased items always sort last.</p>
+      <p>Engagement numbers are a snapshot from public X post metadata on 2026-09-24 and will drift. GitHub stars and Hub likes were read the same day. Descriptions paraphrase each project's own README and launch post; corrections welcome.</p>
+      <p>Visual identity and outlined Huggies from <a href="https://huggingface.co/spaces/Chunte/HFBA" target="_blank" rel="noopener">HF Huggiverse (Chunte/HFBA)</a>. Unofficial, community-maintained, not affiliated with TypeSafe AI.</p>
+    </div>
+    <img src="huggies/rocket.png" alt="">
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   DATA. To add an artifact: push an object into ITEMS. Fields:
+   cat: category id · title · by: {name, handle} · desc · quote (from post)
+   links: {tweet, gh, hf, space, blog, demo, pr, paper, site}
+   m: {likes, rts, views, stars, hfLikes} · date (ISO) · tags (search words)
+   ===================================================================== */
+const CATS = [
+  { id: 'decode', short: 'Decoding', order: 1, name: 'Parallel constrained decoding on stock models', color: 'var(--blue)', tc: '#fff', huggy: 'huggies/xray.png',
+    desc: 'The biggest wave. <b>No new model.</b> Prefill the state once, then score every typed option or JSON field in one batched pass and assemble the answer in code. Recreates Jev\'s I/O shape and speed on a stock LLM; does not recreate its training or calibration.' },
+  { id: 'diffusion', short: 'Diffusion', order: 2, name: 'Diffusion LMs run in "Jev mode"', color: 'var(--green)', tc: '#fff', huggy: 'huggies/diffusor.png',
+    desc: 'A different route to non-autoregressive typed output: <b>text diffusion models</b> (DiffusionGemma) patched to fill a typed schema in parallel, then evaluated head-to-head against Jev.' },
+  { id: 'trained', short: 'Trained', order: 3, name: 'Trained Jev-like heads & fine-tunes', color: 'var(--yellow)', tc: 'var(--ink)', huggy: 'huggies/growing.png',
+    desc: 'Actual training runs: a scoring head on a frozen backbone, a full fine-tune, or a tiny encoder trained from scratch to map context + N options to one probability each. <b>Closer to a mini-Jev than to a decoder trick</b>, still not RLCD. Promised-but-unreleased models are listed last.' },
+  { id: 'prior', short: 'Prior art', order: 4, name: '"This already exists" prior-art claims', color: 'var(--pink)', tc: 'var(--ink)', huggy: 'huggies/paper.png',
+    desc: 'Teams pointing at their <b>pre-existing open models</b> and saying the single-pass classify-over-options idea shipped before Jev did. Different families (zero-shot encoders, RL over embeddings), overlapping job.' },
+  { id: 'explain', short: 'Explainers', order: 5, name: 'Architecture speculation, explainers & benchmarks', color: 'var(--purple)', tc: '#fff', huggy: 'huggies/curious.png',
+    desc: 'Teardowns of what Jev probably is, threads and blog posts that explain the reproductions, side-by-side benchmarks, and awesome-lists that <b>index</b> the ecosystem. Often where the GitHub stars actually came from.' },
+];
+
+const ITEMS = [
+  /* ---------------- decode ---------------- */
+  { cat: 'decode', title: 'Qwen-2.5-1B-RLCD (parallel constrained decoding)', by: { name: 'Harsha Gundal', handle: 'harshagundal' },
+    desc: 'Batches every JSON key at once and reads category probabilities from stock Qwen 2.5 1B logits, ~5× faster than generating JSON.',
+    quote: 'They were building in stealth for 2 years, I was building in stealth for 2 hours… No new training required.',
+    links: { tweet: 'https://x.com/harshagundal/status/2100044305536889015', hf: 'https://huggingface.co/harshatheg/Qwen-2.5-1B-RLCD', space: 'https://huggingface.co/spaces/drinkmoonshine/parallel-constrained-decoding' },
+    m: { likes: 5831, rts: 364, views: 1287550, hfLikes: 559 }, date: '2026-09-16', tags: 'qwen json mac m4 on-device forks epsilon3 shreyansh26 drinkmoonshine' },
+  { cat: 'decode', title: 'openjev-sglang: Jev-compatible public API', by: { name: 'Eric Zhang', handle: 'ekzhang1' },
+    desc: 'A drop-in /v1/systemone endpoint over Qwen3.6-35B-A3B. SGLang\'s radix cache keeps the shared prefill hot, so 64 parallel tasks finish in under a second. Prefill-only, no generation.',
+    quote: 'It runs a comparable open model (Qwen3.6-35B-A3B), and just uses SGLang radix cache to preserve the prefill reuse — 64 tasks in <1s.',
+    links: { tweet: 'https://x.com/ekzhang1/status/2100651678110515383', gh: 'https://github.com/ekzhang/openjev-sglang' },
+    m: { likes: 983, rts: 62, views: 146030, stars: 305 }, date: '2026-09-17', tags: 'sglang qwen3.6 moe api systemone radix cache' },
+  { cat: 'decode', title: 'openjev + openjev.com', by: { name: 'Theo Lee', handle: 'theoleecj' },
+    desc: 'Reads option logits on Qwen3.5-4B instead of generating text: 21 decisions in 1.02s vs 5.33s for JSON. CUDA plus a WebGPU browser demo.',
+    quote: 'On the Jev waitlist? You can use not Jev (but close enough) right here.',
+    links: { tweet: 'https://x.com/theoleecj/status/2100243609060856264', gh: 'https://github.com/TheoLeeCJ/openjev', demo: 'https://openjev.com' },
+    m: { likes: 15, rts: 1, views: 3973, stars: 4109 }, date: '2026-09-16', tags: 'webgpu browser rtx 3090 qwen3.5 logits mit' },
+  { cat: 'decode', title: 'PocketJev: on-device iPhone visual decisions', by: { name: 'aqty', handle: 'aqty' },
+    desc: 'Qwen3-VL running locally on an iPhone via MLX. Camera frame + question + 3 options → direct option logits in ~1s, no photos saved.',
+    quote: 'iPhone上でQwen 2Bをローカル実行して、カメラ画像＋質問＋3択から文章生成なしで直接判定。',
+    links: { tweet: 'https://x.com/aqty/status/2100549517171175807', gh: 'https://github.com/NullPo-jp/PocketJev' },
+    m: { likes: 6, rts: 5, views: 505, stars: 1 }, date: '2026-09-17', tags: 'ios iphone mlx vision qwen3-vl camera japan' },
+  { cat: 'decode', title: 'jevmlx: Jev-style decisions for any MLX model', by: { name: 'Beni', handle: 'beni_il_' },
+    desc: 'Typed schema fields broadcast across the KV cache, one batch row per field, all scored in a single forward pass on any MLX model.',
+    quote: 'If you can run Qwen on your machine, it can behave very similarly to Jev.',
+    links: { tweet: 'https://x.com/beni_il_/status/2100617387116568956', gh: 'https://github.com/bnsd55/jevmlx' },
+    m: { likes: 7, rts: 0, views: 1193, stars: 59 }, date: '2026-09-17', tags: 'mlx apple silicon kv cache hebrew' },
+  { cat: 'decode', title: 'jev-on-a-laptop: the honest benchmark', by: { name: 'Richard Becker', handle: 'RichardBcker1' },
+    desc: 'Qwen 2.5 1.5B/7B and Qwen3 8B on a laptop vs Jev\'s published cases: 7B hits 73.8% agreement to Jev\'s 86.6%, 0.4–2s per decision. Finds confidence does not reliably flag errors.',
+    quote: 'All code, benchmarks, model-size comparisons and the full write-up (unofficial, no affiliation with TypeSafe).',
+    links: { tweet: 'https://x.com/RichardBcker1/status/2100195276107530393', gh: 'https://github.com/rorshopping/jev-on-a-laptop', space: 'https://huggingface.co/spaces/rorshopping/parallel-constrained-decisions' },
+    m: { likes: 1, rts: 0, views: 68, stars: 23 }, date: '2026-09-16', tags: 'benchmark study agreement fraud apple silicon m5 writeup explainer' },
+  { cat: 'decode', title: 'jevfire: one context, many decisions on CUDA', by: { name: 'Enrique Alcázar', handle: 'enriquealcazarg' },
+    desc: 'Parallel decisions for CUDA LLMs behind a vLLM-style API, with game-agent examples. Claims 10×+ over regular inference, runs in the browser, accepts images.',
+    quote: 'Here you have an open-source approach to the same problem… uses the same principles as JEV, is type-safe, runs in your browser, and accepts images.',
+    links: { tweet: 'https://x.com/enriquealcazarg/status/2100267330022375858', gh: 'https://github.com/kikoncuo/jevfire', site: 'https://kikoncuo.github.io/jevfire/' },
+    m: { likes: 1, rts: 0, views: 258, stars: 59 }, date: '2026-09-16', tags: 'cuda vllm browser images games primeagen' },
+  { cat: 'decode', title: 'LFM2.5-RLCD (350M & 2.6B): PCD on Liquid models', by: { name: 'notnotsamuel · monotykamary', handle: null },
+    desc: 'Parallel constrained decoding on unchanged Liquid LFM2.5 weights, branching attention and convolution state. Inference-only: 8–63× faster, field accuracy still ~60%.',
+    links: { hf: 'https://huggingface.co/notnotsamuel/LFM2.5-350M-RLCD', hf2: 'https://huggingface.co/monotykamary/LFM2.5-2.6B-RLCD' },
+    m: { hfLikes: 28 }, date: '2026-09-16', tags: 'liquid lfm hub weights renamed inference only pcd' },
+  { cat: 'decode', title: 'parallelConstraintDecoding (Java + Python)', by: { name: 'Stephan Janssen', handle: 'Stephan007' },
+    desc: 'A Java port of the decode trick alongside a Python reference.',
+    quote: 'Here\'s a java version of Jev 🤩',
+    links: { tweet: 'https://x.com/Stephan007/status/2100673219967557906', gh: 'https://github.com/stephanj/parallelConstraintDecoding' },
+    m: { likes: 3, rts: 0, views: 109, stars: 14 }, date: '2026-09-17', tags: 'java jvm port' },
+  { cat: 'decode', title: 'system-one (snellingio): "System One Lite"', by: { name: 'snellingio', handle: null },
+    desc: 'Choice / Score / Noul server over MLX Qwen3, mirroring TypeSafe\'s three primitives. No launch post found.',
+    links: { gh: 'https://github.com/snellingio/system-one' },
+    m: { stars: 44 }, date: '2026-09-16', tags: 'mlx qwen3 choice score noul server' },
+  { cat: 'decode', title: 'open-jev (daseinlabs): Gemma 3 4B on MLX', by: { name: 'Dasein Labs', handle: null },
+    desc: 'Prefix-cache option scoring on a local Gemma 3 4B via MLX, a Doom demo, and a /v1/systemone shim. Only seen in roundups.',
+    links: { gh: 'https://github.com/daseinlabs/open-jev' },
+    m: { stars: 107 }, date: '2026-09-17', tags: 'gemma mlx doom systemone shim' },
+  { cat: 'decode', title: 'openvons (open-Jev, Japanese)', by: { name: 'genai-craft', handle: null },
+    desc: 'Decision layer answering finite-option questions with probabilities, from text, images or Japanese voice commands.',
+    links: { gh: 'https://github.com/genai-craft/openvons' },
+    m: { stars: 13 }, date: '2026-09-17', tags: 'japanese voice image multimodal' },
+  { cat: 'decode', title: 'openjev (zhihz): bilingual local decisions', by: { name: 'zhihz', handle: null },
+    desc: 'Local bilingual probability decisions from context, questions and candidate answers.',
+    links: { gh: 'https://github.com/zhihz/openjev' },
+    m: { stars: 32 }, date: '2026-09-16', tags: 'chinese bilingual local' },
+  { cat: 'decode', title: 'system-one (sgoedecke): batched single-token choice', by: { name: 'Sean Goedecke', handle: null },
+    desc: 'Batched single-token choice inference for open models, wire-compatible with TypeSafe.',
+    links: { gh: 'https://github.com/sgoedecke/system-one' },
+    m: { stars: 31 }, date: '2026-09-17', tags: 'compatible batched single token' },
+  { cat: 'decode', title: 'reflex: stock Qwen3.5 / Qwen3-VL behind /v1/systemone', by: { name: 'Kshetrajna Raghavan', handle: 'kshetrajna' },
+    desc: 'Jev\'s shape on stock Qwen3.5: choice / score / noul in one batched pass, a /v1/systemone server, a WebGPU demo. Temperature scaling gets Qwen3.5-4B to 0.039 ECE vs Jev\'s 0.031; a LoRA recipe trains honest probabilities on public data. Reflex 27B (stock Qwen3.8-27B, two option orders) is in Decision Index 0.2.',
+    quote: '"Wonder if we could build that?" is a pretty normal response to new tech at Shopify. Jev got me curious, so I built Reflex: a Qwen-based experiment in structured decisions + probabilities running on WebGPU.',
+    links: { tweet: 'https://x.com/kshetrajna/status/2100739853101195744', gh: 'https://github.com/kshetrajna12/reflex', demo: 'https://kshetrajna12.github.io/reflex/' },
+    m: { likes: 332, rts: 22, views: 143192, stars: 131 }, date: '2026-09-17', tags: 'reflex 27b qwen3.8 sglang decision index 0.2 systemone choice score noul qwen3-vl image shared state server webgpu browser demo lora calibration ece shopify mmlu' },
+  { cat: 'decode', title: 'LitJev: Jev-schema decision layer for the Qwen family', by: { name: 'Zhengxu Yu', handle: 'yuzxfred' },
+    desc: 'Shared prefill, forked KV/recurrent state, one cached branch per question, option logits read from lm_head on any Qwen checkpoint (default Qwen3.8-27B), behind the exact Jev /v1/systemone schema. Playground, MMLU-Pro eval, optional temperature calibration.',
+    quote: 'Qwen3.8-27B，10 道 MMLU-Pro 一次完成，0.3 s。比让模型只生成答案快 2.9x。非官方，基于公开信息。',
+    links: { tweet: 'https://x.com/yuzxfred/status/2100652136878981337', gh: 'https://github.com/zhengxuyu/litjev', blog: 'https://x.com/yuzxfred/status/2100896621173047367' },
+    m: { likes: 2, rts: 0, views: 186, stars: 42 }, date: '2026-09-17', tags: 'qwen qwen3.8 27b systemone schema compatible calibration mmlu-pro doom chess vision transformers chinese explainer writeup limitations' },
+  { cat: 'decode', title: 'Jobe: frozen Qwen3.5-4B, one-pass letter readout', by: { name: 'MantisShrimpdev', handle: null },
+    desc: 'Evidence, criterion and options in, a probability per option out: the restricted softmax over the options\' answer-letter logits on a frozen Qwen3.5-4B in bf16, one forward pass on one RTX 3080. No training. Entered in Decision Index 0.2.',
+    links: { gh: 'https://github.com/MantisShrimpdev/jobe' },
+    m: { stars: 0 }, date: '2026-09-22', tags: 'jobe frozen qwen3.5 4b letter logits semif readout no training rtx 3080 local decision index 0.2' },
+
+  /* ---------------- trained ---------------- */
+  { cat: 'trained', title: 'Jet: typed decisions with full merged weights', by: { name: 'Michal Jach', handle: null },
+    desc: 'Qwen3.5-4B fine-tuned with LoRA for choice, ordinal score and yes/no decisions, released as a complete merged BF16 model. Reads probabilities from label logits with per-type temperature scaling. Native PyTorch inference code is included on the Hub; complete prompts up to 8,192 tokens. Full Decision Index evaluation is pending.',
+    links: { gh: 'https://github.com/michaljach/jet', hf: 'https://huggingface.co/michaljach/jet' },
+    m: { stars: 0, hfLikes: 1 }, date: '2026-09-24', tags: 'jet qwen3.5 4b lora merged bf16 typed decisions choice score noul calibration pytorch full weights' },
+
+  { cat: 'trained', title: 'Verdict: calibrated bi-encoder with a conformal abstain set', by: { name: 'Manav Arya Singh', handle: 'Manavarya09' },
+    desc: 'A 118M multilingual bi-encoder fine-tuned on a typed-decision mix. Answers choice, score and noul over the /v1/systemone wire format with temperature-scaled probabilities and a conformal abstain set (coverage guarantee). Fits on your own labels in seconds on a CPU; runs in the browser via ONNX. README lists the benchmarks it loses too.',
+    quote: 'Every answer carries a probability that is honest and an abstain flag with a coverage guarantee.',
+    links: { gh: 'https://github.com/Manavarya09/verdict', hf: 'https://huggingface.co/Manav2op/verdict-small', space: 'https://manavarya09.github.io/verdict/' },
+    m: { stars: 0, hfLikes: 0 }, date: '2026-09-24', tags: 'bi-encoder e5 calibration conformal abstain onnx browser mcp multilingual' },
+
+  { cat: 'decode', title: 'snapjudge: TypeSafe-compatible decisions on a Mac, scored against Jev', by: { name: 'Michael Gross', handle: 'michagross' },
+    desc: 'Choice / Score / Noul behind /v1/systemone on MLX Qwen3.5-family models, probabilities read straight from the logits. On TypeSafe\'s 20 public cases (373 decisions) Qwen3.8-27B reaches 81.2% agreement vs Jev\'s 87.7%: level on short texts, behind on invoices.',
+    links: { tweet: 'https://x.com/michagross/status/2101062157290856604', gh: 'https://github.com/Micha0827/snapjudge' },
+    m: { stars: 12, likes: 1, rts: 0, views: 13 }, date: '2026-09-18', tags: 'mlx apple silicon qwen3.6 qwen3.8 systemone api benchmark agreement german runner game' },
+  { cat: 'trained', title: 'Bespoke Nimble: open data, open model, open recipe', by: { name: 'Mahesh Sathiamoorthy', handle: 'madiator' },
+    desc: 'The first fully open recipe: LoRA on Qwen3.5-9B with the data curation published too. Contrastive curation flips one fact to make negatives, so training needs no probabilities. 90.1% agreement with Jev vs 66.4% for base Qwen. v2 (in Decision Index 0.2) serves up to 255 choices per field.',
+    quote: 'Introducing Bespoke Nimble: an open data, open model, open recipe for an open Jev.',
+    links: { tweet: 'https://x.com/madiator/status/2100990591215783946', gh: 'https://github.com/bespokelabsai/nimble', hf: 'https://huggingface.co/bespokelabs/Bespoke-Nimble-9B', hf2: 'https://huggingface.co/bespokelabs/Bespoke-Nimble-9B-v2' },
+    m: { likes: 1377, rts: 178, views: 545768, stars: 1691, hfLikes: 180 }, date: '2026-09-18', tags: 'bespokelabs nimble v2 255 choices decision index 0.2 qwen3.5 9b lora contrastive data curation open recipe synthetic distillation free parallel scorer 100ms h100 macbook' },
+  { cat: 'trained', title: 'jevlike: train your own one-pass option scorer', by: { name: 'Vinny LaRouge', handle: 'vinnylarouge' },
+    desc: 'A tiny byte encoder (or frozen HF encoder) plus an option head maps context + N options to one probability each. Doom, chess and Wikispeedia demos; parent of several forks.',
+    quote: 'I reverse-engineered a jev-like architecture given its type. You can find the repo here to train your own jevlikes.',
+    links: { tweet: 'https://x.com/vinnylarouge/status/2100170846346097083', gh: 'https://github.com/vinnylarouge/jevlike', demo: 'https://x.com/vinnylarouge/status/2100281651930513460' },
+    m: { likes: 2020, rts: 170, views: 166658, stars: 1273 }, date: '2026-09-16', tags: 'train scorer encoder doom chess wikispeedia rl' },
+  { cat: 'trained', title: 'openjev (AlexWortega): Qwen3.5 + MLP head, real weights', by: { name: 'Alex Wortega', handle: 'justALEXWORTEGA' },
+    desc: 'The only trained "openjev" checkpoint on the Hub: Qwen3.5-4B as an NLI cross-encoder, argmax entailment is the move. Plays Doom zero-shot from text and pixels; 35B-A3B heads included.',
+    quote: 'Typesafe: pnewed 💨 Jev: liberated 🫡 I trained an MLP on top of qwen 4b and it works literally like JEV',
+    links: { tweet: 'https://x.com/justALEXWORTEGA/status/2100341039986798930', hf: 'https://huggingface.co/AlexWortega/openjev', gh: 'https://github.com/mikesmullin/openjev' },
+    m: { likes: 784, rts: 48, views: 107779, hfLikes: 525, stars: 4 }, date: '2026-09-16', tags: 'nli cross-encoder mlp qwen3.5 doom vision weights hub' },
+  { cat: 'trained', title: 'decider: 0.8B / 2B / 4B / 35B-A3B full fine-tunes of Qwen3.5 bases', by: { name: 'Mapika', handle: null },
+    desc: 'Full fine-tunes on Qwen3.5 bases (2B with a calibration-aware RL stage, 35B-A3B with frozen experts), a 2B vision variant, training recipe and Apache-2.0 weights; pip install decider-ai. Best-calibrated entry of Decision Index 0.1 (ECE 3.1). In 0.2: decider-4b and a chat readout on stock Gemma-4-31B / Qwen3.6-27B.',
+    links: { gh: 'https://github.com/Mapika/decider', hf: 'https://huggingface.co/Mapika/decider-35b-a3b', hf2: 'https://huggingface.co/Mapika/decider-2b', blog: 'https://dev.to/mapika/decider-one-forward-pass-typed-decisions-calibrated-probabilities-32c9' },
+    m: { stars: 339, hfLikes: 86 }, date: '2026-09-16', tags: 'fine-tune qwen3.5 2b 4b 35b moe calibrated vision hub weights pypi blog decider-4b mixture v2 chat readout gemma 4 31b qwen3.6 27b decision index 0.2' },
+  { cat: 'trained', title: 'jeff: a self-hosted drop-in jev on a 400M encoder', by: { name: 'Logan Markewich', handle: 'LoganMarkewich' },
+    desc: 'A drop-in /v1/systemone endpoint on GLiFormer-large (400M), the encoder-classifier route: ~$2.6 per 1M requests against jev\'s ~$15.6. Officially on JevBench v1.2.2 at 66.9 (#9 of 18, #14 on intelligence) vs jev\'s 75.3; far behind on irony and the hard tier.',
+    quote: 'jev itself can basically be boiled down to a classfier or an encoder, just like GliFormer. Latency is the same, cost is cheaper, and with only a mild hit in accuracy.',
+    links: { tweet: 'https://x.com/LoganMarkewich/status/2101142971223781587', gh: 'https://github.com/logan-markewich/jeff', hf: 'https://huggingface.co/knowledgator/gliformer-large-v1' },
+    m: { likes: 463, rts: 46, views: 33660, stars: 232, hfLikes: 154 }, date: '2026-09-19', tags: 'gliformer encoder classifier gliner knowledgator cost latency modal self-hosted typesafe-sdk jevbench drop-in' },
+  { cat: 'trained', title: 'Kev: a 0.6B–9B family you can train yourself', by: { name: 'Jared Palmer', handle: 'jaredpalmer' },
+    desc: 'LoRA plus a small pointer head on Qwen3, scaled to 0.6B/4B/8B with training code, frozen eval suites and Apache-2.0 weights, since refactored onto Qwen3.5 at 0.8B/4B/9B with a Modal fine-tuning script. Drop-in System One API. Kev-4B trains in 40 min on one H100; out of domain Kev-8B hits 79.6% vs Jev\'s 85.7%.',
+    quote: 'UPDATE: Kev-0.6B, 4B, and 8B are now available. Kev is a family of small open source Jev-like decision models you can train and run yourself.',
+    links: { tweet: 'https://x.com/jaredpalmer/status/2101715352258232539', gh: 'https://github.com/jaredpalmer/kev', hf: 'https://huggingface.co/collections/jaredpalmer/kev-6aad9d0ea49f2589665e07cd', hf2: 'https://huggingface.co/jaredpalmer/kev-0.8b', blog: 'https://x.com/jaredpalmer/status/2102048412841517495' },
+    m: { likes: 2678, rts: 223, views: 278130, stars: 6082, hfLikes: 17 }, date: '2026-09-20', tags: 'qwen3 qwen3.5 0.8b 9b modal kev-0.8b decision index 0.2 lora pointer head apache train your own typesafe sdk drop-in apple silicon kv cache h100 mmlu calibration' },
+  { cat: 'trained', title: 'rlcd-modernbert-151m ("OpenJev Verdict")', by: { name: 'heman10x', handle: 'heman10x' },
+    desc: 'Post-trained ModernBERT (151M) scoring 25 candidate slots, abstention included, in under 35ms. WebGPU playground, Apache-2.0.',
+    links: { tweet: 'https://x.com/heman10x/status/2100836659533336676', hf: 'https://huggingface.co/heman10x/rlcd-modernbert-151m', gh: 'https://github.com/Heman10x-NGU/Verdict-open-jev' },
+    m: { likes: 17, rts: 1, views: 8158, hfLikes: 31, stars: 86 }, date: '2026-09-17', tags: 'modernbert encoder webgpu abstention gliclass hub weights' },
+  { cat: 'trained', title: 'open-jev (pngwn): Qwen3.5-4B decision scorer + demo Space', by: { name: 'pngwn', handle: 'evilpingwin' },
+    desc: 'Qwen3.5-4B LoRA fine-tune that scores each candidate answer for a typed question, with temperature scaling so confidence tracks accuracy. Weights (v1, v2b) and a demo Space on the Hub.',
+    quote: 'Since everyone is open-jevving. I set ML Intern (on hugging chat) to work. After a few experiments and a little guidance and we did ok.',
+    links: { tweet: 'https://x.com/evilpingwin/status/2100721265107751121', space: 'https://huggingface.co/spaces/pngwn/open-jev', hf: 'https://huggingface.co/pngwn/system-one-qwen3.5-4b-scorer-v2b', hf2: 'https://huggingface.co/pngwn/system-one-qwen3.5-4b-scorer' },
+    m: { likes: 248, rts: 39, views: 15064, hfLikes: 22 }, date: '2026-09-17', tags: 'qwen3.5 scoring head temperature scaling calibration ml intern huggingchat hub weights space demo' },
+  { cat: 'trained', title: 'jevbetter: a stronger jevlike', by: { name: 'olanotolu', handle: null },
+    desc: 'jevlike with a fancier head: hashed n-gram encoder, rival-aware attention, temperature scaling. Benchmarked against jevlike.',
+    links: { gh: 'https://github.com/olanotolu/jevbetter' },
+    m: { stars: 14 }, date: '2026-09-16', tags: 'n-gram attention temperature scaling calibration' },
+  { cat: 'trained', title: 'system-one-open: Gemma 4 E2B / Gemma 3 270M + head', by: { name: 'mithalouni', handle: null },
+    desc: 'Typed calibrated decisions in one pass on Gemma 4 E2B and Gemma 3 270M, trained on Modal.',
+    links: { gh: 'https://github.com/mithalouni/system-one-open' },
+    m: { stars: 35 }, date: '2026-09-17', tags: 'gemma modal scoring head' },
+  { cat: 'trained', title: 'qwen-rlcd: Qwen3.5-0.8B Choice/Score/Noul', by: { name: 'shamazharikh', handle: null },
+    desc: 'Choice / Score / Noul on Qwen3.5-0.8B. Inference works; training marked on hold.',
+    links: { gh: 'https://github.com/shamazharikh/qwen-rlcd' },
+    m: { stars: 4 }, date: '2026-09-16', tags: 'qwen3.5 0.8b small' },
+  { cat: 'trained', title: 'system-one-gemma: Gemma 3 270M scoring head', by: { name: 'akash-kamat', handle: null },
+    desc: 'Gemma 3 270M with a scoring head; single forward pass, no text generation.',
+    links: { gh: 'https://github.com/akash-kamat/system-one-gemma' },
+    m: { stars: 4 }, date: '2026-09-17', tags: 'gemma 270m tiny' },
+  { cat: 'trained', title: 'Laya: 421M RLCD decision model + demo Space', by: { name: 'Convai Innovations', handle: null },
+    desc: 'ModernBERT-large fine-tuned plus a decision head trained from scratch (421M total) with RLCD against proper scoring rules: choice/score/noul with calibrated probabilities, all questions in one pass. Weights and a 7-tab Gradio demo on the Hub.',
+    links: { gh: 'https://github.com/NandhaKishorM/laya', hf: 'https://huggingface.co/convaiinnovations/laya', space: 'https://huggingface.co/spaces/convaiinnovations/laya-demo', blog: 'https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me', site: 'https://www.reddit.com/r/LocalLLaMA/comments/1wjieap/made_the_horizontal_opensource_model_for_jev_with/' },
+    m: { stars: 20703, hfLikes: 3133 }, date: '2026-09-18', tags: 'modernbert rlcd calibrated choice score noul support triage guardrails rag moderation routing hub weights space demo github pypi reddit devto' },
+  { cat: 'trained', title: 'Decision 1.0: six open decision models + Studio Space', by: { name: 'vLLM Semantic Router', handle: null },
+    desc: 'Apache-2.0 models from the vLLM Semantic Router team: Kai/Lex (572M encoders) and Sol (1.88B) / Nox (4.21B) decoders doing Choice, Noul and Score in one pass, 50 languages, plus a Studio Space. Kai outscores both Laya baselines in five of six panels. Lux-9B and Eos-0.8B followed, in Decision Index 0.2.',
+    links: { hf: 'https://huggingface.co/collections/llm-semantic-router/decision-10-6ab12177bd0002394d8409f9', hf2: 'https://huggingface.co/llm-semantic-router/Decision-1.0-Kai', space: 'https://huggingface.co/spaces/llm-semantic-router/decision-studio', blog: 'https://vllm-sr.ai/blog/decision-models/' },
+    m: { hfLikes: 4 }, date: '2026-09-21', tags: 'vllm semantic router decision 1.0 kai lex sol nox lux eos 9b 0.8b decision index 0.2 vela encoder qwen3.5 choice noul score ordinal regression multilingual belebele 50 languages apache system one adapter decision studio amd rocm' },
+  { cat: 'trained', title: 'System One Mini: 69M DistilBERT, five fixed decisions', by: { name: 'David Hatley', handle: null },
+    desc: '69M DistilBERT with five fixed typed heads over synthetic software-diagnosis summaries. Its card says: not a reproduction of Jev or RLCD.',
+    links: { hf: 'https://huggingface.co/DavidHatley/system-one-mini' },
+    m: { hfLikes: 0 }, date: '2026-09-16', tags: 'distilbert fixed schema multitask hub weights' },
+  { cat: 'trained', title: 'NanoJev: 0.6B Qwen3 with a real decision head', by: { name: 'TianyuCodings', handle: null },
+    desc: 'A 0.6B Qwen3 backbone with an actual trained head emitting Choice / Boolean / Score across 2–255 candidates in one forward pass. Full training pipeline, maze and snake runs, weights and data on the Hub. The one Chinese and Korean roundups are pushing hardest.',
+    links: { gh: 'https://github.com/TianyuCodings/NanoJev', hf: 'https://huggingface.co/C-Tianyu/NanoJev' },
+    m: { stars: 2125, hfLikes: 81 }, date: '2026-09-17', tags: 'nanojev 0.6b qwen3 decision head choice boolean score maze snake training pipeline weights hub china korea' },
+  { cat: 'trained', title: 'mini-jev: a preregistered measurement of the trick', by: { name: 'r-ms', handle: null },
+    desc: 'Not another clone: a preregistered study of letter-logit versus grammar-JSON decoding on frozen Qwen3-4B and CLINC150. An actual measurement, no weights trained.',
+    links: { gh: 'https://github.com/r-ms/mini-jev' },
+    m: { stars: 51 }, date: '2026-09-17', tags: 'preregistered study letter logits grammar json clinc150 qwen3-4b measurement' },
+
+  { cat: 'trained', title: 'Solomon: the open-weight release Archer Hume promised', by: { name: 'Doccy (Archer Hume)', handle: '4rcherhume' },
+    desc: 'Archer Hume\'s promised open-weight release, from his company Doccy: a rank-64 LoRA plus trained heads scoring five question types as letter-logit probabilities, no generation. His post calls it the best open-weight alternative to Jev; real panel 0.8131.',
+    quote: 'Yes we are a healthcare company. Yes we just released the best open-weight alternative to Jev, Solomon 27b.',
+    links: { tweet: 'https://x.com/4rcherhume/status/2101888238357237798', hf: 'https://huggingface.co/DoccyHealth/Solomon', blog: 'https://archerhume.com/posts/jevs-architecture-unmasked/' },
+    m: { likes: 736, rts: 55, views: 56132, hfLikes: 45 }, date: '2026-09-21', tags: 'qwen3.8 27b lora trained heads letter logits document decisions calibration apache promised delivered doccy archer melbourne alternative' },
+  { cat: 'trained', title: 'CLM-v0.1-8B: contrastive state/action heads on Qwen3-8B', by: { name: 'Jacky Kwok (Contrastive-LM)', handle: 'jackyk02' },
+    desc: 'A contrastive route: two small projection heads, one for states and one for actions, over a frozen Qwen3-8B encoder, trained with a bidirectional InfoNCE loss. States and actions embed separately, so a fixed action set is cached and reused. Entered in Decision Index 0.2.',
+    quote: 'Introducing Contrastive Language Model (CLM): an ultra-fast System One Model trained with a contrastive learning objective that connects states and actions.',
+    links: { tweet: 'https://x.com/jackyk02/status/2102905335925424285', gh: 'https://github.com/Contrastive-LM/CLM', hf: 'https://huggingface.co/Contrastive-LM/CLM-v0.1-8B', blog: 'https://contrastive-lm.notion.site' },
+    m: { likes: 696, rts: 78, views: 44926, stars: 45, hfLikes: 7 }, date: '2026-09-23', tags: 'clm contrastive language model infonce qwen3-8b projection heads state action caching embeddings verifier computer use decision index 0.2' },
+  { cat: 'trained', title: 'Tev1-4B-experimental: Together AI\'s $17 Jev-like classifier', by: { name: 'Together AI', handle: 'togethercompute' },
+    desc: 'A supervised fine-tune of Qwen3.5-4B that returns one option letter from state, question and 2–24 options; it keeps Qwen\'s LM head. On Together serverless at $0.042/M input, with the data recipe and a train-your-own tutorial. Entered in Decision Index 0.2.',
+    quote: 'We\'re releasing tev1-4B-experimental, a Jev-like classifier finetuned on top of Qwen3.5 4B.',
+    links: { tweet: 'https://x.com/togethercompute/status/2102882216950763814', hf: 'https://huggingface.co/togethercomputer/Tev1-4B-experimental', gh: 'https://github.com/togethercomputer/tev1', blog: 'https://www.together.ai/blog/how-to-train-your-own-jev' },
+    m: { likes: 432, rts: 25, views: 34351, stars: 10, hfLikes: 4 }, date: '2026-09-23', tags: 'tev1 together ai qwen3.5 4b lora sft letter answer serverless recipe tutorial hub weights decision index 0.2' },
+  { cat: 'trained', title: 'Xor: Qwen3.6-35B-A3B post-trained for multimodal decisions', by: { name: 'Xyne (Juspay)', handle: 'XyneAI' },
+    desc: 'Juspay\'s post-train of Qwen3.6-35B-A3B behind a /v1/systemone API: choice, score and noul over text plus up to eight images, read from single-token candidates in forward and reverse option order, then calibrated. Entered in Decision Index 0.2.',
+    quote: 'An open source, multimodal Jev-like decision model. Being developed with data sovereignty & enterprise grade in mind.',
+    links: { tweet: 'https://x.com/XyneAI/status/2102809144004894940', hf: 'https://huggingface.co/juspay/xor' },
+    m: { likes: 436, rts: 65, views: 24463, hfLikes: 22 }, date: '2026-09-23', tags: 'xor juspay xyne qwen3.6 35b moe multimodal images systemone calibration enterprise hub weights decision index 0.2' },
+  { cat: 'trained', title: 'MoJev: Qwen3.5-0.8B tree-mask decision scorer', by: { name: 'Di Zhang (MoLeMo Lab)', handle: 'di_zhang_fdu' },
+    desc: 'A trained checkpoint on Qwen3.5-0.8B that scores caller-supplied candidates from text and images, all questions packed into one pass under a tree mask. Code, mixed dataset, preprint, a ZeroGPU Space and an INT4 browser export. Entered in Decision Index 0.2.',
+    links: { tweet: 'https://x.com/di_zhang_fdu/status/2102827211757879753', gh: 'https://github.com/MoLeMo-Lab/mojev', hf: 'https://huggingface.co/MoLeMo-Lab/mojev', space: 'https://huggingface.co/spaces/di-zhang-fdu/mojev' },
+    m: { likes: 146, rts: 23, views: 11491, stars: 24, hfLikes: 4 }, date: '2026-09-23', tags: 'mojev molemo qwen3.5 0.8b tree mask packed candidates images preprint dataset space browser int4 hub weights decision index 0.2' },
+  { cat: 'trained', title: 'Bosun v3.1 (0.6B & 1.7B) + DecisionBench', by: { name: 'Stephen Solka (Hanno Labs)', handle: 'trashhalo' },
+    desc: 'Qwen3 0.6B and 1.7B with a rank-16 LoRA and 256 learned decision tokens, reading full answer distributions from token probabilities, served by a Jev-compatible server. Released alongside DecisionBench, an open benchmark. Entered in Decision Index 0.2.',
+    quote: 'Bosun v3.1 by Hanno Labs is out!',
+    links: { tweet: 'https://x.com/trashhalo/status/2102837422182543410', blog: 'https://huggingface.co/blog/Hanno-Labs/decisionbench-bosun-v3-1', gh: 'https://github.com/Hanno-Labs/jev-compatible-server', hf: 'https://huggingface.co/Hanno-Labs/bosun-v3.1-1.7b', hf2: 'https://huggingface.co/Hanno-Labs/bosun-v3.1-0.6b' },
+    m: { likes: 7, rts: 3, views: 1061, stars: 0, hfLikes: 1 }, date: '2026-09-23', tags: 'bosun hanno labs qwen3 0.6b 1.7b lora decision tokens decisionbench jev-compatible-server systemone hub blog decision index 0.2' },
+  { cat: 'trained', title: 'JevK5: Qwen3.5-4B with a distilled LoRA merged', by: { name: 'allebee', handle: null },
+    desc: 'Qwen3.5-4B with a rank-16 LoRA distilled from a thinking teacher and merged, SemIf-style letter readout and a CUDA-graph runtime behind /v1/systemone. Trained on 3,270 decisions, half teacher-written, half human-labelled. Entered in Decision Index 0.2.',
+    links: { gh: 'https://github.com/allebee/jevk5', hf: 'https://huggingface.co/alibiserikbay/JevK5' },
+    m: { stars: 46, hfLikes: 3 }, date: '2026-09-22', tags: 'jevk5 qwen3.5 4b lora distilled merged semif readout cuda graph systemone apache hub weights decision index 0.2' },
+  { cat: 'trained', title: 'Hopper: Qwen3.5-4B LoRA with a per-answer-type calibration map', by: { name: 'HopitAI', handle: null },
+    desc: 'A LoRA on Qwen3.5-4B merged at load, answers read as a softmax over option letters with thinking off. A small calibration map sets the temperature by option count, state length, answer type and entropy; it never changes the answer. Entered in Decision Index 0.2.',
+    links: { gh: 'https://github.com/hopit-ai/hopper', hf: 'https://huggingface.co/HopitAI/hopper' },
+    m: { stars: 2, hfLikes: 1 }, date: '2026-09-21', tags: 'hopper hopitai qwen3.5 4b lora calibration temperature map letter logits hub weights decision index 0.2' },
+  { cat: 'trained', title: 'Metask-Jev-4B policy-mix: Nimble-objective LoRA on Qwen3.5-4B', by: { name: 'wayfind · metask-ai', handle: null },
+    desc: 'Qwen3.5-4B with a merged LoRA trained on Nimble\'s candidate cross-entropy objective over 44.8k view-augmented public decisions plus policy-family soft labels, 16 locales, 4,096-token input, per-kind temperatures. Entered in Decision Index 0.2.',
+    links: { gh: 'https://github.com/metask-ai/metask-jev', hf: 'https://huggingface.co/wayfind/metask-jev-4b-policy-mix' },
+    m: { stars: 2, hfLikes: 1 }, date: '2026-09-21', tags: 'metask jev 4b wayfind qwen3.5 lora nimble candidate logits multilingual locales policy temperature hub weights decision index 0.2' },
+  { cat: 'trained', title: 'this-that-model-1.2: FLock\'s typed-decision model, rules however written', by: { name: 'FLock.io', handle: null },
+    desc: 'The 1.9B this-that line from FLock, one forward pass with no decoding loop, parser or retry. 1.2 targets policy rules as people actually write them: composed rules that narrow a choice in sequence, and rules phrased in the negative. Entered in Decision Index 0.2.',
+    links: { hf: 'https://huggingface.co/flock-io/this-that-model-1.2', gh: 'https://github.com/FLock-io/this-that-model' },
+    m: { stars: 26, hfLikes: 0 }, date: '2026-09-23', tags: 'this-that flock 1.2 1.9b decider-2b policy rules negation composed decisions pip hub weights decision index 0.2' },
+  { cat: 'trained', title: 'Surogate Rune 26B-A4B: an ownable decision model for text and images', by: { name: 'Surogate (Invergent)', handle: null },
+    desc: 'Open weights under a permissive license: a 26B mixture of experts (4B active) on Gemma 4 with 262k context. Choice, noul and score over text, structured data or images, with full distributions, as a GGUF on Surogate\'s decisions endpoint. Entered in Decision Index 0.2.',
+    links: { blog: 'https://invergent.ai/blog/rune/', hf: 'https://huggingface.co/surogate/rune-26b-a4b-GGUF' },
+    m: { stars: 813, hfLikes: 1 }, date: '2026-09-22', tags: 'surogate rune invergent gemma 4 26b a4b moe gguf multimodal images long context decisions endpoint hub weights blog decision index 0.2' },
+
+  { cat: 'trained', promised: true, title: 'Archer Hume\'s open-weight Jev (promised)', by: { name: 'Archer Hume', handle: '4rcherhume' },
+    desc: 'Announced alongside the architecture teardown: an open-weight version trained on the inferred design. Delivered 2026-09-21 as Solomon, from Hume\'s company Doccy, whose launch post calls it the best open-weight alternative to Jev.',
+    quote: 'I decided I\'d release an open-weight version. BUT training takes time, so while we all wait I decided I\'d drop the sauce.',
+    links: { tweet: 'https://x.com/4rcherhume/status/2100555442061820286', blog: 'https://archerhume.com/posts/jevs-architecture-unmasked/' },
+    m: { likes: 2250, rts: 212, views: 382112 }, date: '2026-09-17', tags: 'promised coming soon open-weight training archer' },
+
+  /* ---------------- prior ---------------- */
+  { cat: 'prior', title: 'GLiNER 2.5: "Weights are on Hugging Face."', by: { name: 'George (Fastino / GLiNER)', handle: 'george_onx' },
+    desc: 'Points the launch thread at the GLiNER 2.5 collection: a pretrained zero-shot encoder-classifier already doing single-pass classification over caller-supplied labels.',
+    quote: 'We\'ve been reading the comments. Weights are on Hugging Face.',
+    links: { tweet: 'https://x.com/george_onx/status/2100293114808119379', hf: 'https://huggingface.co/collections/fastino/gliner25-models' },
+    m: { likes: 1589, rts: 94, views: 225895 }, date: '2026-09-16', tags: 'gliner fastino zero-shot encoder classifier collection' },
+  { cat: 'prior', title: 'DeepMost sales-conversion RL model + papers', by: { name: 'Nandakishor M', handle: 'Nandakishorm1' },
+    desc: 'Claims the idea shipped in 2025 papers (arXiv 2503.23303, 2510.01237) with a Hub model and dataset. PPO over embeddings; loosely related.',
+    quote: 'Also the second work published in September 2025 was exactly the same one jev proposed now.',
+    links: { tweet: 'https://x.com/Nandakishorm1/status/2100451360873611666', hf: 'https://huggingface.co/DeepMostInnovations/sales-conversion-model-reinf-learning', paper: 'https://arxiv.org/abs/2510.01237' },
+    m: { likes: 13, rts: 0, views: 773, hfLikes: 190 }, date: '2026-09-17', tags: 'ppo embeddings arxiv prior art sales' },
+
+  /* ---------------- arch ---------------- */
+  { cat: 'explain', title: 'Jev\'s Architecture Unmasked', by: { name: 'Archer Hume', handle: '4rcherhume' },
+    desc: 'Argues Jev is a causal transformer with shared-state encoding, per-question branches and direct probability readouts, likely on a sparse MoE backbone, inferred from latency probing.',
+    quote: 'All the grifters are completely wrong about Jev\'s architecture so I decided I\'d release an open-weight version. BUT training takes time…',
+    links: { tweet: 'https://x.com/4rcherhume/status/2100555442061820286', blog: 'https://archerhume.com/posts/jevs-architecture-unmasked/' },
+    m: { likes: 2250, rts: 212, views: 382112 }, date: '2026-09-17', tags: 'moe teardown speculation open-weight promise blog' },
+
+  /* ---------------- diffusion ---------------- */
+  { cat: 'diffusion', title: 'DiffusionGemma-as-Jev + vLLM structured-generation patch', by: { name: 'Matt Mastracci', handle: 'mmastrac' },
+    desc: 'Adds a Jev-like structured mode for DiffusionGemma to vLLM (PR #57250) and runs live evals: not slower than Jev\'s API and roughly tied on quality.',
+    quote: 'Is Jev faster than DiffusionGemma? No ❌ Is Jev smarter than DiffusionGemma? No ❌ (they\'re roughly tied!)',
+    links: { tweet: 'https://x.com/mmastrac/status/2100626193943052784', pr: 'https://github.com/vllm-project/vllm/pull/57250' },
+    m: { likes: 1123, rts: 91, views: 436934 }, date: '2026-09-17', tags: 'diffusion gemma vllm dgx spark evals' },
+  { cat: 'diffusion', title: 'razorback16/openjev + api.codiv.ai host', by: { name: 'razorback16', handle: null },
+    desc: 'The same vLLM PR #57250 route, packaged as a Jev-wire /v1/systemone service: a DiffusionGemma 26B-A4B canvas with only the label slots left as noise, one read-only denoise step reads out the distribution. Public host at api.codiv.ai.',
+    links: { gh: 'https://github.com/razorback16/openjev', site: 'https://api.codiv.ai/v1/systemone' },
+    m: { stars: 374 }, date: '2026-09-17', tags: 'diffusiongemma 26b a4b nvfp4 vllm 57250 hosted api codiv systemone denoise canvas' },
+  { cat: 'diffusion', title: 'open-jev (JoshuaSP): typed JSON with DiffusionGemma', by: { name: 'Joshua SP', handle: null },
+    desc: 'Typed JSON inference with DiffusionGemma, benchmarked against Every and Jev.',
+    links: { gh: 'https://github.com/JoshuaSP/open-jev' },
+    m: { stars: 38 }, date: '2026-09-16', tags: 'diffusion gemma benchmark every' },
+  { cat: 'diffusion', title: 'LocalJev (GitHub Next): oMLX Jev API + model bake-off', by: { name: 'GitHub Next', handle: 'GitHubNext' },
+    desc: 'Official GitHub Next bridge, since not everyone there has Jev access: a Bun server putting oMLX DiffusionGemma behind /v1/systemone. Prompts for JSON probabilities instead of reading logits: wire-compatible, not equivalent. Ships a 1,200-request bake-off.',
+    quote: 'Not everyone on the team has access to Jev yet. Spent a morning cobbling together a poor man\'s Jev on top of omlx for local use.',
+    links: { tweet: 'https://x.com/GitHubNext/status/2101193436816920798', gh: 'https://github.com/githubnext/localjev' },
+    m: { likes: 1552, rts: 193, views: 251877, stars: 736 }, date: '2026-09-19', tags: 'github next localjev omlx bun typescript diffusiongemma 26b a4b json probabilities bakeoff m5 max benchmark qwen gemma moe wire compatible promptcoding' },
+
+  /* ---------------- explain ---------------- */
+  { cat: 'explain', title: 'jev-ood-calibration: does Jev know when it doesn\'t know?', by: { name: 'scienthoon', handle: null },
+    desc: 'Calibration test on 900 rule-generated tickets Jev cannot have seen plus OBQA/CSQA/HellaSwag via AI Gateway. Refit temperature 2.7 on the unseen task vs 0.96–1.35 on the benchmarks; Choice/Score overconfident, Boolean underconfident. Raw responses published.',
+    links: { gh: 'https://github.com/scienthoon/jev-ood-calibration' },
+    m: { stars: 6 }, date: '2026-09-19', tags: 'calibration ece temperature ood synthetic benchmark gateway' },
+  { cat: 'explain', title: '45-second TL;DR on Jev (video)', by: { name: 'Matija Sosic', handle: 'MatijaSosic' },
+    desc: 'The most-shared explainer of the launch: a 45-second video that strips Jev down to its core idea, made because the official launch video was hard to follow.',
+    quote: 'I find the core idea beautifully simple, but the video made it really hard to understand.',
+    links: { tweet: 'https://x.com/MatijaSosic/status/2100190746389135772' },
+    m: { likes: 9732, rts: 721, views: 1723661 }, date: '2026-09-16', tags: 'video tldr explainer launch' },
+  { cat: 'explain', title: 'typesafe-ai-benchmark: an "imposter Jev" on Cerebras', by: { name: 'Shannon Duncan', handle: 'iamMrDuncan' },
+    desc: 'An "imposter Jev" gateway on Cerebras with Qwen 3.8 27B, compared side by side. Similar quality and speed; TypeSafe far cheaper.',
+    quote: 'Built an alternative version of @typesafeai but on @cerebras with Qwen 3.8 27b. Similar quality, similar performance, but vastly different cost.',
+    links: { tweet: 'https://x.com/iamMrDuncan/status/2100467548298899918', gh: 'https://github.com/iammrduncan/typesafe-ai-benchmark' },
+    m: { likes: 209, rts: 26, views: 26352, stars: 38 }, date: '2026-09-17', tags: 'cerebras qwen gateway benchmark comparison cost' },
+  { cat: 'explain', title: 'awesome-jev lists (AnotiaWang · hellogumbo)', by: { name: 'AnotiaWang · hellogumbo', handle: null },
+    desc: 'Two curated indexes; AnotiaWang\'s "Research & Open Models" section is the tight one, hellogumbo\'s catches the long tail.',
+    links: { gh: 'https://github.com/AnotiaWang/awesome-jev', gh2: 'https://github.com/hellogumbo/awesome-jev' },
+    m: { stars: 512 }, date: '2026-09-16', tags: 'awesome list index curated roundup' },
+  { cat: 'explain', title: 'jev-benchmarks: probability-aware eval harness', by: { name: 'AbdelStark', handle: null },
+    desc: 'Calibration, selective risk and latency evals for typed decision models, Jev or open.',
+    links: { gh: 'https://github.com/AbdelStark/jev-benchmarks' },
+    m: { stars: 17 }, date: '2026-09-17', tags: 'calibration selective risk eval harness' },
+  { cat: 'explain', title: 'Thread: System 1 / System 2 agents and the open recreations', by: { name: 'hhkkmon', handle: 'hhkkmon' },
+    desc: '14-part explainer framing agents as "expensive LLM calls pretending to be if statements", listing the open recreations at the end.',
+    quote: 'Big models think. Small decision models react.',
+    links: { tweet: 'https://x.com/hhkkmon/status/2100443314957038010' },
+    m: { likes: 2, rts: 0, views: 121 }, date: '2026-09-17', tags: 'thread explainer system 1 system 2 agents' },
+  { cat: 'explain', title: 'Long-form: "OpenJev is NOT Jev open-sourced"', by: { name: 'mygtmhire', handle: 'mygtmhire' },
+    desc: 'Most thorough single post on TheoLeeCJ/openjev, including the warning that its probabilities are not calibrated confidence.',
+    quote: 'State in → probabilities out → code acts. No conversation required.',
+    links: { tweet: 'https://x.com/mygtmhire/status/2100666488625734103' },
+    m: { likes: 2, rts: 0, views: 137 }, date: '2026-09-17', tags: 'explainer openjev routing calibration' },
+  { cat: 'explain', title: 'jev-behavior-study: probing the closed model', by: { name: 'RINNECODER', handle: null },
+    desc: 'Black-box behavioural study of the closed Jev 1.13.0 itself. Not a replica — it measures the thing everyone is trying to reproduce.',
+    links: { gh: 'https://github.com/RINNECODER/jev-behavior-study' },
+    m: { stars: 3 }, date: '2026-09-17', tags: 'behavior study black box probing jev 1.13.0 closed model' },
+];
+
+/* ===================================================================== */
+const LINK_LABELS = { tweet: 'post on X', gh: 'GitHub', gh2: 'GitHub (2)', hf: '🤗 model', hf2: '🤗 model (2)', space: '🤗 Space', blog: 'blog', blog2: 'blog (2)', blog3: 'blog (3)', blog4: 'blog (4)', demo: 'demo', pr: 'vLLM PR', paper: 'arXiv', site: 'site' };
+const fmt = n => n == null ? null : n >= 1e6 ? (n/1e6).toFixed(1).replace(/\.0$/,'') + 'M' : n >= 1e3 ? (n/1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/,'') + 'k' : String(n);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ICON = {
+  heart: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1 7.7 3.6 4 7.3 4c1.9 0 3.4 1 4.7 2.6C13.3 5 14.8 4 16.7 4 20.4 4 23 7.7 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  star: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.7l-6.1 3.4 1.4-6.8L2.2 9.6l6.9-.8z"/></svg>',
+  rt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>',
+};
+
+function typesOf(it) {
+  const t = new Set();
+  const L = it.links || {};
+  if (L.gh || L.gh2 || L.pr) t.add('gh');
+  if (L.hf || L.hf2) t.add('hf');
+  if (L.space) t.add('space');
+  if (L.blog || L.blog2) t.add('blog');
+  if (L.tweet) t.add('tweet');
+  return t;
+}
+function badgesOf(it) {
+  const L = it.links || {}; const b = [];
+  if (isNew(it)) b.push(['new', 'new']);
+  if (it.promised) b.push(['soon', 'coming soon / promised']);
+  if (L.gh || L.gh2) b.push(['gh', 'GitHub']);
+  if (L.hf || L.hf2) b.push(['hf', '🤗 weights']);
+  if (L.space) b.push(['space', '🤗 Space']);
+  if (L.blog) b.push(['blog', 'Blog']);
+  if (L.demo || L.site) b.push(['demo', 'Demo']);
+  if (L.pr) b.push(['pr', 'vLLM PR']);
+  if (L.paper) b.push(['paper', 'Paper']);
+  if (!L.tweet && !it.promised) b.push(['post', 'no launch post']);
+  return b;
+}
+const likesOf = it => it.m?.likes ?? -1;
+/* Trending: one weighted number across platforms. A GitHub star or a Hub like is a
+   stronger signal than a like on X, so they are weighted up; views add a little.
+   A recency credit is added on top, so a fresh release is not buried under older,
+   louder ones. It decays daily (halving every day), so a week-old item keeps only
+   a fraction of it. It is also scaled by the item's own engagement: a brand-new
+   entry nobody has reacted to yet cannot climb on its date alone.
+   The credit therefore rewards "new AND real", never novelty by itself.
+   Note the credit has to outweigh real engagement to lift a fresh item over a
+   well-established one, so it is deliberately large. It is a nudge in the ranking,
+   not a tie-breaker: engagement still decides between items of similar age. */
+const W = { likes: 1, stars: 5, hfLikes: 8, views: 1/500 };
+const RECENCY = { credit: 8000, halfLifeDays: 1, ref: 400 };
+const BASE_DATE = '2026-09-24';   /* the snapshot the metrics were last refreshed against */
+const ageDays = it => Math.max(0, (new Date(BASE_DATE) - new Date(it.date)) / 864e5);
+const recency = it => {
+  const m = it.m || {};
+  const raw = (m.likes || 0) * W.likes + (m.stars || 0) * W.stars + (m.hfLikes || 0) * W.hfLikes + (m.views || 0) * W.views;
+  const reach = Math.min(1, raw / RECENCY.ref);   /* saturates fast: any real traction gets the full credit */
+  return RECENCY.credit * reach * Math.pow(2, -ageDays(it) / RECENCY.halfLifeDays);
+};
+const trending = it => { const m = it.m || {}; return Math.round((m.likes || 0) * W.likes + (m.stars || 0) * W.stars + (m.hfLikes || 0) * W.hfLikes + (m.views || 0) * W.views + recency(it)); };
+/* "new" badge: added within the last day of the snapshot */
+const isNew = it => ageDays(it) <= 1;
+const hasPost = it => !!it.links?.tweet;
+
+function sortItems(arr, mode) {
+  const key = {
+    trending: it => [it.promised ? 0 : 1, trending(it), it.m?.likes ?? 0],
+    likes: it => [it.promised ? 0 : 1, hasPost(it) ? 1 : 0, it.m?.likes ?? 0, it.m?.stars ?? 0, it.m?.hfLikes ?? 0],
+    views: it => [it.promised ? 0 : 1, hasPost(it) ? 1 : 0, it.m?.views ?? 0, it.m?.stars ?? 0],
+    stars: it => [it.promised ? 0 : 1, it.m?.stars ?? -1, it.m?.likes ?? 0],
+    hf:    it => [it.promised ? 0 : 1, it.m?.hfLikes ?? -1, it.m?.likes ?? 0],
+    date:  it => [it.promised ? 0 : 1, it.date, it.m?.likes ?? 0],
+  }[mode];
+  return arr.slice().sort((a, b) => { const ka = key(a), kb = key(b); for (let i = 0; i < ka.length; i++) { if (ka[i] > kb[i]) return -1; if (ka[i] < kb[i]) return 1; } return 0; });
+}
+
+/* ---- state ---- */
+const PREVIEW = 12;
+const state = { q: '', cats: new Set(), types: new Set(), sort: 'trending', expandedAll: false };
+const $ = s => document.querySelector(s);
+
+function highlight(text, q) {
+  if (!q) return esc(text);
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+  return esc(text).replace(re, '<mark>$1</mark>');
+}
+function matches(it, q) {
+  if (!q) return true;
+  const hay = [it.title, it.desc, it.quote, it.by?.name, it.by?.handle, it.tags, CATS.find(c => c.id === it.cat)?.name].join(' ').toLowerCase();
+  return hay.includes(q.toLowerCase());
+}
+
+function renderStats() {
+  const totalLikes = ITEMS.reduce((s, it) => s + (it.m?.likes || 0), 0);
+  const hf = ITEMS.filter(it => it.links?.hf || it.links?.hf2).length;
+  const spaces = ITEMS.filter(it => it.links?.space).length;
+  const gh = ITEMS.filter(it => it.links?.gh).length;
+  $('#stats').innerHTML = [
+    ['y', ITEMS.length, 'artifacts tracked'],
+    ['p', hf, 'with 🤗 Hub weights'],
+    ['', gh, 'GitHub repos'],
+    ['', spaces, '🤗 Spaces'],
+  ].map(([c, n, l]) => `<div class="stat ${c}"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+
+function renderChips() {
+  const wrap = $('#cat-chips');
+  const ordered = orderedCats();
+  ordered.forEach(({ cat }) => {
+    const b = document.createElement('button');
+    b.className = 'chip cat'; b.dataset.cat = cat.id; b.style.setProperty('--c', cat.color); b.style.setProperty('--tc', cat.tc);
+    b.title = cat.desc.replace(/<[^>]+>/g, '');
+    b.innerHTML = `<span class="dot"></span>${esc(cat.name)} <span class="n">${ITEMS.filter(it => it.cat === cat.id).length}</span>`;
+    b.addEventListener('click', () => { state.cats.has(cat.id) ? state.cats.delete(cat.id) : state.cats.add(cat.id); render(); });
+    wrap.appendChild(b);
+  });
+  document.querySelectorAll('#type-chips .chip').forEach(b => b.addEventListener('click', () => { const t = b.dataset.type; state.types.has(t) ? state.types.delete(t) : state.types.add(t); render(); }));
+}
+
+function orderedCats() {
+  return CATS.map(cat => {
+    const items = ITEMS.filter(it => it.cat === cat.id);
+    const likes = items.reduce((s, it) => s + (it.m?.likes || 0), 0);
+    const views = items.reduce((s, it) => s + (it.m?.views || 0), 0);
+    const stars = items.reduce((s, it) => s + (it.m?.stars || 0), 0);
+    return { cat, items, likes, views, stars };
+  }).sort((a, b) => a.cat.order - b.cat.order);
+}
+
+function cardHTML(it, cat, idx, q) {
+  const m = it.m || {};
+  const metrics = [];
+  const tr = trending(it); if (tr) metrics.push(`<span class="tr" title="trending = ♥X + 5×★GitHub + 8×🤗likes + views/500 + recency credit (up to 8000, scaled by engagement, halving daily)">▲ ${fmt(tr)}</span>`);
+  if (m.likes != null) metrics.push(`<span title="likes on X">${ICON.heart}${fmt(m.likes)}</span>`);
+  if (m.rts) metrics.push(`<span title="reposts">${ICON.rt}${fmt(m.rts)}</span>`);
+  if (m.views != null) metrics.push(`<span title="views on X">${ICON.eye}${fmt(m.views)}</span>`);
+  if (m.stars != null) metrics.push(`<span title="GitHub stars">${ICON.star}${fmt(m.stars)} gh</span>`);
+  if (m.hfLikes != null) metrics.push(`<span title="Hugging Face likes">🤗 ${fmt(m.hfLikes)}</span>`);
+  if (!metrics.length) metrics.push('<span class="none">no public metrics</span>');
+  const links = Object.entries(it.links || {}).map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener" class="${k === 'tweet' ? 'x' : k.startsWith('hf') || k === 'space' ? 'hf' : ''}">${LINK_LABELS[k] || k} ↗</a>`).join('');
+  const primary = (it.links || {}).gh || (it.links || {}).hf || (it.links || {}).tweet || (it.links || {}).blog || (it.links || {}).space || '#';
+  const by = it.by ? (it.by.handle ? `by <a href="https://x.com/${esc(it.by.handle)}" target="_blank" rel="noopener">@${esc(it.by.handle)}</a>${it.by.name ? ' · ' + esc(it.by.name) : ''}` : `by ${esc(it.by.name)}`) : '';
+  const quote = it.quote ? `<blockquote class="quote">“${highlight(it.quote, q)}”${it.links?.tweet ? `<a href="${esc(it.links.tweet)}" target="_blank" rel="noopener">— ${it.by?.handle ? '@' + esc(it.by.handle) : esc(it.by?.name || '')} on X ↗</a>` : ''}</blockquote>` : '';
+  return `<article class="card" style="--c:${cat.color};--tc:${cat.tc}">
+    <div class="card-top"><span class="rank-wrap"><span class="rank">${idx + 1}</span><span class="catpill">${esc(cat.short)}</span></span><div class="badges">${badgesOf(it).map(([c, l]) => `<span class="badge ${c}">${l}</span>`).join('')}</div></div>
+    <h3><a href="${esc(primary)}" target="_blank" rel="noopener">${highlight(it.title, q)}</a></h3>
+    <div class="by">${by} · <span title="date of first public artifact">${esc(it.date)}</span></div>
+    ${quote}
+    <p class="desc">${highlight(it.desc, q)}</p>
+    <div class="spacer"></div>
+    <div class="metrics">${metrics.join('')}</div>
+    <div class="links">${links}</div>
+  </article>`;
+}
+
+function render() {
+  const q = state.q.trim();
+  const filtering = q || state.cats.size || state.types.size;
+  let vis = ITEMS.filter(it => (!state.cats.size || state.cats.has(it.cat)) && matches(it, q) && [...state.types].every(t => typesOf(it).has(t)));
+  vis = sortItems(vis, state.sort);
+  const total = ITEMS.length, shown = vis.length;
+  const collapsed = !filtering && !state.expandedAll && vis.length > PREVIEW;
+  const visible = collapsed ? vis.slice(0, PREVIEW) : vis;
+  const byId = Object.fromEntries(CATS.map(c => [c.id, c]));
+  const heads = [...state.cats].map(id => byId[id]).filter(Boolean).sort((a, b) => a.order - b.order).map(cat => `
+    <section class="cat" style="--c:${cat.color};--tc:${cat.tc}">
+      <div class="cat-head">
+        <div>
+          <div class="cat-title-pill">${esc(cat.name)}</div>
+          <p class="cat-desc">${cat.desc}</p>
+          <div class="cat-metrics"><span class="m"><b>${ITEMS.filter(it => it.cat === cat.id).length}</b> artifacts</span><span class="m"><b>${ITEMS.filter(it => it.cat === cat.id && hasPost(it)).length}</b> with a launch post</span></div>
+        </div>
+        <img class="cat-huggy" src="${cat.huggy}" alt="">
+      </div>
+    </section>`).join('');
+  $('#sections').innerHTML = `${heads}<div class="grid">${visible.map((it, i) => cardHTML(it, byId[it.cat], i, q)).join('')}</div>
+    ${collapsed ? `<div class="more-wrap"><button class="more-btn" id="more-all">Show ${vis.length - PREVIEW} more <span class="cnt">${vis.length} total</span></button></div>` : ''}`;
+  const mb = $('#more-all'); if (mb) mb.addEventListener('click', () => { state.expandedAll = true; render(); });
+  $('#no-results').classList.toggle('show', shown === 0);
+  $('#results-bar').classList.toggle('show', !!filtering);
+  $('#results-count').innerHTML = `<b>${shown}</b> of ${total} artifacts${q ? ` matching “<b>${esc(q)}</b>”` : ''}`;
+  document.querySelectorAll('#cat-chips .chip').forEach(b => b.classList.toggle('active', state.cats.has(b.dataset.cat)));
+  document.querySelectorAll('#type-chips .chip').forEach(b => b.classList.toggle('active', state.types.has(b.dataset.type)));
+  $('#q-clear').classList.toggle('show', !!q);
+}
+
+/* ---- wiring ---- */
+renderStats(); renderChips(); render();
+const qEl = $('#q');
+qEl.addEventListener('input', () => { state.q = qEl.value; render(); });
+$('#q-clear').addEventListener('click', () => { qEl.value = ''; state.q = ''; render(); qEl.focus(); });
+$('#results-clear').addEventListener('click', () => { qEl.value = ''; state.q = ''; state.cats.clear(); state.types.clear(); state.expandedAll = false; render(); });
+$('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+const hdr = $('#search-header');
+const sentinel = document.createElement('div'); hdr.parentNode.insertBefore(sentinel, hdr);
+new IntersectionObserver(([e]) => hdr.classList.toggle('stuck', !e.isIntersecting), { threshold: 0 }).observe(sentinel);
+</script>
+</body>
+</html>

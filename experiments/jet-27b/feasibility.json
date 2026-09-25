@@ -1,0 +1,10 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4080 SUPER, 16376 MiB, 14857 MiB",
+  "memory": "               total        used        free      shared  buff/cache   available\nMem:     16680353792  5759422464  3336359936   134393856  7979606016 10920931328\nSwap:     4294963200    58707968  4236255232\n",
+  "bf16_parameters": 27781427952,
+  "bf16_checkpoint_GiB": 51.7470825240016,
+  "bnb4_checkpoint_GiB": 20.81024814490229,
+  "documented_QLoRA_VRAM_GB": 24,
+  "source": "https://unsloth.ai/docs/models/qwen3.8/train",
+  "assessment": "Not practical on 16 GB VRAM + 16 GB RAM with the documented training path; no weight download or training attempted. File sizes are not measured training peaks."
+}

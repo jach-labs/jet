@@ -1,0 +1,299 @@
+{
+  "engine": "Jet 4B",
+  "counts": {
+    "ok": 45222
+  },
+  "successful_request_latency_ms": {
+    "median": 63.46151249999821,
+    "p95": 258.31108599959407,
+    "mean": 118.18927452988163
+  },
+  "benchmarks": [
+    {
+      "catalog_id": 11,
+      "dataset": "ContractNLI",
+      "requests": 123,
+      "answered": 123,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 123,
+      "metric": "macro-F1",
+      "score": 0.7741353853898563,
+      "reference_same_cases": null,
+      "median_ms": 5509.7485830010555,
+      "detail": {
+        "field_accuracy": 0.852702056432329,
+        "case_exact_accuracy": 0.06504065040650407,
+        "macro_f1": 0.7741353853898563,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 30,
+      "dataset": "GSM8K",
+      "requests": 2638,
+      "answered": 2638,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 2638,
+      "metric": "accuracy",
+      "score": 0.6626231993934799,
+      "reference_same_cases": null,
+      "median_ms": 65.6044284987729,
+      "tracks": {
+        "GSM8K-10choice": {
+          "metric": "accuracy",
+          "score": 0.6808188021228203,
+          "scored_requests": 1319
+        },
+        "GSM8K-4choice": {
+          "metric": "accuracy",
+          "score": 0.6444275966641395,
+          "scored_requests": 1319
+        }
+      },
+      "detail": {
+        "field_accuracy": 0.6626231993934799,
+        "case_exact_accuracy": 0.45943896891584535,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 40,
+      "dataset": "iSarcasmEval",
+      "requests": 1400,
+      "answered": 1400,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 1400,
+      "metric": "see separate subtask tracks",
+      "score": null,
+      "reference_same_cases": null,
+      "median_ms": 64.95116900077846,
+      "detail": {
+        "field_accuracy": 0.7492857142857143,
+        "case_exact_accuracy": 0.7492857142857143,
+        "macro_f1": 0.6517163635899722,
+        "custom_metrics": {},
+        "positive_f1_by_field": {
+          "sarcastic": 0.4673748103186646
+        },
+        "category_macro_f1": 0.4673748103186646
+      }
+    },
+    {
+      "catalog_id": 41,
+      "dataset": "VAST",
+      "requests": 3006,
+      "answered": 3006,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 3006,
+      "metric": "macro-F1",
+      "score": 0.4323225230768566,
+      "reference_same_cases": null,
+      "median_ms": 62.10342299891636,
+      "detail": {
+        "field_accuracy": 0.49135063206919494,
+        "case_exact_accuracy": 0.49135063206919494,
+        "macro_f1": 0.4323225230768566,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 42,
+      "dataset": "NLI4CT",
+      "requests": 5500,
+      "answered": 5500,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 5500,
+      "metric": "macro-F1",
+      "score": 0.7669397410542684,
+      "reference_same_cases": null,
+      "median_ms": 85.51237749998108,
+      "detail": {
+        "field_accuracy": 0.7832727272727272,
+        "case_exact_accuracy": 0.7832727272727272,
+        "macro_f1": 0.7669397410542684,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 43,
+      "dataset": "CRUXEval",
+      "requests": 570,
+      "answered": 570,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 570,
+      "metric": "accuracy",
+      "score": 0.41578947368421054,
+      "reference_same_cases": null,
+      "median_ms": 61.79960599911283,
+      "detail": {
+        "field_accuracy": 0.41578947368421054,
+        "case_exact_accuracy": 0.41578947368421054,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 44,
+      "dataset": "CLadder",
+      "requests": 5000,
+      "answered": 5000,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 5000,
+      "metric": "accuracy",
+      "score": 0.651,
+      "reference_same_cases": null,
+      "median_ms": 61.85051300053601,
+      "detail": {
+        "field_accuracy": 0.651,
+        "case_exact_accuracy": 0.651,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 50,
+      "dataset": "Habermas Machine",
+      "requests": 1676,
+      "answered": 1676,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 1676,
+      "metric": "accuracy",
+      "score": 0.4236276849642005,
+      "reference_same_cases": null,
+      "median_ms": 141.24046299912152,
+      "detail": {
+        "field_accuracy": 0.4236276849642005,
+        "case_exact_accuracy": 0.4236276849642005,
+        "custom_metrics": {
+          "normalized_rank_regret": 0.18802704852824184
+        }
+      }
+    },
+    {
+      "catalog_id": 5,
+      "dataset": "CLINC150+OOS",
+      "requests": 5500,
+      "answered": 5500,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 5500,
+      "metric": "macro-F1",
+      "score": 0.9070235668292196,
+      "reference_same_cases": null,
+      "median_ms": 257.9285145002359,
+      "detail": {
+        "field_accuracy": 0.899090909090909,
+        "case_exact_accuracy": 0.899090909090909,
+        "macro_f1": 0.9070235668292196,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 12,
+      "dataset": "ANLI",
+      "requests": 3200,
+      "answered": 3200,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 3200,
+      "metric": "macro-F1",
+      "score": 0.6176836476300385,
+      "reference_same_cases": null,
+      "median_ms": 62.25421300041489,
+      "detail": {
+        "field_accuracy": 0.6196875,
+        "case_exact_accuracy": 0.6196875,
+        "macro_f1": 0.6176836476300385,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 28,
+      "dataset": "WinoGrande",
+      "requests": 1267,
+      "answered": 1267,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 1267,
+      "metric": "accuracy",
+      "score": 0.6985003946329913,
+      "reference_same_cases": null,
+      "median_ms": 62.406159999227384,
+      "detail": {
+        "field_accuracy": 0.6985003946329913,
+        "case_exact_accuracy": 0.6985003946329913,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 29,
+      "dataset": "HellaSwag",
+      "requests": 10042,
+      "answered": 10042,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 10042,
+      "metric": "accuracy",
+      "score": 0.9288986257717586,
+      "reference_same_cases": null,
+      "median_ms": 62.699025502297445,
+      "detail": {
+        "field_accuracy": 0.9288986257717586,
+        "case_exact_accuracy": 0.9288986257717586,
+        "custom_metrics": {}
+      }
+    },
+    {
+      "catalog_id": 37,
+      "dataset": "Amazon ESCI",
+      "requests": 5000,
+      "answered": 5000,
+      "unsupported": 0,
+      "errors": 0,
+      "abstained": 0,
+      "pending": 0,
+      "scored_requests": 5000,
+      "metric": "macro-F1",
+      "score": 0.5167675352277018,
+      "reference_same_cases": null,
+      "median_ms": 70.26674400003685,
+      "detail": {
+        "field_accuracy": 0.6402,
+        "case_exact_accuracy": 0.6402,
+        "macro_f1": 0.5167675352277018,
+        "custom_metrics": {}
+      }
+    }
+  ],
+  "note": "Native benchmark metrics on complete supported case groups. Unsupported cases excluded from accuracy but retained in coverage."
+}

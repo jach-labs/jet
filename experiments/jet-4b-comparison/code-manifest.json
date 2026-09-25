@@ -1,0 +1,8 @@
+{
+  "src/qwen35_training.py": "1e184d6a264ecb1e7b96d26b1fbc250a6651fba36fc113c77a00b5b5ffeb26b3",
+  "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+  "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+  "experiments/jet-4b-comparison/run.py": "5dfc8203f30b4452cfeba37c30ec9d3a3b325814243a4c25dfe44fcddc9e8710",
+  "experiments/jet-4b-comparison/report.py": "64c9035ec197d2a7656720eaf345186d962a0a829562005b5cf7a36754dba8cd",
+  "experiments/jet-4b-comparison/protocol.md": "d38a373af6d1ebe782df3b58ac2dfbe71704222c95fe9a4d25cf5581584936b9"
+}
