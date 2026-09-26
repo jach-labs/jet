@@ -1,0 +1,264 @@
+{
+  "winner": "anchor2",
+  "selection": {
+    "anchor2": {
+      "step": 875,
+      "objective": 0.7838499999999999,
+      "families": {
+        "retention": {
+          "n": 500,
+          "accuracy": 0.892,
+          "nll": 0.3040555107761219,
+          "metric": 0.892,
+          "metric_name": "accuracy"
+        },
+        "banking": {
+          "n": 154,
+          "accuracy": 0.8051948051948052,
+          "nll": 0.9939326891399481,
+          "metric": 0.8051948051948052,
+          "metric_name": "accuracy"
+        },
+        "deadline": {
+          "n": 160,
+          "accuracy": 0.8125,
+          "nll": 0.4842382806609894,
+          "metric": 0.8125,
+          "metric_name": "accuracy"
+        },
+        "and_or": {
+          "n": 160,
+          "accuracy": 0.85,
+          "nll": 0.4151524821760784,
+          "metric": 0.85,
+          "metric_name": "accuracy"
+        },
+        "or_not": {
+          "n": 160,
+          "accuracy": 0.65625,
+          "nll": 0.8084891753544394,
+          "metric": 0.65625,
+          "metric_name": "accuracy"
+        },
+        "conditional": {
+          "n": 160,
+          "accuracy": 0.63125,
+          "nll": 0.816182715330303,
+          "metric": 0.63125,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 181,
+          "accuracy": 0.8176795580110497,
+          "nll": 0.498902324786445,
+          "metric": 0.8144174233726472,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.725,
+          "nll": 0.5662247437134027,
+          "metric": 0.5,
+          "metric_name": "positive-class F1"
+        }
+      }
+    },
+    "anchor6": {
+      "step": 750,
+      "objective": 0.75054375,
+      "families": {
+        "retention": {
+          "n": 500,
+          "accuracy": 0.894,
+          "nll": 0.3038649429653224,
+          "metric": 0.894,
+          "metric_name": "accuracy"
+        },
+        "banking": {
+          "n": 154,
+          "accuracy": 0.8116883116883117,
+          "nll": 0.9894882879722295,
+          "metric": 0.8116883116883117,
+          "metric_name": "accuracy"
+        },
+        "deadline": {
+          "n": 160,
+          "accuracy": 0.81875,
+          "nll": 0.4885400575513038,
+          "metric": 0.81875,
+          "metric_name": "accuracy"
+        },
+        "and_or": {
+          "n": 160,
+          "accuracy": 0.725,
+          "nll": 0.684033331375419,
+          "metric": 0.725,
+          "metric_name": "accuracy"
+        },
+        "or_not": {
+          "n": 160,
+          "accuracy": 0.6125,
+          "nll": 0.9397985669371522,
+          "metric": 0.6125,
+          "metric_name": "accuracy"
+        },
+        "conditional": {
+          "n": 160,
+          "accuracy": 0.6,
+          "nll": 0.8908884211341175,
+          "metric": 0.6,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 181,
+          "accuracy": 0.8011049723756906,
+          "nll": 0.5060748764271705,
+          "metric": 0.7999410551134689,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.7125,
+          "nll": 0.5775562823789793,
+          "metric": 0.5106382978723404,
+          "metric_name": "positive-class F1"
+        }
+      }
+    }
+  },
+  "selected_before_test": true,
+  "base_revision": "fbc3d2daa679e0d4bd9f99c9912b6496d5a41f0a",
+  "test_sha256": "22ff23c01ee8ec63c6c840fe994c95ad51837d71ae6d6edfc80eeb94790b848f",
+  "test": {
+    "released_v62": {
+      "objective": 0.7209812499999999,
+      "families": {
+        "conditional": {
+          "n": 160,
+          "accuracy": 0.6125,
+          "nll": 1.2517988763569547,
+          "metric": 0.6125,
+          "metric_name": "accuracy"
+        },
+        "and_or": {
+          "n": 160,
+          "accuracy": 0.5625,
+          "nll": 1.5977193822375544,
+          "metric": 0.5625,
+          "metric_name": "accuracy"
+        },
+        "retention": {
+          "n": 500,
+          "accuracy": 0.934,
+          "nll": 0.21870660245549345,
+          "metric": 0.934,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 180,
+          "accuracy": 0.7111111111111111,
+          "nll": 0.7353250763802401,
+          "metric": 0.7121353544404619,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.725,
+          "nll": 0.6158682200969628,
+          "metric": 0.5,
+          "metric_name": "positive-class F1"
+        },
+        "banking": {
+          "n": 154,
+          "accuracy": 0.7467532467532467,
+          "nll": 1.2266273153352905,
+          "metric": 0.7467532467532467,
+          "metric_name": "accuracy"
+        },
+        "or_not": {
+          "n": 160,
+          "accuracy": 0.525,
+          "nll": 1.81295777378959,
+          "metric": 0.525,
+          "metric_name": "accuracy"
+        },
+        "deadline": {
+          "n": 160,
+          "accuracy": 0.81875,
+          "nll": 0.5162852927791891,
+          "metric": 0.81875,
+          "metric_name": "accuracy"
+        }
+      }
+    },
+    "selected_candidate": {
+      "objective": 0.7537937499999999,
+      "families": {
+        "conditional": {
+          "n": 160,
+          "accuracy": 0.63125,
+          "nll": 0.8428270546496901,
+          "metric": 0.63125,
+          "metric_name": "accuracy"
+        },
+        "and_or": {
+          "n": 160,
+          "accuracy": 0.7,
+          "nll": 0.8249805120270729,
+          "metric": 0.7,
+          "metric_name": "accuracy"
+        },
+        "retention": {
+          "n": 500,
+          "accuracy": 0.934,
+          "nll": 0.2136302309211488,
+          "metric": 0.934,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 180,
+          "accuracy": 0.7388888888888889,
+          "nll": 0.6958953149143592,
+          "metric": 0.7395793105223861,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.7625,
+          "nll": 0.5785096342513592,
+          "metric": 0.5128205128205128,
+          "metric_name": "positive-class F1"
+        },
+        "banking": {
+          "n": 154,
+          "accuracy": 0.7467532467532467,
+          "nll": 1.20731443518826,
+          "metric": 0.7467532467532467,
+          "metric_name": "accuracy"
+        },
+        "or_not": {
+          "n": 160,
+          "accuracy": 0.575,
+          "nll": 1.171876386786851,
+          "metric": 0.575,
+          "metric_name": "accuracy"
+        },
+        "deadline": {
+          "n": 160,
+          "accuracy": 0.8,
+          "nll": 0.545613429935055,
+          "metric": 0.8,
+          "metric_name": "accuracy"
+        }
+      }
+    }
+  },
+  "published_model_unchanged": true,
+  "passes_final_guard": true,
+  "next_action": "Collect an independent holdout, then merge and validate before any release.",
+  "limitations": [
+    "All splits reused from the prior rule experiment; selection and test are development diagnostics, not fresh unbiased evidence.",
+    "No validation or test examples enter supervised training or teacher caching.",
+    "A fresh independent holdout and merged-weight validation are required before release."
+  ]
+}
