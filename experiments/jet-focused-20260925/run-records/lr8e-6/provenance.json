@@ -1,0 +1,23 @@
+{
+  "config.json": {
+    "source": "adapters/jet-focused-20260925/lr8e-6/config.json",
+    "sha256": "6c4f57a15a0c674f8348d1040d5167a054faa3a2c1e003d965586f283857f85d"
+  },
+  "completed.json": {
+    "source": "adapters/jet-focused-20260925/lr8e-6/completed.json",
+    "sha256": "b2a47d8ec270f4db10aa2f347b488edb80affb59a3b9befc281dae48b69fa0ee"
+  },
+  "best-step.json": {
+    "source": "adapters/jet-focused-20260925/lr8e-6/best-step.json",
+    "sha256": "aace5c4318bd2b2221dcb826a3667c00643f25fdabc215fa7d8004a909bdb2ba"
+  },
+  "adapter_config.json": {
+    "source": "adapters/jet-focused-20260925/lr8e-6/best/adapter_config.json",
+    "sha256": "9bc253d8348391b5c62c468cece3006607d6b1c911ee12ae147b718a2dba7670"
+  },
+  "validation-history.json": {
+    "source": "adapters/jet-focused-20260925/lr8e-6/metrics.jsonl",
+    "source_sha256": "7eadda4ea1cffece304675a3b444dce36f048a6dc1270269cb1649d85319dcc2",
+    "transformation": "JSONL records converted to JSON array without modifying values"
+  }
+}

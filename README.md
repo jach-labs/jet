@@ -1,6 +1,6 @@
 # Jet
 
-Jet is a typed decision model built on **Qwen3.5-4B** (v6.1). Give it a state and named,
+Jet is a typed decision model built on **Qwen3.5-4B** (v6.2). Give it a state and named,
 typed questions; it returns choices, scores, and probabilities without generating
 free-form text. Answers always follow the requested type, but decisions can still
 be wrong.
@@ -8,7 +8,7 @@ be wrong.
 [Model weights](https://huggingface.co/michaljach/jet) ·
 [Hugging Face demo](https://huggingface.co/spaces/michaljach/jet) ·
 [Training history](TRAINING_HISTORY.md) ·
-[Training run records](experiments/jet-targeted-20260924/run-records/README.md)
+[Training run records](experiments/jet-focused-20260925/README.md)
 
 | Type | Criteria | Answer |
 |---|---|---|
@@ -18,12 +18,12 @@ be wrong.
 
 ## Run locally
 
-**Jet v6.1 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
-ships the merged bf16 weights with the runtime from [`releases/jet-v6.1/`](releases/jet-v6.1/) and
+**Jet v6.2 (Linux + NVIDIA CUDA).** The Hugging Face release is self-contained: it
+ships the merged bf16 weights with the runtime from [`releases/jet-v6.2/`](releases/jet-v6.2/) and
 `src/format.py` / `src/inference.py`.
 
 ```sh
-hf download michaljach/jet --revision v6.1.0 --local-dir jet
+hf download michaljach/jet --revision v6.2.0 --local-dir jet
 cd jet
 python -m pip install -r requirements.txt
 echo '{"state":"I was charged twice this month.","questions":{"billing":{"type":"noul","instructions":"Is this a billing issue?"}}}' | python jet.py
@@ -79,7 +79,7 @@ flowchart TB
     subgraph infer["3 · Inference"]
         req["state + N questions"] --> prompt["prompt = system + state + question<br/>each option gets one label token: A, B … / 0–9 / yes, no"]
         prompt --> prefix["MLX server: encode system + state ONCE → KV cache,<br/>then run only each question's short suffix, batched"]
-        prompt --> full["v6 CUDA runner: encode each complete prompt<br/>(no truncation, up to 8,192 tokens)"]
+        prompt --> full["v6.2 CUDA runner: encode each complete prompt<br/>(no truncation, up to 16,384 tokens)"]
         prefix --> logits
         full --> logits["next-token logits at the last position,<br/>restricted to that question's label tokens"]
         logits --> soft["÷ temperature → softmax"]
@@ -103,48 +103,55 @@ standard serving API.
 
 ## Training and evaluation
 
-Jet v6.1.0 is the full merged step-2,000 continuation of the published v6 model.
-The 22,643-example mixture emphasizes code, stance, sarcasm, relevance and response
-preferences while retaining broad tasks. Rank-16 BF16 LoRA training ran for one
-epoch; validation selected step 2,000 of 5,661. The later two repair trials failed
-their regression guards and are not part of this release.
+Jet v6.2.0 is the full merged step-250 continuation of released Jet v6.1.
+Two 1,000-update rank-16 LoRA trials used 4,000 examples, split evenly between
+banking/entity sentiment/sarcasm and broad retention. Validation selected the
+3e-6 trial at step 250; the higher-rate trial failed its regression guards.
 
-The selected adapter was evaluated on 25 benchmarks: 23 full available
-reconstructions and two retrieval samples. Of 67,459 requests, 66,950 were
-answered, 509 were unsupported, and none errored. These measurements precede the
-final BF16 merge. Merge verification preserved the selected answer on all 144
-checked cases; probability differences reached 7.04 percentage points.
+The standalone merged model was evaluated on the same frozen 914-case holdout:
 
-| Benchmark | Jet candidate | Archived Kev 8B reference |
+| Local holdout | Jet v6.1 | Jet v6.2 merged |
 |---|---:|---:|
-| Habermas | 44.51% | 41.71% |
-| VAST | 47.58% | 47.04% |
-| GSM8K | 70.13% | 41.17% |
-| BANKING77 | 75.14% | 82.66% |
-| FinEntity | 80.80% | 86.75% |
+| Banking accuracy | 74.68 | 74.68 |
+| Entity sentiment macro-F1 | 71.16 | 71.21 |
+| Sarcasm F1 | 46.81 | 50.00 |
+| Retention accuracy | 93.40 | 93.40 |
 
-Matching case counts do not prove identical case contents. This is development
-evaluation, not an official overall Decision Index score. The release has a known
-tradeoff: English sarcasm F1 fell from 46.90% for published v6 to 41.98% for this
-candidate. Temperatures are inherited from v6, not recalibrated for the update.
+These are local holdout results, not Decision Index scores. Focus cases were
+screened against previous local inputs; retention cases were reused. Financial
+sentiment uses SEntFiN, not the FinEntity benchmark. The small changes do not
+establish statistical significance. BF16 merging reduced the adapter's finance
+F1 from 71.72 to 71.21, so only the merged scores above describe the release.
 
-[Full benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
-[Model card and merge verification](releases/jet-v6.1/README.md) ·
-[Training protocol](experiments/jet-targeted-20260924/protocol.md) ·
-[Training history](TRAINING_HISTORY.md) ·
-[Training run records](experiments/jet-targeted-20260924/run-records/README.md)
+Merge checks preserved selected answers on all 157 fixed cases; maximum
+probability difference was 4.76 percentage points. Calibration temperatures are
+inherited, not refitted for this continuation. The complete 11,495-token API-Bank
+prompt passed the new 16,384-token runtime limit without truncation; its full
+benchmark score remains unmeasured.
 
-The release build, verification and publication scripts are recorded under
-[`experiments/jet-release-20260925/`](experiments/jet-release-20260925/).
-The older MLX training scripts reproduce Qwen3-0.6B generations; v6 and v6.1 use
+The earlier 25-benchmark comparison measures the **v6.1 step-2,000 adapter before
+its BF16 merge**, not v6.2. It includes 23 full available reconstructions and two
+retrieval samples against archived Decision Index 0.1 reference scores. Matching
+metrics and counts do not establish identical cases. **No official overall
+Decision Index has been measured for Jet.**
+
+[Historical v6.1 benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
+[Current full-model results](releases/jet-v6.2/evaluation.json) ·
+[Model card and merge verification](releases/jet-v6.2/README.md) ·
+[Training protocol and records](experiments/jet-focused-20260925/README.md) ·
+[Training history](TRAINING_HISTORY.md)
+
+Release scripts and gates are recorded under
+[`experiments/jet-release-20260926/`](experiments/jet-release-20260926/).
+The older MLX training scripts reproduce Qwen3-0.6B generations; v6 onward uses
 PyTorch/PEFT, with `src/qwen35_training.py` providing the common backend.
 
 ## Deployment
 
-The Hugging Face model repository holds v6.1: merged bf16 weights (nine shards,
+The Hugging Face model repository holds v6.2: merged bf16 weights (nine shards,
 8.4 GB), tokenizer, calibration, the CUDA runtime, and provenance and validation
 records. Everything except the weights and tokenizer is kept in
-[`releases/jet-v6.1/`](releases/jet-v6.1/); `scripts/publish_release.py` uploads it.
+[`releases/jet-v6.2/`](releases/jet-v6.2/); `scripts/publish_release.py` uploads it.
 The Space code serves the last Qwen3-0.6B release (V5, revision `25ccbd9e`) and exposes
 `/decide`; its availability depends on Hugging Face's free hosting quota. See
 [deployment instructions](deploy/huggingface/README.md).
@@ -171,5 +178,5 @@ quantization can change probabilities.
 - `src/train.py`, `src/evaluate.py`, `src/fuse.py`: training, calibration, evaluation and fusion
 - `src/data/`, `scripts/`: data builders and reproducible experiments
 - `src/decision_index_engine.py`, `src/decision_index_ensemble.py`: benchmark adapters
-- `releases/jet-v6.1/`: v6.1 model card, CUDA runtime and release records published with the Hugging Face weights
+- `releases/jet-v6.2/`: v6.2 model card, CUDA runtime and release records published with the Hugging Face weights
 - `deploy/huggingface/`: hosted demo and API deployment

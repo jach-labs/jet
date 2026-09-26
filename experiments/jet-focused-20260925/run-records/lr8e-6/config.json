@@ -1,0 +1,25 @@
+{
+  "base": "michaljach/jet",
+  "dtype": "bfloat16",
+  "quantization": null,
+  "microbatch": 1,
+  "lora_alpha": 16,
+  "dropout": 0.05,
+  "max_prompt_tokens": 3072,
+  "validation_every": 250,
+  "lr": 8e-06,
+  "steps": 1000,
+  "seed": 260925,
+  "accumulate": 4,
+  "rank": 16,
+  "base_revision": "f446b82727be57da348bb46eccf211414294ab3e",
+  "train_sha256": "f224f14e0b1d1dc1bec0870b1743d2a1d83eabd8ef42fa67be2ed22842ac34a1",
+  "selection_sha256": "68b6ee9354b8464aad214cfcd2b64de9fb8d10e16e2038dd41ee2a2aaa847cc4",
+  "selection": "70% mean task metrics + 30% retention accuracy; Every focus metric and retention accuracy must stay within 2pp of initial. Step0 fallback.",
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  }
+}

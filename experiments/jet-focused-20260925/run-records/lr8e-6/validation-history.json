@@ -1,0 +1,180 @@
+[
+  {
+    "step": 0,
+    "objective": 0.7609546563871108,
+    "families": {
+      "banking": {
+        "n": 154,
+        "accuracy": 0.8051948051948052,
+        "nll": 1.0101441663500874,
+        "metric": 0.8051948051948052,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 181,
+        "accuracy": 0.8011049723756906,
+        "nll": 0.5305621542076085,
+        "metric": 0.7993783720384706,
+        "metric_name": "macro-F1"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.6875,
+        "nll": 0.6234788823749111,
+        "metric": 0.5098039215686274,
+        "metric_name": "positive-class F1"
+      },
+      "retention": {
+        "n": 500,
+        "accuracy": 0.892,
+        "nll": 0.30653686648689493,
+        "metric": 0.892,
+        "metric_name": "accuracy"
+      }
+    }
+  },
+  {
+    "step": 250,
+    "eligible": false,
+    "improved": false,
+    "objective": 0.7627400141778027,
+    "families": {
+      "banking": {
+        "n": 154,
+        "accuracy": 0.8116883116883117,
+        "nll": 0.9903230731653716,
+        "metric": 0.8116883116883117,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 181,
+        "accuracy": 0.8287292817679558,
+        "nll": 0.4757757084671994,
+        "metric": 0.8251068710249192,
+        "metric_name": "macro-F1"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.7375,
+        "nll": 0.5577098905239175,
+        "metric": 0.4878048780487805,
+        "metric_name": "positive-class F1"
+      },
+      "retention": {
+        "n": 500,
+        "accuracy": 0.89,
+        "nll": 0.3084902305893535,
+        "metric": 0.89,
+        "metric_name": "accuracy"
+      }
+    }
+  },
+  {
+    "step": 500,
+    "eligible": false,
+    "improved": false,
+    "objective": 0.7537604423227711,
+    "families": {
+      "banking": {
+        "n": 154,
+        "accuracy": 0.7987012987012987,
+        "nll": 0.9857705615474672,
+        "metric": 0.7987012987012987,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 181,
+        "accuracy": 0.8397790055248618,
+        "nll": 0.5250929651873387,
+        "metric": 0.8396291683962916,
+        "metric_name": "macro-F1"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.775,
+        "nll": 0.6218241099449434,
+        "metric": 0.4375,
+        "metric_name": "positive-class F1"
+      },
+      "retention": {
+        "n": 500,
+        "accuracy": 0.898,
+        "nll": 0.347595154292766,
+        "metric": 0.898,
+        "metric_name": "accuracy"
+      }
+    }
+  },
+  {
+    "step": 750,
+    "eligible": false,
+    "improved": false,
+    "objective": 0.757565483159401,
+    "families": {
+      "banking": {
+        "n": 154,
+        "accuracy": 0.7922077922077922,
+        "nll": 0.9589085438377415,
+        "metric": 0.7922077922077922,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 181,
+        "accuracy": 0.8342541436464088,
+        "nll": 0.48760474391502795,
+        "metric": 0.835834754665831,
+        "metric_name": "macro-F1"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.8,
+        "nll": 0.6053462193746484,
+        "metric": 0.4666666666666667,
+        "metric_name": "positive-class F1"
+      },
+      "retention": {
+        "n": 500,
+        "accuracy": 0.896,
+        "nll": 0.33361035452772536,
+        "metric": 0.896,
+        "metric_name": "accuracy"
+      }
+    }
+  },
+  {
+    "step": 1000,
+    "eligible": false,
+    "improved": false,
+    "objective": 0.7509293938628394,
+    "families": {
+      "banking": {
+        "n": 154,
+        "accuracy": 0.7857142857142857,
+        "nll": 0.9547601865689375,
+        "metric": 0.7857142857142857,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 181,
+        "accuracy": 0.8397790055248618,
+        "nll": 0.48330613674819783,
+        "metric": 0.8404831165550267,
+        "metric_name": "macro-F1"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.775,
+        "nll": 0.5798816136772249,
+        "metric": 0.4375,
+        "metric_name": "positive-class F1"
+      },
+      "retention": {
+        "n": 500,
+        "accuracy": 0.898,
+        "nll": 0.3345407211178699,
+        "metric": 0.898,
+        "metric_name": "accuracy"
+      }
+    }
+  }
+]

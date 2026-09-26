@@ -1,0 +1,1056 @@
+{
+  "cases": 157,
+  "argmax_flips": 0,
+  "max_probability_difference": 0.04756533417616565,
+  "selection": "Previous fixed 144 merge cases plus 12 hash-selected focused holdout cases and longest API-Bank request. Not an independent benchmark.",
+  "calibration": "Inherited v6.1 temperatures, not refitted.",
+  "base_download_required": false,
+  "wrapper_smoke": {
+    "model": "michaljach/jet",
+    "answers": {
+      "category": {
+        "type": "choice",
+        "choice": "damage",
+        "probabilities": {
+          "damage": 0.9903,
+          "billing": 0.0097
+        },
+        "confidence": 0.9209
+      },
+      "severity": {
+        "type": "score",
+        "score": 1.555,
+        "level": "severe",
+        "probabilities": [
+          0.0161,
+          0.4128,
+          0.5711
+        ],
+        "confidence": 0.3159
+      },
+      "damaged": {
+        "type": "noul",
+        "probability": 0.9487,
+        "confidence": 0.7082
+      }
+    }
+  },
+  "context_probe": {
+    "passed": true,
+    "tokens": 11495,
+    "max_tokens": 16384
+  },
+  "records": [
+    {
+      "case": 0,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002987165380278878
+    },
+    {
+      "case": 1,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 2,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 3,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0008522927862807308
+    },
+    {
+      "case": 4,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 5,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0005733880531314777
+    },
+    {
+      "case": 6,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006614689289068752
+    },
+    {
+      "case": 7,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 8,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000899492764544152
+    },
+    {
+      "case": 9,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0016077412194476226
+    },
+    {
+      "case": 10,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0036649808951511043
+    },
+    {
+      "case": 11,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011758151845370698
+    },
+    {
+      "case": 12,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007087150140926424
+    },
+    {
+      "case": 13,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006711365186986666
+    },
+    {
+      "case": 14,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0020361407568059223
+    },
+    {
+      "case": 15,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 6.886235910508187e-05
+    },
+    {
+      "case": 16,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0012989605282783812
+    },
+    {
+      "case": 17,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0005189743557448834
+    },
+    {
+      "case": 18,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0027470613975926206
+    },
+    {
+      "case": 19,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.010187698043257254
+    },
+    {
+      "case": 20,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 21,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001454303669506496
+    },
+    {
+      "case": 22,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.013085229248764652
+    },
+    {
+      "case": 23,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0010584632570356245
+    },
+    {
+      "case": 24,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0020582766106718824
+    },
+    {
+      "case": 25,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0005125698442036922
+    },
+    {
+      "case": 26,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0005830234269115341
+    },
+    {
+      "case": 27,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007246417457215798
+    },
+    {
+      "case": 28,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.000490928734522722
+    },
+    {
+      "case": 29,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0013795481306675406
+    },
+    {
+      "case": 30,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006006729030451161
+    },
+    {
+      "case": 31,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011758151845370698
+    },
+    {
+      "case": 32,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.012648434256519445
+    },
+    {
+      "case": 33,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.01321697504337338
+    },
+    {
+      "case": 34,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0024019477258491392
+    },
+    {
+      "case": 35,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 36,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 37,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 38,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.003854598977123258
+    },
+    {
+      "case": 39,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.013136055229324622
+    },
+    {
+      "case": 40,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0018665708326972563
+    },
+    {
+      "case": 41,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.000692937761531856
+    },
+    {
+      "case": 42,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 43,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.000723617570070112
+    },
+    {
+      "case": 44,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.007833504601458263
+    },
+    {
+      "case": 45,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 46,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.017761061358939845
+    },
+    {
+      "case": 47,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0043677575202951124
+    },
+    {
+      "case": 48,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 49,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0022369316702290296
+    },
+    {
+      "case": 50,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.002032526605908448
+    },
+    {
+      "case": 51,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.012227965640579014
+    },
+    {
+      "case": 52,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.00040181997200938735
+    },
+    {
+      "case": 53,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 54,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 55,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 56,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.005661205903540578
+    },
+    {
+      "case": 57,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 58,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 59,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 60,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0019360099221095162
+    },
+    {
+      "case": 61,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 62,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 63,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.02634154028477992
+    },
+    {
+      "case": 64,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.008880156115223817
+    },
+    {
+      "case": 65,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 66,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.003854598977123258
+    },
+    {
+      "case": 67,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0007447583966543204
+    },
+    {
+      "case": 68,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0001146676099607895
+    },
+    {
+      "case": 69,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0029591419592648327
+    },
+    {
+      "case": 70,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.015230252265583333
+    },
+    {
+      "case": 71,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 72,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.020053874683156447
+    },
+    {
+      "case": 73,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0199179731534751
+    },
+    {
+      "case": 74,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 75,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0050653758778449465
+    },
+    {
+      "case": 76,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0024803049079245507
+    },
+    {
+      "case": 77,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 78,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.012005088055840801
+    },
+    {
+      "case": 79,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0055398063440276965
+    },
+    {
+      "case": 80,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.018784706325125744
+    },
+    {
+      "case": 81,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 82,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.003274203457591829
+    },
+    {
+      "case": 83,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 84,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.01720608744436994
+    },
+    {
+      "case": 85,
+      "type": "noul",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 86,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.000461312361028976
+    },
+    {
+      "case": 87,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.026329934699847568
+    },
+    {
+      "case": 88,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 89,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0008237772015591352
+    },
+    {
+      "case": 90,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 91,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.0004971529853300544
+    },
+    {
+      "case": 92,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.012287200915141808
+    },
+    {
+      "case": 93,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.006122007063984927
+    },
+    {
+      "case": 94,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.04756533417616565
+    },
+    {
+      "case": 95,
+      "type": "score",
+      "same_argmax": true,
+      "max_probability_difference": 0.011753993010866715
+    },
+    {
+      "case": 96,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 97,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 98,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 99,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 100,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.04477957280437994
+    },
+    {
+      "case": 101,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0018032455547183357
+    },
+    {
+      "case": 102,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.01684820403685175
+    },
+    {
+      "case": 103,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 104,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.01599744069486378
+    },
+    {
+      "case": 105,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 106,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.01890952286570502
+    },
+    {
+      "case": 107,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0034353363281827143
+    },
+    {
+      "case": 108,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 109,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 110,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 111,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 112,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.01023223405796686
+    },
+    {
+      "case": 113,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 114,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 115,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 116,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001163385786891992
+    },
+    {
+      "case": 117,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.010916428349646567
+    },
+    {
+      "case": 118,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.01999364952511129
+    },
+    {
+      "case": 119,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.004639380151772588
+    },
+    {
+      "case": 120,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0004504036257898525
+    },
+    {
+      "case": 121,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.001900401342050162
+    },
+    {
+      "case": 122,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0016769366925224183
+    },
+    {
+      "case": 123,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0011628789777733337
+    },
+    {
+      "case": 124,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 125,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.012155667530471606
+    },
+    {
+      "case": 126,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0015901874331142977
+    },
+    {
+      "case": 127,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002292551478361493
+    },
+    {
+      "case": 128,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 129,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 130,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 131,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 132,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 133,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.002977611927637354
+    },
+    {
+      "case": 134,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.029698411658723306
+    },
+    {
+      "case": 135,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 136,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 137,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 138,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0015901737796318767
+    },
+    {
+      "case": 139,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 140,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 141,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0023174474419890914
+    },
+    {
+      "case": 142,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 143,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 144,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00018020386372263886
+    },
+    {
+      "case": 145,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0006541617315441572
+    },
+    {
+      "case": 146,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.006506129065911526
+    },
+    {
+      "case": 147,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.008089011161791393
+    },
+    {
+      "case": 148,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 149,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.004038183129593295
+    },
+    {
+      "case": 150,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 151,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.005692637355534935
+    },
+    {
+      "case": 152,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 153,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.00397777773328345
+    },
+    {
+      "case": 154,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 155,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0
+    },
+    {
+      "case": 156,
+      "type": "choice",
+      "same_argmax": true,
+      "max_probability_difference": 0.0138867288785047
+    }
+  ],
+  "merged_holdout": {
+    "objective": 0.7372740069451986,
+    "families": {
+      "retention": {
+        "n": 500,
+        "accuracy": 0.934,
+        "nll": 0.21870660245549345,
+        "metric": 0.934,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 180,
+        "accuracy": 0.7111111111111111,
+        "nll": 0.7353250763802403,
+        "metric": 0.7121353544404619,
+        "metric_name": "macro-F1"
+      },
+      "banking": {
+        "n": 154,
+        "accuracy": 0.7467532467532467,
+        "nll": 1.2266273153352905,
+        "metric": 0.7467532467532467,
+        "metric_name": "accuracy"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.725,
+        "nll": 0.6158682200969627,
+        "metric": 0.5,
+        "metric_name": "positive-class F1"
+      }
+    }
+  },
+  "released_holdout": {
+    "objective": 0.7297131700522546,
+    "families": {
+      "retention": {
+        "n": 500,
+        "accuracy": 0.934,
+        "nll": 0.2194680695671052,
+        "metric": 0.934,
+        "metric_name": "accuracy"
+      },
+      "finance": {
+        "n": 180,
+        "accuracy": 0.7111111111111111,
+        "nll": 0.7504884215008701,
+        "metric": 0.7116466613734374,
+        "metric_name": "macro-F1"
+      },
+      "banking": {
+        "n": 154,
+        "accuracy": 0.7467532467532467,
+        "nll": 1.2402327169109493,
+        "metric": 0.7467532467532467,
+        "metric_name": "accuracy"
+      },
+      "sarcasm": {
+        "n": 80,
+        "accuracy": 0.6875,
+        "nll": 0.6216465693736991,
+        "metric": 0.46808510638297873,
+        "metric_name": "positive-class F1"
+      }
+    }
+  },
+  "merge_passed": true,
+  "holdout_passed": true,
+  "passed": true
+}

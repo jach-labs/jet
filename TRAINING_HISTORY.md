@@ -101,3 +101,30 @@ up to 7.04 points. No official overall index score is claimed.
 [Release card](releases/jet-v6.1/README.md) ·
 [Benchmark report](experiments/jet-kev-comparison-20260925/results.md) ·
 [Repair-trial report](experiments/jet-repair-20260925/results.md)
+
+
+## v6.2.0 — focused continuation, 2026-09-26
+
+Full merged continuation from v6.1, selected at step 250 of the 3e-6 trial.
+The 8e-6 trial kept its step-zero fallback and is not released. Both ran 1,000
+updates on 4,000 examples: 800 banking, 800 entity sentiment, 400 sarcasm/literal,
+and 2,000 retention. Protocol, data hashes, environment and trial records are in
+experiments/jet-focused-20260925/.
+
+| Local holdout | Jet v6.1 | Jet v6.2 merged |
+|---|---:|---:|
+| Banking accuracy | 74.68 | 74.68 |
+| Entity sentiment macro-F1 | 71.16 | 71.21 |
+| Sarcasm F1 | 46.81 | 50.00 |
+| Retention accuracy | 93.40 | 93.40 |
+
+These 914-case holdout measurements were repeated on the full merged weights.
+Focus holdouts are new local splits; retention is reused. They are not Decision
+Index scores. Financial sentiment measures SEntFiN transfer, not FinEntity.
+The adapter's 71.72 financial macro-F1 became 71.21 after BF16 merging.
+
+The 157 merge-verification cases had no argmax flips and at most 4.76 percentage
+points of probability drift. The standalone runtime now accepts 16,384-token
+complete prompts and passed the longest API-Bank input (11,495 tokens).
+Calibration is inherited from v6.1, not refitted. Previous benchmark charts remain
+explicitly attributed to v6.1; no official overall Decision Index is available.

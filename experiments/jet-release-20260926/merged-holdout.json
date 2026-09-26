@@ -1,0 +1,33 @@
+{
+  "objective": 0.7372740069451986,
+  "families": {
+    "retention": {
+      "n": 500,
+      "accuracy": 0.934,
+      "nll": 0.21870660245549345,
+      "metric": 0.934,
+      "metric_name": "accuracy"
+    },
+    "finance": {
+      "n": 180,
+      "accuracy": 0.7111111111111111,
+      "nll": 0.7353250763802403,
+      "metric": 0.7121353544404619,
+      "metric_name": "macro-F1"
+    },
+    "banking": {
+      "n": 154,
+      "accuracy": 0.7467532467532467,
+      "nll": 1.2266273153352905,
+      "metric": 0.7467532467532467,
+      "metric_name": "accuracy"
+    },
+    "sarcasm": {
+      "n": 80,
+      "accuracy": 0.725,
+      "nll": 0.6158682200969627,
+      "metric": 0.5,
+      "metric_name": "positive-class F1"
+    }
+  }
+}

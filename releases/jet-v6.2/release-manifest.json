@@ -1,0 +1,49 @@
+{
+  "name": "Jet",
+  "version": "v6.2.0",
+  "format": "complete merged BF16 Qwen3_5ForCausalLM",
+  "files": {
+    "model-00001-of-00009.safetensors": "758c65ea6c124bbe96b68a2d5475f7e4ec0ff9b6a4dbba87f295144ace55f07d",
+    "model-00002-of-00009.safetensors": "8a79a65e7b3187a1545178737c3afb68c5563da8ef08a843ac0d804d50f13126",
+    "model-00003-of-00009.safetensors": "cbdcdbab53b2e604805ed88324f27ecc1eb4f3abf105993820a0818399524436",
+    "model-00004-of-00009.safetensors": "43db7601b74bfc88b9c2cc07d56d52de1a9f9ff64a987b84d311375530320ba5",
+    "model-00005-of-00009.safetensors": "4997734d89a1b29dc6f725faf013f1fbeaf21af78893e9fb4e0f7fd16b5f1293",
+    "model-00006-of-00009.safetensors": "b1a42ff788a08003b053f50ca7aec1e87159f03a4d7d83bc1faf2d0e6dd05ccf",
+    "model-00007-of-00009.safetensors": "077cc7ee8901098fd751bd457dc18a059d4ee27af50f491f83ef21fd7aaf8179",
+    "model-00008-of-00009.safetensors": "1cddde32313f1a4beafa864a0f89eafa92e61b248fdecda83910ea070a613471",
+    "model-00009-of-00009.safetensors": "83274a5302791056a5ca1ded5fce9ada6659bc760d34835a11bd89a01f31846d",
+    "model.safetensors.index.json": "97413dd10706acae8d0db5ad0fe0d380c53d3ea15d6570034121d27f248fb307",
+    "config.json": "63f47812d0f11118e4d252d2b3ad488707eb9287a11589f4fd382a1d31182724",
+    "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "tokenizer_config.json": "9cf04fffe3d8c3b85e439fb35c7acad0761ab51c422a8c4256d9f887c3a0be7d",
+    "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "calibration.json": "c7b13d6446dfa455bc18c11a9f877994728e670ddb4c3323f1bd16eb4cde2bc7",
+    "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "requirements.txt": "2888712d1e07f61a0748da102183fbff30c7de6f4152f239625d17c864bf9dde",
+    "jet.py": "99782aa444bf2a08ff90b58e063bf6eaef558e1606f86fda42c54b475ab07ba3",
+    "runtime.py": "42ecb8f12ea72d2c050d533f9038c8a5fc48778a16fe5b5e3e9affb9cb161109",
+    "format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+    "inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+    "merge-provenance.json": "448f1b0e883430e66551e9d1d5e32b4975b4960aa2cc18aa78f8905523cc52f1",
+    "merge-validation.json": "16df5e7856ba993170b09d5ca9b28b335717c4a442d16efd9f2d4c7c812a852a",
+    "evaluation.json": "feef692b332ac011b790984c73393d5d5ac17fe0b3d464cfc3410011b5805016",
+    "README.md": "dea59046756ba6c81a06705f8508d8131d4004d8e4bd1829b578a1869eadcef9"
+  },
+  "validation": {
+    "cases": 157,
+    "argmax_flips": 0,
+    "max_probability_difference": 0.04756533417616565,
+    "selection": "Previous fixed 144 merge cases plus 12 hash-selected focused holdout cases and longest API-Bank request. Not an independent benchmark.",
+    "calibration": "Inherited v6.1 temperatures, not refitted.",
+    "base_download_required": false,
+    "context_probe": {
+      "passed": true,
+      "tokens": 11495,
+      "max_tokens": 16384
+    },
+    "merge_passed": true,
+    "holdout_passed": true,
+    "passed": true
+  },
+  "official_decision_index": null
+}

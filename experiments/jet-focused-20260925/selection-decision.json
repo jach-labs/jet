@@ -1,0 +1,75 @@
+{
+  "winner": "lr3e-6",
+  "selection": {
+    "lr3e-6": {
+      "step": 250,
+      "objective": 0.7648519265590767,
+      "families": {
+        "banking": {
+          "n": 154,
+          "accuracy": 0.8116883116883117,
+          "nll": 1.0067535545190127,
+          "metric": 0.8116883116883117,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 181,
+          "accuracy": 0.8066298342541437,
+          "nll": 0.5206389699234747,
+          "metric": 0.804534230707732,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.7,
+          "nll": 0.6049635405605663,
+          "metric": 0.52,
+          "metric_name": "positive-class F1"
+        },
+        "retention": {
+          "n": 500,
+          "accuracy": 0.888,
+          "nll": 0.3073714407141561,
+          "metric": 0.888,
+          "metric_name": "accuracy"
+        }
+      }
+    },
+    "lr8e-6": {
+      "step": 0,
+      "objective": 0.7609546563871108,
+      "families": {
+        "banking": {
+          "n": 154,
+          "accuracy": 0.8051948051948052,
+          "nll": 1.0101441663500874,
+          "metric": 0.8051948051948052,
+          "metric_name": "accuracy"
+        },
+        "finance": {
+          "n": 181,
+          "accuracy": 0.8011049723756906,
+          "nll": 0.5305621542076085,
+          "metric": 0.7993783720384706,
+          "metric_name": "macro-F1"
+        },
+        "sarcasm": {
+          "n": 80,
+          "accuracy": 0.6875,
+          "nll": 0.6234788823749111,
+          "metric": 0.5098039215686274,
+          "metric_name": "positive-class F1"
+        },
+        "retention": {
+          "n": 500,
+          "accuracy": 0.892,
+          "nll": 0.30653686648689493,
+          "metric": 0.892,
+          "metric_name": "accuracy"
+        }
+      }
+    }
+  },
+  "selected_before_test": true,
+  "base_revision": "f446b82727be57da348bb46eccf211414294ab3e"
+}
