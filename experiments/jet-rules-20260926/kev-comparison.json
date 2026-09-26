@@ -1,0 +1,57 @@
+{
+  "trial": "lr5e-6",
+  "step": 0,
+  "adapter_sha256": "35b8140728bfb527779811914e8a1b57545f476902ba62a915474d695e4dbb70",
+  "suite_sha256": "ff374c49c6c9f15f8a56fb274b4a4857d20497eb8dd1ac07ce01560e682a5f2e",
+  "n": 656,
+  "accuracy": 0.7911585365853658,
+  "brier": 0.2989712840407303,
+  "tasks": {
+    "mmlu": 0.775,
+    "emotion": 0.575,
+    "tweet_offensive": 0.725,
+    "qnli": 0.9125,
+    "paws": 0.8,
+    "sciq": 0.9625,
+    "contrastive_authorization": 1.0,
+    "contrastive_deadline": 0.5,
+    "composition_held_and_or": 0.90625,
+    "composition_held_or_not": 0.78125,
+    "composition_held_conditional": 0.78125
+  },
+  "baseline_accuracy": 0.7911585365853658,
+  "baseline_tasks": {
+    "mmlu": 0.775,
+    "emotion": 0.575,
+    "tweet_offensive": 0.725,
+    "qnli": 0.9125,
+    "paws": 0.8,
+    "sciq": 0.9625,
+    "contrastive_authorization": 1.0,
+    "contrastive_deadline": 0.5,
+    "composition_held_and_or": 0.90625,
+    "composition_held_or_not": 0.78125,
+    "composition_held_conditional": 0.78125
+  },
+  "kev4b_accuracy": 0.8170731707317073,
+  "kev4b_tasks": {
+    "composition_held_and_or": 1.0,
+    "composition_held_conditional": 1.0,
+    "composition_held_or_not": 0.9375,
+    "contrastive_authorization": 1.0,
+    "contrastive_deadline": 0.65,
+    "emotion": 0.55,
+    "mmlu": 0.725,
+    "paws": 0.7875,
+    "qnli": 0.9125,
+    "sciq": 0.975,
+    "tweet_offensive": 0.75
+  },
+  "matches_or_beats_kev4b_on_targets": false,
+  "matches_or_beats_kev4b_overall": false,
+  "limitations": [
+    "Benchmark-informed development: targeted families are now trained, so not an out-of-domain claim.",
+    "Kev figures are frozen published reference scores, not newly run models.",
+    "Candidate uses an unmerged correction adapter; a release requires merged-weight validation."
+  ]
+}

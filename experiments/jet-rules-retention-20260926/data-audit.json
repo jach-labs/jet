@@ -1,0 +1,438 @@
+{
+  "seed": 260926,
+  "inputs": {
+    "experiments/jet-focused-20260925/selection.jsonl": "68b6ee9354b8464aad214cfcd2b64de9fb8d10e16e2038dd41ee2a2aaa847cc4",
+    "experiments/jet-focused-20260925/test.jsonl": "d714570cac1d09849f1aea8a61ccb50a09cb9b5ac10425a7b18f0e89fd7dfc08",
+    "experiments/jet-kev-family-20260926/suite.jsonl": "ff374c49c6c9f15f8a56fb274b4a4857d20497eb8dd1ac07ce01560e682a5f2e",
+    "data/score_eval.jsonl": "6a53d16895fe2b3579b1e157b012417d2b8600d6c5605a31cfff6862a6368cf2",
+    "data/test.jsonl": "83ef28ce0dd483d6b51d808adac72c84b282da4fea719582f34b83436d3f239e",
+    "data/val.jsonl": "5a73ff6b450e2e1c490afa296fce786aff4af456da81a5ff5ce67846325c04f2",
+    "data/val_v3_new.jsonl": "9c7810c969295bad4bed794025bc1ca505d515a782fd8fefc68d1ef88b39051c",
+    "data/calibration_v3_new.jsonl": "9e022e0cbc76c9253ad4304bb705118b00ff09d45b4ce0d29d4c7eeb3b8bbb07",
+    "data/test_v3_new.jsonl": "3f4ff9211aea1762ba5c2dcc330047abbb82c08b0c16c952409229006f027677",
+    "data/selection_v3.jsonl": "f38f2fd8e503d749ea3a72a811348f663c30b9b5702f171c66f344fecc1dbee4",
+    "data/calibration_v3.jsonl": "692519ec1469cc83571b3ebb2bb5e2f2c17b46cf87b80e87f69576cd4539d8cd",
+    "data/selection_v4.jsonl": "43c9aef75410fe06efccf9ee8fb71196f2d9de0136785d1684a4d7ed2914a158",
+    "data/calibration_v4.jsonl": "e08bd6f26e3150485ad67099ecdb30700474ba3173570beb901136dc8a669a77",
+    "data/test_v4_new.jsonl": "36b31bc98595c814f53c745c02e902f263af5b63d6933af8137b6cd7411915f6",
+    "data/test_v4_tools.jsonl": "20f0e11691f8e51760bfef7cc9982ceb8719faeadb5340c14905b393cf58d68d",
+    "data/calibration_v4_tools.jsonl": "cbbe6269a2824a6239aaba9c89b64e43aac74788961f4e272fe369a73af0ab97",
+    "data/selection_v4_tools.jsonl": "b430db40826a3da1cc9ca52723e1689be95bed5d0cf1cdc70b520101254a862a",
+    "data/selection_v5.jsonl": "6eafe77cd79b49ae3e0831796160464b9b90b62805cde3ac189fc9bd43e080f3",
+    "data/calibration_v5.jsonl": "2c24ff80f07c60534f9c30adcba5fc9e36c97319e27ad262ed68befdd7dd2d1a",
+    "data/test_v5_new.jsonl": "6b060a9d924a6c0711a13f8e2406ffc1b163ae80b158abd64f8288928495b9e6",
+    "data/train_v5.jsonl": "d96100fd362255482869fdfc96d02cc6d3071326155500f817fca5fdbc53d3fd",
+    "experiments/jet-focused-20260925/train.jsonl": "f224f14e0b1d1dc1bec0870b1743d2a1d83eabd8ef42fa67be2ed22842ac34a1"
+  },
+  "train": {
+    "n": 6000,
+    "sha256": "7aa43b186ee8c888fc9c503f8eb5d00fed4544c824305de9bd5a2eb192e29d67",
+    "sources": {
+      "focused:sarcasm": 398,
+      "rules:conditional": 1000,
+      "rules:and_or": 1000,
+      "rules:or_not": 1000,
+      "focused:finance": 300,
+      "focused:banking": 302,
+      "retention:dbpedia": 39,
+      "retention:v3:document_relevance": 39,
+      "rules:deadline": 1000,
+      "retention:v5:adversarial_entailment": 38,
+      "retention:v5:tool_response_preference": 38,
+      "retention:v4:code_transfer": 38,
+      "retention:v3:product_relevance": 38,
+      "retention:v3:arithmetic": 39,
+      "retention:ag_news": 39,
+      "retention:v3:boolean_rules": 39,
+      "retention:mnli": 39,
+      "retention:civil_comments": 39,
+      "retention:v3:entailment": 38,
+      "retention:banking77": 39,
+      "retention:stsb": 39,
+      "retention:v3:code_behavior": 39,
+      "retention:v3:tool_relevance": 38,
+      "retention:v5:commonsense_completion": 38,
+      "retention:yelp": 38,
+      "retention:massive": 39,
+      "retention:v5:wide_intent": 38,
+      "retention:v3:stance": 38,
+      "retention:v3:sarcasm_irony": 38,
+      "retention:v4:stance_transfer": 38,
+      "retention:v3:tool_selection": 38,
+      "retention:boolq": 39,
+      "retention:v4:tool_intent_routing": 38
+    }
+  },
+  "selection": {
+    "n": 1555,
+    "sha256": "4a20407f331475cd580249f98292f9023a8d17206b34c78b6b092f07dcfec58c",
+    "sources": {
+      "retention:v3:tool_selection": 9,
+      "focused:banking": 154,
+      "rules:deadline": 160,
+      "rules:and_or": 160,
+      "retention:v5:wide_intent": 52,
+      "rules:or_not": 160,
+      "retention:v5:tool_response_preference": 61,
+      "rules:conditional": 160,
+      "focused:finance": 181,
+      "retention:v5:commonsense_completion": 51,
+      "focused:sarcasm": 80,
+      "retention:mnli": 18,
+      "retention:v3:code_behavior": 16,
+      "retention:boolq": 10,
+      "retention:v5:adversarial_entailment": 62,
+      "retention:v4:contract_entailment": 10,
+      "retention:ag_news": 13,
+      "retention:v4:stance_transfer": 14,
+      "retention:stsb": 17,
+      "retention:massive": 14,
+      "retention:v3:arithmetic": 13,
+      "retention:v3:document_relevance": 13,
+      "retention:v3:stance": 8,
+      "retention:v3:boolean_rules": 9,
+      "retention:yelp": 16,
+      "retention:v3:tool_relevance": 13,
+      "retention:dbpedia": 16,
+      "retention:v3:product_relevance": 11,
+      "retention:civil_comments": 13,
+      "retention:v4:tool_intent_routing": 15,
+      "retention:v3:entailment": 16,
+      "retention:v4:code_transfer": 10
+    }
+  },
+  "test": {
+    "n": 1554,
+    "sha256": "22ff23c01ee8ec63c6c840fe994c95ad51837d71ae6d6edfc80eeb94790b848f",
+    "sources": {
+      "rules:conditional": 160,
+      "rules:and_or": 160,
+      "retention:v5:wide_intent": 131,
+      "focused:finance": 180,
+      "focused:sarcasm": 80,
+      "focused:banking": 154,
+      "rules:or_not": 160,
+      "retention:v5:commonsense_completion": 133,
+      "rules:deadline": 160,
+      "retention:v5:adversarial_entailment": 133,
+      "retention:v5:tool_response_preference": 103
+    }
+  },
+  "rule_trees": {
+    "and_or": {
+      "train": [
+        [
+          "and",
+          [
+            "or",
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          "and",
+          [
+            "or",
+            0,
+            1
+          ],
+          [
+            "or",
+            2,
+            3
+          ]
+        ],
+        [
+          "and",
+          [
+            "and",
+            [
+              "or",
+              0,
+              1
+            ],
+            2
+          ],
+          3
+        ]
+      ],
+      "selection": [
+        [
+          "and",
+          [
+            "or",
+            [
+              "not",
+              0
+            ],
+            1
+          ],
+          2
+        ],
+        [
+          "and",
+          [
+            "or",
+            0,
+            [
+              "and",
+              1,
+              2
+            ]
+          ],
+          3
+        ]
+      ],
+      "test": [
+        [
+          "and",
+          [
+            "or",
+            0,
+            1
+          ],
+          [
+            "not",
+            2
+          ]
+        ],
+        [
+          "and",
+          [
+            "or",
+            [
+              "and",
+              0,
+              1
+            ],
+            2
+          ],
+          3
+        ]
+      ]
+    },
+    "or_not": {
+      "train": [
+        [
+          "or",
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "not",
+            2
+          ]
+        ],
+        [
+          "or",
+          [
+            "and",
+            0,
+            [
+              "not",
+              1
+            ]
+          ],
+          [
+            "not",
+            2
+          ]
+        ],
+        [
+          "or",
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "not",
+            [
+              "or",
+              2,
+              3
+            ]
+          ]
+        ]
+      ],
+      "selection": [
+        [
+          "or",
+          [
+            "and",
+            [
+              "not",
+              0
+            ],
+            1
+          ],
+          [
+            "not",
+            2
+          ]
+        ],
+        [
+          "or",
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "not",
+            [
+              "and",
+              2,
+              3
+            ]
+          ]
+        ]
+      ],
+      "test": [
+        [
+          "or",
+          [
+            "and",
+            0,
+            [
+              "or",
+              1,
+              2
+            ]
+          ],
+          [
+            "not",
+            3
+          ]
+        ],
+        [
+          "or",
+          [
+            "and",
+            [
+              "or",
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            "not",
+            3
+          ]
+        ]
+      ]
+    },
+    "conditional": {
+      "train": [
+        [
+          "if",
+          0,
+          [
+            "not",
+            1
+          ],
+          2
+        ],
+        [
+          "if",
+          [
+            "and",
+            0,
+            1
+          ],
+          2,
+          [
+            "not",
+            3
+          ]
+        ],
+        [
+          "if",
+          0,
+          [
+            "or",
+            1,
+            2
+          ],
+          3
+        ]
+      ],
+      "selection": [
+        [
+          "if",
+          [
+            "not",
+            0
+          ],
+          1,
+          2
+        ],
+        [
+          "if",
+          [
+            "or",
+            0,
+            1
+          ],
+          [
+            "not",
+            2
+          ],
+          3
+        ]
+      ],
+      "test": [
+        [
+          "if",
+          0,
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "not",
+            3
+          ]
+        ],
+        [
+          "if",
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "not",
+            2
+          ],
+          3
+        ]
+      ]
+    }
+  },
+  "date_years": {
+    "train": [
+      2018,
+      2031
+    ],
+    "selection": [
+      2033,
+      2037
+    ],
+    "test": [
+      2038,
+      2042
+    ]
+  },
+  "limitations": [
+    "All splits reused from the prior rule experiment; selection and test are development diagnostics, not fresh unbiased evidence.",
+    "No validation or test examples enter supervised training or teacher caching.",
+    "A fresh independent holdout and merged-weight validation are required before release."
+  ],
+  "parent_experiment": "experiments/jet-rules-20260926"
+}
