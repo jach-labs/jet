@@ -1,0 +1,15 @@
+{
+  "experiments/jet-rules-20260926/generate.py": "677f85af1e01dd52de0b08f9e7782912dcf0322e321e4483819d67d8f4f9a021",
+  "experiments/jet-rules-20260926/build.py": "7fbe0a54fd00bec52213b3c4d60bb76a18331335d9a92761d0ce82dfe3ea7be3",
+  "experiments/jet-rules-20260926/train.py": "b383ebdbd98b6677717d1f2c5c8f9591d8a6d086f6eec3243f04379ed74e7769",
+  "experiments/jet-rules-20260926/test_generator.py": "0d73c02e197cb7c40a3f21abcd61b060cc8564e2a620bab324625b596a6a1da2",
+  "experiments/jet-rules-20260926/launch.py": "31fed4935fd9e40a4870facc6eb70b79f2bea776b31e78a0271fb1d463241aea",
+  "experiments/jet-rules-20260926/final_test.py": "44795987ecc65c33e3e0003b9244fbb26e2a9228da082f8b18b8d5ebbde87847",
+  "experiments/jet-rules-20260926/compare_kev.py": "e4d1b981e18c719e6108dccab47eddebb6a47ec2e376a455b93926296d64b578",
+  "experiments/jet-rules-20260926/test_metrics.py": "1e29065bcef8d887a6acbd49c57d276f13402a812b2041d90125bd7ad0b63a00",
+  "experiments/jet-rules-20260926/protocol.md": "c3bd2f0c62491440369485421505fb22e20a1c35adc6e1acb407f0a552cfa794",
+  "src/qwen35_training.py": "1e184d6a264ecb1e7b96d26b1fbc250a6651fba36fc113c77a00b5b5ffeb26b3",
+  "src/format.py": "f9b86dd757dbebc1fa48effbf48b7ba6861dcd6def5a025cfa937866eed02828",
+  "src/inference.py": "38443ddac02367f5857557ebae72aaf3e4d840f407573fd0dcb3ba037a5bc19d",
+  "experiments/jet-kev-family-20260926/run.py": "f9d2bff5809a152ff4814a94341d9ccf15e9e2f32ddec574e7e5a17fb012c21f"
+}

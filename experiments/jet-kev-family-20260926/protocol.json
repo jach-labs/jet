@@ -1,0 +1,20 @@
+{
+  "model": "michaljach/jet",
+  "model_revision": "fbc3d2daa679e0d4bd9f99c9912b6496d5a41f0a",
+  "model_tag": "v6.2.0",
+  "suite_repo": "jaredpalmer/kev-suites",
+  "suite_revision": "a88f56db5341397299137cb68775c2ea6e3f68cb",
+  "suite_file": "v4/transfer-v4/development.jsonl",
+  "suite_sha256": "ff374c49c6c9f15f8a56fb274b4a4857d20497eb8dd1ac07ce01560e682a5f2e",
+  "reference_repository_revision": "58d94380d4441d2d9fbb7e5e6d30d9a5b93578ae",
+  "reference_url": "https://github.com/jaredpalmer/kev/blob/58d94380d4441d2d9fbb7e5e6d30d9a5b93578ae/docs/kev-family-summary.json",
+  "reference_sha256": "b207e7b935bf94d62ebd7c425742981a29f8f1851c5eb867572b7c134bacf353",
+  "filter": "variant == clean; matches chart headline clean accuracy, 656 of 764 rows",
+  "adaptation": "Preserve state, question, option order and descriptions; use option key when description empty; append yes/no criterion descriptions for noul. Gold labels excluded from prompts.",
+  "metrics": "Argmax accuracy, summed multiclass Brier averaged over rows; native inherited temperatures. No calibration refit.",
+  "limitations": [
+    "Kev/Jev are published reference results, not newly run models.",
+    "Source-out-of-domain designation applies to Kev, not Jet; Jet training includes some source families.",
+    "Development suite; not an independent final test or Decision Index score."
+  ]
+}
